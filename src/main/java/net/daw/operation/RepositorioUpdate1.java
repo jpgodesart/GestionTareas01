@@ -15,10 +15,18 @@ import net.daw.parameter.RepositorioParam;
 
 /**
  *
- * @author al037294
+ * @author Alvaro Crego
  */
 public class RepositorioUpdate1 implements Operation {
 
+    /**
+     *
+     * @author Alvaro Crego
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");

@@ -18,17 +18,29 @@ public class RepositorioDao {
     private Mysql oMysql;
     private Enum.Connection enumTipoConexion;
 
+    /**
+     *
+     * @author Alvaro Crego
+     * @param tipoConexion
+     */
     public RepositorioDao(Enum.Connection tipoConexion) {
         oMysql = new Mysql();
         enumTipoConexion = tipoConexion;
     }
 
-    public RepositorioBean get(RepositorioBean oRepositorioBean) throws Exception{
+    /**
+     *
+     * @author Alvaro Crego
+     * @param oRepositorioBean
+     * @return
+     * @throws Exception
+     */
+    public RepositorioBean get(RepositorioBean oRepositorioBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
             oRepositorioBean.setTitulo(oMysql.getOne("repositorio", "titulo", oRepositorioBean.getId()));
             oRepositorioBean.setContenido(oMysql.getOne("repositorio", "contenido", oRepositorioBean.getId()));
-            
+
             //faltan los id_miau
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             oRepositorioBean.setFecha(formato.parse(oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId())));

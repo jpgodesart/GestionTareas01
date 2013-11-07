@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author al037294
+ * @author Alvaro Crego
  */
 public class RepositorioBean {
 
