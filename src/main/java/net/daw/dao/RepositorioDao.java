@@ -43,8 +43,9 @@ public class RepositorioDao {
             oMysql.conexion(enumTipoConexion);
             oRepositorioBean.setTitulo(oMysql.getOne("repositorio", "titulo", oRepositorioBean.getId()));
             oRepositorioBean.setContenido(oMysql.getOne("repositorio", "contenido", oRepositorioBean.getId()));
-
-            //faltan los id_miau
+            oRepositorioBean.setId_usuario(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
+            oRepositorioBean.setId_lenguaje(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
+            oRepositorioBean.setId_documento(Integer.parseInt(oMysql.getOne("repositorio", "id_documento", oRepositorioBean.getId())));
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             oRepositorioBean.setFecha(formato.parse(oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId())));
             oMysql.desconexion();
@@ -56,10 +57,10 @@ public class RepositorioDao {
         return oRepositorioBean;
     }
     
-    public void remove(RepositorioBean oClienteBean) throws Exception {
+    public void remove(RepositorioBean oRepositorioBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
-            oMysql.removeOne(oClienteBean.getId(), "repositorio");
+            oMysql.removeOne(oRepositorioBean.getId(), "repositorio");
             oMysql.desconexion();
         } catch (Exception e) {
             throw new Exception("RepositorioDao.removeRepositorio: Error: " + e.getMessage());
