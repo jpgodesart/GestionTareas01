@@ -1,17 +1,17 @@
 
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
-<%@ page import="net.daw.bean.RepositorioBean"%>
+<%@ page import="net.daw.bean.LenguajeBean"%>
 <%@ page import="net.daw.helper.Contexto"%>
 <%
     Contexto oContexto = (Contexto) request.getAttribute("contexto");
     ArrayList<Object> alObjetoParametro = (ArrayList<Object>) oContexto.getParametro();
-    ArrayList<RepositorioBean> alPagina = (ArrayList<RepositorioBean>) alObjetoParametro.get(0);
-    Iterator<RepositorioBean> oIterador = alPagina.listIterator();
+    ArrayList<LenguajeBean> alPagina = (ArrayList<LenguajeBean>) alObjetoParametro.get(0);
+    Iterator<LenguajeBean> oIterador = alPagina.listIterator();
 %>
 <div class="row-fluid">
     <div class="span9">
-        <h1>Listado de repositorios</h1>
+        <h1>Listado de lenguaje</h1>
         <%
             if (!oIterador.hasNext()) {
                 out.print("<h4>Listado vacío</h4>");
@@ -44,19 +44,14 @@
     </div>
     <div class="span3">
         <div class="text-right">
-            <legend>Filtro de repositorio</legend> 
-            <form class="navbar-form pull-right" action="Controller" method="post" id="repositorioForm">
+            <legend>Filtro de lenguaje</legend> 
+            <form class="navbar-form pull-right" action="Controller" method="post" id="lenguajeForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
                     <span>
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
-                            <option>titulo</option>
-                            <option>contenido</option>
-                            <option>id_usuario</option>
-                            <option>id_lenguaje</option>
-                            <option>id_documento</option>
-                            <option>fecha</option>
+                            <option>nombre</option>
                         </select>                        
                         <input id="filtervalue" name="filtervalue" type="text" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
                     </span>
@@ -64,6 +59,7 @@
                         <input type="submit" name="enviar" value="Filtrar" />
                     </span>
                 </fieldset>
+            </form>
         </div>
     </div>
 </div>
@@ -73,49 +69,24 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>titulo
+        <th>nombre
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>contenido
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>id_usuario
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
-        </th>
-        <th>id_lenguaje
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
-        </th>
-        <th>id_documento
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
-        </th>
-        <th>fecha
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
         <th>Operaciones</th>
     </tr>
     <%        while (oIterador.hasNext()) {
-            RepositorioBean oRepositorioBean = oIterador.next();
+            LenguajeBean oLenguajeBean = oIterador.next();
     %>
     <tr>
-        <td><%=oRepositorioBean.getId()%></td>
-        <td><%=oRepositorioBean.getTitulo()%></td>
-        <td><%=oRepositorioBean.getContenido()%></td>
-        <td><%=oRepositorioBean.getId_usuario()%></td>
-        <td><%=oRepositorioBean.getId_lenguaje()%></td>
-        <td><%=oRepositorioBean.getId_documento()%></td>
-        <td><%=oRepositorioBean.getFecha()%></td>
+        <td><%=oLenguajeBean.getId()%></td>
+        <td><%=oLenguajeBean.getNombre()%></td>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">                    
-                    <a class="btn btn-mini" href="Controller?class=repositorio&method=view&id=<%=oRepositorioBean.getId()%>"><i class="icon-eye-open"></i></a>                    
-                    <a class="btn btn-mini" href="Controller?class=repositorio&method=update&id=<%=oRepositorioBean.getId()%>"><i class="icon-pencil"></i></a>           
-                    <a class="btn btn-mini" href="Controller?class=repositorio&method=remove&id=<%=oRepositorioBean.getId()%>"><i class="icon-trash"></i></a>                         
+                    <a class="btn btn-mini" href="Controller?class=lenguaje&method=view&id=<%=oLenguajeBean.getId()%>"><i class="icon-eye-open"></i></a>                    
+                    <a class="btn btn-mini" href="Controller?class=lenguaje&method=update&id=<%=oLenguajeBean.getId()%>"><i class="icon-pencil"></i></a>           
+                    <a class="btn btn-mini" href="Controller?class=lenguaje&method=remove&id=<%=oLenguajeBean.getId()%>"><i class="icon-trash"></i></a>                         
                 </div>
             </div>
         </td>
