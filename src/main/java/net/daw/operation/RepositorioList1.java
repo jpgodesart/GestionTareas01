@@ -17,20 +17,24 @@ import net.daw.helper.Contexto;
  *
  * @author al037294
  */
-public class RepositorioList1 /*implements Operation */{
-/*
+public class RepositorioList1 implements Operation {
+
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/repositorio/list.jsp");
         try {
             RepositorioDao oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
-            Integer intPages = oRepositorioDao.getPages(oContexto.getNrpp());
+            Integer intPages = oRepositorioDao.getPages(oContexto.getNrpp(), oContexto.getHmFilter(), oContexto.getHmOrder());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
-            ArrayList<RepositorioBean> listado = (ArrayList<RepositorioBean>) oRepositorioDao.getPage(oContexto.getNrpp(), oContexto.getPage());
-            ArrayList<String> vecindad = (ArrayList<String>) oRepositorioDao.getNeighborhood("<a href=\"Controller?class=cliente&method=list&rpp=" + oContexto.getNrpp() + "&page=", oContexto.getPage(), intPages, 2);
+            if (oContexto.getPage() < 1) {
+                oContexto.setPage(1);
+            }
+            ArrayList<RepositorioBean> listado = (ArrayList<RepositorioBean>) oRepositorioDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getHmFilter(), oContexto.getHmOrder());
+            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
+            ArrayList<String> vecindad = (ArrayList<String>) oRepositorioDao.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);
@@ -39,5 +43,4 @@ public class RepositorioList1 /*implements Operation */{
             throw new ServletException("RepositorioList1: View Error: " + e.getMessage());
         }
     }
-    */
 }

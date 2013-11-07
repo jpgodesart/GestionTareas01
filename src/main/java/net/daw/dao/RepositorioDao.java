@@ -6,6 +6,7 @@ package net.daw.dao;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.RepositorioBean;
 import net.daw.data.Mysql;
@@ -61,18 +62,17 @@ public class RepositorioDao {
             oMysql.removeOne(oClienteBean.getId(), "repositorio");
             oMysql.desconexion();
         } catch (Exception e) {
-            throw new Exception("ClienteDao.removeCliente: Error: " + e.getMessage());
+            throw new Exception("RepositorioDao.removeRepositorio: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
     }
     
-    /*
-    public int getPages(int intRegsPerPag) throws Exception {
+    public int getPages(int intRegsPerPag,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
-            pages = oMysql.getPages("repositorio", intRegsPerPag);
+            pages = oMysql.getPages("repositorio", intRegsPerPag, hmFilter, hmOrder);
             oMysql.desconexion();
             return pages;
         } catch (Exception e) {
@@ -81,32 +81,33 @@ public class RepositorioDao {
             oMysql.desconexion();
         }
     }
-    
-    public ArrayList<RepositorioBean> getPage(int intRegsPerPag, int intPage) throws Exception {
+
+    public ArrayList<RepositorioBean> getPage(int intRegsPerPag, int intPage,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
-        ArrayList<RepositorioBean> arrCliente = new ArrayList<>();
+        ArrayList<RepositorioBean> arrProducto = new ArrayList<>();
         try {
             oMysql.conexion(enumTipoConexion);
-            arrId = oMysql.getPage("cliente", intRegsPerPag, intPage,"");
+            arrId = oMysql.getPage("repositorio", intRegsPerPag, intPage, hmFilter, hmOrder);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 RepositorioBean oRepositorioBean = new RepositorioBean(iterador.next());
-                arrCliente.add(this.get(oRepositorioBean));
+                arrProducto.add(this.get(oRepositorioBean));
             }
             oMysql.desconexion();
-            return arrCliente;
+            return arrProducto;
         } catch (Exception e) {
-            throw new Exception("ClienteDao.getPage: Error: " + e.getMessage());
+            throw new Exception("RepositorioDao.getPage: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
     }
-    
+
     public ArrayList<String> getNeighborhood(String strLink, int intPageNumber, int intTotalPages, int intNeighborhood) throws Exception {
-        oMysql.conexion(enumTipoConexion);        
+        oMysql.conexion(enumTipoConexion);
         ArrayList<String> n = oMysql.getNeighborhood(strLink, intPageNumber, intTotalPages, intNeighborhood);
         oMysql.desconexion();
         return n;
     }
-*/
+    
+    
 }
