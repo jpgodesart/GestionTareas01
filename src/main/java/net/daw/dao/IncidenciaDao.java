@@ -93,32 +93,30 @@ public class IncidenciaDao {
         return oIncidenciaBean;
     }
     
-    /*MODIFICAR PARA NUEVO
     public void set(IncidenciaBean oIncidenciaBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
             oMysql.initTrans();
             if (oIncidenciaBean.getId() == 0) {
-                oIncidenciaBean.setId(oMysql.insertOne("producto"));
+                oIncidenciaBean.setId(oMysql.insertOne("incidencia"));
             }
-            oMysql.updateOne(oIncidenciaBean.getId(), "producto", "codigo", oIncidenciaBean.getCodigo());
-            oMysql.updateOne(oIncidenciaBean.getId(), "producto", "descripcion", oIncidenciaBean.getDescripcion());
-            oMysql.updateOne(oIncidenciaBean.getId(), "producto", "precio", oIncidenciaBean.getPrecio().toString());
-            Integer id_Tipoproducto = oIncidenciaBean.getTipoProducto().getId();
-            if (id_Tipoproducto > 0) {
-                oMysql.updateOne(oIncidenciaBean.getId(), "producto", "id_tipoproducto", id_Tipoproducto.toString());
-            } else {
-                oMysql.setNull(oIncidenciaBean.getId(), "producto", "id_tipoproducto");
-            }
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id", oIncidenciaBean.getId() + "");
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "resumen", oIncidenciaBean.getResumen());
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "cambios", oIncidenciaBean.getCambios());
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_estado", oIncidenciaBean.getId_estado());
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_repositorio", oIncidenciaBean.getId_repositorio());
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_usuario", oIncidenciaBean.getId_usuario() + "");
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "fechaalta", oIncidenciaBean.getFechaAlta());
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "fecharesolucion", oIncidenciaBean.getFechaResolucion());
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
-            throw new Exception("ProductoDao.set: Error: " + e.getMessage());
+            throw new Exception("IncidenciaDao.setIncidencia: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
     }
-*/
+    
     public void remove(IncidenciaBean oIncidenciaBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);

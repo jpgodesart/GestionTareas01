@@ -13,22 +13,24 @@
     String strControlEnabled = "";
     String strValueBoton = "Enviar";
     Integer id = 0;
-    String titulo = "";
-    String contenido = "";
     Integer id_usuario = 0;
-    Integer id_lenguaje = 0;
-    Integer id_documento = 0;
-    Date fecha = new Date();
+    String resumen = "";
+    String cambios = "";
+    String id_estado = "";
+    String id_repositorio = "";
+    String fechaAlta = "";
+    String fechaResolucion = "";
+
     if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
         IncidenciaBean oIncidenciaBean = (IncidenciaBean) oContexto.getParametro();
         id = oIncidenciaBean.getId();
-        resumen = oIncidenciaBean.getresumen();
-        cambios = oIncidenciaBean.getcambios();
-        id_estado = oIncidenciaBean.getid_estado();
-        id_respositorio = oIncidenciaBean.getid_repositorio();
-        id_usuario = oIncidenciaBean.getid_usuario();
-        fechaalta = oIncidenciaBean.getfechaalta();
-        fecharesolucion = oIncidenciaBean.getfecharesolucion();
+        resumen = oIncidenciaBean.getResumen();
+        cambios = oIncidenciaBean.getCambios();
+        id_estado = oIncidenciaBean.getId_estado();
+        id_repositorio = oIncidenciaBean.getId_repositorio();
+        id_usuario = oIncidenciaBean.getId_usuario();
+        fechaAlta = oIncidenciaBean.getFechaAlta();
+        fechaResolucion = oIncidenciaBean.getFechaResolucion();
     }
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -45,24 +47,29 @@
     }
 %>
 <h1><%=strTitulo%> de cliente</h1>
-<form class="semantic" action="Controller" method="post" id="clienteForm">
+<form class="semantic" action="Controller" method="post" id="incidenciaForm">
     <fieldset>
         <legend>Formulario de Repositorio</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="cliente" /> 
+        <input type="hidden" name="class" value="incidencia" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div>
-            <label for="nombre">Titulo: </label> 
-            <input <%=strControlEnabled%> id="nombre" name="nombre" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
+            <label for="Resumen_incidencia">Resumen Incidencia </label> 
+            <input <%=strControlEnabled%> id="Resumen_incidencia" name="Resumen_incidencia" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=resumen%>" /><br />
         </div>
         <div>
-            <label for="ape1">Contenido: </label>
-            <textarea <%=strControlEnabled%> id="ape1" name="ape1" type="text" size="30" maxlength="50" value="<%=contenido%>" ></textarea><br />
+            <label for="cambios">Cambios </label>
+            <textarea <%=strControlEnabled%> id="cambios" name="cambios" type="text" size="30" maxlength="50" value="<%=cambios%>" ></textarea><br />
+        </div>
+
+        <div>
+            <label for="fechaAlta">Fecha Alta: </label> 
+            <input <%=strControlEnabled%> id="fechaAlta" name="fechaAlta" type="text" size="30" maxlength="50" value="<%=fechaAlta%>" /> <br />
         </div>
         <div>
-            <label for="ape2">Fecha: </label> 
-            <input <%=strControlEnabled%> id="ape2" name="ape2" type="text" size="30" maxlength="50" value="<%=fecha%>" /> <br />
+            <label for="fechaResolucion">Fecha Resolución: </label> 
+            <input <%=strControlEnabled%> id="fechaResolucion" name="fechaResolucion" type="text" size="30" maxlength="50" value="<%=fechaResolucion%>" /> <br />
         </div>
         <div>
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />
