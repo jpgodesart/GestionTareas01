@@ -52,5 +52,27 @@ public class RepositorioDao {
         }
         return oRepositorioBean;
     }
+    
+    
+    public void set(RepositorioBean oRepositorioBean) throws Exception {
+        try {
+            oMysql.conexion(enumTipoConexion);
+            oMysql.initTrans();
+            if (oRepositorioBean.getId() == 0) {
+                oRepositorioBean.setId(oMysql.insertOne("repositorio"));
+            }
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "Título", oRepositorioBean.getTitulo());
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "Contenido", oRepositorioBean.getContenido());
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "Id_usuario", Integer.toString(oRepositorioBean.getId_usuario()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "Id_lenguaje", Integer.toString(oRepositorioBean.getId_lenguaje()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "Id_documento", Integer.toString(oRepositorioBean.getId_documento()));
+            oMysql.commitTrans();
+        } catch (Exception e) {
+            oMysql.rollbackTrans();
+            throw new Exception("RepositorioDao.setRepositorio: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
+        }
+    }
 
 }
