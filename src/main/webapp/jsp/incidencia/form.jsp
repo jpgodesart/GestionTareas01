@@ -4,6 +4,9 @@
     Author     : al037431
 --%>
 
+<%@page import="com.mysql.jdbc.Statement"%>
+<%@page import="net.daw.helper.Enum.Connection"%>
+<%@page import="net.daw.data.Mysql"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="net.daw.bean.IncidenciaBean"%>
@@ -16,8 +19,8 @@
     Integer id_usuario = 0;
     String resumen = "";
     String cambios = "";
-    String id_estado = "";
-    String id_repositorio = "";
+    Integer id_estado = 0;
+    Integer id_repositorio = 0;
     String fechaAlta = "";
     String fechaResolucion = "";
 
@@ -45,6 +48,16 @@
         strTitulo = "Alta";
         strValueBoton = "Crear";
     }
+/*
+    if (oContexto.getMetodo().equals("new")) {
+        Mysql oMysql;
+        net.daw.helper.Enum.Connection enumTipoConexion;
+        oMysql = new Mysql();
+        oMysql.conexion(Connection.DataSource);
+        
+        id_estado = Integer.parseInt(oMysql.getId("estado", "true", "true"));
+    }*/
+
 %>
 <h1><%=strTitulo%> de cliente</h1>
 <form class="semantic" action="Controller" method="post" id="incidenciaForm">
@@ -65,11 +78,11 @@
 
         <div>
             <label for="fechaAlta">Fecha Alta: </label> 
-            <input <%=strControlEnabled%> id="fechaAlta" name="fechaAlta" type="text" size="30" maxlength="50" value="<%=fechaAlta%>" /> <br />
+            <input <%=strControlEnabled%> id="fechaAlta" name="fechaAlta" type="date" size="30" maxlength="50" value="<%=fechaAlta%>" /> <br />
         </div>
         <div>
             <label for="fechaResolucion">Fecha Resolución: </label> 
-            <input <%=strControlEnabled%> id="fechaResolucion" name="fechaResolucion" type="text" size="30" maxlength="50" value="<%=fechaResolucion%>" /> <br />
+            <input <%=strControlEnabled%> id="fechaResolucion" name="fechaResolucion" type="date" size="30" maxlength="50" value="<%=fechaResolucion%>" /> <br />
         </div>
         <div>
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />

@@ -70,8 +70,8 @@ public class IncidenciaDao {
                 oMysql.conexion(enumTipoConexion);
                 oIncidenciaBean.setResumen(oMysql.getOne("incidencia", "resumen", oIncidenciaBean.getId()));
                 oIncidenciaBean.setCambios(oMysql.getOne("incidencia", "cambios", oIncidenciaBean.getId()));
-                oIncidenciaBean.setId_estado(oMysql.getOne("incidencia", "id_estado", oIncidenciaBean.getId()));
-                oIncidenciaBean.setId_repositorio(oMysql.getOne("incidencia", "id_repositorio", oIncidenciaBean.getId()));
+                oIncidenciaBean.setId_estado(Integer.parseInt(oMysql.getOne("incidencia", "id_estado", oIncidenciaBean.getId())));
+                oIncidenciaBean.setId_repositorio(Integer.parseInt(oMysql.getOne("incidencia", "id_repositorio", oIncidenciaBean.getId())));
                 oIncidenciaBean.setId_usuario(Integer.parseInt(oMysql.getOne("incidencia", "id_usuario", oIncidenciaBean.getId())));
                 oIncidenciaBean.setFechaAlta(oMysql.getOne("incidencia", "fechaalta", oIncidenciaBean.getId()));
                 oIncidenciaBean.setFechaResolucion(oMysql.getOne("incidencia", "fecharesolucion", oIncidenciaBean.getId()));
@@ -100,12 +100,12 @@ public class IncidenciaDao {
             if (oIncidenciaBean.getId() == 0) {
                 oIncidenciaBean.setId(oMysql.insertOne("incidencia"));
             }
-            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id", oIncidenciaBean.getId() + "");
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id", String.valueOf(oIncidenciaBean.getId()));
             oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "resumen", oIncidenciaBean.getResumen());
             oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "cambios", oIncidenciaBean.getCambios());
-            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_estado", oIncidenciaBean.getId_estado());
-            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_repositorio", oIncidenciaBean.getId_repositorio());
-            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_usuario", oIncidenciaBean.getId_usuario() + "");
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_estado", String.valueOf(oIncidenciaBean.getId_estado()));
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_repositorio", String.valueOf(oIncidenciaBean.getId_repositorio()));
+            oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "id_usuario", String.valueOf(oIncidenciaBean.getId_usuario()));
             oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "fechaalta", oIncidenciaBean.getFechaAlta());
             oMysql.updateOne(oIncidenciaBean.getId(), "incidencia", "fecharesolucion", oIncidenciaBean.getFechaResolucion());
             oMysql.commitTrans();

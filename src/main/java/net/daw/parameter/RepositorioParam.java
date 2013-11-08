@@ -40,20 +40,24 @@ public class RepositorioParam {
     public RepositorioBean load(RepositorioBean oRepositorioBean) throws NumberFormatException {
         try {
             if ((request.getParameter("titulo") != null)) {
-                System.out.println(request.getParameter("titulo"));
                 oRepositorioBean.setTitulo(request.getParameter("titulo"));
             }
             if ((request.getParameter("contenido") != null)) {
-                System.out.println(request.getParameter("contenido"));
                 oRepositorioBean.setContenido(request.getParameter("contenido"));
             }
-            if ((request.getParameter("fecha") != null)) {
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                oRepositorioBean.setFecha(formato.parse(request.getParameter("ape2")));
+            if ((request.getParameter("id_usuario") != null)) {
+                oRepositorioBean.setContenido(request.getParameter("id_usuario"));
             }
-            /*if ((request.getParameter("email") != null)) {
-             oRepositorioBean.setEmail(request.getParameter("email"));
-             }*/
+            if ((request.getParameter("id_lenguaje") != null)) {
+                oRepositorioBean.setContenido(request.getParameter("id_lenguaje"));
+            }
+            if ((request.getParameter("id_documento") != null)) {
+                oRepositorioBean.setContenido(request.getParameter("id_documento"));
+            }
+            if ((request.getParameter("fecha") != null)) {
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                oRepositorioBean.setFecha(formato.parse(request.getParameter("fecha")));
+            }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
         } catch (ParseException ex) {

@@ -21,6 +21,14 @@ public class RepositorioBean {
     private int id_documento;
     private Date fecha;
 
+    public RepositorioBean() {
+        
+    }
+
+    public RepositorioBean(int id) {
+        this.id = id;
+    }
+    
     public int getId() {
         return id;
     }

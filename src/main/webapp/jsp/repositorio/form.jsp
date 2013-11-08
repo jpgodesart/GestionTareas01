@@ -37,25 +37,37 @@
         strValueBoton = "Crear";
     }
 %>
-<h1><%=strTitulo%> de cliente</h1>
-<form class="semantic" action="Controller" method="post" id="clienteForm">
+<h1><%=strTitulo%> de repositorio</h1>
+<form class="semantic" action="Controller" method="post" id="repositorioForm">
     <fieldset>
         <legend>Formulario de Repositorio</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="cliente" /> 
+        <input type="hidden" name="class" value="repositorio" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div>
-            <label for="nombre">Titulo: </label> 
-            <input <%=strControlEnabled%> id="nombre" name="nombre" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
+            <label for="titulo">Titulo: </label> 
+            <input <%=strControlEnabled%> id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
         </div>
         <div>
-            <label for="ape1">Contenido: </label>
-            <textarea <%=strControlEnabled%> id="ape1" name="ape1" type="text" size="30" maxlength="50" value="<%=contenido%>" ></textarea><br />
+            <label for="contenido">Contenido: </label>
+            <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
         </div>
         <div>
-            <label for="ape2">Fecha: </label> 
-            <input <%=strControlEnabled%> id="ape2" name="ape2" type="text" size="30" maxlength="50" value="<%=fecha%>" /> <br />
+            <label for="id_usuario">Id_usuario: </label>
+            <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<%=id_usuario%>" /><br />
+        </div>
+        <div>
+            <label for="id_lenguaje">Id_lenguaje: </label>
+            <input <%=strControlEnabled%> id="id_lenguaje" name="id_lenguaje" type="text" size="30" maxlength="50" value="<%=id_lenguaje%>" /><br />
+        </div>
+        <div>
+            <label for="id_documento">Id_documento: </label>
+            <input <%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<%=id_documento%>" /><br />
+        </div>
+        <div>
+            <label for="fecha">Fecha: </label> 
+            <input <%=strControlEnabled%> id="fecha" name="fecha" type="text" size="30" maxlength="50" value="<%=fecha%>" /> <br />
         </div>
         <div>
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />

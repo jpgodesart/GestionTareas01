@@ -13,8 +13,8 @@ public class IncidenciaBean {
     private int id_usuario = 0;
     private String resumen = "";
     private String cambios = "";
-    private String id_estado = "";
-    private String id_repositorio = "";
+    private int id_estado = 0;
+    private int id_repositorio = 0;
     private String fechaAlta = "";
     private String fechaResolucion = "";
     
@@ -54,19 +54,19 @@ public class IncidenciaBean {
         this.cambios = cambios;
     }
 
-    public String getId_estado() {
+    public int getId_estado() {
         return id_estado;
     }
 
-    public void setId_estado(String id_estado) {
+    public void setId_estado(int id_estado) {
         this.id_estado = id_estado;
     }
 
-    public String getId_repositorio() {
+    public int getId_repositorio() {
         return id_repositorio;
     }
 
-    public void setId_repositorio(String id_repositorio) {
+    public void setId_repositorio(int id_repositorio) {
         this.id_repositorio = id_repositorio;
     }
 
