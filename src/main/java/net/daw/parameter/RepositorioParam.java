@@ -40,10 +40,12 @@ public class RepositorioParam {
     public RepositorioBean load(RepositorioBean oRepositorioBean) throws NumberFormatException {
         try {
             if ((request.getParameter("titulo") != null)) {
-                oRepositorioBean.setTitulo(request.getParameter("nombre"));
+                System.out.println(request.getParameter("titulo"));
+                oRepositorioBean.setTitulo(request.getParameter("titulo"));
             }
             if ((request.getParameter("contenido") != null)) {
-                oRepositorioBean.setContenido(request.getParameter("ape1"));
+                System.out.println(request.getParameter("contenido"));
+                oRepositorioBean.setContenido(request.getParameter("contenido"));
             }
             if ((request.getParameter("fecha") != null)) {
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
