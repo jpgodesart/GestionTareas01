@@ -28,14 +28,14 @@ public class IncidenciaNew2 implements Operation {
         IncidenciaBean oIncidenciaBean = new IncidenciaBean();
         IncidenciaDao oIncidenciaDao = new IncidenciaDao(oContexto.getEnumTipoConexion());
         IncidenciaParam oIncidenciaParam = new IncidenciaParam(request);
-        IncidenciaBean = oIncidenciaParam.loadId(IncidenciaBean);
+        oIncidenciaBean = oIncidenciaParam.loadId(oIncidenciaBean);
         try {
-            IncidenciaBean = oIncidenciaParam.load(IncidenciaBean);
+            oIncidenciaBean = oIncidenciaParam.load(oIncidenciaBean);
         } catch (NumberFormatException e) {
             return "Tipo de dato incorrecto en uno de los campos del formulario";
         }
         try {
-            IncidenciaDao.set(IncidenciaBean);
+            oIncidenciaDao.set(oIncidenciaBean);
         } catch (Exception e) {
             throw new ServletException("ClienteController: Update Error: Phase 2: " + e.getMessage());
         }

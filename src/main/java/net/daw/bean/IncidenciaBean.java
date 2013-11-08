@@ -22,6 +22,10 @@ public class IncidenciaBean {
         this.id = id;
     }
 
+    public IncidenciaBean() {
+        
+    }
+
     public int getId() {
         return id;
     }
