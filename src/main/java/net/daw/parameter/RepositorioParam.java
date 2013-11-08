@@ -46,13 +46,13 @@ public class RepositorioParam {
                 oRepositorioBean.setContenido(request.getParameter("contenido"));
             }
             if ((request.getParameter("id_usuario") != null)) {
-                oRepositorioBean.setContenido(request.getParameter("id_usuario"));
+                oRepositorioBean.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
             }
             if ((request.getParameter("id_lenguaje") != null)) {
-                oRepositorioBean.setContenido(request.getParameter("id_lenguaje"));
+                oRepositorioBean.setId_lenguaje(Integer.parseInt(request.getParameter("id_lenguaje")));
             }
             if ((request.getParameter("id_documento") != null)) {
-                oRepositorioBean.setContenido(request.getParameter("id_documento"));
+                oRepositorioBean.setId_documento(Integer.parseInt(request.getParameter("id_documento")));
             }
             if ((request.getParameter("fecha") != null)) {
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
