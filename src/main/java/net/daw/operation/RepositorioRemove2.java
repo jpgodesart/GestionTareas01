@@ -18,25 +18,22 @@ import net.daw.parameter.RepositorioParam;
  *
  * @author al037294
  */
-public class RepositorioUpdate2 implements Operation{
+public class RepositorioRemove2 implements Operation{
+    
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/mensaje.jsp");   
-        RepositorioBean oRepositorioBean = new RepositorioBean();
-        RepositorioDao oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
+        RepositorioBean oRepositorioBean = new RepositorioBean(); 
         RepositorioParam oRepositorioParam = new RepositorioParam(request);
         oRepositorioBean = oRepositorioParam.loadId(oRepositorioBean);
         try {
-            oRepositorioBean = oRepositorioParam.load(oRepositorioBean);
-        } catch (NumberFormatException e) {
-            return "Tipo de dato incorrecto en uno de los campos del formulario";
-        }         
-        try {
-            //oRepositorioDao.set(oRepositorioBean);
+            RepositorioDao oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
+            oRepositorioDao.remove(oRepositorioBean);
         } catch (Exception e) {
-            throw new ServletException("RepositorioController: Update Error: Phase 2: " + e.getMessage());
+            throw new ServletException("RepositorioController: Remove Error: " + e.getMessage());
         }
-        return "Se ha modificado la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId());
+        String Mensaje = ("Se ha eliminado la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()));
+        return Mensaje;
     }
 }

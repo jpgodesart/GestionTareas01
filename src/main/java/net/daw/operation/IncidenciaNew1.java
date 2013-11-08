@@ -9,7 +9,7 @@ public class IncidenciaNew1 implements Operation {
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/cliente/form.jsp");        
+        oContexto.setVista("jsp/incidencia/form.jsp");        
         return null;
     }
 
