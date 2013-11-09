@@ -114,12 +114,13 @@
     %>
     <tr>
         <td><%=oIncidenciasBean.getId()%></td>
-        <td><%=oIncidenciasBean.getTitulo()%></td>
-        <td><%=oIncidenciasBean.getContenido()%></td>
+        <td><%=oIncidenciasBean.getResumen()%></td>
+        <td><%=oIncidenciasBean.getCambios()%></td>
+        <td><%=oIncidenciasBean.getId_estado()%></td>
+        <td><%=oIncidenciasBean.getId_repositorio()%></td>
         <td><%=oIncidenciasBean.getId_usuario()%></td>
-        <td><%=oIncidenciasBean.getId_lenguaje()%></td>
-        <td><%=oIncidenciasBean.getId_documento()%></td>
-        <td><%=oIncidenciasBean.getFecha()%></td>
+        <td><%=oIncidenciasBean.getFechaAlta()%></td>
+        <td><%=oIncidenciasBean.getFechaResolucion()%></td>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">                    
