@@ -14,20 +14,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.daw.bean.IncidenciaBean;
-import net.daw.dao.IncidenciaDao;
+import net.daw.bean.IncidenciasBean;
+import net.daw.dao.IncidenciasDao;
 import net.daw.helper.Contexto;
-import net.daw.parameter.IncidenciaParam;
+import net.daw.parameter.IncidenciasParam;
 
-public class IncidenciaNew2 implements Operation {
+public class IncidenciasNew2 implements Operation {
 
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/mensaje.jsp");
-        IncidenciaBean oIncidenciaBean = new IncidenciaBean();
-        IncidenciaDao oIncidenciaDao = new IncidenciaDao(oContexto.getEnumTipoConexion());
-        IncidenciaParam oIncidenciaParam = new IncidenciaParam(request);
+        IncidenciasBean oIncidenciaBean = new IncidenciasBean();
+        IncidenciasDao oIncidenciaDao = new IncidenciasDao(oContexto.getEnumTipoConexion());
+        IncidenciasParam oIncidenciaParam = new IncidenciasParam(request);
         oIncidenciaBean = oIncidenciaParam.loadId(oIncidenciaBean);
         try {
             oIncidenciaBean = oIncidenciaParam.load(oIncidenciaBean);

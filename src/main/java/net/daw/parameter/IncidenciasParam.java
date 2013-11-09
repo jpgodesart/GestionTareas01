@@ -6,21 +6,21 @@ package net.daw.parameter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import net.daw.bean.IncidenciaBean;
+import net.daw.bean.IncidenciasBean;
 
 /**
  *
  * @author al037431
  */
-public class IncidenciaParam {
+public class IncidenciasParam {
 
     private HttpServletRequest request;
 
-    public IncidenciaParam(HttpServletRequest request) throws Exception {
+    public IncidenciasParam(HttpServletRequest request) throws Exception {
         this.request = request;
     }
 
-    public IncidenciaBean loadId(IncidenciaBean oIncidencia) throws NumberFormatException {
+    public IncidenciasBean loadId(IncidenciasBean oIncidencia) throws NumberFormatException {
         try {
             if (request.getParameter("id") != null) {
                 oIncidencia.setId(Integer.parseInt(request.getParameter("id")));
@@ -33,35 +33,35 @@ public class IncidenciaParam {
         return oIncidencia;
     }
 
-    public IncidenciaBean load(IncidenciaBean oIncidencia) throws NumberFormatException {
+    public IncidenciasBean load(IncidenciasBean oIncidencias) throws NumberFormatException {
         try {
             if ((request.getParameter("id") != null)) {
-                oIncidencia.setId(Integer.parseInt(request.getParameter("id")));
+                oIncidencias.setId(Integer.parseInt(request.getParameter("id")));
             }
             if ((request.getParameter("resumen") != null)) {
-                oIncidencia.setResumen(request.getParameter("resumen"));
+                oIncidencias.setResumen(request.getParameter("resumen"));
             }
             if ((request.getParameter("cambios") != null)) {
-                oIncidencia.setCambios(request.getParameter("cambios"));
+                oIncidencias.setCambios(request.getParameter("cambios"));
             }
             if ((request.getParameter("id_estado") != null)) {
-                oIncidencia.setId_estado(Integer.parseInt(request.getParameter("id_estado")));
+                oIncidencias.setId_estado(Integer.parseInt(request.getParameter("id_estado")));
             }
             if ((request.getParameter("id_repositorio") != null)) {
-                oIncidencia.setId_repositorio(Integer.parseInt(request.getParameter("id_repositorio")));
+                oIncidencias.setId_repositorio(Integer.parseInt(request.getParameter("id_repositorio")));
             }
             if ((request.getParameter("id_usuario") != null)) {
-                oIncidencia.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+                oIncidencias.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
             }
             if ((request.getParameter("fechaAlta") != null)) {
-                oIncidencia.setFechaAlta(request.getParameter("fechaAlta"));
+                oIncidencias.setFechaAlta(request.getParameter("fechaAlta"));
             }
             if ((request.getParameter("fechaResolucion") != null)) {
-                oIncidencia.setFechaResolucion(request.getParameter("fechaResolucion"));
+                oIncidencias.setFechaResolucion(request.getParameter("fechaResolucion"));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
-        return oIncidencia;
+        return oIncidencias;
     }
 }
