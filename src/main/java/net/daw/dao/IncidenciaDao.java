@@ -4,6 +4,7 @@
  */
 package net.daw.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,6 +18,7 @@ import net.daw.data.Mysql;
 public class IncidenciaDao {
     private final Mysql oMysql;
     private final net.daw.helper.Enum.Connection enumTipoConexion;
+    //private final SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
     public IncidenciaDao(net.daw.helper.Enum.Connection tipoConexion) throws Exception {
         oMysql = new Mysql();

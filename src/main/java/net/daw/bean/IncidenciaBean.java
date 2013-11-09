@@ -4,6 +4,8 @@
  */
 package net.daw.bean;
 
+import java.util.Date;
+
 /**
  *
  * @author al037877
@@ -17,6 +19,10 @@ public class IncidenciaBean {
     private int id_repositorio = 0;
     private String fechaAlta = "";
     private String fechaResolucion = "";
+    
+    public IncidenciaBean(){
+        
+    }
     
     public IncidenciaBean(int id) {
         this.id = id;
