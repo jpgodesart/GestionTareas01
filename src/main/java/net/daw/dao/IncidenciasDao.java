@@ -117,10 +117,10 @@ public class IncidenciasDao {
         }
     }
     
-    public void remove(IncidenciasBean oIncidenciaBean) throws Exception {
+    public void remove(IncidenciasBean oIncidenciasBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
-            oMysql.removeOne(oIncidenciaBean.getId(), "incidencias");
+            oMysql.removeOne(oIncidenciasBean.getId(), "incidencias");
             oMysql.desconexion();
         } catch (Exception e) {
             throw new Exception("IncidenciasDao.remove: Error: " + e.getMessage());
