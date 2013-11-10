@@ -16,24 +16,24 @@ import net.daw.helper.Contexto;
  *
  * @author Enrique
  */
-public class IncidenciasList implements Operation{
+public class IncidenciaList1 implements Operation{
     
      @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/incidencias/list.jsp");
         try {
-            IncidenciasDao oLenguajeDao = new IncidenciasDao(oContexto.getEnumTipoConexion());
-            Integer intPages = oLenguajeDao.getPages(oContexto.getNrpp(), oContexto.getHmFilter(), oContexto.getHmOrder());
+            IncidenciasDao oincidenciasDao = new IncidenciasDao(oContexto.getEnumTipoConexion());
+            Integer intPages = oincidenciasDao.getPages(oContexto.getNrpp(), oContexto.getHmFilter(), oContexto.getHmOrder());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
             if (oContexto.getPage() < 1) {
                 oContexto.setPage(1);
             }
-            ArrayList<IncidenciasBean> listado = (ArrayList<IncidenciasBean>) oLenguajeDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getHmFilter(), oContexto.getHmOrder());
+            ArrayList<IncidenciasBean> listado = (ArrayList<IncidenciasBean>) oincidenciasDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getHmFilter(), oContexto.getHmOrder());
             String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
-            ArrayList<String> vecindad = (ArrayList<String>) oLenguajeDao.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
+            ArrayList<String> vecindad = (ArrayList<String>) oincidenciasDao.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);
