@@ -50,12 +50,12 @@
     }
 
     if (true) {//modificar permisos  (eliminar)
-        if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("delete")) {
+        if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("remove")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=incidencias&method=delete\">Eliminar</a></li>";
+        menu += "<a href=\"Controller?class=incidencias&method=remove\">Eliminar</a></li>";
     }
     
     if (true) {//modificar permisos (eliminar)
@@ -89,12 +89,12 @@
     }
 
     if (true) {//modificar permisos  (eliminar)
-        if (oContexto.getClase().equals("repositorio") && oContexto.getMetodo().equals("delete")) {
+        if (oContexto.getClase().equals("repositorio") && oContexto.getMetodo().equals("remove")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=repositorio&method=delete\">Eliminar</a></li>";
+        menu += "<a href=\"Controller?class=repositorio&method=remove\">Eliminar</a></li>";
     }
     
     if (true) {//modificar permisos (eliminar)
@@ -127,12 +127,12 @@
     }
 
     if (true) {//modificar permisos  (eliminar)
-        if (oContexto.getClase().equals("estado") && oContexto.getMetodo().equals("delete")) {
+        if (oContexto.getClase().equals("estado") && oContexto.getMetodo().equals("remove")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=estado&method=delete\">Eliminar</a></li>";
+        menu += "<a href=\"Controller?class=estado&method=remove\">Eliminar</a></li>";
     }
     
     if (true) {//modificar permisos (eliminar)
@@ -166,12 +166,12 @@
     }
 
     if (true) {//modificar permisos  (eliminar)
-        if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("delete")) {
+        if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("remove")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=lenguaje&method=delete\">Eliminar</a></li>";
+        menu += "<a href=\"Controller?class=lenguaje&method=remove\">Eliminar</a></li>";
     }
     
     if (true) {//modificar permisos (eliminar)
