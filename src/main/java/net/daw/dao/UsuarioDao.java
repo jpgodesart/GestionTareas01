@@ -23,11 +23,13 @@ public class UsuarioDao {
             } else {
                 oUsuario.setId(Integer.parseInt(strId));
                 oUsuario.setPassword(oMysql.getOne("usuario", "password", oUsuario.getId()));
+                oUsuario.setNombre(oMysql.getOne("usuario", "nombre", oUsuario.getId()));
+                oUsuario.setEmail(oMysql.getOne("usuario", "email", oUsuario.getId()));
             }
             oMysql.desconexion();
             return oUsuario;
         } catch (Exception e) {
-            throw new Exception("UsuarioDao.getPage: Error: " + e.getMessage());
+            throw new Exception("ClienteDao.getPage: Error: " + e.getMessage());
         }
     }
 }
