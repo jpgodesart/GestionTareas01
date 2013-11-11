@@ -60,16 +60,16 @@
 
 %>
 <h1><%=strTitulo%> de cliente</h1>
-<form class="semantic" action="Controller" method="post" id="incidenciaForm">
+<form class="semantic" action="Controller" method="post" id="incidenciasForm">
     <fieldset>
-        <legend>Formulario de Repositorio</legend>
+        <legend>Formulario de Incidencias</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="incidencia" /> 
+        <input type="hidden" name="class" value="incidencias" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div>
-            <label for="Resumen_incidencia">Resumen Incidencias </label> 
-            <input <%=strControlEnabled%> id="Resumen_incidencia" name="Resumen_incidencia" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=resumen%>" /><br />
+            <label for="Resumen_incidencias">Resumen Incidencias </label> 
+            <input <%=strControlEnabled%> id="Resumen_incidencias" name="Resumen_incidencias" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=resumen%>" /><br />
         </div>
         <div>
             <label for="cambios">Cambios </label>

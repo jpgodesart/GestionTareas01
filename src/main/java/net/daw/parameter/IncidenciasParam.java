@@ -20,17 +20,17 @@ public class IncidenciasParam {
         this.request = request;
     }
 
-    public IncidenciasBean loadId(IncidenciasBean oIncidencia) throws NumberFormatException {
+    public IncidenciasBean loadId(IncidenciasBean oIncidencias) throws NumberFormatException {
         try {
             if (request.getParameter("id") != null) {
-                oIncidencia.setId(Integer.parseInt(request.getParameter("id")));
+                oIncidencias.setId(Integer.parseInt(request.getParameter("id")));
             } else {
-                oIncidencia.setId(0);
+                oIncidencias.setId(0);
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
-        return oIncidencia;
+        return oIncidencias;
     }
 
     public IncidenciasBean load(IncidenciasBean oIncidencias) throws NumberFormatException {

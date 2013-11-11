@@ -16,7 +16,7 @@ import net.daw.helper.Contexto;
  *
  * @author Enrique
  */
-public class IncidenciaList1 implements Operation{
+public class IncidenciasList1 implements Operation{
     
      @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

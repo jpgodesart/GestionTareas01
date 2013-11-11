@@ -25,20 +25,20 @@ public class IncidenciasNew2 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/mensaje.jsp");
-        IncidenciasBean oIncidenciaBean = new IncidenciasBean();
-        IncidenciasDao oIncidenciaDao = new IncidenciasDao(oContexto.getEnumTipoConexion());
-        IncidenciasParam oIncidenciaParam = new IncidenciasParam(request);
-        oIncidenciaBean = oIncidenciaParam.loadId(oIncidenciaBean);
+        IncidenciasBean oIncidenciasBean = new IncidenciasBean();
+        IncidenciasDao oIncidenciasDao = new IncidenciasDao(oContexto.getEnumTipoConexion());
+        IncidenciasParam oIncidenciasParam = new IncidenciasParam(request);
+        oIncidenciasBean = oIncidenciasParam.loadId(oIncidenciasBean);
         try {
-            oIncidenciaBean = oIncidenciaParam.load(oIncidenciaBean);
+            oIncidenciasBean = oIncidenciasParam.load(oIncidenciasBean);
         } catch (NumberFormatException e) {
             return "Tipo de dato incorrecto en uno de los campos del formulario";
         }
         try {
-            oIncidenciaDao.set(oIncidenciaBean);
+            oIncidenciasDao.set(oIncidenciasBean);
         } catch (Exception e) {
             throw new ServletException("ClienteController: Update Error: Phase 2: " + e.getMessage());
         }
-        return "Se ha añadido la información del cliente con id=" + Integer.toString(oIncidenciaBean.getId());
+        return "Se ha añadido la información del cliente con id=" + Integer.toString(oIncidenciasBean.getId());
     }
 }
