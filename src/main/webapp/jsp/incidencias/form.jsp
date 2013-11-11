@@ -9,7 +9,7 @@
 <%@page import="net.daw.data.Mysql"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="net.daw.bean.IncidenciaBean"%>
+<%@page import="net.daw.bean.IncidenciasBean"%>
 <%@page import="net.daw.helper.Contexto"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
     String strTitulo = "";
@@ -25,15 +25,15 @@
     String fechaResolucion = "";
 
     if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
-        IncidenciaBean oIncidenciaBean = (IncidenciaBean) oContexto.getParametro();
-        id = oIncidenciaBean.getId();
-        resumen = oIncidenciaBean.getResumen();
-        cambios = oIncidenciaBean.getCambios();
-        id_estado = oIncidenciaBean.getId_estado();
-        id_repositorio = oIncidenciaBean.getId_repositorio();
-        id_usuario = oIncidenciaBean.getId_usuario();
-        fechaAlta = oIncidenciaBean.getFechaAlta();
-        fechaResolucion = oIncidenciaBean.getFechaResolucion();
+        IncidenciasBean oIncidenciasBean = (IncidenciasBean) oContexto.getParametro();
+        id = oIncidenciasBean.getId();
+        resumen = oIncidenciasBean.getResumen();
+        cambios = oIncidenciasBean.getCambios();
+        id_estado = oIncidenciasBean.getId_estado();
+        id_repositorio = oIncidenciasBean.getId_repositorio();
+        id_usuario = oIncidenciasBean.getId_usuario();
+        fechaAlta = oIncidenciasBean.getFechaAlta();
+        fechaResolucion = oIncidenciasBean.getFechaResolucion();
     }
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -60,16 +60,16 @@
 
 %>
 <h1><%=strTitulo%> de cliente</h1>
-<form class="semantic" action="Controller" method="post" id="incidenciaForm">
+<form class="semantic" action="Controller" method="post" id="incidenciasForm">
     <fieldset>
-        <legend>Formulario de Repositorio</legend>
+        <legend>Formulario de Incidencias</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="incidencia" /> 
+        <input type="hidden" name="class" value="incidencias" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div>
-            <label for="Resumen_incidencia">Resumen Incidencia </label> 
-            <input <%=strControlEnabled%> id="Resumen_incidencia" name="Resumen_incidencia" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=resumen%>" /><br />
+            <label for="Resumen_incidencias">Resumen Incidencias </label> 
+            <input <%=strControlEnabled%> id="Resumen_incidencias" name="Resumen_incidencias" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=resumen%>" /><br />
         </div>
         <div>
             <label for="cambios">Cambios </label>
