@@ -1,4 +1,6 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="net.daw.bean.RepositorioBean"%>
@@ -101,6 +103,7 @@
     </tr>
     <%        while (oIterador.hasNext()) {
             RepositorioBean oRepositorioBean = oIterador.next();
+            DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
     %>
     <tr>
         <td><%=oRepositorioBean.getId()%></td>
@@ -109,7 +112,7 @@
         <td><%=oRepositorioBean.getId_usuario()%></td>
         <td><%=oRepositorioBean.getId_lenguaje()%></td>
         <td><%=oRepositorioBean.getId_documento()%></td>
-        <td><%=oRepositorioBean.getFecha()%></td>
+        <td><%=formato.format(oRepositorioBean.getFecha())%></td>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">                    
