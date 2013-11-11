@@ -56,7 +56,27 @@ public class RepositorioDao {
         }
         return oRepositorioBean;
     }
+
+    public void set(RepositorioBean oRepositorioBean) throws Exception {
+        try {
+            oMysql.conexion(enumTipoConexion);
+            oMysql.initTrans();
+            if (oRepositorioBean.getId() == 0) {
+                oRepositorioBean.setId(oMysql.insertOne("repositorio"));
+            }
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "titulo", oRepositorioBean.getTitulo());
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "contenido", oRepositorioBean.getContenido());
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_usuario", Integer.toString(oRepositorioBean.getId_usuario()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", Integer.toString(oRepositorioBean.getId_lenguaje()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_documento", Integer.toString(oRepositorioBean.getId_documento()));
+            oMysql.commitTrans();
+        } catch (Exception e) {
+            oMysql.rollbackTrans();
+            throw new Exception("RepositorioDao.setRepositorio: Error: " + e.getMessage());
+
+        }      
     
+    }
     public void remove(RepositorioBean oRepositorioBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
@@ -68,8 +88,8 @@ public class RepositorioDao {
             oMysql.desconexion();
         }
     }
-    
-    public int getPages(int intRegsPerPag,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+
+    public int getPages(int intRegsPerPag, HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
@@ -78,12 +98,13 @@ public class RepositorioDao {
             return pages;
         } catch (Exception e) {
             throw new Exception("RepositorioDao.getPages: Error: " + e.getMessage());
+            
         } finally {
             oMysql.desconexion();
         }
     }
 
-    public ArrayList<RepositorioBean> getPage(int intRegsPerPag, int intPage,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public ArrayList<RepositorioBean> getPage(int intRegsPerPag, int intPage, HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
         ArrayList<RepositorioBean> arrProducto = new ArrayList<>();
         try {
@@ -109,6 +130,4 @@ public class RepositorioDao {
         oMysql.desconexion();
         return n;
     }
-    
-    
 }
