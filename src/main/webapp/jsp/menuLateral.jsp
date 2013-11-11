@@ -10,6 +10,7 @@
     } else {
         menu += "<li>";
     }
+    
     menu += "<a href=\"Controller\">Home</a></li>";
 
     if (!oContexto.getHaySesion()) {
@@ -30,41 +31,41 @@
     
     
     //INCIDENCIAS-----------------------
-    menu += "<li class=\"nav-header\">Incidencia</li>";
+    menu += "<li class=\"nav-header\">Incidencias</li>";
     if (true) {//modificar permisos
-        if (oContexto.getClase().equals("incidencia") && oContexto.getMetodo().equals("list")) {
+        if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("list")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=incidencia&method=list\">Listar</a></li>";
+        menu += "<a href=\"Controller?class=incidencias&method=list\">Listar</a></li>";
     }
     
     if (true) {//modificar permisos
-        if (oContexto.getClase().equals("incidencia") && oContexto.getMetodo().equals("new")) {
+        if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("new")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=incidencia&method=new\">Nuevo</a></li>";
+        menu += "<a href=\"Controller?class=incidencias&method=new\">Nuevo</a></li>";
     }
 
     if (true) {//modificar permisos  (eliminar)
-        if (oContexto.getClase().equals("incidencia") && oContexto.getMetodo().equals("delete")) {
+        if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("delete")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=incidencia&method=delete\">Eliminar</a></li>";
+        menu += "<a href=\"Controller?class=incidencias&method=delete\">Eliminar</a></li>";
     }
     
     if (true) {//modificar permisos (eliminar)
-        if (oContexto.getClase().equals("incidencia") && oContexto.getMetodo().equals("update")) {
+        if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("update")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
-        menu += "<a href=\"Controller?class=incidencia&method=update\">Actualizar</a></li>";
+        menu += "<a href=\"Controller?class=incidencias&method=update\">Actualizar</a></li>";
     }
     
     

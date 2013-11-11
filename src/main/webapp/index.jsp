@@ -84,7 +84,7 @@
                     out.print("</div>");
                 %>    
                 <div class="row-fluid">
-                <div class="span12"><hr><footer><p>&copy; Rafael Aznar y los alumnos de DAW (2013)</p></footer></div>   
+                <div class="span12"><hr><footer><p>&copy; Alumnos de Rafael Aznar (2013)</p></footer></div>   
                 </div>
             </div>
         </div>

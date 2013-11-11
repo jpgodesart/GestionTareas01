@@ -1,3 +1,5 @@
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="net.daw.bean.RepositorioBean"%>
@@ -12,7 +14,8 @@
     Integer id_usuario = 0;
     Integer id_lenguaje = 0;
     Integer id_documento = 0;
-    Date fecha = new Date();
+    String fecha = "";
+    DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
     if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
         RepositorioBean oRepositorioBean = (RepositorioBean) oContexto.getParametro();
         id = oRepositorioBean.getId();
@@ -21,7 +24,7 @@
         id_usuario = oRepositorioBean.getId_usuario();
         id_lenguaje = oRepositorioBean.getId_lenguaje();
         id_documento = oRepositorioBean.getId_documento();
-        fecha = oRepositorioBean.getFecha();
+        fecha = formato.format(oRepositorioBean.getFecha());
     }
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -38,7 +41,7 @@
     }
 %>
 <h1><%=strTitulo%> de repositorio</h1>
-<form class="semantic" action="Controller" method="post" id="repositorioForm">
+<form class="semantic" action="Controller" method="post" id="repositorioForm" onsubmit="hola();">
     <fieldset>
         <legend>Formulario de Repositorio</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
@@ -67,7 +70,7 @@
         </div>
         <div>
             <label for="fecha">Fecha: </label> 
-            <input <%=strControlEnabled%> id="fecha" name="fecha" type="text" size="30" maxlength="50" value="<%=fecha%>" /> <br />
+            <input <%=strControlEnabled%> id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /> <br />
         </div>
         <div>
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />

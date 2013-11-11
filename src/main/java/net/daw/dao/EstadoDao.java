@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.EstadoBean;
 import net.daw.data.Mysql;
+import net.daw.helper.FilterBean;
 
 /**
  *
@@ -62,7 +63,7 @@ public class EstadoDao {
         }
     }
     
-    public int getPages(int intRegsPerPag,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public int getPages(int intRegsPerPag, ArrayList<FilterBean> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
@@ -71,28 +72,24 @@ public class EstadoDao {
             return pages;
         } catch (Exception e) {
             throw new Exception("EstadoDao.getPages: Error: " + e.getMessage());
-        } finally {
-            oMysql.desconexion();
         }
     }
 
-    public ArrayList<EstadoBean> getPage(int intRegsPerPag, int intPage,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public ArrayList<EstadoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean>  hmFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
-        ArrayList<EstadoBean> arrProducto = new ArrayList<>();
+        ArrayList<EstadoBean> arrEstado = new ArrayList<>();
         try {
             oMysql.conexion(enumTipoConexion);
             arrId = oMysql.getPage("estado", intRegsPerPag, intPage, hmFilter, hmOrder);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 EstadoBean oEstadoBean = new EstadoBean(iterador.next());
-                arrProducto.add(this.get(oEstadoBean));
+                arrEstado.add(this.get(oEstadoBean));
             }
             oMysql.desconexion();
-            return arrProducto;
+            return arrEstado;
         } catch (Exception e) {
             throw new Exception("EstadoDao.getPage: Error: " + e.getMessage());
-        } finally {
-            oMysql.desconexion();
         }
     }
 

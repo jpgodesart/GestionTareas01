@@ -1,4 +1,4 @@
 ausiasYield
 ===========
 
-A moodle-like manager
+ausiasYield
