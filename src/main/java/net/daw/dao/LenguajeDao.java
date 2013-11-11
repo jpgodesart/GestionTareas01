@@ -10,6 +10,7 @@ import java.util.Iterator;
 import net.daw.bean.LenguajeBean;
 import net.daw.data.Mysql;
 import net.daw.helper.Enum;
+import net.daw.helper.FilterBean;
 
 /**
  *
@@ -46,33 +47,37 @@ public class LenguajeDao {
         }
     }
     
-    public int getPages(int intRegsPerPag,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public int getPages(int intRegsPerPag, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
-            pages = oMysql.getPages("lenguaje", intRegsPerPag, hmFilter, hmOrder);
+            pages = oMysql.getPages("lenguaje", intRegsPerPag, alFilter, hmOrder);
             oMysql.desconexion();
             return pages;
         } catch (Exception e) {
             throw new Exception("LenguajeDao.getPages: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
         }
     }
 
-    public ArrayList<LenguajeBean> getPage(int intRegsPerPag, int intPage,HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public ArrayList<LenguajeBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
-        ArrayList<LenguajeBean> arrCliente = new ArrayList<>();
+        ArrayList<LenguajeBean> arrLenguaje = new ArrayList<>();
         try {
-            oMysql.conexion(enumTipoConexion);           
-            arrId = oMysql.getPage("lenguaje", intRegsPerPag, intPage, hmFilter, hmOrder);
+            oMysql.conexion(enumTipoConexion);
+            arrId = oMysql.getPage("lenguaje", intRegsPerPag, intPage, alFilter, hmOrder);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 LenguajeBean oLenguajeBean = new LenguajeBean(iterador.next());
-                arrCliente.add(this.get(oLenguajeBean));
+                arrLenguaje.add(this.get(oLenguajeBean));
             }
             oMysql.desconexion();
-            return arrCliente;
+            return arrLenguaje;
         } catch (Exception e) {
             throw new Exception("LenguajeDao.getPage: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
         }
     }
 
