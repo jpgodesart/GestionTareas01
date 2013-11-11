@@ -10,6 +10,7 @@
     } else {
         menu += "<li>";
     }
+    
     menu += "<a href=\"Controller\">Home</a></li>";
 
     if (!oContexto.getHaySesion()) {
