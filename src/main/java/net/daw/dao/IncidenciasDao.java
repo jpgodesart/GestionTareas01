@@ -57,25 +57,7 @@ public class IncidenciasDao {
             oMysql.desconexion();
         }
     }
-   /* public ArrayList<IncidenciasBean> getPage(int intRegsPerPag, int intPage, HashMap<String, String> hmFilter, HashMap<String, String> hmOrder) throws Exception {
-        ArrayList<Integer> arrId;
-        ArrayList<IncidenciasBean> arrProducto = new ArrayList<>();
-        try {
-            oMysql.conexion(enumTipoConexion);
-            arrId = oMysql.getPage("incidencias", intRegsPerPag, intPage, hmFilter, hmOrder);
-            Iterator<Integer> iterador = arrId.listIterator();
-            while (iterador.hasNext()) {
-                IncidenciasBean oIncidenciasBean = new IncidenciasBean(iterador.next());
-                arrProducto.add(this.get(oIncidenciasBean));
-            }
-            oMysql.desconexion();
-            return arrProducto;
-        } catch (Exception e) {
-            throw new Exception("IncidenciasDao.getPage: Error: " + e.getMessage());
-        } finally {
-            oMysql.desconexion();
-        }
-    }*/
+   
 
     public ArrayList<String> getNeighborhood(String strLink, int intPageNumber, int intTotalPages, int intNeighborhood) throws Exception {
         oMysql.conexion(enumTipoConexion);
@@ -84,35 +66,7 @@ public class IncidenciasDao {
         return n;
     }
 
-   /* public IncidenciasBean get(IncidenciasBean oIncidenciaBean) throws Exception {
-        if (oIncidenciaBean.getId() > 0) {
-            try {
-                oMysql.conexion(enumTipoConexion);
-                oIncidenciaBean.setResumen(oMysql.getOne("incidencias", "resumen", oIncidenciaBean.getId()));
-                oIncidenciaBean.setCambios(oMysql.getOne("incidencias", "cambios", oIncidenciaBean.getId()));
-                oIncidenciaBean.setId_estado(Integer.parseInt(oMysql.getOne("incidencias", "id_estado", oIncidenciaBean.getId())));
-                oIncidenciaBean.setId_repositorio(Integer.parseInt(oMysql.getOne("incidencias", "id_repositorio", oIncidenciaBean.getId())));
-                oIncidenciaBean.setId_usuario(Integer.parseInt(oMysql.getOne("incidencias", "id_usuario", oIncidenciaBean.getId())));
-                oIncidenciaBean.setFechaAlta(oMysql.getOne("incidencias", "fechaalta", oIncidenciaBean.getId()));
-                oIncidenciaBean.setFechaResolucion(oMysql.getOne("incidencias", "fecharesolucion", oIncidenciaBean.getId()));
-                
-                /*BORRAR MAS ADELANTE SI NO ES NECESARIO
-                String intId_producto = oMysql.getOne("incidencia", "id_tipoproducto", oIncidenciaBean.getId());
-                if (intId_producto != null) {
-                    oIncidenciaBean.getTipoProducto().setId(Integer.parseInt(intId_producto));
-                    TipoproductoDao oTipoproductoDao = new TipoproductoDao(enumTipoConexion);
-                    oIncidenciaBean.setTipoProducto(oTipoproductoDao.get(oIncidenciaBean.getTipoProducto()));
-                }
-                oMysql.desconexion();
-            } catch (Exception e) {
-                throw new Exception("IncidenciasDao.get: Error: " + e.getMessage());
-            } finally {
-                oMysql.desconexion();
-            }
-        }
-        return oIncidenciaBean;
-    }
-    */
+  
     
     
     
