@@ -32,6 +32,7 @@
             }
         %>
         <%
+         
            if (oContexto.getAlFilter() != null) {
                 out.print("<p>Listado filtrado: ");
                 ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
