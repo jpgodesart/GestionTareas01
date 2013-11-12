@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.daw.helper.Contexto;
 /**
  *
- * @author al037431
+ * @author Enrique Gimeno
  */
 public class IncidenciasView2 implements Operation{
     

@@ -14,7 +14,7 @@ import net.daw.parameter.IncidenciasParam;
 
 /**
  *
- * @author al037431
+ * @author Enrique Gimeno
  */
 public class IncidenciasView1 implements Operation{
       @Override
