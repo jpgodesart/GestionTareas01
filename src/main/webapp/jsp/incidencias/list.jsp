@@ -4,6 +4,7 @@
     Author     : Enrique
 --%>
 
+<%@page import="net.daw.helper.FilterBean"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="net.daw.bean.IncidenciasBean"%>
@@ -31,8 +32,14 @@
             }
         %>
         <%
-            if (oContexto.getHmFilter() != null) {
-                out.print("<p>Listado filtrado por " + oContexto.getHmFilter().keySet().toArray()[0].toString() + "    ");
+           if (oContexto.getAlFilter() != null) {
+                out.print("<p>Listado filtrado: ");
+                ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
+                Iterator iterator = alFilter.iterator();
+                while (iterator.hasNext()) {
+                    FilterBean oFilterBean = (FilterBean) iterator.next();
+                    out.print("(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + ") ");
+                }
                 out.print("<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>");
             } else {
                 out.print("<p>Sin filtrar</p>");
