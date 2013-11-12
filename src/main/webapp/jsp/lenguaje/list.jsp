@@ -42,6 +42,10 @@
             }
         %>    
         <%
+            Integer registers = (Integer) alObjetoParametro.get(2);
+            out.print("Mostrando " + oContexto.getNrpp().toString() + " registros de un total de " + registers.toString());
+        %>  
+        <%
             ArrayList<String> paginacion = (ArrayList<String>) alObjetoParametro.get(1);
             Iterator<String> iterador2 = paginacion.listIterator();
             while (iterador2.hasNext()) {
@@ -59,8 +63,7 @@
                     <span>
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
-                            <option>nombre</option>
-                                                    
+                            <option>nombre</option>              
                         </select>  
                     </span>
                     <span>
@@ -80,6 +83,7 @@
                         <input type="submit" name="enviar" value="Filtrar" />
                     </span>
                 </fieldset>
+            </form>
         </div>
                     <div class="text-right">
             <legend>Registros por página</legend> 
