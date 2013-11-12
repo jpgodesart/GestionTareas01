@@ -109,6 +109,26 @@
         }
         menu += "<a href=\"Controller?class=lenguaje&method=new\">Nuevo</a></li>";
     }
+    
+    //Tipodocumento-----------------------
+    menu += "<li class=\"nav-header\">Lenguaje</li>";
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=tipodocumento&method=list\">Listar</a></li>";
+    }
+    
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("new")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=tipodocumento&method=new\">Nuevo</a></li>";
+    }
 
     menu += "</ul></div>";
 %>
