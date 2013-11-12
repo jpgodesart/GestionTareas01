@@ -30,11 +30,11 @@
     }
 %>
 <h1><%=strTitulo%> de estado</h1>
-<form class="semantic" action="Controller" method="post" id="repositorioForm">
+<form class="semantic" action="Controller" method="post" id="estadoForm">
     <fieldset>
         <legend>Formulario de Estado</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="repositorio" /> 
+        <input type="hidden" name="class" value="estado" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div>
