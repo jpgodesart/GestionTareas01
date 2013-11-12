@@ -14,13 +14,13 @@ import net.daw.parameter.IncidenciasParam;
 
 /**
  *
- * @author Jacobo
+ * @author Enrique Gimeno
  */
 public class IncidenciasUpdate1 implements Operation {
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/incidencia/form.jsp");
+        oContexto.setVista("jsp/incidencias/form.jsp");
         IncidenciasBean oIncidenciasBean;
         IncidenciasDao oIncidenciasDao;
         oIncidenciasBean = new IncidenciasBean();
