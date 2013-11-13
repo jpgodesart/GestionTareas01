@@ -17,8 +17,8 @@ import net.daw.helper.Contexto;
  * @author Diana Ortega
  */
 public class TipodocumentoList1 implements Operation {
-    
-     @Override
+
+    @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/tipodocumento/list.jsp");
@@ -33,7 +33,7 @@ public class TipodocumentoList1 implements Operation {
                 oContexto.setPage(1);
             }
             ArrayList<TipodocumentoBean> tipodocumento = oEstadoDAO.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
-            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
+            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";
             ArrayList<String> vecindad = oEstadoDAO.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(tipodocumento);
@@ -44,5 +44,4 @@ public class TipodocumentoList1 implements Operation {
             throw new ServletException("TipodocumentoList1: View Error: " + e.getMessage());
         }
     }
-    
 }
