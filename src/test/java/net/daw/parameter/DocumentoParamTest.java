@@ -5,8 +5,6 @@ package net.daw.parameter;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.DocumentoBean;
@@ -47,22 +45,31 @@ public class DocumentoParamTest {
     @Test
     public void testsGetterSetters() throws IOException, Exception {
         System.out.println("test: DocumentoParam");
-        
+
         HttpServletRequest request = mock(HttpServletRequest.class);
-        
+
         when(request.getParameter("id")).thenReturn("1");
-        when(request.getParameter("nombre")).thenReturn("nombre");
-        
+        when(request.getParameter("titulo")).thenReturn("titulo");
+        when(request.getParameter("contenido")).thenReturn("contenido");
+        when(request.getParameter("fecha")).thenReturn("fecha");
+        when(request.getParameter("nota")).thenReturn("10");
+        //when(request.getParameter("id_usuario")).thenReturn("id_usuario");
+        when(request.getParameter("etiquetas")).thenReturn("etiquetas");
         DocumentoBean oDocumentoBean = new DocumentoBean();
         DocumentoParam oDocumentoParam = new DocumentoParam(request);
 
         oDocumentoBean = oDocumentoParam.loadId(oDocumentoBean);
-        
+
         assertEquals("getId: devuelve 1", oDocumentoBean.getId(), 1);
-        
+
         oDocumentoBean = oDocumentoParam.load(oDocumentoBean);
-        
-        assertEquals("getNombre: devuelve nombre", oDocumentoBean.getNombre(), "nombre");
+
+        assertEquals("getNombre: devuelve titulo", oDocumentoBean.getTitulo(), "titulo");
+        assertEquals("getNombre: devuelve contenido", oDocumentoBean.getContenido(), "contenido");
+        assertEquals("getNombre: devuelve fecha", oDocumentoBean.getFecha(), "fecha");
+        assertEquals("getNombre: devuelve nota", oDocumentoBean.getNota(), 10);
+        //assertEquals("getNombre: devuelve id_usuario", oDocumentoBean.getTitulo(), "id_usuario");
+        assertEquals("getNombre: devuelve etiquetas", oDocumentoBean.getEtiquetas(), "etiquetas");
     }
 
 }
