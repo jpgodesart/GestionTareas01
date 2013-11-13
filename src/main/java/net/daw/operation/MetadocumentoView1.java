@@ -20,7 +20,7 @@ public class MetadocumentoView1 implements Operation{
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/lenguaje/form.jsp");        
+        oContexto.setVista("jsp/metadocumento/form.jsp");        
         MetadocumentoBean oMetadocumentoBean;
         MetadocumentoDao oMetadocumentoDao;
         oMetadocumentoBean = new MetadocumentoBean();

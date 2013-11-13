@@ -35,8 +35,8 @@ public class MetadocumentoUpdate2 implements Operation{
         } catch (Exception e) {
             throw new ServletException("MetadocumentoController: Update Error: Phase 2: " + e.getMessage());
         }
-        String strMensaje = "Se ha añadido la información del lenguaje con id=" + Integer.toString(oMetadocumentoBean.getId()) + "<br />";
-        strMensaje += "<a href=\"Controller?class=lenguaje&method=view&id=" + oMetadocumentoBean.getId() + "\">Ver lenguaje creado en el formulario</a><br />";
+        String strMensaje = "Se ha añadido la información del metadocumento con id=" + Integer.toString(oMetadocumentoBean.getId()) + "<br />";
+        strMensaje += "<a href=\"Controller?class=metadocumento&method=view&id=" + oMetadocumentoBean.getId() + "\">Ver metadocumento creado en el formulario</a><br />";
         return strMensaje;
     }
     

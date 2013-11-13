@@ -13,6 +13,7 @@
         MetadocumentoBean oMetadocumentoBean = (MetadocumentoBean) oContexto.getParametro();
         id = oMetadocumentoBean.getId();
         titulo = oMetadocumentoBean.getTitulo();
+        fecha = oMetadocumentoBean.getFecha();
     }
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";

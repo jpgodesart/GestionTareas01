@@ -31,7 +31,7 @@ public class MetadocumentoUpdate1 implements Operation{
         try {
             oMetadocumentoBean = oMetadocumentoDao.get(oMetadocumentoBean);
         } catch (Exception e) {
-            throw new ServletException("lenguajeController: Update Error: Phase 1: " + e.getMessage());
+            throw new ServletException("metadocumentoController: Update Error: Phase 1: " + e.getMessage());
         }
         oMetadocumentoBean = oMetadocumentoParam.load(oMetadocumentoBean);
         return oMetadocumentoBean;
