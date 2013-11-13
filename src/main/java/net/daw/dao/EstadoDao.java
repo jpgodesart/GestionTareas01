@@ -118,4 +118,16 @@ public class EstadoDao {
         oMysql.desconexion();
         return n;
     }
+
+    public Integer getCount(ArrayList<FilterBean> alFilter) throws Exception {
+        int pages;
+        try {
+            oMysql.conexion(enumTipoConexion);
+            pages = oMysql.getCount("estado",  alFilter);
+            oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("ClienteDao.getCount: Error: " + e.getMessage());
+        }
+    }
     }
