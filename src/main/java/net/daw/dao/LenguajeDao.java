@@ -22,7 +22,7 @@ public class LenguajeDao {
     private Enum.Connection enumTipoConexion;
 
     /**
-     *
+     * Constructor LenguajeDao.
      * @param tipoConexion
      */
     public LenguajeDao(net.daw.helper.Enum.Connection tipoConexion) {
@@ -31,7 +31,7 @@ public class LenguajeDao {
     }
 
     /**
-     *
+     * Introduce los datos almacenados en LenguajeBean en la Base de datos.
      * @param oLenguajeBean
      * @throws Exception
      */
@@ -53,7 +53,7 @@ public class LenguajeDao {
     }
 
     /**
-     *
+     * Obtiene el numero total de paginas.
      * @param intRegsPerPag
      * @param alFilter
      * @param hmOrder
@@ -75,7 +75,7 @@ public class LenguajeDao {
     }
 
     /**
-     *
+     * Obtiene la pagina.
      * @param intRegsPerPag
      * @param intPage
      * @param alFilter
@@ -104,7 +104,7 @@ public class LenguajeDao {
     }
 
     /**
-     *
+     * Obtiene los numero vecinos de la paginación.
      * @param strLink
      * @param intPageNumber
      * @param intTotalPages
@@ -120,9 +120,9 @@ public class LenguajeDao {
     }
 
     /**
-     *
+     * Obtiene los Valores de la Base de datos.
      * @param oLenguajeBean
-     * @return
+     * @return Devuelve LenguajeBean con los valores de la base de datos.
      * @throws Exception
      */
     public LenguajeBean get(LenguajeBean oLenguajeBean) throws Exception {
@@ -139,7 +139,7 @@ public class LenguajeDao {
     }
 
     /**
-     *
+     * Borra una fila de la Base de datos de la id almacenada en DocumentoBean.
      * @param oLenguajeBean
      * @throws Exception
      */
@@ -156,7 +156,7 @@ public class LenguajeDao {
     }
 
     /**
-     *
+     * Obtiene el numero de paginas.
      * @param hmFilter
      * @return
      * @throws Exception

@@ -22,7 +22,7 @@ public class DocumentoDao {
     private final net.daw.helper.Enum.Connection enumTipoConexion;
 
     /**
-     *
+     * Constructor Del DocumentoDao.
      * @param tipoConexion
      * @throws Exception
      */
@@ -32,7 +32,7 @@ public class DocumentoDao {
     }
 
     /**
-     *
+     * Obtiene el numero total de paginas.
      * @param intRegsPerPag
      * @param hmFilter
      * @param hmOrder
@@ -52,7 +52,7 @@ public class DocumentoDao {
     }
 
     /**
-     *
+     * Obtiene la pagina.
      * @param intRegsPerPag
      * @param intPage
      * @param hmFilter
@@ -79,7 +79,7 @@ public class DocumentoDao {
     }
 
     /**
-     *
+     * Obtiene los numero vecinos de la paginación.
      * @param strLink
      * @param intPageNumber
      * @param intTotalPages
@@ -95,9 +95,9 @@ public class DocumentoDao {
     }
 
     /**
-     *
+     * Obtiene los Valores de la Base de datos.
      * @param oDocumentoBean
-     * @return
+     * @return Devuelve DocumentoBean con los valores de la base de datos.
      * @throws Exception
      */
     public DocumentoBean get(DocumentoBean oDocumentoBean) throws Exception {
@@ -131,7 +131,7 @@ public class DocumentoDao {
     }
 
     /**
-     *
+     * Introduce los valores de DocumentoBean a la Base de datos.
      * @param oDocumentoBean
      * @throws Exception
      */
@@ -163,7 +163,7 @@ public class DocumentoDao {
     }
 
     /**
-     *
+     * Borra una fila de la Base de datos de la id almacenada en DocumentoBean.
      * @param oDocumentoBean
      * @throws Exception
      */
@@ -180,7 +180,7 @@ public class DocumentoDao {
     }
 
     /**
-     *
+     * Obtiene el numero de paginas.
      * @param hmFilter
      * @return
      * @throws Exception

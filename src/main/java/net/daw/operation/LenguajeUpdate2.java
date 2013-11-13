@@ -38,7 +38,7 @@ public class LenguajeUpdate2 implements Operation{
             throw new ServletException("LenguajeController: Update Error: Phase 2: " + e.getMessage());
         }
         String strMensaje = "Se ha añadido la información del lenguaje con id=" + Integer.toString(oLenguajeBean.getId()) + "<br />";
-        strMensaje += "<a href=\"Controller?class=lenguaje&method=view&id=" + oLenguajeBean.getId() + "\">Ver lenguaje creado en el formulario</a><br />";
+        strMensaje += "<a href=\"Controller?class=lenguaje&method=view&id=" + oLenguajeBean.getId() + "\">Ver lenguaje actualizado</a><br />";
         return strMensaje;
     }
 }
