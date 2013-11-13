@@ -1,23 +1,30 @@
+
 <%@page import="net.daw.helper.Contexto"%>
-<%@page import="net.daw.bean.DocumentoBean"%>
+<%@page import="net.daw.bean.MetadocumentosBean"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
     String strTitulo = "";
     String strControlEnabled = "";
     String strValueBoton = "Enviar";
-    Integer id = 0;
-    String titulo = "";
-    String contenido = "";
-    String fecha = "";
-    Integer nota = 0;
-    String etiquetas = "";
 
-    DocumentoBean oDocumentoBean = (DocumentoBean) oContexto.getParametro();
-    id = oDocumentoBean.getId();
-    titulo = oDocumentoBean.getTitulo();
-    contenido = oDocumentoBean.getContenido();
-    fecha = oDocumentoBean.getFecha();
-    nota = oDocumentoBean.getNota();
-    etiquetas = oDocumentoBean.getEtiquetas();
+    Integer id = 0;
+    String id_metadocumento = "";
+    String descid_metadocumento = "";
+    String id_documento = "";
+    String descId_documento = "";
+    String orden = "0";
+
+
+    MetadocumentosBean oMetadocumentosBean = (MetadocumentosBean) oContexto.getParametro();
+    id = oMetadocumentosBean.getId();
+    //id_producto = Integer.toString(oMetadocumentosBean.getProducto().getId());
+   // if (oMetadocumentosBean.getProducto().getId() > 0) {
+   //     descProducto = oMetadocumentosBean.getProducto().getDescripcion();
+   // }
+    id_documento = Integer.toString(oMetadocumentosBean.getId_documento().getId());
+    if (!(oMetadocumentosBean.getId_documento().getTitulo().equals(""))) {
+        descId_documento = oMetadocumentosBean.getId_documento().getTitulo();
+    }
+    orden = Integer.toString(oMetadocumentosBean.getOrden());
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -33,48 +40,35 @@
         strValueBoton = "Crear";
     }
 %>
-<h1><%=strTitulo%> de cliente</h1>
+<h1><%=strTitulo%> de metadocumentos</h1>
 <form class="form-horizontal" action="Controller" method="post" id="clienteForm">
-    <fieldset>
-        <legend>Formulario de cliente</legend>
-        <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="documento" /> 
-        <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
-        <input type="hidden" name="phase" value="2" />
-        <div class="control-group">
-            <label class="control-label" for="titulo">Titulo: </label> 
-            <div class="controls">
-                <input <%=strControlEnabled%> id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
-            </div>
+    <legend>Formulario de metadocumentos</legend>
+    <input type="hidden" name="id" value="<%=id%>" /> 
+    <input type="hidden" name="class" value="metadocumentos" /> 
+    <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
+    <input type="hidden" name="phase" value="2" />
+    
+    <div class="control-group">
+        <label class="control-label" for="id_documento">Id_Documento: </label> 
+        <div class="controls">                
+            <input readonly="true" id="id_documento" class="input-mini"
+                   name="id_documento" type="text" size="5" maxlength="5"
+                   value="<%=id_documento%>" />  
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="documento" />
+            <span class="alert alert-success"><%=descId_documento%></span>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="contenido">Contenido: </label>
-            <div class="controls">
-                <input <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" value="<%=contenido%>" /><br />
-            </div>
+    </div>             
+    <div class="control-group">
+        <label class="control-label" for="orden">Orden: </label> 
+        <div class="controls">
+            <input <%=strControlEnabled%>  id="orden"
+                                           name="orden" type="text" size="30" maxlength="50"
+                                           value="<%=orden%>"  /> 
         </div>
-        <div class="control-group">
-            <label class="control-label" for="fecha">Fecha: </label> 
-            <div class="controls">
-                <input <%=strControlEnabled%> id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /> <br />
-            </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" name="enviar" value="<%=strValueBoton%>" />
         </div>
-        <div class="control-group">
-            <label class="control-label" for="nota">Nota: </label> 
-            <div class="controls">
-                <input <%=strControlEnabled%> id="nota" name="nota" type="text" size="30" maxlength="50" value="<%=nota%>" /> <br />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="etiquetas">Etiquetas: </label> 
-            <div class="controls">
-                <input <%=strControlEnabled%> id="etiquetas" name="etiquetas" type="text" size="30" maxlength="50" value="<%=etiquetas%>" /><br />
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" name="enviar" value="<%=strValueBoton%>" />
-            </div>
-        </div>   
-    </fieldset>
+    </div>
 </form>
