@@ -130,6 +130,26 @@
         menu += "<a href=\"Controller?class=tipodocumento&method=new\">Nuevo</a></li>";
     }
 
+        //Comentario-----------------------
+    menu += "<li class=\"nav-header\">Comentario</li>";
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("comentario") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=coment&method=list\">Listar</a></li>";
+    }
+    
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("comentario") && oContexto.getMetodo().equals("new")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=coment&method=new\">Nuevo</a></li>";
+    }
+    
     menu += "</ul></div>";
 %>
 <%=menu%>

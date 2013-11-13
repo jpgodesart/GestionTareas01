@@ -14,7 +14,7 @@ import net.daw.helper.FilterBean;
 /**
  *
  * @author al037877
- */d
+ */
 public class TipodocumentoDao {//solo copiado, modificar
     private final Mysql oMysql;
     private final net.daw.helper.Enum.Connection enumTipoConexion;
