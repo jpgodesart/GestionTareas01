@@ -15,6 +15,7 @@
     id = oDocumentoBean.getId();
     titulo = oDocumentoBean.getTitulo();
     contenido = oDocumentoBean.getContenido();
+    fecha = oDocumentoBean.getFecha();
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
 
@@ -67,7 +68,7 @@
         <div class="control-group">
             <label class="control-label" for="etiquetas">Etiquetas: </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="etiquetas" name="etiquetas" type="etiquetas" size="30" maxlength="50" value="<%=etiquetas%>" /><br />
+                <input <%=strControlEnabled%> id="etiquetas" name="etiquetas" type="text" size="30" maxlength="50" value="<%=etiquetas%>" /><br />
             </div>
         </div>
         <div class="control-group">
