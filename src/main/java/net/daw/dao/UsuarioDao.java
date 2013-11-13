@@ -27,7 +27,7 @@ public class UsuarioDao {
             oMysql.desconexion();
             return oUsuario;
         } catch (Exception e) {
-            throw new Exception("ClienteDao.getPage: Error: " + e.getMessage());
+            throw new Exception("UsuarioDao.getPage: Error: " + e.getMessage());
         }
     }
 }
