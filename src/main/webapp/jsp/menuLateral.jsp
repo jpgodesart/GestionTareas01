@@ -129,7 +129,33 @@
         }
         menu += "<a href=\"Controller?class=tipodocumento&method=new\">Nuevo</a></li>";
     }
+    
+    
+    
+    //Metadocumento
+    menu += "<li class=\"nav-header\">Metadocumento</li>";
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=metadocumento&method=list\">Listar</a></li>";
+    }
+    
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("new")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=metadocumento&method=new\">Nuevo</a></li>";
+    }
 
     menu += "</ul></div>";
+    
+    
+    
+   
 %>
 <%=menu%>
