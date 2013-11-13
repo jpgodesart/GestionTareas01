@@ -116,10 +116,15 @@ public class TipodocumentoDao {//solo copiado, modificar
      */
     public TipodocumentoBean get(TipodocumentoBean oTipodocumentoBean) throws Exception {
         try {
-
+            
             oMysql.conexion(enumTipoConexion);
             oTipodocumentoBean.setDescripcion(oMysql.getOne("tipodocumento", "descripcion", oTipodocumentoBean.getId()));
-            oTipodocumentoBean.setPrivado(Boolean.valueOf(oMysql.getOne("tipodocumento", "privado", oTipodocumentoBean.getId())));
+            //no convierte bien el 1 string a true boolean, lo deja en false, por lo que tengo que consultarlo con if
+            if(oMysql.getOne("tipodocumento", "privado", oTipodocumentoBean.getId()).equals("1")){
+                oTipodocumentoBean.setPrivado(true);
+            }else{
+                oTipodocumentoBean.setPrivado(false);
+            }
 
             oMysql.desconexion();
         } catch (Exception e) {

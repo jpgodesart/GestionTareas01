@@ -13,7 +13,7 @@
 <div class="row-fluid">
     <div class="span8">
         <h1>Listado de tipodocumento</h1>
-        <%
+        <%    
             if (!oIterador.hasNext()) {
                 out.print("<h4>Listado vacío</h4>");
             } else {
