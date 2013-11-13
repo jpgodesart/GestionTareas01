@@ -129,12 +129,10 @@
         }
         menu += "<a href=\"Controller?class=tipodocumento&method=new\">Nuevo</a></li>";
     }
-
-    menu += "</ul></div>";
     
     
     
-   //Metadocumento
+    //Metadocumento
     menu += "<li class=\"nav-header\">Metadocumento</li>";
     if (true) {//modificar permisos
         if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("list")) {
@@ -153,5 +151,11 @@
         }
         menu += "<a href=\"Controller?class=metadocumento&method=new\">Nuevo</a></li>";
     }
+
+    menu += "</ul></div>";
+    
+    
+    
+   
 %>
 <%=menu%>
