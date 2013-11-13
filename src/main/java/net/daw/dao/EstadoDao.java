@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.EstadoBean;
+import net.daw.bean.LenguajeBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 
@@ -17,7 +18,7 @@ import net.daw.helper.FilterBean;
  * @author Diana Ortega
  */
 public class EstadoDao {
-    
+
     private Mysql oMysql;
     private net.daw.helper.Enum.Connection enumTipoConexion;
 
@@ -41,7 +42,7 @@ public class EstadoDao {
     public EstadoBean get(EstadoBean oEstadoBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
-            oEstadoBean.setNombre(oMysql.getOne("estado", "nombre", oEstadoBean.getId()));          
+            oEstadoBean.setNombre(oMysql.getOne("estado", "nombre", oEstadoBean.getId()));
             oMysql.desconexion();
         } catch (Exception e) {
             throw new Exception("EstadoDao.getEstado: Error: " + e.getMessage());
@@ -50,7 +51,24 @@ public class EstadoDao {
         }
         return oEstadoBean;
     }
-    
+
+    public void set(EstadoBean oEstadoBean) throws Exception {
+        try {
+            oMysql.conexion(enumTipoConexion);
+            oMysql.initTrans();
+            if (oEstadoBean.getId() == 0) {
+                oEstadoBean.setId(oMysql.insertOne("estado"));
+            }
+            oMysql.updateOne(oEstadoBean.getId(), "estado", "nombre", oEstadoBean.getNombre());
+            oMysql.commitTrans();
+        } catch (Exception e) {
+            oMysql.rollbackTrans();
+            throw new Exception("EstadoDao.setEstado: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
+        }
+    }
+
     public void remove(EstadoBean oEstadoBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
@@ -62,7 +80,7 @@ public class EstadoDao {
             oMysql.desconexion();
         }
     }
-    
+
     public int getPages(int intRegsPerPag, ArrayList<FilterBean> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
@@ -75,7 +93,7 @@ public class EstadoDao {
         }
     }
 
-    public ArrayList<EstadoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean>  hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public ArrayList<EstadoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
         ArrayList<EstadoBean> arrEstado = new ArrayList<>();
         try {
@@ -99,23 +117,16 @@ public class EstadoDao {
         oMysql.desconexion();
         return n;
     }
-    
-        public void set(EstadoBean oUsuarioBean) throws Exception {
+
+    public Integer getCount(ArrayList<FilterBean> alFilter) throws Exception {
+        int pages;
         try {
             oMysql.conexion(enumTipoConexion);
-            oMysql.initTrans();
-            if (oUsuarioBean.getId() == 0) {
-                oUsuarioBean.setId(oMysql.insertOne("estado"));
-            }
-            oMysql.updateOne(oUsuarioBean.getId(), "estado", "nombre", oUsuarioBean.getNombre());
-          
-            oMysql.commitTrans();
-        } catch (Exception e) {
-            oMysql.rollbackTrans();
-            throw new Exception("EstadoDao.set: Error: " + e.getMessage());
-        } finally {
+            pages = oMysql.getCount("estado", alFilter);
             oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("ClienteDao.getCount: Error: " + e.getMessage());
         }
     }
-    
 }

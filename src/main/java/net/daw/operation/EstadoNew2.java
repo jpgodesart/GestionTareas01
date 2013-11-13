@@ -16,12 +16,12 @@ import net.daw.parameter.EstadoParam;
  *
  * @author Diana Ortega
  */
-public class EstadoUpdate2 implements Operation {
+public class EstadoNew2 implements Operation {
     
      @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/mensaje.jsp");   
+        oContexto.setVista("jsp/mensaje.jsp");
         EstadoBean oEstadoBean = new EstadoBean();
         EstadoDao oEstadoDao = new EstadoDao(oContexto.getEnumTipoConexion());
         EstadoParam oEstadoParam = new EstadoParam(request);
@@ -30,15 +30,14 @@ public class EstadoUpdate2 implements Operation {
             oEstadoBean = oEstadoParam.load(oEstadoBean);
         } catch (NumberFormatException e) {
             return "Tipo de dato incorrecto en uno de los campos del formulario";
-        }         
+        }
         try {
             oEstadoDao.set(oEstadoBean);
         } catch (Exception e) {
-            throw new ServletException("RepositorioController: Update Error: Phase 2: " + e.getMessage());
+            throw new ServletException("EstadoController: New Error: Phase 2: " + e.getMessage());
         }
-        String strMensaje = "Se ha modificado la información de estado con id=" + Integer.toString(oEstadoBean.getId()) + "<br />";
-        strMensaje += "<a href=\"Controller?class=estado&method=view&id=" + oEstadoBean.getId() + "\">Ver estado de la modificación</a><br />";
+        String strMensaje = "Se ha añadido la información del estado con id=" + Integer.toString(oEstadoBean.getId()) + "<br />";
+        strMensaje += "<a href=\"Controller?class=estado&method=view&id=" + oEstadoBean.getId() + "\">Ver estado creado en el formulario</a><br />";
         return strMensaje;
     }
-    
 }
