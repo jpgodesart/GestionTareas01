@@ -4,31 +4,23 @@
  */
 package net.daw.bean;
 
-import java.util.Date;
-
 /**
  *
  * @author al037431
  */
 public class MetadocumentoBean {
     private int id = 0;
-    private String titulo;
-    private String fecha;
+    
+    private String titulo = "";
+   
+    private String fecha = ""; 
 
     public MetadocumentoBean() {
         
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public MetadocumentoBean(Integer next) {
-        
+    public MetadocumentoBean(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -47,5 +39,15 @@ public class MetadocumentoBean {
         this.titulo = titulo;
     }
 
-   
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+    
+    
+    
+    
 }

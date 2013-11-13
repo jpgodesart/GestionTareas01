@@ -39,6 +39,10 @@ public class MetadocumentoParam {
         try {
             if ((request.getParameter("titulo") != null)) {
                 oMetadocumentoBean.setTitulo(request.getParameter("titulo"));
+                
+            }
+            if ((request.getParameter("fecha") != null)) {
+            oMetadocumentoBean.setFecha(request.getParameter("fecha"));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());

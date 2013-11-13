@@ -41,7 +41,7 @@ public class MetadocumentoDao {
             if (oMetadocumentoBean.getId() == 0) {
                 oMetadocumentoBean.setId(oMysql.insertOne("metadocumento"));
             }
-            oMysql.updateOne(oMetadocumentoBean.getId(), "metadocumento", "id", String.valueOf(oMetadocumentoBean.getId()));
+
             oMysql.updateOne(oMetadocumentoBean.getId(), "metadocumento", "titulo", oMetadocumentoBean.getTitulo());
             oMysql.updateOne(oMetadocumentoBean.getId(), "metadocumento", "fecha", oMetadocumentoBean.getFecha());
             oMysql.commitTrans();
@@ -94,17 +94,29 @@ public class MetadocumentoDao {
         return n;
     }
 
-    public MetadocumentoBean get(MetadocumentoBean oMetadocumentoBean) throws Exception {
-        try {
-            oMysql.conexion(enumTipoConexion);
-        
-            oMetadocumentoBean.setTitulo(oMysql.getOne("metadocumento", "titulo", oMetadocumentoBean.getId()));
-            oMetadocumentoBean.setFecha(oMysql.getOne("metadocumento", "fecha", oMetadocumentoBean.getId()));
-            oMysql.desconexion();
-        } catch (Exception e) {
-            throw new Exception("MetadocumentoDao.getMetadocumento: Error: " + e.getMessage());
-        } finally {
-            oMysql.desconexion();
+     public MetadocumentoBean get(MetadocumentoBean oMetadocumentoBean) throws Exception {
+        if (oMetadocumentoBean.getId() > 0) {
+            try {
+                oMysql.conexion(enumTipoConexion);
+                if (!oMysql.existsOne("metadocumento", oMetadocumentoBean.getId())) {
+                    oMetadocumentoBean.setId(0);
+                } else {
+
+                    oMysql.conexion(enumTipoConexion);
+                    oMetadocumentoBean.setTitulo(oMysql.getOne("metadocumento", "titulo", oMetadocumentoBean.getId()));
+                    oMetadocumentoBean.setFecha(oMysql.getOne("metadocumento", "fecha", oMetadocumentoBean.getId()));
+//                    
+
+                }
+
+
+            } catch (Exception e) {
+                throw new Exception("MetadocumentoDao.getMetadocumento: Error: " + e.getMessage());
+            } finally {
+                oMysql.desconexion();
+            }
+        } else {
+            oMetadocumentoBean.setId(0);
         }
         return oMetadocumentoBean;
     }
