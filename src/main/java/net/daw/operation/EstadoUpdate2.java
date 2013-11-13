@@ -36,7 +36,9 @@ public class EstadoUpdate2 implements Operation {
         } catch (Exception e) {
             throw new ServletException("RepositorioController: Update Error: Phase 2: " + e.getMessage());
         }
-        return "Se ha modificado la información del repositorio con id=" + Integer.toString(oEstadoBean.getId());
+        String strMensaje = "Se ha modificado la información de estado con id=" + Integer.toString(oEstadoBean.getId()) + "<br />";
+        strMensaje += "<a href=\"Controller?class=estado&method=view&id=" + oEstadoBean.getId() + "\">Ver estado de la modificación</a><br />";
+        return strMensaje;
     }
     
 }
