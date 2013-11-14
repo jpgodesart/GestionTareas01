@@ -149,6 +149,4 @@ public class IncidenciasDao {
             throw new Exception("IncidenciasDao.getPage: Error: " + e.getMessage());
         }
     }
-
-    
 }

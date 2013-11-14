@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.daw.bean.DocumentoBean;
-import net.daw.dao.DocumentoDao;
+import net.daw.bean.MetadocumentosBean;
+import net.daw.dao.MetadocumentosDao;
 import net.daw.helper.Contexto;
 import net.daw.helper.Pagination;
 
@@ -19,24 +19,27 @@ import net.daw.helper.Pagination;
  *
  * @author al037294
  */
-public class DocumentoList1 implements Operation{
+public class MetadocumentosList1 implements Operation{
     
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/documento/list.jsp");
+        oContexto.setVista("jsp/metadocumentos/list.jsp");
         try {
-            DocumentoDao oDocumentoDAO = new DocumentoDao(oContexto.getEnumTipoConexion());
-            Integer intPages = oDocumentoDAO.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
-            Integer intRegisters = oDocumentoDAO.getCount(oContexto.getAlFilter());
+
+            MetadocumentosDao oMetadocumentosDao = new MetadocumentosDao(oContexto.getEnumTipoConexion());
+
+            Integer intPages = oMetadocumentosDao.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
+            Integer intRegisters = oMetadocumentosDao.getCount(oContexto.getAlFilter());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
             if (oContexto.getPage() < 1) {
                 oContexto.setPage(1);
             }
-            ArrayList<DocumentoBean> listado = oDocumentoDAO.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
-            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
+
+            ArrayList<MetadocumentosBean> listado = oMetadocumentosDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
+            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";
             ArrayList<String> vecindad = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
@@ -44,7 +47,7 @@ public class DocumentoList1 implements Operation{
             a.add(intRegisters);
             return a;
         } catch (Exception e) {
-            throw new ServletException("DocumentoList1: View Error: " + e.getMessage());
+            throw new ServletException("MetadocumentosList1: Error: " + e.getMessage());
         }
     }
 }

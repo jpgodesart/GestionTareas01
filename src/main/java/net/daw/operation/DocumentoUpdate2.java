@@ -52,7 +52,7 @@ public class DocumentoUpdate2 implements Operation{
                 throw new ServletException("DocumentoController: Update Error: Phase 2: " + e.getMessage());
             }
             String strMensaje = "Se ha añadido la información del documento con id=" + Integer.toString(oDocumentoBean.getId()) + "<br />";            
-            strMensaje += "<a href=\"Controller?class=documento&method=view&id=" + oDocumentoBean.getId() + "\">Ver documento creado</a><br />";
+            strMensaje += "<a href=\"Controller?class=documento&method=view&id=" + oDocumentoBean.getId() + "\">Ver documento actualizado</a><br />";
             return strMensaje;
         }
     }

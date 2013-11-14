@@ -130,6 +130,46 @@
         menu += "<a href=\"Controller?class=tipodocumento&method=new\">Nuevo</a></li>";
     }
     
+
+    //Documento-----------------------
+    menu += "<li class=\"nav-header\">Documento</li>";
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("documento") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=documento&method=list\">Listar</a></li>";
+    }
+    
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("documento") && oContexto.getMetodo().equals("new")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=documento&method=new\">Nuevo</a></li>";
+    }
+    
+    //Metadocumentos-----------------------
+    menu += "<li class=\"nav-header\">Metadocumentos</li>";
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("metadocumentos") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=metadocumentos&method=list\">Listar</a></li>";
+    }
+    
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("metadocumentos") && oContexto.getMetodo().equals("new")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=metadocumentos&method=new\">Nuevo</a></li>";
+    }
     
     
     //Metadocumento
@@ -150,6 +190,7 @@
             menu += "<li>";
         }
         menu += "<a href=\"Controller?class=metadocumento&method=new\">Nuevo</a></li>";
+
     }
 
     menu += "</ul></div>";
