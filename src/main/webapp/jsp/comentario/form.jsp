@@ -79,8 +79,8 @@
         <div>
             <label for="id_documento">ID del Documento: </label> 
             <input <%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<%=id_documento%>" /> <br />
-        </div>-->
-        <div>
+        </div>
+        <div>-->
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />
         </div>
     </fieldset>

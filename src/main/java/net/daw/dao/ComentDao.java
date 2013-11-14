@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.ComentBean;
+import net.daw.bean.DocumentoBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 
@@ -84,25 +85,26 @@ public class ComentDao {
         }
     }
 
-    public ArrayList<String> getNeighborhood(String strLink, int intPageNumber, int intTotalPages, int intNeighborhood) throws Exception {
-        oMysql.conexion(enumTipoConexion);
-        ArrayList<String> n = oMysql.getNeighborhood(strLink, intPageNumber, intTotalPages, intNeighborhood);
-        oMysql.desconexion();
-        return n;
-    }
-
+    
     public ComentBean get(ComentBean oComentBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
+            
+            DocumentoBean oDocumentoBean = new DocumentoBean();
+            
             oComentBean.setTitulo(oMysql.getOne("comentario", "titulo", oComentBean.getId()));
             oComentBean.setContenido(oMysql.getOne("comentario", "contenido", oComentBean.getId()));
             oComentBean.setFecha(oMysql.getOne("comentario", "fecha", oComentBean.getId()));
-            oComentBean.setId_documento(Integer.parseInt(oMysql.getOne("comentario", "id_repositorio", oComentBean.getId())));
+            oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("comentario", "id_documento", oComentBean.getId())));
             oComentBean.setId_usuario(Integer.parseInt(oMysql.getOne("comentario", "id_usuario", oComentBean.getId())));
 
+            DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
+            oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
+            
+            
             oMysql.desconexion();
         } catch (Exception e) {
-            throw new Exception("ComentDao.getComent: Error: " + e.getMessage());
+            throw new Exception("DocumentoDao.getComent: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
