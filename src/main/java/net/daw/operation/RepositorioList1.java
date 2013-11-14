@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.RepositorioBean;
 import net.daw.dao.RepositorioDao;
 import net.daw.helper.Contexto;
+import net.daw.helper.Pagination;
 
 /**
  *
@@ -34,7 +35,7 @@ public class RepositorioList1 implements Operation {
             }
             ArrayList<RepositorioBean> listado = oRepositorioDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
             String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
-            ArrayList<String> vecindad = (ArrayList<String>) oRepositorioDao.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
+            ArrayList<String> vecindad = (ArrayList<String>) Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);
