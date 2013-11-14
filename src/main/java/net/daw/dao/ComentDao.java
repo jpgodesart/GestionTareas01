@@ -4,7 +4,9 @@
  */
 package net.daw.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.ComentBean;
@@ -39,8 +41,9 @@ public class ComentDao {
             }
             oMysql.updateOne(oComentBean.getId(), "comentario", "titulo", oComentBean.getTitulo()) ;
             oMysql.updateOne(oComentBean.getId(), "comentario", "contenido", oComentBean.getContenido());
-            oMysql.updateOne(oComentBean.getId(), "comentario", "fecha", oComentBean.getFecha());
-            oMysql.updateOne(oComentBean.getId(), "comentario", "id_usuario", String.valueOf(oComentBean.getId_usuario()));
+            java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            oMysql.updateOne(oComentBean.getId(), "comentario", "fecha", oSimpleDateFormat.format(oComentBean.getFecha()));
+          //  oMysql.updateOne(oUsuarioBean.getId(), "comentario", "id_usuario", String.valueOf(oComentBean.getId_usuario()));
             oMysql.updateOne(oComentBean.getId(), "comentario", "id_documento", String.valueOf(oComentBean.getId_documento()));
             oMysql.commitTrans();
         } catch (Exception e) {
@@ -94,9 +97,16 @@ public class ComentDao {
             
             oComentBean.setTitulo(oMysql.getOne("comentario", "titulo", oComentBean.getId()));
             oComentBean.setContenido(oMysql.getOne("comentario", "contenido", oComentBean.getId()));
-            oComentBean.setFecha(oMysql.getOne("comentario", "fecha", oComentBean.getId()));
             oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("comentario", "id_documento", oComentBean.getId())));
-            oComentBean.setId_usuario(Integer.parseInt(oMysql.getOne("comentario", "id_usuario", oComentBean.getId())));
+           // oUsuarioBean.setId_usuario(Integer.parseInt(oMysql.getOne("comentario", "id_usuario", oComentBean.getId())));
+            
+            String strFecha = oMysql.getOne("comentario", "fecha", oComentBean.getId());
+            if (strFecha!=null) {
+                Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
+                oComentBean.setFecha(dFecha);
+            } else {
+                oComentBean.setFecha(new Date(0));
+            }
 
             DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
             oDocumentoBean = oDocumentoDao.get(oDocumentoBean);

@@ -4,6 +4,8 @@
  */
 package net.daw.bean;
 
+import java.util.Date;
+
 /**
  *
  * @author Jordi Eslava Barrera
@@ -11,17 +13,41 @@ package net.daw.bean;
 public class ComentBean {
 
     private int id = 0;
-    private int id_usuario = 0;
-    private int id_documento = 0;
+    private UsuarioBean id_usuario = null;
+    private DocumentoBean id_documento = null;
     private String titulo = "";
     private String contenido = "";
-    private String fecha = "";
+    private Date fecha = new Date();
 
     public ComentBean(Integer id) {
         this.id = id;
+        this.id_documento = new DocumentoBean();
+        this.id_documento.setId(0);
+       /* this.id_usuario = new UsuarioBean();
+        this.id_usuario.setId(0);*/
+    }
+/*
+    public UsuarioBean getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(UsuarioBean id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+*/
+    public DocumentoBean getId_documento() {
+        return id_documento;
+    }
+
+    public void setId_documento(DocumentoBean id_documento) {
+        this.id_documento = id_documento;
     }
 
     public ComentBean() {
+        this.id_documento = new DocumentoBean();
+        this.id_documento.setId(0);
+        /* this.id_usuario = new UsuarioBean();
+         this.id_usuario.setId(0);*/
     }
 
     public int getId() {
@@ -30,22 +56,6 @@ public class ComentBean {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
-    }
-
-    public int getId_documento() {
-        return id_documento;
-    }
-
-    public void setId_documento(int id_documento) {
-        this.id_documento = id_documento;
     }
 
     public String getTitulo() {
@@ -64,11 +74,11 @@ public class ComentBean {
         this.contenido = contenido;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 }
