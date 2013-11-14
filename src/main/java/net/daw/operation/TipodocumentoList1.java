@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.TipodocumentoBean;
 import net.daw.dao.TipodocumentoDao;
 import net.daw.helper.Contexto;
+import net.daw.helper.Pagination;
 
 /**
  *
@@ -34,7 +35,7 @@ public class TipodocumentoList1 implements Operation {
             }
             ArrayList<TipodocumentoBean> tipodocumento = oEstadoDAO.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
             String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";
-            ArrayList<String> vecindad = oEstadoDAO.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
+            ArrayList<String> vecindad = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(tipodocumento);
             a.add(vecindad);

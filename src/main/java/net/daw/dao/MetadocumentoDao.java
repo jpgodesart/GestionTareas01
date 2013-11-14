@@ -87,8 +87,6 @@ public class MetadocumentoDao {
         }
     }
 
-    
-
      public MetadocumentoBean get(MetadocumentoBean oMetadocumentoBean) throws Exception {
         if (oMetadocumentoBean.getId() > 0) {
             try {
