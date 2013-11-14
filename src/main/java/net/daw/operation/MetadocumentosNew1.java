@@ -28,7 +28,7 @@ public class MetadocumentosNew1 implements Operation{
         try {
             oMetadocumentosBean = oMetadocumentosParam.load(oMetadocumentosBean);
             oMetadocumentosBean = oMetadocumentosParam.load(oMetadocumentosBean);
-            oMetadocumentosBean.setId_documento(oDocumentoDao.get(oMetadocumentosBean.getId_documento()));
+            oMetadocumentosBean.setDocumento(oDocumentoDao.get(oMetadocumentosBean.getDocumento()));
         } catch (NumberFormatException e) {
             oContexto.setVista("jsp/mensaje.jsp");
             return "Tipo de dato incorrecto en uno de los campos del formulario";

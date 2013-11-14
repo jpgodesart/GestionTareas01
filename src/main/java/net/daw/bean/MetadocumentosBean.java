@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.bean;
 
 /**
@@ -11,19 +10,27 @@ package net.daw.bean;
  * @author Alvaro Crego
  */
 public class MetadocumentosBean {
+
     private int id;
-    //private int id_metadocumento;
-    private DocumentoBean id_documento;
+    private MetadocumentoBean metadocumento = null;
+    private DocumentoBean documento = null;
     private int orden;
 
-     public MetadocumentosBean() {
-        
+    public MetadocumentosBean() {
+        this.metadocumento = new MetadocumentoBean();
+        this.metadocumento.setId(0);
+        this.documento = new DocumentoBean();
+        this.documento.setId(0);
     }
 
     public MetadocumentosBean(int id) {
         this.id = id;
+        this.metadocumento = new MetadocumentoBean();
+        this.metadocumento.setId(0);
+        this.documento = new DocumentoBean();
+        this.documento.setId(0);
     }
-    
+
     public int getId() {
         return id;
     }
@@ -32,12 +39,20 @@ public class MetadocumentosBean {
         this.id = id;
     }
 
-    public DocumentoBean getId_documento() {
-        return id_documento;
+    public MetadocumentoBean getMetadocumento() {
+        return metadocumento;
     }
 
-    public void setId_documento(DocumentoBean id_documento) {
-        this.id_documento = id_documento;
+    public void setMetadocumento(MetadocumentoBean metadocumento) {
+        this.metadocumento = metadocumento;
+    }
+
+    public DocumentoBean getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(DocumentoBean documento) {
+        this.documento = documento;
     }
 
     public int getOrden() {
@@ -47,6 +62,7 @@ public class MetadocumentosBean {
     public void setOrden(int orden) {
         this.orden = orden;
     }
+
     
     
 }

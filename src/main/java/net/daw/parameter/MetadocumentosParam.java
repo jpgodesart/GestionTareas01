@@ -43,7 +43,7 @@ public class MetadocumentosParam {
           //      oMetadocumentos.getCliente().setId(Integer.parseInt(request.getParameter("id_cliente")));
            // }
             if ((request.getParameter("id_documento") != null)) {
-                oMetadocumentos.getId_documento().setId(Integer.parseInt(request.getParameter("id_documento")));
+                oMetadocumentos.getDocumento().setId(Integer.parseInt(request.getParameter("id_documento")));
             }
             if ((request.getParameter("orden") != null)) {
                 oMetadocumentos.setOrden(Integer.parseInt(request.getParameter("orden")));

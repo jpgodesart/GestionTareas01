@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.DocumentoBean;
+import net.daw.bean.MetadocumentoBean;
 import net.daw.bean.MetadocumentosBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
+import net.daw.helper.Enum;
 
 /**
  *
@@ -20,14 +22,14 @@ import net.daw.helper.FilterBean;
 public class MetadocumentosDao {
 
     private final Mysql oMysql;
-    private final net.daw.helper.Enum.Connection enumTipoConexion;
+    private final Enum.Connection enumTipoConexion;
 
     /**
      *
      * @param tipoConexion
      * @throws Exception
      */
-    public MetadocumentosDao(net.daw.helper.Enum.Connection tipoConexion) throws Exception {
+    public MetadocumentosDao(Enum.Connection tipoConexion) throws Exception {
         oMysql = new Mysql();
         enumTipoConexion = tipoConexion;
     }
@@ -48,7 +50,7 @@ public class MetadocumentosDao {
             oMysql.desconexion();
             return pages;
         } catch (Exception e) {
-            throw new Exception("ProductoDao.getPages: Error: " + e.getMessage());
+            throw new Exception("MetadocumentoDao.getPages: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
@@ -95,7 +97,7 @@ public class MetadocumentosDao {
             oMysql.desconexion();
             return arrMetadocumentos;
         } catch (Exception e) {
-            throw new Exception("ProductoDao.getPage: Error: " + e.getMessage());
+            throw new Exception("MetadocumentoDao.getPage: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
@@ -127,26 +129,29 @@ public class MetadocumentosDao {
         try {
             oMysql.conexion(enumTipoConexion);
 
-            //ProductoBean oProductoBean = new ProductoBean();
+            MetadocumentoBean oMetadocumentoBean = new MetadocumentoBean();
             DocumentoBean oDocumentoBean = new DocumentoBean();
 
-            //oProductoBean.setId(Integer.parseInt(oMysql.getOne("compra", "id_producto", oMetadocumentosBean.getId())));
+            oMetadocumentoBean.setId(Integer.parseInt(oMysql.getOne("metadocumentos", "id_metadocumento", oMetadocumentosBean.getId())));
             oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("metadocumentos", "id_documento", oMetadocumentosBean.getId())));
 
             oMetadocumentosBean.setOrden(Integer.parseInt(oMysql.getOne("metadocumentos", "orden", oMetadocumentosBean.getId())));
 
-            //ProductoDao oProductoDao = new ProductoDao(enumTipoConexion);
+            
+            
+
+            MetadocumentoDao oMetadocumentoDao = new MetadocumentoDao(enumTipoConexion);
             DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
 
-            //oProductoBean = oProductoDao.get(oProductoBean);
+            oMetadocumentoBean = oMetadocumentoDao.get(oMetadocumentoBean);
             oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
 
-            //oMetadocumentosBean.setProducto(oProductoBean);
-            oMetadocumentosBean.setId_documento(oDocumentoBean);
+            oMetadocumentosBean.setMetadocumento(oMetadocumentoBean);
+            oMetadocumentosBean.setDocumento(oDocumentoBean);
 
             oMysql.desconexion();
         } catch (Exception e) {
-            throw new Exception("ProductoDao.get: Error: " + e.getMessage());
+            throw new Exception("MetadocumentoDao.get: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
@@ -166,7 +171,7 @@ public class MetadocumentosDao {
                 oMetadocumentosBean.setId(oMysql.insertOne("metadocumentos"));
             }
             // oMysql.updateOne(oMetadocumentosBean.getId(), "compra", "id_metadocumento", oMetadocumentosBean.getDocumento().getId().toString());
-            oMysql.updateOne(oMetadocumentosBean.getId(), "metadocumentos", "id_documento", Integer.toString(oMetadocumentosBean.getId_documento().getId()));
+            oMysql.updateOne(oMetadocumentosBean.getId(), "metadocumentos", "id_documento", Integer.toString(oMetadocumentosBean.getDocumento().getId()));
             oMysql.updateOne(oMetadocumentosBean.getId(), "metadocumentos", "orden", Integer.toString(oMetadocumentosBean.getOrden()));
             oMysql.commitTrans();
         } catch (Exception e) {

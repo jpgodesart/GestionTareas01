@@ -13,19 +13,19 @@
     String descId_documento = "";
     String orden = "0";
 
-
+    
     MetadocumentosBean oMetadocumentosBean = (MetadocumentosBean) oContexto.getParametro();
     id = oMetadocumentosBean.getId();
     //id_producto = Integer.toString(oMetadocumentosBean.getProducto().getId());
    // if (oMetadocumentosBean.getProducto().getId() > 0) {
    //     descProducto = oMetadocumentosBean.getProducto().getDescripcion();
    // }
-    id_documento = Integer.toString(oMetadocumentosBean.getId_documento().getId());
-    if (!(oMetadocumentosBean.getId_documento().getTitulo().equals(""))) {
-        descId_documento = oMetadocumentosBean.getId_documento().getTitulo();
+    id_documento = Integer.toString(oMetadocumentosBean.getDocumento().getId());
+    if (!(oMetadocumentosBean.getDocumento().getTitulo().equals(""))) {
+        descId_documento = oMetadocumentosBean.getDocumento().getTitulo();
     }
     orden = Integer.toString(oMetadocumentosBean.getOrden());
-
+    
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
