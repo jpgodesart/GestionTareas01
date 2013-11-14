@@ -16,10 +16,10 @@
     
     MetadocumentosBean oMetadocumentosBean = (MetadocumentosBean) oContexto.getParametro();
     id = oMetadocumentosBean.getId();
-    //id_producto = Integer.toString(oMetadocumentosBean.getProducto().getId());
-   // if (oMetadocumentosBean.getProducto().getId() > 0) {
-   //     descProducto = oMetadocumentosBean.getProducto().getDescripcion();
-   // }
+    id_metadocumento = Integer.toString(oMetadocumentosBean.getMetadocumento().getId());
+    if (oMetadocumentosBean.getMetadocumento().getId() > 0) {
+       descid_metadocumento = oMetadocumentosBean.getMetadocumento().getTitulo();
+    }
     id_documento = Integer.toString(oMetadocumentosBean.getDocumento().getId());
     if (!(oMetadocumentosBean.getDocumento().getTitulo().equals(""))) {
         descId_documento = oMetadocumentosBean.getDocumento().getTitulo();
@@ -47,7 +47,16 @@
     <input type="hidden" name="class" value="metadocumentos" /> 
     <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
     <input type="hidden" name="phase" value="2" />
-    
+    <div class="control-group">
+        <label class="control-label" for="id_metadocumento">Id_Metadocumento: </label> 
+        <div class="controls">                
+            <input readonly="true" id="id_metadocumento" class="input-mini"
+                   name="id_metadocumento" type="text" size="5" maxlength="5"
+                   value="<%=id_metadocumento%>" />  
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="metadocumento" />
+            <span class="alert alert-success"><%=descid_metadocumento%></span>
+        </div>
+    </div>   
     <div class="control-group">
         <label class="control-label" for="id_documento">Id_Documento: </label> 
         <div class="controls">                
