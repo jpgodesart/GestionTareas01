@@ -9,7 +9,7 @@ import net.daw.bean.ComentBean;
 
 /**
  *
- * @author al037342
+ * @author Jordi Eslava Barrera
  */
 public class ComentParam {
     private HttpServletRequest request;

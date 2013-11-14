@@ -65,7 +65,7 @@
         </div>
         <div>
             <label for="contenido">Contenido: </label>
-            <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" value="<%=contenido%>" ></textarea><br />
+            <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" ><%=contenido%></textarea><br />
         </div>
 
         <div>
