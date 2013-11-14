@@ -111,9 +111,9 @@
     }
     
     //Tipodocumento-----------------------
-    menu += "<li class=\"nav-header\">Lenguaje</li>";
+    menu += "<li class=\"nav-header\">Tipodocumento</li>";
     if (true) {//modificar permisos
-        if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("list")) {
+        if (oContexto.getClase().equals("tipodocumento") && oContexto.getMetodo().equals("list")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
@@ -122,12 +122,34 @@
     }
     
     if (true) {//modificar permisos
-        if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("new")) {
+        if (oContexto.getClase().equals("tipodocumento") && oContexto.getMetodo().equals("new")) {
             menu += "<li class=\"active\">";
         } else {
             menu += "<li>";
         }
         menu += "<a href=\"Controller?class=tipodocumento&method=new\">Nuevo</a></li>";
+    }
+    
+    
+    
+    //Metadocumento
+    menu += "<li class=\"nav-header\">Metadocumento</li>";
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=metadocumento&method=list\">Listar</a></li>";
+    }
+    
+    if (true) {//modificar permisos
+        if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("new")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=metadocumento&method=new\">Nuevo</a></li>";
     }
 
         //Comentario-----------------------
@@ -151,5 +173,9 @@
     }
     
     menu += "</ul></div>";
+    
+    
+    
+   
 %>
 <%=menu%>

@@ -1,18 +1,18 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
+<%@ page import="net.daw.helper.Contexto"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
-<%@ page import="net.daw.bean.EstadoBean"%>
-<%@ page import="net.daw.helper.Contexto"%>
+<%@ page import="net.daw.bean.MetadocumentoBean"%>
 <%
     Contexto oContexto = (Contexto) request.getAttribute("contexto");
     ArrayList<Object> alObjetoParametro = (ArrayList<Object>) oContexto.getParametro();
-    ArrayList<EstadoBean> alPagina = (ArrayList<EstadoBean>) alObjetoParametro.get(0);
-    Iterator<EstadoBean> oIterador = alPagina.listIterator();
+    ArrayList<MetadocumentoBean> alPagina = (ArrayList<MetadocumentoBean>) alObjetoParametro.get(0);
+    Iterator<MetadocumentoBean> oIterador = alPagina.listIterator();
 %>
 <div class="row-fluid">
     <div class="span8">
-        <h1>Listado de estados</h1>
+        <h1>Listado de metadocumento</h1>
         <%
             if (!oIterador.hasNext()) {
                 out.print("<h4>Listado vacío</h4>");
@@ -39,11 +39,7 @@
             } else {
                 out.print("<p>Sin filtrar</p>");
             }
-        %>
-        <%
-            Integer registers = (Integer) alObjetoParametro.get(2);
-            out.print("Mostrando " + oContexto.getNrpp().toString() + " registros de un total de " + registers.toString());
-        %>        
+        %>    
         <%
             ArrayList<String> paginacion = (ArrayList<String>) alObjetoParametro.get(1);
             Iterator<String> iterador2 = paginacion.listIterator();
@@ -52,19 +48,19 @@
                 out.print(o);
             }
         %>
-
     </div>
     <div class="span4">
         <div class="text-right">
-            <legend>Filtro de estado</legend> 
-            <form class="navbar-form pull-right" action="Controller" method="post" id="filtroEstadoForm">
+            <legend>Filtro de lenguaje</legend> 
+            <form class="navbar-form pull-right" action="Controller" method="post" id="metadocumentoForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
                     <span>
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
-                            <option>nombre</option>
-                            
+                            <option>titulo</option>
+                            <option>fecha</option>
+                                                    
                         </select>  
                     </span>
                     <span>
@@ -77,16 +73,15 @@
                             <option>lessorequal</option>
                             <option>greater</option>
                             <option>greaterorequal</option>                            
-                        </select>  
-                        <input id="filtervalue" name="filtervalue" type="search" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
+                        </select>
+                        <input id="filtervalue" name="filtervalue" type="text" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
                     </span>
                     <span>
                         <input type="submit" name="enviar" value="Filtrar" />
                     </span>
                 </fieldset>
-            </form>
         </div>
-        <div class="text-right">
+                    <div class="text-right">
             <legend>Registros por página</legend> 
             <form class="navbar-form pull-right" action="Controller" method="post" id="nrrpForm" >
                 <fieldset>                                               
@@ -122,41 +117,39 @@
     <tr>
         <th>id
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        <th>nombre
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        <th>titulo
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=titulo&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=titulo&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        <th>Operaciones
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-       
+        <th>fecha
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        
-        
+        <th>Operaciones</th>
     </tr>
-    <%        while (oIterador.hasNext()) {
-            EstadoBean oEstadoBEAN = oIterador.next();
+    <%
+        while (oIterador.hasNext()) {
+            MetadocumentoBean oMetadocumentoBean = oIterador.next();
     %>
     <tr>
-        <td><%=oEstadoBEAN.getId()%></td>
-        <td><%=oEstadoBEAN.getNombre()%></td>
-       
-          
+        <td><%=oMetadocumentoBean.getId()%></td>
+        <td><%=oMetadocumentoBean.getTitulo()%></td>
+        <td><%=oMetadocumentoBean.getFecha()%></td>
         <td>
             <div class="btn-toolbar">
-                <div class="btn-group"> 
+                <div class="btn-group">
                     <%
-                        if (oContexto.getSearchingFor().equals("estado")) {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_estado", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_estado=" + oEstadoBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                        if (oContexto.getSearchingFor().equals("metadocumento")) {                            
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class","method","phase","id_metadocumento","id","returnclass","returnmethod","returnphase","searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_metadocumento=" + oMetadocumentoBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=estado&method=view&id=" + oEstadoBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=estado&method=update&id=" + oEstadoBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=estado&method=remove&id=" + oEstadoBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumento&method=view&id=" + oMetadocumentoBean.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumento&method=update&id=" + oMetadocumentoBean.getId() + "\"><i class=\"icon-pencil\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumento&method=remove&id=" + oMetadocumentoBean.getId() + "\"><i class=\"icon-trash\"></i></a>");
                         }
-                    %>  
-                </div>
+                    %>                 
+                </div>                
             </div>
         </td>
     </tr>
