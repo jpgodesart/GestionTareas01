@@ -87,12 +87,7 @@ public class MetadocumentoDao {
         }
     }
 
-    public ArrayList<String> getNeighborhood(String strLink, int intPageNumber, int intTotalPages, int intNeighborhood) throws Exception {
-        oMysql.conexion(enumTipoConexion);
-        ArrayList<String> n = oMysql.getNeighborhood(strLink, intPageNumber, intTotalPages, intNeighborhood);
-        oMysql.desconexion();
-        return n;
-    }
+    
 
      public MetadocumentoBean get(MetadocumentoBean oMetadocumentoBean) throws Exception {
         if (oMetadocumentoBean.getId() > 0) {
