@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.IncidenciasBean;
 import net.daw.dao.IncidenciasDao;
 import net.daw.helper.Contexto;
+import net.daw.helper.Pagination;
 
 public class IncidenciasList1 implements Operation {
 
@@ -26,7 +27,7 @@ public class IncidenciasList1 implements Operation {
             }
             ArrayList<IncidenciasBean> listado = oIncidenciasDAO.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
             String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
-            ArrayList<String> vecindad = oIncidenciasDAO.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
+            ArrayList<String> vecindad = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);
