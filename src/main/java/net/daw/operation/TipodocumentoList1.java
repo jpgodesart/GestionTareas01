@@ -15,7 +15,7 @@ import net.daw.helper.Pagination;
 
 /**
  *
- * @author Diana Ortega
+ * @author Jacobo Segovia
  */
 public class TipodocumentoList1 implements Operation {
 

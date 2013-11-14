@@ -36,15 +36,15 @@ public class TipodocumentoParam {
 
     public TipodocumentoBean load(TipodocumentoBean oTipodocumentoBean) throws NumberFormatException {
         try {
-            if ((request.getParameter("nombre") != null)) {
+            if ((request.getParameter("descripcion") != null)) {
                 oTipodocumentoBean.setDescripcion(request.getParameter("descripcion"));
             }
             
-            if ((request.getParameter("nombre") != null)) {
-                if(request.getParameter("privado") == "1"){
-                    oTipodocumentoBean.setPrivado(true);
-                }else{
+            if ((request.getParameter("privado") != null)) {
+                if(request.getParameter("privado").isEmpty()){
                     oTipodocumentoBean.setPrivado(false);
+                }else{
+                    oTipodocumentoBean.setPrivado(true);
                 }
             }
            

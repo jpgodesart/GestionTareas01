@@ -143,8 +143,13 @@ public class TipodocumentoDao {//solo copiado, modificar
             if (oTipodocumentoBean.getId() == 0) {
                 oTipodocumentoBean.setId(oMysql.insertOne("tipodocumento"));
             }
-            oMysql.updateOne(oTipodocumentoBean.getId(), "tipodocumento", "descripcion", oTipodocumentoBean.getDescripcion());
-            oMysql.updateOne(oTipodocumentoBean.getId(), "tipodocumento", "privado", Boolean.toString(oTipodocumentoBean.isPrivado()));
+            oMysql.updateOne(oTipodocumentoBean.getId(), "tipodocumento", "descripcion", oTipodocumentoBean.getDescripcion());    
+            if(oTipodocumentoBean.isPrivado()){
+                oMysql.updateOne(oTipodocumentoBean.getId(), "tipodocumento", "privado", "1");
+            }else{
+                oMysql.updateOne(oTipodocumentoBean.getId(), "tipodocumento", "privado", "0");
+            }
+            
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
