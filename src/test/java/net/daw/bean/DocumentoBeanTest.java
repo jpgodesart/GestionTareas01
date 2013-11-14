@@ -54,8 +54,8 @@ public class DocumentoBeanTest {
         assertEquals("getNombre: devuelve contenido", oDocumentoBean.getContenido(), "contenido");
         
         Date fecha = new Date();
-        oDocumentoBean.setFecha(fecha.toString());
-        assertEquals("getNombre: devuelve fecha", oDocumentoBean.getFecha(), fecha.toString());
+        oDocumentoBean.setFecha(fecha);
+        assertEquals("getNombre: devuelve fecha", oDocumentoBean.getFecha(), fecha);
         
         oDocumentoBean.setNota(5);
         assertEquals("getNombre: devuelve 5", oDocumentoBean.getNota(), 5);

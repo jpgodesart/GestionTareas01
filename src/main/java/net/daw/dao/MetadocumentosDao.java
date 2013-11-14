@@ -121,9 +121,6 @@ public class MetadocumentosDao {
 
             oMetadocumentosBean.setOrden(Integer.parseInt(oMysql.getOne("metadocumentos", "orden", oMetadocumentosBean.getId())));
 
-            
-            
-
             MetadocumentoDao oMetadocumentoDao = new MetadocumentoDao(enumTipoConexion);
             DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
 
@@ -154,7 +151,7 @@ public class MetadocumentosDao {
             if (oMetadocumentosBean.getId() == 0) {
                 oMetadocumentosBean.setId(oMysql.insertOne("metadocumentos"));
             }
-            // oMysql.updateOne(oMetadocumentosBean.getId(), "compra", "id_metadocumento", oMetadocumentosBean.getDocumento().getId().toString());
+            oMysql.updateOne(oMetadocumentosBean.getId(), "metadocumentos", "id_metadocumento", Integer.toString(oMetadocumentosBean.getMetadocumento().getId()));
             oMysql.updateOne(oMetadocumentosBean.getId(), "metadocumentos", "id_documento", Integer.toString(oMetadocumentosBean.getDocumento().getId()));
             oMysql.updateOne(oMetadocumentosBean.getId(), "metadocumentos", "orden", Integer.toString(oMetadocumentosBean.getOrden()));
             oMysql.commitTrans();

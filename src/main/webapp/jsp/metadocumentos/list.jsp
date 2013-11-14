@@ -140,7 +140,7 @@
     <tr>
         <td><%=oMetadocumentosBEAN.getId()%></td>
         <td>
-            <%=oMetadocumentosBEAN.getId_documento().getTitulo()%> (<%=oMetadocumentosBEAN.getId_documento().getId()%>)
+            <%=oMetadocumentosBEAN.getDocumento().getTitulo()%> (<%=oMetadocumentosBEAN.getDocumento().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oMetadocumentosBEAN.getId()%>&searchingfor=documento&returnclass=metadocumento&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>

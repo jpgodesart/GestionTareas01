@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
 <%@ page import="net.daw.helper.Contexto"%>
@@ -156,7 +157,10 @@
         <td><%=oDocumentoBEAN.getId()%></td>
         <td><%=oDocumentoBEAN.getTitulo()%></td>
         <td><%=oDocumentoBEAN.getContenido()%></td>
-        <td><%=oDocumentoBEAN.getFecha()%></td>
+        <%
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
+        %>
+        <td><%=formatoFecha.format(oDocumentoBEAN.getFecha())%></td>
         <td><%=oDocumentoBEAN.getNota()%></td>
         <td><%=oDocumentoBEAN.getEtiquetas()%></td>
         <td>
