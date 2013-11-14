@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.daw.helper.Contexto"%>
 <%@page import="net.daw.bean.DocumentoBean"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -15,7 +16,7 @@
     id = oDocumentoBean.getId();
     titulo = oDocumentoBean.getTitulo();
     contenido = oDocumentoBean.getContenido();
-    fecha = oDocumentoBean.getFecha();
+    fecha = new SimpleDateFormat("yyyy-MM-dd").format(oDocumentoBean.getFecha());
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
 

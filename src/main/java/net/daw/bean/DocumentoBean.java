@@ -16,7 +16,7 @@ public class DocumentoBean {
     private int id = 0;
     private String titulo = "";
     private String contenido = "";
-    private String fecha = "";
+    private Date fecha = new Date();
     private int nota = 0;
     private UsuarioBean usuario = null;
     private String etiquetas = "";
@@ -53,11 +53,11 @@ public class DocumentoBean {
         this.contenido = contenido;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
