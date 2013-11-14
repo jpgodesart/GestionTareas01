@@ -1,3 +1,8 @@
+
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.io.FileWriter"%>
+<%@page import="java.io.File"%>
+<%@page import="net.daw.parser.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.daw.helper.Contexto"%>
 <%@page import="net.daw.bean.DocumentoBean"%>
@@ -20,8 +25,26 @@
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
     
-    // https://github.com/delip/wikixmlj
-
+     // https://github.com/delip/wikixmlj
+     
+     FileWriter fichero = new FileWriter("./contenido.wiki");
+     PrintWriter pw = new PrintWriter(fichero);
+     pw.println(contenido);
+     fichero.close();
+     WikiXMLParser wxsp = WikiXMLParserFactory.getSAXParser("./contenido.wiki");
+    try {
+        wxsp.setPageCallback(new PageCallbackHandler() { 
+                       public void process(WikiPage page) {
+                              System.out.println(page.getTitle());
+                       }
+        });
+       wxsp.parse();
+    }catch(Exception e) {
+            e.printStackTrace();
+    }
+    File file = new File("./contenido.wiki");
+    file.delete();
+    
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
@@ -53,7 +76,7 @@
         <div class="control-group">
             <label class="control-label" for="contenido">Contenido: </label>
             <div class="controls">
-                <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" ><%=contenido%></textarea><br />
+                <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
             </div>
         </div>
         <div class="control-group">
