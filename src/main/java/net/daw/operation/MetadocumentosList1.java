@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.MetadocumentosBean;
 import net.daw.dao.MetadocumentosDao;
 import net.daw.helper.Contexto;
+import net.daw.helper.Pagination;
 
 /**
  *
@@ -39,7 +40,7 @@ public class MetadocumentosList1 implements Operation{
 
             ArrayList<MetadocumentosBean> listado = oMetadocumentosDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
             String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";
-            ArrayList<String> vecindad = oMetadocumentosDao.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
+            ArrayList<String> vecindad = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);
