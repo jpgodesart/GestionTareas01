@@ -23,7 +23,7 @@ public class DocumentoView1 implements Operation{
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/documento/form.jsp");        
+        oContexto.setVista("jsp/documento/view.jsp");        
         DocumentoBean oDocumentoBean;
         DocumentoDao oDocumentoDao;
         oDocumentoBean = new DocumentoBean();
