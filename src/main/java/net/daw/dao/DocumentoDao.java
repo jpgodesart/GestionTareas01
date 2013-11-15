@@ -140,7 +140,13 @@ public class DocumentoDao {
                 oDocumentoBean.setId(oMysql.insertOne("documento"));
             }
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "titulo", oDocumentoBean.getTitulo());
-            oMysql.updateOne(oDocumentoBean.getId(), "documento", "contenido", oDocumentoBean.getContenido());
+            String contenido = "";
+            if (oDocumentoBean.getContenido() != null) {
+                contenido = oDocumentoBean.getContenido().replace("'''", "''''''");
+                //contenido = contenido.replace("''", "''''");
+                System.out.println(contenido);
+            }
+            oMysql.updateOne(oDocumentoBean.getId(), "documento", "contenido", contenido);
             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "fecha", oSimpleDateFormat.format(oDocumentoBean.getFecha()));
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "nota", Integer.toString(oDocumentoBean.getNota()));
