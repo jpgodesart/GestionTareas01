@@ -9,7 +9,6 @@
 <%@page import="net.daw.bean.DocumentoBean"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
     String strTitulo = "";
-    String strControlEnabled = "";
     String strValueBoton = "Enviar";
     Integer id = 0;
     String titulo = "";
@@ -25,12 +24,7 @@
     fecha = new SimpleDateFormat("yyyy-MM-dd").format(oDocumentoBean.getFecha());
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
-    
-    if (oContexto.getMetodo().equals("view")) {
-        strTitulo = "Vista";
-        strControlEnabled = "disabled=\"true\"";
-        strValueBoton = "Cerrar";
-    }
+
     if (oContexto.getMetodo().equals("update")) {
         strTitulo = "Edición";
         strValueBoton = "Modificar";
@@ -51,31 +45,31 @@
         <div class="control-group">
             <label class="control-label" for="titulo">Titulo: </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
+                <input id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="contenido">Contenido: </label>
             <div class="controls">
-                <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
+                <textarea class="field span6" id="contenido" name="contenido" type="text" rows="10" ><%=contenido%></textarea><br />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="fecha">Fecha: </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /> <br />
+                <input id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /> <br />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="nota">Nota: </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="nota" name="nota" type="text" size="30" maxlength="50" value="<%=nota%>" /> <br />
+                <input id="nota" name="nota" type="text" size="30" maxlength="50" value="<%=nota%>" /> <br />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="etiquetas">Etiquetas: </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="etiquetas" name="etiquetas" type="text" size="30" maxlength="50" value="<%=etiquetas%>" /><br />
+                <input id="etiquetas" name="etiquetas" type="text" size="30" maxlength="50" value="<%=etiquetas%>" placeholder="Etiquetas separadas por coma" /><br />
             </div>
         </div>
         <div class="control-group">

@@ -24,14 +24,12 @@
     fecha = new SimpleDateFormat("dd-MM-yyyy").format(oDocumentoBean.getFecha());
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
-    
-     // https://github.com/delip/wikixmlj
-     
-   String cadena = Parser.run(contenido,titulo,true);
+
+    // https://github.com/delip/wikixmlj
+    String cadena = Parser.toHtml(contenido, titulo, true);
     String[] separada = cadena.split("<body>");
     String cadena2 = separada[1];
     String[] separada2 = cadena2.split("</body>");
-    System.out.println(separada2[0]);
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
@@ -46,26 +44,39 @@
         strValueBoton = "Crear";
     }
 %>
+<%
+    String classNota = "";
+    if (nota == 5) {
+        classNota = "class=\"text-warning\"";
+    } else if (nota <= 4) {
+        classNota = "class=\"text-error\"";
+    } else if (nota >= 6) {
+        classNota = "class=\"text-success\"";
+    }
+%>
+<%
+    String[] etiquetasSeparadas = etiquetas.split(", ");
+    String etiquetasProcesadas = "";
+    System.out.println(etiquetasSeparadas);
+    for (int j = 0; j < etiquetasSeparadas.length; j++) {
+        System.out.println(j);
+        etiquetasProcesadas += " <a href=\"Controller?nrpp=10&enviar=Filtrar&filteroperator=like&filtervalue="+etiquetasSeparadas[j]+"&page=1&class=documento&method=list&filter=etiquetas\"><span class=\"label label-info\">"+etiquetasSeparadas[j]+"</span></a> ";
+    }
+%>
 <h1><%=strTitulo%> de documento</h1>
 <form class="form-horizontal" action="Controller" method="post" id="clienteForm">
     <fieldset>
-        <legend>Fecha: <%=fecha%></legend>
+        <legend>
+            <p>Fecha: <%=fecha%></p><p <%=classNota%>>Nota: <%=nota%></p>
+        </legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
         <input type="hidden" name="class" value="documento" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
-        <%=separada2[0] %>
+        <%=separada2[0].substring(0, separada2[0].length() - 8)%>
         <div class="control-group">
-            <label class="control-label" for="nota">Nota: </label> 
-            <div class="controls">
-                <input <%=strControlEnabled%> id="nota" name="nota" type="text" size="30" maxlength="50" value="<%=nota%>" /> <br />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="etiquetas">Etiquetas: </label> 
-            <div class="controls">
-                <input <%=strControlEnabled%> id="etiquetas" name="etiquetas" type="text" size="30" maxlength="50" value="<%=etiquetas%>" /><br />
-            </div>
+            <br/>
+            <p>Etiquetas: <span class="alert alert-info"><%=etiquetasProcesadas%></span></p>
         </div>
         <div class="control-group">
             <div class="controls">

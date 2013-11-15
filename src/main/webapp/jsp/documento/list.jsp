@@ -154,12 +154,28 @@
             DocumentoBean oDocumentoBEAN = oIterador.next();
             String contenido = "";
             if (oDocumentoBEAN.getContenido().length() >= 50) {
-                contenido = oDocumentoBEAN.getContenido().substring(0, 50)+"... <a href=\"Controller?class=documento&method=view&id="+oDocumentoBEAN.getId()+"\">Ver más</a>";
-            } else{
+                contenido = oDocumentoBEAN.getContenido().substring(0, 50) + "... <a href=\"Controller?class=documento&method=view&id=" + oDocumentoBEAN.getId() + "\">Ver más</a>";
+            } else {
                 contenido = oDocumentoBEAN.getContenido();
             }
+            /*String classNota = "";
+            if (oDocumentoBEAN.getNota() == 5) {
+                classNota = "class=\"text-warning\"";
+            } else if (oDocumentoBEAN.getNota() <= 4) {
+                classNota = "class=\"text-error\"";
+            } else if (oDocumentoBEAN.getNota() >= 6) {
+                classNota = "class=\"text-success\"";
+            }*/
+            String classNota = "";
+            if (oDocumentoBEAN.getNota() == 5) {
+                classNota = "class=\"warning\"";
+            } else if (oDocumentoBEAN.getNota() <= 4) {
+                classNota = "class=\"error\"";
+            } else if (oDocumentoBEAN.getNota() >= 6) {
+                classNota = "class=\"success\"";
+            }
     %>
-    <tr>
+    <tr <%=classNota%>>
         <td><%=oDocumentoBEAN.getId()%></td>
         <td><%=oDocumentoBEAN.getTitulo()%></td>
         <td><%=contenido%></td>
@@ -167,6 +183,7 @@
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oDocumentoBEAN.getFecha())%></td>
+        <!--<td><span </%=classNota%>></%=oDocumentoBEAN.getNota()%></span></td>-->
         <td><%=oDocumentoBEAN.getNota()%></td>
         <td><%=oDocumentoBEAN.getEtiquetas()%></td>
         <td>

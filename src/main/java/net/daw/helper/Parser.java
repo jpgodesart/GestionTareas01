@@ -27,47 +27,6 @@ public class Parser {
 
     /**
      *
-     * @param args
-     * @throws FileNotFoundException
-     * @throws IOException
-     * @throws LinkTargetException
-     * @throws CompilerException
-     * @throws JAXBException
-     */
-   /* public static void toHtml(String[] args) throws FileNotFoundException, IOException, LinkTargetException, CompilerException, JAXBException {
-        if (args.length < 1) {
-            System.err.println("Usage: java -jar scm-example.jar [--html|--text] TITLE");
-            System.err.println();
-            System.err.println("  The program will look for a file called `TITLE.wikitext',");
-            System.err.println("  parse the file and write an HTML version to `TITLE.html'.");
-            return;
-        }
-
-        boolean renderHtml = true;
-
-        int i = 0;
-        if (args[i].equalsIgnoreCase("--html")) {
-            renderHtml = true;
-            ++i;
-        } else if (args[i].equalsIgnoreCase("--text")) {
-            renderHtml = false;
-            ++i;
-        }
-
-        String fileTitle = args[i];
-
-        String html = run(
-                new File(fileTitle + ".wikitext"),
-                fileTitle,
-                renderHtml);
-
-        FileUtils.writeStringToFile(
-                new File(fileTitle + (renderHtml ? ".html" : ".text")),
-                html);
-    }*/
-
-    /**
-     *
      * @param wikitext
      * @param fileTitle
      * @param renderHtml
@@ -78,7 +37,7 @@ public class Parser {
      * @throws CompilerException
      * @throws JAXBException
      */
-    public static String run(String wikitext, String fileTitle, boolean renderHtml) throws FileNotFoundException, IOException, LinkTargetException, CompilerException, JAXBException {
+    public static String toHtml(String wikitext, String fileTitle, boolean renderHtml) throws FileNotFoundException, IOException, LinkTargetException, CompilerException, JAXBException {
         // Set-up a simple wiki configuration
         SimpleWikiConfiguration config = new SimpleWikiConfiguration(
                 "classpath:/org/sweble/wikitext/engine/SimpleWikiConfiguration.xml");
