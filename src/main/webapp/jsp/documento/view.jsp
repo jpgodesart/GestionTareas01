@@ -8,7 +8,6 @@
 <%@page import="net.daw.bean.DocumentoBean"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
     String strTitulo = "";
-    String strControlEnabled = "";
     String strValueBoton = "Enviar";
     Integer id = 0;
     String titulo = "";
@@ -25,24 +24,13 @@
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
 
-    // https://github.com/delip/wikixmlj
     String cadena = Parser.toHtml(contenido, titulo, true);
     String[] separada = cadena.split("<body>");
     String cadena2 = separada[1];
     String[] separada2 = cadena2.split("</body>");
-    if (oContexto.getMetodo().equals("view")) {
-        strTitulo = "Vista";
-        strControlEnabled = "disabled=\"true\"";
-        strValueBoton = "Cerrar";
-    }
-    if (oContexto.getMetodo().equals("update")) {
-        strTitulo = "Edición";
-        strValueBoton = "Modificar";
-    }
-    if (oContexto.getMetodo().equals("new")) {
-        strTitulo = "Alta";
-        strValueBoton = "Crear";
-    }
+
+    strTitulo = "Vista";
+    strValueBoton = "Cerrar";
 %>
 <%
     String classNota = "";
@@ -57,10 +45,9 @@
 <%
     String[] etiquetasSeparadas = etiquetas.split(", ");
     String etiquetasProcesadas = "";
-    System.out.println(etiquetasSeparadas);
     for (int j = 0; j < etiquetasSeparadas.length; j++) {
         System.out.println(j);
-        etiquetasProcesadas += " <a href=\"Controller?nrpp=10&enviar=Filtrar&filteroperator=like&filtervalue="+etiquetasSeparadas[j]+"&page=1&class=documento&method=list&filter=etiquetas\"><span class=\"label label-info\">"+etiquetasSeparadas[j]+"</span></a> ";
+        etiquetasProcesadas += " <a href=\"Controller?nrpp=10&enviar=Filtrar&filteroperator=like&filtervalue=" + etiquetasSeparadas[j] + "&page=1&class=documento&method=list&filter=etiquetas\"><span class=\"label label-info\">" + etiquetasSeparadas[j] + "</span></a> ";
     }
 %>
 <h1><%=strTitulo%> de documento</h1>

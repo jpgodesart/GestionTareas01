@@ -52,8 +52,6 @@ public class Parser {
 
         PageId pageId = new PageId(pageTitle, -1);
 
-       // String wikitext = FileUtils.readFileToString(file);
-
         // Compile the retrieved page
         CompiledPage cp = compiler.postprocess(pageId, wikitext, null);
 

@@ -142,7 +142,7 @@ public class TextConverter
     protected Object after(AstNode node, Object result) {
         finishLine();
 
-		// This method is called by go() after visitation has finished
+        // This method is called by go() after visitation has finished
         // The return value will be passed to go() which passes it to the caller
         return sb.toString();
     }
@@ -367,7 +367,7 @@ public class TextConverter
         }
     }
 
-	// =========================================================================
+       // =========================================================================
     // Stuff we want to hide
     /**
      *
