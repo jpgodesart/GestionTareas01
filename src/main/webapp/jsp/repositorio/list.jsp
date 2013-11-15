@@ -1,4 +1,5 @@
 
+<%@page import="net.daw.helper.FilterBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@ page import="java.util.ArrayList"%>
@@ -28,13 +29,23 @@
             }
         %>
         <%
-            if (oContexto.getHmFilter() != null) {
-                out.print("<p>Listado filtrado por " + oContexto.getHmFilter().keySet().toArray()[0].toString() + "    ");
+            if (oContexto.getAlFilter() != null) {
+                out.print("<p>Listado filtrado: ");
+                ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
+                Iterator iterator = alFilter.iterator();
+                while (iterator.hasNext()){
+                    FilterBean oFilterBean = (FilterBean) iterator.next();
+                    out.print("(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + " )");
+                }
                 out.print("<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>");
             } else {
                 out.print("<p>Sin filtrar</p>");
             }
         %>
+         <%
+            Integer registers = (Integer) alObjetoParametro.get(2);
+            out.print("Mostrando " + oContexto.getNrpp().toString() + " registros de un total de " + registers.toString());
+        %>  
         <%
             ArrayList<String> paginacion = (ArrayList<String>) alObjetoParametro.get(1);
             Iterator<String> iterador2 = paginacion.listIterator();

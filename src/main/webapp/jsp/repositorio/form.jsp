@@ -56,18 +56,20 @@
             <label for="contenido">Contenido: </label>
             <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
         </div>
+        <!--
         <div>
             <label for="id_usuario">Id_usuario: </label>
-            <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<%=id_usuario%>" /><br />
+            <input <a%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<a%=id_usuario%>" /><br />
         </div>
         <div>
             <label for="id_lenguaje">Id_lenguaje: </label>
-            <input <%=strControlEnabled%> id="id_lenguaje" name="id_lenguaje" type="text" size="30" maxlength="50" value="<%=id_lenguaje%>" /><br />
+            <input <a%=strControlEnabled%> id="id_lenguaje" name="id_lenguaje" type="text" size="30" maxlength="50" value="<a%=id_lenguaje%>" /><br />
         </div>
         <div>
             <label for="id_documento">Id_documento: </label>
-            <input <%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<%=id_documento%>" /><br />
+            <input <a%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<a%=id_documento%>" /><br />
         </div>
+        -->
         <div>
             <label for="fecha">Fecha: </label> 
             <input <%=strControlEnabled%> id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /> <br />
