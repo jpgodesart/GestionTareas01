@@ -10,19 +10,21 @@
 package net.daw.bean;
 
 
-public class OpcionBean {
+public class ContestacionBean {
 
     private Integer id = 0;
-    private String descripcion = "";
+    private UsuarioBean usuario = null;
     private PreguntaBean pregunta = null;
-    private boolean correcta;
+    private String contestacion = "";
 
-    public OpcionBean() {
+    public ContestacionBean() {
+        this.usuario = new UsuarioBean();
         this.pregunta = new PreguntaBean();
     }
 
-    public OpcionBean(Integer id) {
+    public ContestacionBean(Integer id) {
         this.id = id;
+        this.usuario = new UsuarioBean();
         this.pregunta = new PreguntaBean();
     }
 
@@ -34,15 +36,14 @@ public class OpcionBean {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public UsuarioBean getUsuario() {
+        return this.usuario;
     }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    
+    public void setUsuario(UsuarioBean usuario) {
+        this.usuario = usuario;
     }
-
-
+    
     public PreguntaBean getPregunta() {
         return this.pregunta;
     }
@@ -51,13 +52,12 @@ public class OpcionBean {
         this.pregunta = pregunta;
     }
 
-    public boolean getCorrecta() {
-        return correcta;
+    public String getContestacion() {
+        return this.contestacion;
     }
-
-    public void setCorrecta(boolean correcta) {
-        this.correcta = correcta;
+    
+    public void setContestacion(String contestacion) {
+        this.contestacion = contestacion;
     }
-
 }
 

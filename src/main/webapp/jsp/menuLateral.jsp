@@ -45,6 +45,38 @@
     }
     menu += "<a href=\"Controller?class=cuestionario&method=new\">Crear</a></li>";
 // ------------------------------------------------------
+    menu += "<li class=\"nav-header\">Pregunta</li>";
+
+    if (oContexto.getClase().equals("pregunta") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=pregunta&method=list\">Listar</a></li>";
+    
+    if (oContexto.getClase().equals("pregunta") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=pregunta&method=new\">Crear</a></li>";
+// ------------------------------------------------------
+    menu += "<li class=\"nav-header\">Opción</li>";
+
+    if (oContexto.getClase().equals("opcion") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=opcion&method=list\">Listar</a></li>";
+    
+    if (oContexto.getClase().equals("opcion") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=opcion&method=new\">Crear</a></li>";
+// ------------------------------------------------------
   
   menu += "</ul></div>";
 %>

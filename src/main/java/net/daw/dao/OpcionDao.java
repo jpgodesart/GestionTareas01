@@ -1,11 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author al037721
- */
 package net.daw.dao;
 
 import java.util.ArrayList;
@@ -27,36 +19,26 @@ public class OpcionDao {
         enumTipoConexion = tipoConexion;
     }
 
-    public int getPages(int intRegsPerPag, ArrayList<FilterBean> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public int getPages(int intRegsPerPag, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
-            pages = oMysql.getPages("opcion", intRegsPerPag, hmFilter, hmOrder);
+            pages = oMysql.getPages("opcion", intRegsPerPag, alFilter, hmOrder);
             oMysql.desconexion();
             return pages;
         } catch (Exception e) {
             throw new Exception("OpcionDao.getPages: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
         }
     }
 
-    public int getCount( ArrayList<FilterBean> hmFilter) throws Exception {
-        int pages;
-        try {
-            oMysql.conexion(enumTipoConexion);
-            pages = oMysql.getCount("opcion",  hmFilter);
-            oMysql.desconexion();
-            return pages;
-        } catch (Exception e) {
-            throw new Exception("OpcionDao.getCount: Error: " + e.getMessage());
-        }
-    }
-  
-    public ArrayList<OpcionBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean>  hmFilter, HashMap<String, String> hmOrder) throws Exception {
+    public ArrayList<OpcionBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
         ArrayList<OpcionBean> arrOpcion = new ArrayList<>();
         try {
             oMysql.conexion(enumTipoConexion);
-            arrId = oMysql.getPage("opcion", intRegsPerPag, intPage, hmFilter, hmOrder);
+            arrId = oMysql.getPage("opcion", intRegsPerPag, intPage, alFilter, hmOrder);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 OpcionBean oOpcionBean = new OpcionBean(iterador.next());
@@ -66,6 +48,8 @@ public class OpcionDao {
             return arrOpcion;
         } catch (Exception e) {
             throw new Exception("OpcionDao.getPage: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
         }
     }
 
@@ -84,11 +68,17 @@ public class OpcionDao {
                     oOpcionBean.setId(0);
                 } else {
                     oOpcionBean.setDescripcion(oMysql.getOne("opcion", "descripcion", oOpcionBean.getId()));
-                    oOpcionBean.setId_pregunta(Integer.parseInt( oMysql.getOne("opcion", "id_pregunta", oOpcionBean.getId()) ));
-                    oOpcionBean.setCorrecta(Boolean.getBoolean( oMysql.getOne("opcion", "correcta", oOpcionBean.getId()) ));
+                    String intId_pregunta = oMysql.getOne("opcion", "id_pregunta", oOpcionBean.getId());
+                    if (intId_pregunta != null) {
+                        oOpcionBean.getPregunta().setId(Integer.parseInt(intId_pregunta));
+                        PreguntaDao oPreguntaDao = new PreguntaDao(enumTipoConexion);
+                        oOpcionBean.setPregunta(oPreguntaDao.get(oOpcionBean.getPregunta()));
+                    }
+                    String correcta = oMysql.getOne("opcion","correcta",oOpcionBean.getId());
+                    oOpcionBean.setCorrecta( correcta.equals("1") );
                 }
             } catch (Exception e) {
-                throw new Exception("OpcionDao.getOpcion: Error: " + e.getMessage());
+                throw new Exception("OpcionDao.get: Error: " + e.getMessage());
             } finally {
                 oMysql.desconexion();
             }
@@ -106,12 +96,19 @@ public class OpcionDao {
                 oOpcionBean.setId(oMysql.insertOne("opcion"));
             }
             oMysql.updateOne(oOpcionBean.getId(), "opcion", "descripcion", oOpcionBean.getDescripcion());
-            oMysql.updateOne(oOpcionBean.getId(), "opcion", "id_pregunta", oOpcionBean.getId_pregunta().toString());
-            oMysql.updateOne(oOpcionBean.getId(), "opcion", "correcta", Boolean.toString( oOpcionBean.getCorrecta() ) );
+            Integer id_pregunta = oOpcionBean.getPregunta().getId();
+            if ( oOpcionBean.getPregunta().getId() > 0 ) {
+                oMysql.updateOne(oOpcionBean.getId(), "opcion", "id_pregunta", id_pregunta.toString());
+            } else {
+                oMysql.setNull(oOpcionBean.getId(), "opcion", "id_pregunta");
+            }
+            boolean correcta = oOpcionBean.getCorrecta();
+            int intcorrecta = correcta?1:0;
+            oMysql.updateOne(oOpcionBean.getId(),"opcion","correcta",Integer.toString(intcorrecta));
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
-            throw new Exception("OpcionDao.setOpcion: Error: " + e.getMessage());
+            throw new Exception("OpcionDao.set: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
@@ -123,11 +120,10 @@ public class OpcionDao {
             oMysql.removeOne(oOpcionBean.getId(), "opcion");
             oMysql.desconexion();
         } catch (Exception e) {
-            throw new Exception("OpcionDao.removeOpcion: Error: " + e.getMessage());
+            throw new Exception("OpcionDao.remove: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }
+
     }
 }
-
-

@@ -27,12 +27,16 @@ public class CuestionarioList1 implements Operation {
         oContexto.setVista("jsp/cuestionario/list.jsp");
         try {
             CuestionarioDao oCuestionarioDAO = new CuestionarioDao(oContexto.getEnumTipoConexion());
-            Integer intPages = oCuestionarioDAO.getPages(oContexto.getNrpp(),null,null);
+            Integer intPages = oCuestionarioDAO.getPages(oContexto.getNrpp(),oContexto.getAlFilter(),oContexto.getHmOrder());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
-            ArrayList<CuestionarioBean> listado = (ArrayList<CuestionarioBean>) oCuestionarioDAO.getPage(oContexto.getNrpp(), oContexto.getPage(),null,null);
-            ArrayList<String> vecindad = (ArrayList<String>) oCuestionarioDAO.getNeighborhood("<a href=\"Controller?class=cuestionario&method=list&rpp=" + oContexto.getNrpp() + "&page=", oContexto.getPage(), intPages, 2);
+            if (oContexto.getPage() < 1) {
+                oContexto.setPage(1);
+            }
+            ArrayList<CuestionarioBean> listado = oCuestionarioDAO.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
+            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
+            ArrayList<String> vecindad = oCuestionarioDAO.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);

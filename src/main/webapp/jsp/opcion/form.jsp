@@ -11,16 +11,19 @@
     String strValueBoton = "Enviar";
     Integer id = 0;
     String descripcion = "";
-    Integer id_pregunta;
-    Boolean correcta;
+    String id_pregunta = "";
+    String descPregunta = "";
+    String correcta;
 
 
     OpcionBean oOpcionBean = (OpcionBean) oContexto.getParametro();
     id = oOpcionBean.getId();
     descripcion = oOpcionBean.getDescripcion();
-    id_pregunta = oOpcionBean.getId_pregunta();
-    correcta = oOpcionBean.getCorrecta();
-
+    id_pregunta = String.valueOf( oOpcionBean.getPregunta().getId() );
+    if (oOpcionBean.getPregunta().getId() > 0) {
+        descPregunta = oOpcionBean.getPregunta().getDescripcion();
+    }
+    correcta = Boolean.toString( oOpcionBean.getCorrecta() );
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -51,15 +54,20 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="id_pregunta">id_pregunta: </label>
-            <div class="controls">
-                <input <%=strControlEnabled%> id="id_pregunta" name="id_pregunta" type="text" size="30" maxlength="50" value="<%=id_pregunta%>" /><br />
+            <label class="control-label" for="id_pregunta">Pregunta </label> 
+            <div class="controls">                
+                <input readonly="true" id="id_pregunta" class="input-mini"
+                       name="id_pregunta" type="text" size="5" maxlength="5"
+                       value="<%=id_pregunta%>" />  
+                <input <%=strControlEnabled%> type="submit" name="searchingfor" value="pregunta" />
+
+                <span class="alert alert-success"><%=descPregunta%></span>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="correcta">Correcta: </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="correcta" name="correcta" type="radio" size="30" maxlength="50" value="<%=correcta%>" /> <br />
+                <input <%=strControlEnabled%> id="correcta" name="correcta" type="text" size="30" maxlength="50" value="<%=correcta%>" /> <br />
             </div>
         </div>
         <div class="control-group">

@@ -1,15 +1,14 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
-/**
- *
- * @author al037721
  */
 package net.daw.parameter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.OpcionBean;
+import net.daw.bean.PreguntaBean;
 
 /**
  *
@@ -23,7 +22,7 @@ public class OpcionParam {
         this.request = request;
     }
 
-    public OpcionBean loadId(OpcionBean oOpcion) throws NumberFormatException {
+    public OpcionBean loadId(OpcionBean oOpcion) throws ServletException {
         try {
             if (request.getParameter("id") != null) {
                 oOpcion.setId(Integer.parseInt(request.getParameter("id")));
@@ -31,9 +30,10 @@ public class OpcionParam {
                 oOpcion.setId(0);
             }
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
+            throw new ServletException("Controller: Error: loadId: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oOpcion;
+
     }
 
     public OpcionBean load(OpcionBean oOpcion) throws NumberFormatException {
@@ -42,15 +42,27 @@ public class OpcionParam {
                 oOpcion.setDescripcion(request.getParameter("descripcion"));
             }
             if ((request.getParameter("id_pregunta") != null)) {
-                oOpcion.setId_pregunta(Integer.parseInt(request.getParameter("id_pregunta")));
+                oOpcion.getPregunta().setId(Integer.parseInt(request.getParameter("id_pregunta")));
             }
             if ((request.getParameter("correcta") != null)) {
-                oOpcion.setCorrecta(Boolean.getBoolean(request.getParameter("correcta")));
+                String correcta = request.getParameter("correcta");
+                oOpcion.setCorrecta( Boolean.getBoolean(correcta) );
             }
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
-        } 
+            throw new NumberFormatException("Controller: Error: load: Formato de datos en parámetros incorrecto " + e.getMessage());
+        }
         return oOpcion;
     }
-}
 
+//    public OpcionBean loadTipoOpcion(OpcionBean oOpcion) throws NumberFormatException {
+//        try {
+//            if ((request.getParameter("id_tipoopcion") != null)) {
+//                TipoopcionBean oTipoopcion = new TipoopcionBean(Integer.parseInt(request.getParameter("id_tipoopcion")));
+//                oOpcion.setTipoOpcion(oTipoopcion);
+//            }
+//        } catch (NumberFormatException e) {
+//            throw new NumberFormatException("Controller: Error: loadTipoOpcion: Formato de datos en parámetros incorrecto " + e.getMessage());
+//        }
+//        return oOpcion;
+//    }
+}
