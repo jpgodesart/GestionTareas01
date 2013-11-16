@@ -156,7 +156,17 @@ public class DocumentoDao {
             // } else {
             //     oMysql.setNull(oDocumentoBean.getId(), "documento", "id_usuario");
             //  }
-            oMysql.updateOne(oDocumentoBean.getId(), "documento", "etiquetas", oDocumentoBean.getEtiquetas());
+            String etiquetasFormateadas = "";
+            if (oDocumentoBean.getEtiquetas() != null) {
+                String[] etiquetas = oDocumentoBean.getEtiquetas().split(",");
+                for (int f = 0; f < etiquetas.length; f++) {
+                    etiquetasFormateadas += etiquetas[f].replaceAll(" +", " ").trim();
+                    if (f != etiquetas.length) {
+                        etiquetasFormateadas += ",";
+                    }
+                }
+            }
+            oMysql.updateOne(oDocumentoBean.getId(), "documento", "etiquetas", etiquetasFormateadas);
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();

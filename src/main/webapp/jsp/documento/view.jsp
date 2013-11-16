@@ -43,7 +43,7 @@
     }
 %>
 <%
-    String[] etiquetasSeparadas = etiquetas.split(", ");
+    String[] etiquetasSeparadas = etiquetas.split(",");
     String etiquetasProcesadas = "";
     for (int j = 0; j < etiquetasSeparadas.length; j++) {
         System.out.println(j);
