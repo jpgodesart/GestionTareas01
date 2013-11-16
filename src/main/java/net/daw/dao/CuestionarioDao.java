@@ -90,7 +90,8 @@ public class CuestionarioDao {
                     Date fecha = formatoFecha.parse(oMysql.getOne("cuestionario", "fecha", oCuestionarioBean.getId()) );
                     oCuestionarioBean.setFecha( fecha );
                     oCuestionarioBean.setEvaluacion(Integer.parseInt( oMysql.getOne("cuestionario", "evaluacion", oCuestionarioBean.getId()) ));
-                    oCuestionarioBean.setActivo(Boolean.getBoolean( oMysql.getOne("cuestionario", "activo", oCuestionarioBean.getId()) ));
+                    String activo = oMysql.getOne("cuestionario", "activo", oCuestionarioBean.getId());
+                    oCuestionarioBean.setActivo( activo.equals("1") );
                 }
             } catch (Exception e) {
                 throw new Exception("CuestionarioDao.getCuestionario: Error: " + e.getMessage());
@@ -115,7 +116,9 @@ public class CuestionarioDao {
             String fecha = formatoFecha.format( oCuestionarioBean.getFecha() );
             oMysql.updateOne(oCuestionarioBean.getId(), "cuestionario", "fecha", fecha);
             oMysql.updateOne(oCuestionarioBean.getId(), "cuestionario", "evaluacion", oCuestionarioBean.getEvaluacion().toString());
-            oMysql.updateOne(oCuestionarioBean.getId(), "cuestionario", "activo", Boolean.toString( oCuestionarioBean.getActivo() ) );
+            boolean activo = oCuestionarioBean.getActivo();
+            int intactivo = activo?1:0;
+            oMysql.updateOne(oCuestionarioBean.getId(), "cuestionario", "activo", Integer.toString(intactivo) );
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();

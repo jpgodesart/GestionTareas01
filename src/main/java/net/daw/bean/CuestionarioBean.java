@@ -20,7 +20,7 @@ public class CuestionarioBean {
     private String descripcion = "";
     private Date fecha;
     private Integer evaluacion = 0;
-    private Boolean activo;
+    private boolean activo;
 
     public CuestionarioBean() {
 
@@ -62,11 +62,11 @@ public class CuestionarioBean {
         this.evaluacion = evaluacion;
     }
 
-    public Boolean getActivo() {
+    public boolean getActivo() {
         return activo;
     }
 
-    public void setActivo(Boolean activo) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
 

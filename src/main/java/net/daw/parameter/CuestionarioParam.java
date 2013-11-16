@@ -55,7 +55,8 @@ public class CuestionarioParam {
                 oCuestionario.setEvaluacion(Integer.parseInt(request.getParameter("evaluacion")));
             }
             if ((request.getParameter("activo") != null)) {
-                oCuestionario.setActivo(Boolean.getBoolean(request.getParameter("activo")));
+                boolean activo = Boolean.valueOf( request.getParameter("activo") );
+                oCuestionario.setActivo(activo);
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
