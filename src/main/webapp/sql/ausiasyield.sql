@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `backlog` (
   `porcentajecompletado` int(6) DEFAULT NULL,
   `fechaalta` date DEFAULT NULL,
   `sprint` int(6) DEFAULT NULL,
-  `release` int(6) DEFAULT NULL,
+  `releasetabla` int(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `backlog` (
 -- Volcado de datos para la tabla `backlog`
 --
 
-INSERT INTO `backlog` (`id`, `enunciado`, `descripciondetallado`, `id_requerimiento`, `fechainicioprevista`, `fechafinprevista`, `fechainicio`, `fechafin`, `id_usuario`, `horasduracionprevista`, `porcentajecompletado`, `fechaalta`, `sprint`, `release`) VALUES
+INSERT INTO `backlog` (`id`, `enunciado`, `descripciondetallado`, `id_requerimiento`, `fechainicioprevista`, `fechafinprevista`, `fechainicio`, `fechafin`, `id_usuario`, `horasduracionprevista`, `porcentajecompletado`, `fechaalta`, `sprint`, `releasetabla`) VALUES
 (1, 'Mantenimiento de Usuarios: Alta', 'Dar de alta usuarios en la base de datos ', 1, '2013-10-31', '2013-12-31', '2013-11-04', '2013-11-30', 1, 40, 50, '2013-10-28', 1, 1),
 (2, 'Mantenimiento de Usuarios: Modificar', 'Modificar usuarios en la base de datos ', 2, '2013-10-31', '2013-12-31', '2013-11-04', '2013-11-30', 2, 30, 40, '2013-10-29', 2, 2),
 (3, 'Mantenimiento de Usuarios: Eliminar', 'Eliminar usuarios en la base de datos ', 3, '2013-10-31', '2013-12-31', '2013-11-04', '2013-11-30', 3, 35, 60, '2013-10-29', 3, 3),
