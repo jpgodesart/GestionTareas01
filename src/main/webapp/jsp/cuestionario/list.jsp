@@ -82,6 +82,37 @@
                         <input type="submit" name="enviar" value="Filtrar" />
                     </span>
                 </fieldset>
+            </form>
+        </div>
+        <div class="text-right">
+            <legend>Registros por página</legend> 
+            <form class="navbar-form pull-right" action="Controller" method="post" id="nrrpForm" >
+                <fieldset>                                               
+                    <%=oContexto.getSerializedParamsExceptNrppFormFormat()%>       
+                    <span>
+                        <select  id="nrpp" name="nrpp" value="select" style="width: 80px">                        
+                            <option <%if (oContexto.getNrpp() == 5) {
+                                    out.print("selected");
+                                }%>>5</option>
+                            <option <%if (oContexto.getNrpp() == 10) {
+                                    out.print("selected");
+                                }%>>10</option>
+                            <option <%if (oContexto.getNrpp() == 20) {
+                                    out.print("selected");
+                                }%>>20</option>
+                            <option <%if (oContexto.getNrpp() == 50) {
+                                    out.print("selected");
+                                }%>>50</option>
+                            <option <%if (oContexto.getNrpp() == 100) {
+                                    out.print("selected");
+                                }%>>100</option>
+                        </select>  
+                    </span>
+                    <span>
+                        <input type="submit" name="enviar" value="Establecer" />
+                    </span>                    
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>
@@ -118,16 +149,21 @@
         <%
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
         %>
-        <td><%=formatoFecha.format( oCuestionarioBEAN.getFecha() )%></td>
+        <td><%=formatoFecha.format(oCuestionarioBEAN.getFecha())%></td>
         <td><%=oCuestionarioBEAN.getEvaluacion()%></td>
-        <td><%=oCuestionarioBEAN.getActivo()%></td>
-               
+        <td><%if(oCuestionarioBEAN.getActivo()){
+                   out.print("Sí");
+              }else{
+                   out.print("No");
+              }
+        %></td>
+
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group"> 
                     <%
-                        if (oContexto.getSearchingFor().equals("cuestionario")) {                                                       
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class","method","phase","id_cuestionario","id","returnclass","returnmethod","returnphase","searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_cuestionario=" + oCuestionarioBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");                            
+                        if (oContexto.getSearchingFor().equals("cuestionario")) {
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_cuestionario", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_cuestionario=" + oCuestionarioBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=cuestionario&method=view&id=" + oCuestionarioBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=cuestionario&method=update&id=" + oCuestionarioBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");

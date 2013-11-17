@@ -16,17 +16,17 @@
     id = oContestacionBean.getId();
     
     id_usuario = Integer.toString(oContestacionBean.getUsuario().getId());
-    if (!(oContestacionBean.getUsuario().getId() > 0 )) {
-        nombreUsuario = oContestacionBean.getUsuario().getNombre();
+    if ( oContestacionBean.getUsuario().getId() > 0 ) {
+        nombreUsuario = oContestacionBean.getUsuario().getLogin();
     }
     
     id_pregunta = Integer.toString(oContestacionBean.getPregunta().getId());
-    if(!(oContestacionBean.getPregunta().getId() > 0 )) {
+    if( oContestacionBean.getPregunta().getId() > 0 ) {
         descPregunta = oContestacionBean.getPregunta().getDescripcion();
     }
     
     id_opcion = Integer.toString(oContestacionBean.getOpcion().getId());
-    if(!(oContestacionBean.getOpcion().getId() > 0 )) {
+    if( oContestacionBean.getOpcion().getId() > 0 ) {
         descOpcion = oContestacionBean.getOpcion().getDescripcion();
     }
 

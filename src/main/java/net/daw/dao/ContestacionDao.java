@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.UsuarioBean;
 import net.daw.bean.ContestacionBean;
+import net.daw.bean.OpcionBean;
 import net.daw.bean.PreguntaBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
@@ -75,22 +76,25 @@ public class ContestacionDao {
         try {
             oMysql.conexion(enumTipoConexion);
 
-            PreguntaBean oPreguntaBean = new PreguntaBean();
             UsuarioBean oUsuarioBean = new UsuarioBean();
+            PreguntaBean oPreguntaBean = new PreguntaBean();
+            OpcionBean oOpcionBean = new OpcionBean();
 
             oPreguntaBean.setId(Integer.parseInt(oMysql.getOne("contestacion", "id_pregunta", oContestacionBean.getId())));
             oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("contestacion", "id_usuario", oContestacionBean.getId())));
+            oOpcionBean.setId(Integer.parseInt(oMysql.getOne("contestacion","id_opcion",oContestacionBean.getId())));
 
-            oContestacionBean.setContestacion(oMysql.getOne("contestacion","contestacion",oContestacionBean.getId()));
-
-            PreguntaDao oPreguntaDao = new PreguntaDao(enumTipoConexion);
             UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+            PreguntaDao oPreguntaDao = new PreguntaDao(enumTipoConexion);
+            OpcionDao oOpcionDao = new OpcionDao(enumTipoConexion);
 
-            oPreguntaBean = oPreguntaDao.get(oPreguntaBean);
             oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
+            oPreguntaBean = oPreguntaDao.get(oPreguntaBean);
+            oOpcionBean = oOpcionDao.get(oOpcionBean);
 
-            oContestacionBean.setPregunta(oPreguntaBean);
             oContestacionBean.setUsuario(oUsuarioBean);
+            oContestacionBean.setPregunta(oPreguntaBean);
+            oContestacionBean.setOpcion(oOpcionBean);
 
             oMysql.desconexion();
         } catch (Exception e) {
@@ -108,11 +112,9 @@ public class ContestacionDao {
             if (oContestacionBean.getId() == 0) {
                 oContestacionBean.setId(oMysql.insertOne("contestacion"));
             }
-            oMysql.updateOne(oContestacionBean.getId(), "contestacion", "id_usuario", oContestacionBean.getUsuario().getId().toString());
-            oMysql.updateOne(oContestacionBean.getId(), "contestacion", "id_pregunta", oContestacionBean.getPregunta().getId().toString());
-            oMysql.updateOne(oContestacionBean.getId(), "contestacion", "cantidad", oContestacionBean.getCantidad().toString());
-            java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-            oMysql.updateOne(oContestacionBean.getId(), "contestacion", "fecha", oSimpleDateFormat.format(oContestacionBean.getFecha()));
+            oMysql.updateOne(oContestacionBean.getId(), "contestacion", "id_usuario", Integer.toString( oContestacionBean.getUsuario().getId()) );
+            oMysql.updateOne(oContestacionBean.getId(), "contestacion", "id_pregunta", Integer.toString( oContestacionBean.getPregunta().getId()) );
+            oMysql.updateOne(oContestacionBean.getId(), "contestacion", "id_opcion", Integer.toString(oContestacionBean.getOpcion().getId()) );
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();

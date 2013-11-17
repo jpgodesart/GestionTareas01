@@ -10,19 +10,19 @@
     String descripcion = "";
     String fecha = "";
     String evaluacion = "";
-    String activo = "";
+    boolean activo;
 
     CuestionarioBean oCuestionarioBean = (CuestionarioBean) oContexto.getParametro();
     id = oCuestionarioBean.getId();
     descripcion = oCuestionarioBean.getDescripcion();
     SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-    if(oCuestionarioBean.getFecha() != null) {
-        fecha = formatoFecha.format( oCuestionarioBean.getFecha() );
-    }else{
+    if (oCuestionarioBean.getFecha() != null) {
+        fecha = formatoFecha.format(oCuestionarioBean.getFecha());
+    } else {
         fecha = formatoFecha.format(new Date());
     }
-    evaluacion = Integer.toString( oCuestionarioBean.getEvaluacion() );
-    activo = Boolean.toString( oCuestionarioBean.getActivo() );
+    evaluacion = Integer.toString(oCuestionarioBean.getEvaluacion());
+    activo = oCuestionarioBean.getActivo();
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -67,7 +67,20 @@
         <div class="control-group">
             <label class="control-label" for="activo">Activo: </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="activo" name="activo" type="text" size="30" maxlength="50" value="<%=activo%>" /><br />
+                <%
+                    String selected = "selected";
+                    String op1 = "";
+                    String op2 = "";
+                    if(oCuestionarioBean.getActivo()) {
+                        op1 = " selected='selected'";
+                    }else{
+                        op2 = " selected='selected'";
+                    }
+                %>
+                <select <%=strControlEnabled%> id="activo" name="activo" >
+                    <option value="true" <%=op1%> > Sí </option>
+                    <option value="false" <%=op2%> > No </option>
+                </select>
             </div>
         </div>
         <div class="control-group">

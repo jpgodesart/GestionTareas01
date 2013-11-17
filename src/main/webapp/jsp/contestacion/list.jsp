@@ -80,6 +80,37 @@
                         <input type="submit" name="enviar" value="Filtrar" />
                     </span>
                 </fieldset>
+            </form>
+        </div>
+        <div class="text-right">
+            <legend>Registros por página</legend> 
+            <form class="navbar-form pull-right" action="Controller" method="post" id="nrrpForm" >
+                <fieldset>                                               
+                    <%=oContexto.getSerializedParamsExceptNrppFormFormat()%>       
+                    <span>
+                        <select  id="nrpp" name="nrpp" value="select" style="width: 80px">                        
+                            <option <%if (oContexto.getNrpp() == 5) {
+                                    out.print("selected");
+                                }%>>5</option>
+                            <option <%if (oContexto.getNrpp() == 10) {
+                                    out.print("selected");
+                                }%>>10</option>
+                            <option <%if (oContexto.getNrpp() == 20) {
+                                    out.print("selected");
+                                }%>>20</option>
+                            <option <%if (oContexto.getNrpp() == 50) {
+                                    out.print("selected");
+                                }%>>50</option>
+                            <option <%if (oContexto.getNrpp() == 100) {
+                                    out.print("selected");
+                                }%>>100</option>
+                        </select>  
+                    </span>
+                    <span>
+                        <input type="submit" name="enviar" value="Establecer" />
+                    </span>                    
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>
@@ -89,23 +120,18 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>descripcion
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        <th>usuario
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>fecha
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        <th>pregunta
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_pregunta&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_pregunta&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>evaluacion
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
+        <th>opcion
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_opcion&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_opcion&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        <th>activo
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
-        </th>
-        <th>Relaciones</th>
         <th>Operaciones</th>
     </tr>
     <%        while (oIterador.hasNext()) {
@@ -114,7 +140,7 @@
     <tr>
         <td><%=oContestacionBEAN.getId()%></td>
         <td>
-            <%=oContestacionBEAN.getUsuario().getNombre()%> (<%=oContestacionBEAN.getUsuario().getId()%>)
+            <%=oContestacionBEAN.getUsuario().getLogin()%> (<%=oContestacionBEAN.getUsuario().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oContestacionBEAN.getId()%>&searchingfor=usuario&returnclass=contestacion&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
@@ -130,20 +156,13 @@
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=opcion&method=list&id=<%=oContestacionBEAN.getId()%>&searchingfor=opcion&returnclass=contestacion&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
-        </td>
-        <td>
-            <div class="btn-toolbar">
-                <div class="btn-group">                    
-                    <a class="btn btn-mini" href="Controller?class=contestacion&method=list&filter=id_contestacion&filteroperator=equals&filtervalue=<%=oContestacionBEAN.getId()%>">Contestaciones</a>
-                </div>
-            </div>
-        </td>        
+        </td>       
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group"> 
                     <%
-                        if (oContexto.getSearchingFor().equals("contestacion")) {                                                       
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class","method","phase","id_contestacion","id","returnclass","returnmethod","returnphase","searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_contestacion=" + oContestacionBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");                            
+                        if (oContexto.getSearchingFor().equals("contestacion")) {
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_contestacion", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_contestacion=" + oContestacionBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=contestacion&method=view&id=" + oContestacionBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=contestacion&method=update&id=" + oContestacionBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");

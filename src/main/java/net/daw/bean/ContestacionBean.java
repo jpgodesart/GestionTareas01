@@ -15,17 +15,19 @@ public class ContestacionBean {
     private Integer id = 0;
     private UsuarioBean usuario = null;
     private PreguntaBean pregunta = null;
-    private String contestacion = "";
+    private OpcionBean opcion = null;
 
     public ContestacionBean() {
         this.usuario = new UsuarioBean();
         this.pregunta = new PreguntaBean();
+        this.opcion = new OpcionBean();
     }
 
     public ContestacionBean(Integer id) {
         this.id = id;
         this.usuario = new UsuarioBean();
         this.pregunta = new PreguntaBean();
+        this.opcion = new OpcionBean();
     }
 
     public Integer getId() {
@@ -52,12 +54,13 @@ public class ContestacionBean {
         this.pregunta = pregunta;
     }
 
-    public String getContestacion() {
-        return this.contestacion;
+    public OpcionBean getOpcion() {
+        return opcion;
     }
-    
-    public void setContestacion(String contestacion) {
-        this.contestacion = contestacion;
+
+    public void setOpcion(OpcionBean opcion) {
+        this.opcion = opcion;
     }
+
 }
 
