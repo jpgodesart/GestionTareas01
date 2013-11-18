@@ -27,14 +27,16 @@ public class UsuarioLogin2 implements Operation {
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
         oUsuario2.setLogin(oUsuario1.getLogin());
         oUsuario2 = oUsuarioDao.getFromLogin(oUsuario2);
-        if (oUsuario2.getId() != 0 && oUsuario2.getPassword().equals(oUsuario1.getPassword())) {            
-            result = "Bienvenido/a " + oUsuario2.getLogin()+ " Has entrado en la aplicación. Ahora puedes operar con los menús.";
+        //ESTABLECEMOS EL TIPO DE USUARIO
+        oUsuarioDao.type(oUsuario2);////////////////////////////////////////////////////////
+        if (oUsuario2.getId() != 0 && oUsuario2.getPassword().equals(oUsuario1.getPassword())) {
+            result = "Bienvenido/a " + oUsuario2.getLogin() + " Has entrado en la aplicación. Ahora puedes operar con los menús.";
             request.getSession().setAttribute("usuarioBean", oUsuario2);
         } else {
             result = "Login o password incorrectos. No has entrado en la aplicación.";
         }
-        ContextParam oContextParam=new ContextParam(request);
-        oContexto=oContextParam.loadSession(oContexto);
+        ContextParam oContextParam = new ContextParam(request);
+        oContexto = oContextParam.loadSession(oContexto);
         return result;
     }
 

@@ -6,7 +6,7 @@ public class UsuarioBean {
     private String login = "";
     private String password = "";
     private Enum tipoUsuario = null;
-    
+
     public UsuarioBean() {
 
     }
@@ -37,6 +37,20 @@ public class UsuarioBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the tipoUsuario
+     */
+    public Enum getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    /**
+     * @param tipoUsuario the tipoUsuario to set
+     */
+    public void setTipoUsuario(Enum tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
 }
