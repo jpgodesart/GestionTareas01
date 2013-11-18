@@ -6,6 +6,7 @@ import java.util.Iterator;
 import net.daw.bean.UsuarioBean;
 import net.daw.data.Mysql;
 import net.daw.helper.Enum;
+import net.daw.helper.Enum.TipoUsuario;
 import net.daw.helper.FilterBean;
 
 public class UsuarioDao {
@@ -34,8 +35,8 @@ public class UsuarioDao {
             throw new Exception("ClienteDao.getPage: Error: " + e.getMessage());
         }
     }
-
-    public int getPages(int intRegsPerPag, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
+    
+       public int getPages(int intRegsPerPag, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
@@ -90,6 +91,9 @@ public class UsuarioDao {
                 } else {
                     oUsuarioBean.setLogin(oMysql.getOne("usuario", "login", oUsuarioBean.getId()));
                     oUsuarioBean.setPassword(oMysql.getOne("usuario", "password", oUsuarioBean.getId()));
+                    //Hacer aqui lo del tipo de usuario.
+                    //Aqui se rellena el bean de tipoUsuario.
+                    //
 
                 }
             } catch (Exception e) {
