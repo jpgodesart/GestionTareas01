@@ -197,7 +197,7 @@
     menu += "<div class=\"accordion-group\">"
             + "<div class=\"accordion-heading\">"
             + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseNine\">"
-            + "<i class=\"icon-user\"></i> Tipodocumento</a></div>"
+            + "<i class=\"icon-file\"></i> Tipodocumento</a></div>"
             + "<div id=\"collapseNine\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
             + "<div class=\"accordion-inner\">"
             + "<ul>";
