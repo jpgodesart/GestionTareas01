@@ -19,11 +19,11 @@
     OpcionBean oOpcionBean = (OpcionBean) oContexto.getParametro();
     id = oOpcionBean.getId();
     descripcion = oOpcionBean.getDescripcion();
-    id_pregunta = String.valueOf( oOpcionBean.getPregunta().getId() );
+    id_pregunta = String.valueOf(oOpcionBean.getPregunta().getId());
     if (oOpcionBean.getPregunta().getId() > 0) {
         descPregunta = oOpcionBean.getPregunta().getDescripcion();
     }
-    correcta = Boolean.toString( oOpcionBean.getCorrecta() );
+    correcta = Boolean.toString(oOpcionBean.getCorrecta());
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -65,9 +65,22 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="correcta">Correcta: </label> 
+            <label class="control-label" for="correcta">Correcta </label> 
             <div class="controls">
-                <input <%=strControlEnabled%> id="correcta" name="correcta" type="text" size="30" maxlength="50" value="<%=correcta%>" /> <br />
+                <%
+                    String selected = "selected";
+                    String op1 = "";
+                    String op2 = "";
+                    if (oOpcionBean.getCorrecta()) {
+                        op1 = " selected='selected'";
+                    } else {
+                        op2 = " selected='selected'";
+                    }
+                %>
+                <select <%=strControlEnabled%> id="correcta" name="correcta" >
+                    <option value="true" <%=op1%> > Sí </option>
+                    <option value="false" <%=op2%> > No </option>
+                </select>
             </div>
         </div>
         <div class="control-group">

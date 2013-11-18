@@ -46,7 +46,7 @@ public class OpcionParam {
             }
             if ((request.getParameter("correcta") != null)) {
                 String correcta = request.getParameter("correcta");
-                oOpcion.setCorrecta( Boolean.getBoolean(correcta) );
+                oOpcion.setCorrecta( correcta.equals("true") );
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: load: Formato de datos en parámetros incorrecto " + e.getMessage());

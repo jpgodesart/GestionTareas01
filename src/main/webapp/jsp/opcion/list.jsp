@@ -59,7 +59,8 @@
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
                             <option>descripcion</option>
-                            <option>id_pregunta</option>                            
+                            <option>id_pregunta</option> 
+                            <option>correcta</option> 
                         </select>  
                     </span>
                     <span>
@@ -127,6 +128,10 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_pregunta&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_pregunta&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
         </th>
+        <th>correcta
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=correcta&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=correcta&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
+        </th>
         <th>Operaciones</th>
     </tr>
     <%
@@ -142,6 +147,12 @@
                 <a class="btn btn-mini" href="Controller?class=pregunta&method=list&id=<%=oOpcionBEAN.getId()%>&searchingfor=pregunta&returnclass=opcion&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
+        <td><%if(oOpcionBEAN.getCorrecta()){
+                   out.print("Sí");
+              }else{
+                   out.print("No");
+              }
+        %></td>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">
