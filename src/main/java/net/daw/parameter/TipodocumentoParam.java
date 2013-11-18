@@ -11,7 +11,7 @@ import net.daw.bean.TipodocumentoBean;
 
 /**
  *
- * @author Diana
+ * @author Jacobo Segovia
  */
 public class TipodocumentoParam {
     
