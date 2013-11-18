@@ -6,6 +6,8 @@ package net.daw.parameter;
  * and open the template in the editor.
  */
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.DocumentoBean;
 import org.junit.After;
@@ -51,7 +53,9 @@ public class DocumentoParamTest {
         when(request.getParameter("id")).thenReturn("1");
         when(request.getParameter("titulo")).thenReturn("titulo");
         when(request.getParameter("contenido")).thenReturn("contenido");
-        when(request.getParameter("fecha")).thenReturn("fecha");
+        Date fecha = new Date();
+        java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        when(request.getParameter("fecha")).thenReturn(oSimpleDateFormat.format(fecha));
         when(request.getParameter("nota")).thenReturn("10");
         //when(request.getParameter("id_usuario")).thenReturn("id_usuario");
         when(request.getParameter("etiquetas")).thenReturn("etiquetas");
@@ -66,7 +70,7 @@ public class DocumentoParamTest {
 
         assertEquals("getNombre: devuelve titulo", oDocumentoBean.getTitulo(), "titulo");
         assertEquals("getNombre: devuelve contenido", oDocumentoBean.getContenido(), "contenido");
-        assertEquals("getNombre: devuelve fecha", oDocumentoBean.getFecha(), "fecha");
+        assertEquals("getNombre: devuelve fecha", oSimpleDateFormat.format(oDocumentoBean.getFecha()), oSimpleDateFormat.format(fecha));
         assertEquals("getNombre: devuelve nota", oDocumentoBean.getNota(), 10);
         //assertEquals("getNombre: devuelve id_usuario", oDocumentoBean.getTitulo(), "id_usuario");
         assertEquals("getNombre: devuelve etiquetas", oDocumentoBean.getEtiquetas(), "etiquetas");

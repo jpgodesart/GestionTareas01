@@ -37,19 +37,19 @@ public class MetadocumentosNew2 implements Operation{
                 DocumentoList1 oOperacion = new DocumentoList1();
                 return oOperacion.execute(request, response);
             }
-//            case "cliente": {
-//                oContexto.setVista("jsp/cliente/list.jsp");
-//                oContexto.setClase("cliente");
-//                oContexto.setMetodo("list");
-//                oContexto.setFase("1");
-//                oContexto.setSearchingFor("cliente");
-//                oContexto.setClaseRetorno("metadocumentos");
-//                oContexto.setMetodoRetorno("new");
-//                oContexto.setFaseRetorno("1");
-//                oContexto.removeParam("id_cliente");
-//                ClienteList1 oOperacion = new ClienteList1();
-//                return oOperacion.execute(request, response);
-//            }
+            case "metadocumento": {
+                oContexto.setVista("jsp/metadocumento/list.jsp");
+                oContexto.setClase("metadocumento");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("metadocumento");
+                oContexto.setClaseRetorno("metadocumentos");
+                oContexto.setMetodoRetorno("new");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_metadocumento");
+                MetadocumentoList1 oOperacion = new MetadocumentoList1();
+                return oOperacion.execute(request, response);
+            }
             default:
                 oContexto.setVista("jsp/mensaje.jsp");
                 MetadocumentosBean oMetadocumentosBean = new MetadocumentosBean();
@@ -67,7 +67,7 @@ public class MetadocumentosNew2 implements Operation{
                     throw new ServletException("MetadocumentosController: Update Error: Phase 2: " + e.getMessage());
                 }
                 String strMensaje = "Se ha añadido la información de metadocumentos con id=" + Integer.toString(oMetadocumentosBean.getId()) + "<br />";
-                //strMensaje += "<a href=\"Controller?class=metadocumentos&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oMetadocumentosBean.getCliente().getId() + "\">Ver metadocumentoss de este cliente</a><br />";
+                //strMensaje += "<a href=\"Controller?class=metadocumentos&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oMetadocumentosBean.getMetadocumento().getId() + "\">Ver metadocumentoss de este cliente</a><br />";
                 strMensaje += "<a href=\"Controller?class=metadocumentos&method=view&id=" + oMetadocumentosBean.getId() + "\">Ver metadocumentos creada en el formulario</a><br />";
                 return strMensaje;
         }

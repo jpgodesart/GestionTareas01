@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.daw.helper.Contexto"%>
 <%@page import="net.daw.bean.DocumentoBean"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -15,9 +16,11 @@
     id = oDocumentoBean.getId();
     titulo = oDocumentoBean.getTitulo();
     contenido = oDocumentoBean.getContenido();
-    fecha = oDocumentoBean.getFecha();
+    fecha = new SimpleDateFormat("yyyy-MM-dd").format(oDocumentoBean.getFecha());
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
+    
+    // https://github.com/delip/wikixmlj
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -33,10 +36,10 @@
         strValueBoton = "Crear";
     }
 %>
-<h1><%=strTitulo%> de cliente</h1>
+<h1><%=strTitulo%> de documento</h1>
 <form class="form-horizontal" action="Controller" method="post" id="clienteForm">
     <fieldset>
-        <legend>Formulario de cliente</legend>
+        <legend>Formulario de documento</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
         <input type="hidden" name="class" value="documento" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
@@ -50,7 +53,7 @@
         <div class="control-group">
             <label class="control-label" for="contenido">Contenido: </label>
             <div class="controls">
-                <input <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" value="<%=contenido%>" /><br />
+                <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" ><%=contenido%></textarea><br />
             </div>
         </div>
         <div class="control-group">
