@@ -1,4 +1,4 @@
-<%@page import="net.daw.helper.Contexto"%>
+ <%@page import="net.daw.helper.Contexto"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto"); %>
 <%
     String menu = "<div class=\"accordion\" id=\"leftMenu\">";
