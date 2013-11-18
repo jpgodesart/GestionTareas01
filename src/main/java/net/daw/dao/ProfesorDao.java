@@ -63,6 +63,18 @@ public class ProfesorDao {
         }
     }
 
+    public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+        int pages;
+        try {
+            oMysql.conexion(enumTipoConexion);
+            pages = oMysql.getCount("profesor", hmFilter);
+            oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("ProfesorDao.getCount: Error: " + e.getMessage());
+        }
+    }
+
     public ProfesorBean get(ProfesorBean oProfesorBean) throws Exception {
         if (oProfesorBean.getId() > 0) {
             try {

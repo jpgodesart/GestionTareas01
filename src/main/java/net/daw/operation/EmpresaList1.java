@@ -22,6 +22,7 @@ public class EmpresaList1 implements Operation {
         try {
             EmpresaDao oEmpresaDao = new EmpresaDao(oContexto.getEnumTipoConexion());
             Integer intPages = oEmpresaDao.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
+            Integer intRegisters = oEmpresaDao.getCount(oContexto.getAlFilter());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
@@ -31,6 +32,7 @@ public class EmpresaList1 implements Operation {
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(botonera);
+            a.add(intRegisters);
             return a;
         } catch (Exception e) {
             throw new ServletException("EmpresaList1: View Error: " + e.getMessage());

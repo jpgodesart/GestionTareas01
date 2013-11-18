@@ -47,6 +47,10 @@
                 out.print("<p>Sin filtrar</p>");
             }
         %>
+         <%
+            Integer registers = (Integer) alObjetoParametro.get(2);
+            out.print("Mostrando " + oContexto.getNrpp().toString() + " registros de un total de " + registers.toString());
+        %> 
         <%
             ArrayList<String> paginacion = (ArrayList<String>) alObjetoParametro.get(1);
             Iterator<String> iterador2 = paginacion.listIterator();

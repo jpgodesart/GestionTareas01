@@ -56,6 +56,17 @@ public class EmpresaDao {
             oMysql.desconexion();
         }
     }
+     public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+        int pages;
+        try {
+            oMysql.conexion(enumTipoConexion);
+            pages = oMysql.getCount("empresa", hmFilter);
+            oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("EmpresaDao.getCount: Error: " + e.getMessage());
+        }
+    }
 
     public EmpresaBean get(EmpresaBean oEmpresaBean) throws Exception {
         if (oEmpresaBean.getId() > 0) {

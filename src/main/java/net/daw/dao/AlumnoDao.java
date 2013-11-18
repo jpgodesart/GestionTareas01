@@ -63,6 +63,18 @@ public class AlumnoDao {
         }
     }
 
+    public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+        int pages;
+        try {
+            oMysql.conexion(enumTipoConexion);
+            pages = oMysql.getCount("alumno", hmFilter);
+            oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("AlumnoDao.getCount: Error: " + e.getMessage());
+        }
+    }
+
     public AlumnoBean get(AlumnoBean oAlumnoBean) throws Exception {
         if (oAlumnoBean.getId() > 0) {
             try {

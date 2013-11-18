@@ -27,6 +27,7 @@ public class ProfesorList1 implements Operation{
         try {
             ProfesorDao oProfesorDao = new ProfesorDao(oContexto.getEnumTipoConexion());
             Integer intPages = oProfesorDao.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
+            Integer intRegisters = oProfesorDao.getCount(oContexto.getAlFilter());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
@@ -35,7 +36,8 @@ public class ProfesorList1 implements Operation{
             ArrayList<String> botonera = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
-            a.add(botonera);            
+            a.add(botonera);
+            a.add(intRegisters);
             return a;
         } catch (Exception e) {
             throw new ServletException("ProfesorList1: View Error: " + e.getMessage());
