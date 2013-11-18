@@ -4,6 +4,7 @@
     Author     : Jordi Eslava Barrera
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
 <%@ page import="net.daw.helper.Contexto"%>
@@ -107,16 +108,17 @@
         </th>
         <th>fecha
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=desc"><i class="icon-arrow-down"></i></a>                
-        </th>
-        <th>id de usuario
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
         <th>id de documento
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
         </th>
+    <!--   <th>id de usuario
+            <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
+        </th>-->
+        
         <th>Operaciones</th>
     </tr>
     <%
@@ -127,8 +129,11 @@
         <td><%=oComentBean.getId()%></td>
         <td><%=oComentBean.getTitulo()%></td>
         <td><%=oComentBean.getContenido()%></td>
-        <td><%=oComentBean.getFecha()%></td>
-        <td><%=oComentBean.getId_usuario()%></td>
+         <%
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
+        %>
+        <td><%=formatoFecha.format(oComentBean.getFecha())%></td>
+      <!--  <td><//%=oComentBean.getId_usuario()%></td>-->
         <td><%=oComentBean.getId_documento()%></td>
         <td>
             <div class="btn-toolbar">
