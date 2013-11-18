@@ -12,5 +12,11 @@ public class Enum {
         DriverManager
     };
 
+    public static enum TipoUsuario {
+
+        Empresa,
+        Alumno,
+        Profesor
+    };
 
 }

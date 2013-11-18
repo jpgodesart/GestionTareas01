@@ -5,12 +5,13 @@
  */
 package net.daw.parameter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.UsuarioBean;
 
 /**
  *
- * @author rafa
+ * @author jose
  */
 public class UsuarioParam {
 
@@ -20,8 +21,17 @@ public class UsuarioParam {
         this.request = request;
     }
 
-    public UsuarioBean loadId(UsuarioBean oUsuario) {
-        return null;
+    public UsuarioBean loadId(UsuarioBean oUsuario) throws ServletException {
+       try {
+            if (request.getParameter("id") != null) {
+                oUsuario.setId(Integer.parseInt(request.getParameter("id")));
+            } else {
+                oUsuario.setId(0);
+            }
+        } catch (NumberFormatException e) {
+            throw new ServletException("Controller: Error: loadId: Formato de datos en parámetros incorrecto " + e.getMessage());
+        }
+        return oUsuario;
     }
 
     public UsuarioBean load(UsuarioBean oUsuario) throws NumberFormatException {
