@@ -34,7 +34,7 @@
                         <span class="icon-bar"></span> 
                         <span class="icon-bar"></span>
                     </a> 
-                    <a class="brand" href="Controller">ausiÃ sYield March</a>
+                    <a class="brand" href="Controller">ausiasYield March</a>
                     <div class="nav-collapse collapse">
                         <%
                             if (oUserBean != null) {
@@ -47,7 +47,7 @@
                             <%
                                 if (oUserBean != null) {
                             %>
-                            Estï¿½s logueado como <%=oUserBean.getLogin()%>&nbsp;&nbsp;&nbsp;&nbsp;
+                            Estás logueado como <%=oUserBean.getLogin()%>&nbsp;&nbsp;&nbsp;&nbsp;
                             <a class="navbar-link" href="Controller?class=usuario&method=logout">(Salir del sistema)</a>
                             <%
                             } else {
