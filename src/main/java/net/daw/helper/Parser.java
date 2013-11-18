@@ -5,14 +5,12 @@
  */
 package net.daw.helper;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.xml.bind.JAXBException;
-import org.apache.commons.io.FileUtils;
 import org.sweble.wikitext.engine.CompiledPage;
 import org.sweble.wikitext.engine.CompilerException;
 import org.sweble.wikitext.engine.PageId;
