@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.ContestacionBean;
 import net.daw.dao.ContestacionDao;
 import net.daw.helper.Contexto;
+import net.daw.helper.Pagination;
 
 public class ContestacionList1 implements Operation {
 
@@ -30,7 +31,8 @@ public class ContestacionList1 implements Operation {
             
             ArrayList<ContestacionBean> listado = oContestacionDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
             String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
-            ArrayList<String> vecindad = oContestacionDao.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
+            //ArrayList<String> vecindad = oContestacionDao.getNeighborhood(strUrl, oContexto.getPage(), intPages, 2);
+            ArrayList<String> vecindad = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);

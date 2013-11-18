@@ -359,6 +359,7 @@ public class Mysql implements GenericData {
         }
     }
 
+    /*
     @Override
     public ArrayList<String> getNeighborhood(String strLink, int intPageNumber, int intTotalPages, int intNeighborhood) throws Exception {
         ArrayList<String> vector = new ArrayList<>();
@@ -403,4 +404,5 @@ public class Mysql implements GenericData {
         }
         return vector;
     }
+    */
 }
