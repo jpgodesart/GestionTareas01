@@ -1,5 +1,5 @@
 
-<%@page import="net.daw.helper.Parser"%>
+<%@page import="net.daw.helper.Parser1"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>
@@ -24,7 +24,7 @@
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
 
-    String cadena = Parser.toHtml(contenido, titulo, true);
+    String cadena = Parser1.toHtml(contenido, titulo, true);
     String[] separada = cadena.split("<body>");
     String cadena2 = separada[1];
     String[] separada2 = cadena2.split("</body>");

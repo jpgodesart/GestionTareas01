@@ -25,7 +25,7 @@ import org.sweble.wikitext.lazy.LinkTargetException;
  *
  * @author Alvaro
  */
-public class Parser {
+public class Parser1 {
 
     /**
      *

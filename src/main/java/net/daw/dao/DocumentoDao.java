@@ -161,7 +161,7 @@ public class DocumentoDao {
                 String[] etiquetas = oDocumentoBean.getEtiquetas().split(",");
                 for (int f = 0; f < etiquetas.length; f++) {
                     etiquetasFormateadas += etiquetas[f].replaceAll(" +", " ").trim();
-                    if (f != etiquetas.length) {
+                    if (f != etiquetas.length-1) {
                         etiquetasFormateadas += ",";
                     }
                 }
