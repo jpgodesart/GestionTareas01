@@ -1,5 +1,5 @@
- <%@page import="net.daw.helper.Contexto"%>
-<% Contexto oContexto = (Contexto) request.getAttribute("contexto"); %>
+<%@page import="net.daw.helper.Contexto"%>
+<% Contexto oContexto = (Contexto) request.getAttribute("contexto");%>
 <%
     String menu = "<div class=\"accordion\" id=\"leftMenu\">";
 
@@ -190,7 +190,34 @@
         menu += "<li>";
     }
     menu += "<a href=\"Controller?class=actividadoffline&method=list\">Listar</a></li>";
-     menu += "</ul></div></div></div>";
+    menu += "</ul></div></div></div>";
+
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseNine\">"
+            + "<i class=\"icon-user\"></i> Tipodocumento</a></div>"
+            + "<div id=\"collapseNine\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("tipodocumento") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=tipodocumento&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("tipodocumento") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=tipodocumento&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
     menu += "</ul></div>";
+
 %>
 <%=menu%>
