@@ -26,7 +26,8 @@ public class DocumentoView1 implements Operation {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/documento/view.jsp");
         
-        String str = "hola =miau= hola";
+        String str = "hola =miau= hola ====jujujuj==== [http://google.es Google]"
+                + "jajajajaja";
         System.out.println(str);
         //str.
         //str = str.replaceAll("=(.*?)=", "<h1>");

@@ -1,5 +1,4 @@
 
-<%@page import="net.daw.helper.Parser"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>

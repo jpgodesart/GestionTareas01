@@ -60,7 +60,7 @@ public class DocumentoParam {
             if ((request.getParameter("contenido") != null)) {
                 oDocumento.setContenido(request.getParameter("contenido"));
             }
-            if ((request.getParameter("fecha") != null)) {
+            if ((request.getParameter("fecha") != null)&&request.getParameter("fecha")!="") {
                 oDocumento.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha")));
             }
             if ((request.getParameter("nota") != null)) {
