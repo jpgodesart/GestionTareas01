@@ -52,7 +52,7 @@ public class RepositorioDao {
                     oRepositorioBean.setTitulo(oMysql.getOne("repositorio", "titulo", oRepositorioBean.getId()));
                     oRepositorioBean.setContenido(oMysql.getOne("repositorio", "contenido", oRepositorioBean.getId()));
                     //oRepositorioBean.setId_usuario(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
-                    //oRepositorioBean.setId_lenguaje(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
+                    oRepositorioBean.setId_lenguaje(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
                     //oRepositorioBean.setId_documento(Integer.parseInt(oMysql.getOne("repositorio", "id_documento", oRepositorioBean.getId())));
                     String strFecha = oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId());
                     if (strFecha != null) {
@@ -86,7 +86,7 @@ public class RepositorioDao {
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "titulo", oRepositorioBean.getTitulo());
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "contenido", oRepositorioBean.getContenido());
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_usuario", Integer.toString(oRepositorioBean.getId_usuario()));
-            //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", Integer.toString(oRepositorioBean.getId_lenguaje()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", Integer.toString(oRepositorioBean.getId_lenguaje()));
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_documento", Integer.toString(oRepositorioBean.getId_documento()));
              java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
              oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "fecha", oSimpleDateFormat.format(oRepositorioBean.getFecha()));

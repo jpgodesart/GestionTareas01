@@ -49,7 +49,7 @@ public class RepositorioParam {
                 oRepositorioBean.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
             }
             if ((request.getParameter("id_lenguaje") != null)) {
-                oRepositorioBean.setId_lenguaje(Integer.parseInt(request.getParameter("id_lenguaje")));
+                oRepositorioBean.getLenguaje().setId(Integer.parseInt(request.getParameter("id_lenguaje")));
             }
             if ((request.getParameter("id_documento") != null)) {
                 oRepositorioBean.setId_documento(Integer.parseInt(request.getParameter("id_documento")));
