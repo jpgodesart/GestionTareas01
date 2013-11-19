@@ -196,15 +196,15 @@ public class ParserConverter {
         }
         return textFomat;
     }
-    
-    public String aIntern(String text){
-        
+
+    public String aIntern(String text) {
+
         String[] textSplit = text.split("=");
-        
+
         String textFomat = "";
         String close = "";
         boolean a = false;
-        
+
         for (int x = 0; x < textSplit.length; x++) {
             if (a) {
                 a = false;
@@ -218,26 +218,31 @@ public class ParserConverter {
         }
         return textFomat;
     }
-    
-    public String aExtern(String text){
-        
-        String[] textSplit = text.split("[");
-        
-        String textFomat = "";
-        String close = "";
-        boolean a = false;
-        
-        for (int x = 0; x < textSplit.length; x++) {
-            System.out.println(x+" - "+textSplit[x]);
-            if (a) {
-                a = false;
-                close = "/";
-            } else {
-                close = "";
-                a = true;
-            }
-            textFomat += textSplit[x] + "<a" + close + ">";
 
+    public String aExtern(String text) {
+
+        String[] textSplit = text.split("\\[");
+
+        String textFomat = "";
+        String tag = "";
+        boolean a = false;
+
+        for (int x = 0; x < textSplit.length; x++) {
+
+            if (x == 0) {
+                textFomat += textSplit[x];
+                x++;
+            }
+
+
+            String[] spl = textSplit[x].split("\\]");
+            String[] split = spl[0].split("\\|");
+            if (spl.length == 1) {
+                tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i><a/>";
+            } else {
+                tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i><a/>" + spl[1];
+            }
+            textFomat += tag;
         }
         return textFomat;
     }
