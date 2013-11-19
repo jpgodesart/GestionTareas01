@@ -217,6 +217,52 @@
     menu += "</ul></div></div></div>";
 %>
 <%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseTen\">"
+            + "<i class=\"icon-user\"></i> Requerimiento</a></div>"
+            + "<div id=\"collapseTen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("requerimiento") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=requerimiento&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("requerimiento") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=requerimiento&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseEleven\">"
+            + "<i class=\"icon-user\"></i> Comentario</a></div>"
+            + "<div id=\"collapseEleven\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("coment") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=coment&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("coment") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=coment&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
     menu += "</ul></div>";
 
 %>

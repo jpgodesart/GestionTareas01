@@ -23,16 +23,17 @@
     String contenido = "";
     Integer id_documento = 0;
     String fecha = "";
+    String descId_documento ="";
 
 
     ComentBean oComentBean = (ComentBean) oContexto.getParametro();
     id = oComentBean.getId();
     titulo = oComentBean.getTitulo();
     contenido = oComentBean.getContenido();
-    id_usuario = oComentBean.getId_usuario();
-    id_documento = Integer.toString(oComentBean.getDocumento().getId());
-    if (oComentBean.getDocumento().getId() > 0) {
-        descDocumento = oComentBean.getDocumento().getDescripcion();
+   // id_usuario = oComentBean.getId_usuario();
+    id_documento = oComentBean.getId_documento().getId();
+    if (oComentBean.getId_documento().getId() > 0) {
+        descId_documento = oComentBean.getId_documento().getTitulo();
     }
     fecha = new SimpleDateFormat("yyyy-MM-dd").format(oComentBean.getFecha());
 
