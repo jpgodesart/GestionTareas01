@@ -19,7 +19,7 @@ public class RepositorioBean {
     private int id_usuario;
     private int id_lenguaje;
     private int id_documento;
-    private Date fecha;
+    private Date fecha = new Date();
 
     public RepositorioBean() {
         

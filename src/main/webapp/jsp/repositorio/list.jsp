@@ -33,11 +33,18 @@
                 out.print("<p>Listado filtrado: ");
                 ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
                 Iterator iterator = alFilter.iterator();
+                int bAddProductToClient = 0;
                 while (iterator.hasNext()){
                     FilterBean oFilterBean = (FilterBean) iterator.next();
                     out.print("(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + " )");
+                    if (oFilterBean.getFilter().equals("id_usuario") && oFilterBean.getFilterOperator().equals("equals")){
+                        bAddProductToClient = Integer.parseInt(oFilterBean.getFilterValue());
+                    }
                 }
                 out.print("<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>");
+                if (bAddProductToClient>0){
+                   out.print("<a class=\"btn\" type=\"button\" href=\"Controller?searchingfor=cliente&class=compra&method=new&id_cliente=" + bAddProductToClient + "\">Añadir producto al cliente " + bAddProductToClient + "</a>"); 
+                }
             } else {
                 out.print("<p>Sin filtrar</p>");
             }

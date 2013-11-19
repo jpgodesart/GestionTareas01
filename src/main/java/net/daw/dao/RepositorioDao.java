@@ -8,11 +8,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
+import java.util.AbstractCollection;
 import net.daw.bean.RepositorioBean;
 import net.daw.data.Mysql;
 import net.daw.helper.Enum;
 import net.daw.helper.FilterBean;
+import java.util.Date;
 
 /**
  *
@@ -53,8 +54,13 @@ public class RepositorioDao {
                     //oRepositorioBean.setId_usuario(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
                     //oRepositorioBean.setId_lenguaje(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
                     //oRepositorioBean.setId_documento(Integer.parseInt(oMysql.getOne("repositorio", "id_documento", oRepositorioBean.getId())));
-                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                    oRepositorioBean.setFecha(formato.parse(oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId())));
+                    String strFecha = oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId());
+                    if (strFecha != null) {
+                        Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
+                        oRepositorioBean.setFecha(dFecha);
+                    } else {
+                        oRepositorioBean.setFecha(new Date(0));
+                    }
 
                 }
 
@@ -82,6 +88,8 @@ public class RepositorioDao {
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_usuario", Integer.toString(oRepositorioBean.getId_usuario()));
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", Integer.toString(oRepositorioBean.getId_lenguaje()));
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_documento", Integer.toString(oRepositorioBean.getId_documento()));
+             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "fecha", oSimpleDateFormat.format(oRepositorioBean.getFecha()));
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
@@ -117,12 +125,12 @@ public class RepositorioDao {
             oMysql.desconexion();
         }
     }
-    
-    public int getCount( ArrayList<FilterBean> hmFilter) throws Exception {
+
+    public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
-            pages = oMysql.getCount("repositorio",  hmFilter);
+            pages = oMysql.getCount("repositorio", hmFilter);
             oMysql.desconexion();
             return pages;
         } catch (Exception e) {

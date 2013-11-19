@@ -27,6 +27,7 @@ public class RepositorioList1 implements Operation {
         try {
             RepositorioDao oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
             Integer intPages = oRepositorioDao.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
+                Integer intRegisters = oRepositorioDao.getCount(oContexto.getAlFilter());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
@@ -39,6 +40,7 @@ public class RepositorioList1 implements Operation {
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
             a.add(vecindad);
+            a.add(intRegisters);
             return a;
         } catch (Exception e) {
             throw new ServletException("RepositorioList1: View Error: " + e.getMessage());
