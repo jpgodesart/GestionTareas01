@@ -177,4 +177,3 @@
 <%
     }
 %>
->>>>>>> branch 'master' of https://github.com/rafaelaznar/ausiasYield.git
