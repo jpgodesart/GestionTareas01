@@ -1,4 +1,5 @@
 
+<%@page import="net.daw.helper.TextParser"%>
 <%@page import="net.daw.helper.Parser1"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
@@ -24,6 +25,7 @@
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
 
+    System.out.println(oDocumentoBean.getContenidoParse());
     String cadena = Parser1.toHtml(contenido, titulo, true);
     String[] separada = cadena.split("<body>");
     String cadena2 = separada[1];
@@ -59,7 +61,7 @@
         <input type="hidden" name="class" value="documento" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
-        <%=separada2[0].substring(0, separada2[0].length() - 8)%>
+        <%=/*separada2[0].substring(0, separada2[0].length() - 8)*/ oDocumentoBean.getContenidoParse() %>
         <div class="control-group">
             <br/>
             <p>Etiquetas: <span class="alert alert-info"><%=etiquetasProcesadas%></span></p>

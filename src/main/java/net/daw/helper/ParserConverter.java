@@ -33,7 +33,7 @@ public class ParserConverter {
                 h6 = true;
             }
 
-            textFomat += textSplit[x] + "<h6" + close + ">";
+            textFomat += textSplit[x] + "<" + close + "h6>";
 
         }
         if (h6 == true) {
@@ -64,7 +64,7 @@ public class ParserConverter {
                 h6 = true;
             }
 
-            textFomat += textSplit[x] + "<h5" + close + ">";
+            textFomat += textSplit[x] + "<" + close + "h5>";
 
         }
         if (h6 == true) {
@@ -95,7 +95,7 @@ public class ParserConverter {
                 h6 = true;
             }
 
-            textFomat += textSplit[x] + "<h4" + close + ">";
+            textFomat += textSplit[x] + "<" + close + "h4>";
 
         }
         if (h6 == true) {
@@ -126,7 +126,7 @@ public class ParserConverter {
                 h6 = true;
             }
 
-            textFomat += textSplit[x] + "<h3" + close + ">";
+            textFomat += textSplit[x] + "<" + close + "h3>";
 
         }
         if (h6 == true) {
@@ -157,7 +157,7 @@ public class ParserConverter {
                 h6 = true;
             }
 
-            textFomat += textSplit[x] + "<h2" + close + ">";
+            textFomat += textSplit[x] + "<" + close + "h2>";
 
         }
         if (h6 == true) {
@@ -188,7 +188,7 @@ public class ParserConverter {
                 h6 = true;
             }
 
-            textFomat += textSplit[x] + "<h1" + close + ">";
+            textFomat += textSplit[x] + "<" + close + "h1>";
 
         }
         if (h6 == true) {
@@ -234,15 +234,29 @@ public class ParserConverter {
                 x++;
             }
 
-
             String[] spl = textSplit[x].split("\\]");
             String[] split = spl[0].split("\\|");
             if (spl.length == 1) {
-                tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i><a/>";
+                tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i></a>";
             } else {
-                tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i><a/>" + spl[1];
+                tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i></a>" + spl[1];
             }
             textFomat += tag;
+        }
+        return textFomat;
+    }
+
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public String p(String text) {
+        String[] textSplit = text.split("\n");
+        String textFomat = "";
+        for (int p = 0; p < textSplit.length; p++) {
+            System.out.println("hola: " + p + " - " + textSplit[p]);
+            textFomat += "<p>" + textSplit[p] + "</p>";
         }
         return textFomat;
     }

@@ -20,7 +20,8 @@ public class TextParser {
        text = oParserConverter.h2(text);
        text = oParserConverter.h1(text);
        text = oParserConverter.aExtern(text);
-       System.out.println(text);
+       text = oParserConverter.p(text);
+       
         return text;
     }
     

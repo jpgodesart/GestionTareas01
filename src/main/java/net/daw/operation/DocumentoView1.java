@@ -25,15 +25,14 @@ public class DocumentoView1 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/documento/view.jsp");
-        
+
         String str = "[http://github.com|Github] hola =miau= [http://intel.com|Intel]  hola ====jujujuj==== [http://google.es|Google]";
-        System.out.println(str);
+        //System.out.println(str);
         //str.
         //str = str.replaceAll("=(.*?)=", "<h1>");
-        System.out.println(str);
-       // str = str.replaceAll("{[ \'-_\(\)]}", "");
-        System.out.println(TextParser.toHtml(str));
-        
+        //System.out.println(str);
+        //str = str.replaceAll("{[ \'-_\(\)]}", "");
+
         DocumentoBean oDocumentoBean;
         DocumentoDao oDocumentoDao;
         oDocumentoBean = new DocumentoBean();
@@ -42,6 +41,8 @@ public class DocumentoView1 implements Operation {
         oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
         try {
             oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
+            //System.out.println(TextParser.toHtml(oDocumentoBean.getContenido()));
+            oDocumentoBean.setContenidoParse(TextParser.toHtml(oDocumentoBean.getContenido()));
         } catch (Exception e) {
             throw new ServletException("DocumentoController: View Error: Phase 1: " + e.getMessage());
         }
