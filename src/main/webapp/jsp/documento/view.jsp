@@ -1,6 +1,5 @@
 
 <%@page import="net.daw.helper.TextParser"%>
-<%@page import="net.daw.helper.Parser1"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>
@@ -13,6 +12,7 @@
     Integer id = 0;
     String titulo = "";
     String contenido = "";
+    String contenidoParse = "";
     String fecha = "";
     Integer nota = 0;
     String etiquetas = "";
@@ -21,16 +21,12 @@
     id = oDocumentoBean.getId();
     titulo = oDocumentoBean.getTitulo();
     contenido = oDocumentoBean.getContenido();
+    contenidoParse = oDocumentoBean.getContenidoParse();
     fecha = new SimpleDateFormat("dd-MM-yyyy").format(oDocumentoBean.getFecha());
     nota = oDocumentoBean.getNota();
     etiquetas = oDocumentoBean.getEtiquetas();
 
     System.out.println(oDocumentoBean.getContenidoParse());
-    String cadena = Parser1.toHtml(contenido, titulo, true);
-    String[] separada = cadena.split("<body>");
-    String cadena2 = separada[1];
-    String[] separada2 = cadena2.split("</body>");
-
     strTitulo = "Vista";
     strValueBoton = "Cerrar";
 %>
@@ -61,7 +57,7 @@
         <input type="hidden" name="class" value="documento" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
-        <%=/*separada2[0].substring(0, separada2[0].length() - 8)*/ oDocumentoBean.getContenidoParse() %>
+        <%=contenidoParse%>
         <div class="control-group">
             <br/>
             <p>Etiquetas: <span class="alert alert-info"><%=etiquetasProcesadas%></span></p>
