@@ -22,9 +22,7 @@ public class ComentBean {
     public ComentBean(Integer id) {
         this.id = id;
         this.id_documento = new DocumentoBean();
-        this.id_documento.setId(0);
-       /* this.id_usuario = new UsuarioBean();
-        this.id_usuario.setId(0);*/
+       /* this.id_usuario = new UsuarioBean();*/
     }
 /*
     public UsuarioBean getId_usuario() {
