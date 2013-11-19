@@ -46,7 +46,6 @@
     String[] etiquetasSeparadas = etiquetas.split(",");
     String etiquetasProcesadas = "";
     for (int j = 0; j < etiquetasSeparadas.length; j++) {
-        System.out.println(j);
         etiquetasProcesadas += " <a href=\"Controller?nrpp=10&enviar=Filtrar&filteroperator=like&filtervalue=" + etiquetasSeparadas[j] + "&page=1&class=documento&method=list&filter=etiquetas\"><span class=\"label label-info\">" + etiquetasSeparadas[j] + "</span></a> ";
     }
 %>

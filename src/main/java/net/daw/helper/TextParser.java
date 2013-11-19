@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.helper;
 
 /**
@@ -11,8 +10,13 @@ package net.daw.helper;
  * @author Alvaro
  */
 public class TextParser {
-    public static String toHtml(String text){
-        String prueba = "=hola= yo soy ==iron man==";
+
+    public static String toHtml(String text) {
+        ParserConverter oParserConverter = new ParserConverter();
+        oParserConverter.h6(text);
         return text;
     }
+    
+    
+    
 }
