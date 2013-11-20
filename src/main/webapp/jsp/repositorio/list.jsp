@@ -128,7 +128,12 @@
         <td><%=oRepositorioBean.getTitulo()%></td>
         <td><%=oRepositorioBean.getContenido()%></td>
         <td><%=oRepositorioBean.getId_usuario()%></td>
-        <td><%=oRepositorioBean.getId_lenguaje()%></td>
+        <td>
+            <%=oRepositorioBean.getLenguaje().getNombre()%> (<%=oRepositorioBean.getLenguaje().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=lenguaje&method=list&id=<%=oRepositorioBean.getId()%>&searchingfor=lenguaje&returnclass=repositorio&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
         <td><%=oRepositorioBean.getId_documento()%></td>
         <td><%=formato.format(oRepositorioBean.getFecha())%></td>
         <td>

@@ -16,7 +16,7 @@ import net.daw.helper.Pagination;
 
 /**
  *
- * @author al037294
+ * @author al037793
  */
 public class RepositorioList1 implements Operation {
 

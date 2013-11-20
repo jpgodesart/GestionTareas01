@@ -74,7 +74,7 @@
         <label class="control-label" for="lenguaje">Id_lenguaje: </label>
         <div class="controls">  
             <input readonly="true" id="lenguaje" class="input-mini"
-                   name="id_producto" type="text" size="5" maxlength="5"
+                   name="id_lenguaje" type="text" size="5" maxlength="5"
                    value="<%=lenguaje%>" />
             <input <%=strControlEnabled%> type="submit" name="searchingfor" value="lenguaje" />
             <span class="alert alert-success"><%=nombreLengueje%></span>
