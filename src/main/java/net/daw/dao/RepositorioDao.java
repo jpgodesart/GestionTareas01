@@ -14,6 +14,7 @@ import net.daw.data.Mysql;
 import net.daw.helper.Enum;
 import net.daw.helper.FilterBean;
 import java.util.Date;
+import net.daw.bean.LenguajeBean;
 
 /**
  *
@@ -45,14 +46,13 @@ public class RepositorioDao {
         if (oRepositorioBean.getId() > 0) {
             try {
                 oMysql.conexion(enumTipoConexion);
-                if (!oMysql.existsOne("repositorio", oRepositorioBean.getId())) {
-                    oRepositorioBean.setId(0);
-                } else {
-
+                
+                    LenguajeBean oLenguajeBean = new LenguajeBean();
+                    
                     oRepositorioBean.setTitulo(oMysql.getOne("repositorio", "titulo", oRepositorioBean.getId()));
                     oRepositorioBean.setContenido(oMysql.getOne("repositorio", "contenido", oRepositorioBean.getId()));
                     //oRepositorioBean.setId_usuario(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
-                    oRepositorioBean.setId_lenguaje(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
+                    oLenguajeBean.setId(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
                     //oRepositorioBean.setId_documento(Integer.parseInt(oMysql.getOne("repositorio", "id_documento", oRepositorioBean.getId())));
                     String strFecha = oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId());
                     if (strFecha != null) {
@@ -62,8 +62,11 @@ public class RepositorioDao {
                         oRepositorioBean.setFecha(new Date(0));
                     }
 
-                }
+                    LenguajeDao oLenguajeDao = new LenguajeDao(enumTipoConexion);
+                    
+                    oLenguajeBean = oLenguajeDao.get(oLenguajeBean);
 
+                    oRepositorioBean.setLenguaje(oLenguajeBean);
 
             } catch (Exception e) {
                 throw new Exception("RepositorioDao.getRespositorio: Error: " + e.getMessage());
@@ -86,7 +89,7 @@ public class RepositorioDao {
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "titulo", oRepositorioBean.getTitulo());
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "contenido", oRepositorioBean.getContenido());
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_usuario", Integer.toString(oRepositorioBean.getId_usuario()));
-            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", Integer.toString(oRepositorioBean.getId_lenguaje()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", oRepositorioBean.getLenguaje().toString());
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_documento", Integer.toString(oRepositorioBean.getId_documento()));
              java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
              oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "fecha", oSimpleDateFormat.format(oRepositorioBean.getFecha()));
