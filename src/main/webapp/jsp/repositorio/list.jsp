@@ -62,28 +62,69 @@
             }
         %>
     </div>
-    <div class="span3">
+    <div class="span4">
         <div class="text-right">
             <legend>Filtro de repositorio</legend> 
-            <form class="navbar-form pull-right" action="Controller" method="post" id="repositorioForm">
+            <form class="navbar-form pull-right" action="Controller" method="post" id="filterForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
                     <span>
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
-                            <option>titulo</option>
-                            <option>contenido</option>
-                            <option>id_usuario</option>
-                            <option>id_lenguaje</option>
-                            <option>id_documento</option>
-                            <option>fecha</option>
-                        </select>                        
-                        <input id="filtervalue" name="filtervalue" type="text" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
+                            <option>id_cliente</option>
+                            <option>id_producto</option>
+                            <option>cantidad</option>
+                            <option>fecha</option>                            
+                        </select> 
+                    </span>
+                    <span>
+                        <select id="filteroperator" name="filteroperator" width="80" style="width: 80px">
+                            <option>like</option>
+                            <option>notlike</option>
+                            <option>equals</option>
+                            <option>notequalto</option>
+                            <option>less</option>
+                            <option>lessorequal</option>
+                            <option>greater</option>
+                            <option>greaterorequal</option>                            
+                        </select>            
+                        <input id="filtervalue" name="filtervalue" type="search" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
                     </span>
                     <span>
                         <input type="submit" name="enviar" value="Filtrar" />
                     </span>
                 </fieldset>
+            </form>
+        </div>
+                            <div class="text-right">
+            <legend>Registros por página</legend> 
+            <form class="navbar-form pull-right" action="Controller" method="post" id="nrrpForm" >
+                <fieldset>                                               
+                    <%=oContexto.getSerializedParamsExceptNrppFormFormat()%>       
+                    <span>
+                        <select  id="nrpp" name="nrpp" value="select" style="width: 80px">                        
+                            <option <%if (oContexto.getNrpp() == 5) {
+                                    out.print("selected");
+                                }%>>5</option>
+                            <option <%if (oContexto.getNrpp() == 10) {
+                                    out.print("selected");
+                                }%>>10</option>
+                            <option <%if (oContexto.getNrpp() == 20) {
+                                    out.print("selected");
+                                }%>>20</option>
+                            <option <%if (oContexto.getNrpp() == 50) {
+                                    out.print("selected");
+                                }%>>50</option>
+                            <option <%if (oContexto.getNrpp() == 100) {
+                                    out.print("selected");
+                                }%>>100</option>
+                        </select>  
+                    </span>
+                    <span>
+                        <input type="submit" name="enviar" value="Establecer" />
+                    </span>                    
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>
