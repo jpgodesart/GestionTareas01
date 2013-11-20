@@ -91,13 +91,13 @@
             <textarea <%=strControlEnabled%> id="cambios" name="cambios" type="text" size="30" maxlength="50" value="<%=cambios%>" ></textarea><br />
         </div>
 
-        
+      
         <div class="control-group">
         <label class="control-label" for="id_estado">Id_Estado: </label> 
         <div class="controls">                
             <input readonly="true" id="id_estado" class="input-mini"
                    name="id_estado" type="text" size="5" maxlength="5"
-                   value="<%=id_estado%>" />  
+                   value="<a%=id_estado%>" />  
             <input <%=strControlEnabled%> type="submit" name="searchingfor" value="estado" />
             <span class="alert alert-success"><%=nomid_estado%></span>
         </div>
@@ -109,7 +109,7 @@
         <div class="controls">                
             <input readonly="true" id="id_repositorio" class="input-mini"
                    name="id_repositorio" type="text" size="5" maxlength="5"
-                   value="<%=id_repositorio%>" />  
+                   value="<a%=id_repositorio%>" />  
             <input <%=strControlEnabled%> type="submit" name="searchingfor" value="repositorio" />
             <span class="alert alert-success"><%=titid_repositorio%></span>
         </div>
@@ -124,12 +124,12 @@
         <div class="controls">                
             <input readonly="true" id="id_usuario" class="input-mini"
                    name="id_usuario" type="text" size="5" maxlength="5"
-                   value="<%=id_usuario%>" />  
+                   value="<a%=id_usuario%>" />  
             <input <%=strControlEnabled%> type="submit" name="searchingfor" value="usuario" />
             <span class="alert alert-success"><%=nomid_usuario%></span>
         </div>
     </div> 
-        
+       
         
         
         
