@@ -1,16 +1,13 @@
 <%-- 
     Document   : form
-    Created on : 07-nov-2013, 12:20:07
+    Created on : 20-nov-2013, 12:13:39
     Author     : al037431
 --%>
 
-<%@page import="com.mysql.jdbc.Statement"%>
-<%@page import="net.daw.helper.Enum.Connection"%>
-<%@page import="net.daw.data.Mysql"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.util.Calendar"%>
-<%@page import="net.daw.bean.IncidenciasBean"%>
+
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.daw.helper.Contexto"%>
+<%@page import="net.daw.bean.IncidenciasBean"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
     String strTitulo = "";
     String strControlEnabled = "";
@@ -23,41 +20,23 @@
     String id_repositorio = "";
     String fechaAlta = "";
     String fechaResolucion = "";
-    String nomid_estado="";
-    String titid_repositorio= "";
-    String nomid_usuario= "";
+    String nomid_estado = "";
+    String titid_repositorio = "";
+    String descUsuario = "";
 
-    if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
-        IncidenciasBean oIncidenciasBean = (IncidenciasBean) oContexto.getParametro();
-        id = oIncidenciasBean.getId();
-        resumen = oIncidenciasBean.getResumen();
-        cambios = oIncidenciasBean.getCambios();
-        
-        
-        
-        fechaAlta = oIncidenciasBean.getFechaAlta();
-        fechaResolucion = oIncidenciasBean.getFechaResolucion();
+    IncidenciasBean oIncidenciasBean = (IncidenciasBean) oContexto.getParametro();
+    id = oIncidenciasBean.getId();
+    id_usuario = Integer.toString(oIncidenciasBean.getUsuario().getId());
+    if (!(oIncidenciasBean.getUsuario().getNombre().equals("") && oIncidenciasBean.getUsuario().getApe1().equals(""))) {
+        descUsuario = oIncidenciasBean.getUsuario().getNombre() + " " + oIncidenciasBean.getUsuario().getApe1();
     }
-     IncidenciasBean oIncidenciasBean = (IncidenciasBean) oContexto.getParametro();
-    id_estado = Integer.toString(oIncidenciasBean.getEstado().getId());
-    if (oIncidenciasBean.getEstado().getId() > 0) {
-       nomid_estado = oIncidenciasBean.getEstado().getNombre();
+    id_producto = Integer.toString(oIncidenciasBean.getProducto().getId());
+    if (oIncidenciasBean.getProducto().getId() > 0) {
+        descProducto = oIncidenciasBean.getProducto().getDescripcion();
     }
-    
-    
-    id_repositorio = Integer.toString(oIncidenciasBean.getRepositorio().getId());
-    if (oIncidenciasBean.getEstado().getId() > 0) {
-       titid_repositorio = oIncidenciasBean.getRepositorio().getTitulo();
-    }
-    
-    
-     id_usuario = Integer.toString(oIncidenciasBean.getUsuario().getId());
-    if (oIncidenciasBean.getUsuario().getId() > 0) {
-       nomid_usuario = Integer.toString(oIncidenciasBean.getUsuario().getId());
-    }
-    
-    
-    
+    cantidad = oIncidenciasBean.getCantidad().toString();
+    fecha = new SimpleDateFormat("yyyy-MM-dd").format(oIncidenciasBean.getFecha());
+
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
@@ -71,80 +50,54 @@
         strTitulo = "Alta";
         strValueBoton = "Crear";
     }
-
-
 %>
-<h1><%=strTitulo%> de cliente</h1>
-<form class="semantic" action="Controller" method="post" id="incidenciasForm">
-    <fieldset>
-        <legend>Formulario de Incidencias</legend>
-        <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="incidencias" /> 
-        <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
-        <input type="hidden" name="phase" value="2" />
-        <div>
-            <label for="Resumen_incidencias">Resumen Incidencias </label> 
-            <input <%=strControlEnabled%> id="Resumen_incidencias" name="Resumen_incidencias" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=resumen%>" /><br />
+<h1><%=strTitulo%> de compra</h1>
+<form class="form-horizontal" action="Controller" method="post" id="usuarioForm">
+    <legend>Formulario de compra</legend>
+    <input type="hidden" name="id" value="<%=id%>" /> 
+    <input type="hidden" name="class" value="compra" /> 
+    <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
+    <input type="hidden" name="phase" value="2" />
+    <div class="control-group">
+        <label class="control-label" for="id_producto">Producto: </label> 
+        <div class="controls">                
+            <input readonly="true" id="id_producto" class="input-mini"
+                   name="id_producto" type="text" size="5" maxlength="5"
+                   value="<%=id_producto%>" />  
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="producto" />
+            <span class="alert alert-success"><%=descProducto%></span>
         </div>
-        <div>
-            <label for="cambios">Cambios </label>
-            <textarea <%=strControlEnabled%> id="cambios" name="cambios" type="text" size="30" maxlength="50" value="<%=cambios%>" ></textarea><br />
-        </div>
+    </div>             
 
-      
-        <div class="control-group">
-        <label class="control-label" for="id_estado">Id_Estado: </label> 
-        <div class="controls">                
-            <input readonly="true" id="id_estado" class="input-mini"
-                   name="id_estado" type="text" size="5" maxlength="5"
-                   value="<a%=id_estado%>" />  
-            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="estado" />
-            <span class="alert alert-success"><%=nomid_estado%></span>
-        </div>
-    </div>  
-        
-        
-        <div class="control-group">
-        <label class="control-label" for="id_repositorio">Id_Repositorio: </label> 
-        <div class="controls">                
-            <input readonly="true" id="id_repositorio" class="input-mini"
-                   name="id_repositorio" type="text" size="5" maxlength="5"
-                   value="<a%=id_repositorio%>" />  
-            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="repositorio" />
-            <span class="alert alert-success"><%=titid_repositorio%></span>
-        </div>
-    </div>
-        
-        
-        
-        
-        
-        <div class="control-group">
-        <label class="control-label" for="id_usuario">Id_Usuario: </label> 
+    <div class="control-group">
+        <label class="control-label" for="id_usuario">Usuario: </label> 
         <div class="controls">                
             <input readonly="true" id="id_usuario" class="input-mini"
                    name="id_usuario" type="text" size="5" maxlength="5"
-                   value="<a%=id_usuario%>" />  
+                   value="<%=id_usuario%>" />  
             <input <%=strControlEnabled%> type="submit" name="searchingfor" value="usuario" />
-            <span class="alert alert-success"><%=nomid_usuario%></span>
+            <span class="alert alert-success"><%=descUsuario%></span>
         </div>
-    </div> 
-       
-        
-        
-        
-        
-        
-        <div>
-            <label for="fechaAlta">Fecha Alta: </label> 
-            <input <%=strControlEnabled%> id="fechaAlta" name="fechaAlta" type="date" size="30" maxlength="50" value="<%=fechaAlta%>" /> <br />
+    </div>             
+    <div class="control-group">
+        <label class="control-label" for="precio">Cantidad: </label> 
+        <div class="controls">
+            <input <%=strControlEnabled%>  id="cantidad"
+                                           name="cantidad" type="text" size="30" maxlength="50"
+                                           value="<%=cantidad%>"  /> 
         </div>
-        <div>
-            <label for="fechaResolucion">Fecha Resolución: </label> 
-            <input <%=strControlEnabled%> id="fechaResolucion" name="fechaResolucion" type="date" size="30" maxlength="50" value="<%=fechaResolucion%>" /> <br />
-        </div>
-        <div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="fecha">Fecha: </label> 
+        <div class="controls">
+            <input <%=strControlEnabled%>  id="fecha"
+                                           name="fecha" type="date" size="30" maxlength="50"
+                                           value="<%=fecha%>" /> 
+        </div> 
+    </div>
+    <div class="control-group">
+        <div class="controls">
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />
         </div>
-    </fieldset>
+    </div>
 </form>
