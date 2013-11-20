@@ -119,7 +119,7 @@ public class DocumentoDao {
                     oDocumentoBean.setUsuario(oUsuarioBean);
                     
                     oDocumentoBean.setEtiquetas(oMysql.getOne("documento", "etiquetas", oDocumentoBean.getId()));
-                
+                 oMysql.desconexion();
             } catch (Exception e) {
                 throw new Exception("DocumentoDao.getDocumento: Error: " + e.getMessage());
             } finally {
