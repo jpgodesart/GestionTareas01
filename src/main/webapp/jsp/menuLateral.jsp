@@ -263,6 +263,52 @@
     menu += "</ul></div></div></div>";
 %>
 <%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseIncidencias\">"
+            + "<i class=\"icon-user\"></i> Incidencias</a></div>"
+            + "<div id=\"collapseIncidencias\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=incidencias&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=incidencias&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseMetadocumento\">"
+            + "<i class=\"icon-user\"></i> Metadocumento</a></div>"
+            + "<div id=\"collapseMetadocumento\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=metadocumento&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=metadocumento&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
     menu += "</ul></div>";
 
 %>
