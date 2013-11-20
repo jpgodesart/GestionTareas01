@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.mysql.jdbc.Statement"%>
 <%@page import="net.daw.helper.Enum.Connection"%>
 <%@page import="net.daw.data.Mysql"%>
@@ -22,18 +23,22 @@
     String contenido = "";
     Integer id_documento = 0;
     String fecha = "";
+    String descId_documento ="";
 
 
-    if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
-        ComentBean oComentBean = (ComentBean) oContexto.getParametro();
-        id = oComentBean.getId();
-        titulo = oComentBean.getTitulo();
-        contenido = oComentBean.getContenido();
-        id_documento = oComentBean.getId_documento();
-        id_usuario = oComentBean.getId_usuario();
-        fecha = oComentBean.getFecha();
+    ComentBean oComentBean = (ComentBean) oContexto.getParametro();
+    id = oComentBean.getId();
+    titulo = oComentBean.getTitulo();
+    contenido = oComentBean.getContenido();
+   // id_usuario = oComentBean.getId_usuario();
+    id_documento = oComentBean.getId_documento().getId();
+    if (oComentBean.getId_documento().getId() > 0) {
+        descId_documento = oComentBean.getId_documento().getTitulo();
     }
- 
+    fecha = new SimpleDateFormat("yyyy-MM-dd").format(oComentBean.getFecha());
+
+
+
     if (oContexto.getMetodo().equals("update")) {
         strTitulo = "Edición";
         strValueBoton = "Modificar";
@@ -59,28 +64,29 @@
         <input type="hidden" name="class" value="coment" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
-        <div>
+        <div class="control-group">
             <label for="titulo">Título: </label> 
             <input <%=strControlEnabled%> id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
         </div>
-        <div>
+        <div class="control-group">
             <label for="contenido">Contenido: </label>
             <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" ><%=contenido%></textarea><br />
         </div>
 
-        <div>
-            <label for="fecha">Fecha: </label> 
-            <input <%=strControlEnabled%> id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /> <br />
+        <div class="control-group">
+            <label class="control-label" for="fecha">Fecha: </label> 
+            <div class="controls">
+                <input <%=strControlEnabled%>  id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /></div> 
         </div>
-       <!-- <div>
-            <label for="id_usuario">ID del Usuario: </label> 
-            <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<%=id_usuario%>" /> <br />
-        </div>
-        <div>
+        <!-- <div class="control-group">
+             <label for="id_usuario">ID del Usuario: </label> 
+             <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<%=id_usuario%>" /> <br />
+         </div>-->
+        <div class="control-group">
             <label for="id_documento">ID del Documento: </label> 
             <input <%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<%=id_documento%>" /> <br />
         </div>
-        <div>-->
+        <div>
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />
         </div>
     </fieldset>

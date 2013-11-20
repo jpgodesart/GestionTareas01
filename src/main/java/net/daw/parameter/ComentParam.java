@@ -4,6 +4,8 @@
  */
 package net.daw.parameter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.ComentBean;
 
@@ -32,7 +34,7 @@ public class ComentParam {
         return oComent;
     }
 
-    public ComentBean load(ComentBean oComent) throws NumberFormatException {
+    public ComentBean load(ComentBean oComent) throws NumberFormatException, ParseException {
         try {
             if ((request.getParameter("id") != null)) {
                 oComent.setId(Integer.parseInt(request.getParameter("id")));
@@ -44,16 +46,16 @@ public class ComentParam {
                 oComent.setContenido(request.getParameter("contenido"));
             }
             if ((request.getParameter("fecha") != null)) {
-                oComent.setFecha(request.getParameter("fecha"));
+                oComent.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha")));
             }
-            if ((request.getParameter("id_usuario") != null)) {
+        /*    if ((request.getParameter("id_usuario") != null)) {
                 oComent.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
-            }
+            }*/
             if ((request.getParameter("id_documento") != null)) {
-                oComent.setId_documento(Integer.parseInt(request.getParameter("id_documento")));
+                 oComent.getId_documento().setId(Integer.parseInt(request.getParameter("id_documento")));
             }
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
+            throw new NumberFormatException("ComentParam: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oComent;
     }
