@@ -29,20 +29,20 @@
     }
 %>
 <h1><%=strTitulo%> de tipodocumento</h1>
-<form class="semantic" action="Controller" method="post" id="lenguajeForm">
+<form class="semantic" action="Controller" method="post" id="tipodocumentoForm">
     <fieldset>
-        <legend>Formulario de Lenguaje</legend>
+        <legend>Formulario de Tipodocumento</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
         <input type="hidden" name="class" value="tipodocumento" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div>
             <label for="titulo">Descripción: </label> 
-            <textarea <%=strControlEnabled%> id="nombre" name="nombre" autofocus="autofocus"><%=descripcion%></textarea>
+            <textarea <%=strControlEnabled%> id="descripcion" name="descripcion" autofocus="autofocus"><%=descripcion%></textarea>
         </div>
         <div>
             <label for="titulo">Privado: </label> 
-            <input <%=strControlEnabled%> id="nombre" name="nombre" type="checkbox" autofocus="autofocus" value="true"  <% if(privado){ %><%="checked=\"checked\""%><% } %>/><br />
+            <input <%=strControlEnabled%> id="privado" name="privado" type="checkbox" autofocus="autofocus" value="1"  <% if(privado){ %><%="checked=\"checked\""%><% } %>/><br />
         </div>
         <div>
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />

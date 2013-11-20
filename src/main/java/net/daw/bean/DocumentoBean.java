@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.bean;
 
 import java.util.Date;
@@ -13,23 +12,23 @@ import java.util.Date;
  * @author al037294
  */
 public class DocumentoBean {
-    
-    private int id;
-    private String titulo;
-    private String contenido;
-    private String fecha;
-    private int nota;
-    private UsuarioBean usuario;
-    private String etiquetas;
+
+    private int id = 0;
+    private String titulo = "";
+    private String contenido = "";
+    private Date fecha = new Date();
+    private int nota = 0;
+    private UsuarioBean usuario = null;
+    private String etiquetas = "";
 
     public DocumentoBean() {
-        
+
     }
 
     public DocumentoBean(int id) {
         this.id = id;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -54,11 +53,11 @@ public class DocumentoBean {
         this.contenido = contenido;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -85,6 +84,5 @@ public class DocumentoBean {
     public void setUsuario(UsuarioBean usuario) {
         this.usuario = usuario;
     }
-    
-    
+
 }

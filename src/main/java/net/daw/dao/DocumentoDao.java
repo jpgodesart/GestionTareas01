@@ -5,7 +5,9 @@
  */
 package net.daw.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.DocumentoBean;
@@ -23,6 +25,7 @@ public class DocumentoDao {
 
     /**
      * Constructor Del DocumentoDao.
+     *
      * @param tipoConexion
      * @throws Exception
      */
@@ -33,6 +36,7 @@ public class DocumentoDao {
 
     /**
      * Obtiene el numero total de paginas.
+     *
      * @param intRegsPerPag
      * @param hmFilter
      * @param hmOrder
@@ -53,6 +57,7 @@ public class DocumentoDao {
 
     /**
      * Obtiene la pagina.
+     *
      * @param intRegsPerPag
      * @param intPage
      * @param hmFilter
@@ -80,6 +85,7 @@ public class DocumentoDao {
 
     /**
      * Obtiene los Valores de la Base de datos.
+     *
      * @param oDocumentoBean
      * @return Devuelve DocumentoBean con los valores de la base de datos.
      * @throws Exception
@@ -93,9 +99,15 @@ public class DocumentoDao {
                 } else {
                     oDocumentoBean.setTitulo(oMysql.getOne("documento", "titulo", oDocumentoBean.getId()));
                     oDocumentoBean.setContenido(oMysql.getOne("documento", "contenido", oDocumentoBean.getId()));
-                    oDocumentoBean.setFecha(oMysql.getOne("documento", "fecha", oDocumentoBean.getId()));
+                    String strFecha = oMysql.getOne("documento", "fecha", oDocumentoBean.getId());
+                    if (strFecha != null) {
+                        Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
+                        oDocumentoBean.setFecha(dFecha);
+                    } else {
+                        oDocumentoBean.setFecha(new Date(0));
+                    }
                     oDocumentoBean.setNota(Integer.parseInt(oMysql.getOne("documento", "nota", oDocumentoBean.getId())));
-                   // String intIdUsuario = oMysql.getOne("documento", "id_usuario", oDocumentoBean.getId());
+                    // String intIdUsuario = oMysql.getOne("documento", "id_usuario", oDocumentoBean.getId());
                     // if (intIdUsuario != null) {
                     //    oDocumentoBean.getUsuario().setId(Integer.parseInt(intIdUsuario));
                     //    UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
@@ -116,6 +128,7 @@ public class DocumentoDao {
 
     /**
      * Introduce los valores de DocumentoBean a la Base de datos.
+     *
      * @param oDocumentoBean
      * @throws Exception
      */
@@ -128,14 +141,15 @@ public class DocumentoDao {
             }
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "titulo", oDocumentoBean.getTitulo());
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "contenido", oDocumentoBean.getContenido());
-            oMysql.updateOne(oDocumentoBean.getId(), "documento", "fecha", oDocumentoBean.getFecha());
+            java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            oMysql.updateOne(oDocumentoBean.getId(), "documento", "fecha", oSimpleDateFormat.format(oDocumentoBean.getFecha()));
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "nota", Integer.toString(oDocumentoBean.getNota()));
             //Integer id_usuario = oDocumentoBean.getUsuario().getId();
-           // if (id_usuario > 0) {
-           //     oMysql.updateOne(oDocumentoBean.getId(), "documento", "id_usuario", id_usuario.toString());
-           // } else {
-           //     oMysql.setNull(oDocumentoBean.getId(), "documento", "id_usuario");
-          //  }
+            // if (id_usuario > 0) {
+            //     oMysql.updateOne(oDocumentoBean.getId(), "documento", "id_usuario", id_usuario.toString());
+            // } else {
+            //     oMysql.setNull(oDocumentoBean.getId(), "documento", "id_usuario");
+            //  }
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "etiquetas", oDocumentoBean.getEtiquetas());
             oMysql.commitTrans();
         } catch (Exception e) {
@@ -148,6 +162,7 @@ public class DocumentoDao {
 
     /**
      * Borra una fila de la Base de datos de la id almacenada en DocumentoBean.
+     *
      * @param oDocumentoBean
      * @throws Exception
      */
@@ -165,6 +180,7 @@ public class DocumentoDao {
 
     /**
      * Obtiene el numero de paginas.
+     *
      * @param hmFilter
      * @return
      * @throws Exception

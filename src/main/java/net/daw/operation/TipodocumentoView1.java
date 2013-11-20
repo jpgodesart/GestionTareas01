@@ -14,7 +14,7 @@ import net.daw.parameter.TipodocumentoParam;
 
 /**
  *
- * @author Diana Ortega
+ * @author Jacobo Segovia
  */
 public class TipodocumentoView1 implements Operation {
     
