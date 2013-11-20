@@ -35,8 +35,6 @@ public interface GenericData {
 
     public Boolean existsOne(String strTabla, int id) throws Exception;
 
-    public Boolean typeUser(String strTabla, String strTablaCompare, String strCampo, String idTabla, int idUsuario) throws Exception;
-
     public int getPages(String strTabla, int intRegsPerPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception;
 
     public int getCount(String strTabla, ArrayList<FilterBean> alFilter) throws Exception;

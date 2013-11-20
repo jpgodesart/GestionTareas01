@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import javax.servlet.http.HttpServlet;
+import net.daw.bean.AlumnoBean;
+import net.daw.bean.EmpresaBean;
+import net.daw.bean.ProfesorBean;
 import net.daw.bean.UsuarioBean;
 import net.daw.data.Mysql;
 import net.daw.helper.Enum;
@@ -106,22 +109,23 @@ public class UsuarioDao extends HttpServlet {
     public UsuarioBean type(UsuarioBean oUsuarioBean) throws Exception {
 
         try {
-            oMysql.conexion(enumTipoConexion);
-            
-            Boolean isAlumno = oMysql.typeUser("alumno", "usuario", "alumno.id_usuario", "alumno.id_usuario", oUsuarioBean.getId());
-            Boolean isProfesor = oMysql.typeUser("profesor", "usuario", "profesor.id_usuario", "profesor.id_usuario", oUsuarioBean.getId());
-            Boolean isEmpresa = oMysql.typeUser("empresa", "usuario", "empresa.id_usuario", "empresa.id_usuario", oUsuarioBean.getId());
-
-            if (isAlumno) {
-                oUsuarioBean.setTipoUsuario(Enum.TipoUsuario.Alumno);
-            } else if (isProfesor) {
+            AlumnoDao oAlumnoDao = new AlumnoDao(enumTipoConexion);
+            AlumnoBean oAlumnoBean = oAlumnoDao.getFromId_usuario(oUsuarioBean);
+            oUsuarioBean.setTipoUsuario(Enum.TipoUsuario.Alumno);
+        } catch (Exception e1) {
+            try {
+                ProfesorDao oProfesorDao = new ProfesorDao(enumTipoConexion);
+                ProfesorBean oProfesorBean = oProfesorDao.getFromId_usuario(oUsuarioBean);
                 oUsuarioBean.setTipoUsuario(Enum.TipoUsuario.Profesor);
-            } else if (isEmpresa) {
-                oUsuarioBean.setTipoUsuario(Enum.TipoUsuario.Empresa);
+            } catch (Exception e2) {
+                try {
+                    EmpresaDao oEmpresaDao = new EmpresaDao(enumTipoConexion);
+                    EmpresaBean oEmpresaBean = oEmpresaDao.getFromId_usuario(oUsuarioBean);
+                    oUsuarioBean.setTipoUsuario(Enum.TipoUsuario.Empresa);
+                } catch (Exception e3) {
+                    throw new Exception("UsuarioDao.type: Error: " + e3.getMessage());
+                }
             }
-            
-        } catch (Exception e) {
-            throw new Exception("UsuarioDao.getUsuario: Error: " + e.getMessage());
         } finally {
             oMysql.desconexion();
         }

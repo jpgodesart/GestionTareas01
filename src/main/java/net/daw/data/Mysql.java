@@ -188,23 +188,6 @@ public class Mysql implements GenericData {
     }
 
     @Override
-    public Boolean typeUser(String strTabla, String strTablaCompare, String strCampo, String idTabla, int idUsuario) throws Exception {
-        int result = 0;
-        Statement oStatement;
-        try {
-            oStatement = (Statement) oConexionMySQL.createStatement();
-            String strSQL = "SELECT " + strCampo + " FROM " + strTabla + " , " + strTablaCompare + " WHERE " + idTabla + " = " + idUsuario;
-            ResultSet rs = oStatement.executeQuery(strSQL);
-            while (rs.next()) {
-                result = rs.getInt(strCampo);
-            }
-            return (result > 0);
-        } catch (SQLException e) {
-            throw new Exception("mysql.existsOne: Error en la consulta: " + e.getMessage());
-        }
-    }
-
-    @Override
     public int getPages(String strTabla, int intRegsPerPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         int intResult = 0;
         Statement oStatement;
