@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.DocumentoBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 
@@ -91,14 +92,14 @@ public class DocumentoDao {
      * @throws Exception
      */
     public DocumentoBean get(DocumentoBean oDocumentoBean) throws Exception {
-        if (oDocumentoBean.getId() > 0) {
+        
             try {
                 oMysql.conexion(enumTipoConexion);
-                if (!oMysql.existsOne("documento", oDocumentoBean.getId())) {
-                    oDocumentoBean.setId(0);
-                } else {
+               
                     oDocumentoBean.setTitulo(oMysql.getOne("documento", "titulo", oDocumentoBean.getId()));
+                    
                     oDocumentoBean.setContenido(oMysql.getOne("documento", "contenido", oDocumentoBean.getId()));
+                    
                     String strFecha = oMysql.getOne("documento", "fecha", oDocumentoBean.getId());
                     if (strFecha != null) {
                         Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
@@ -106,23 +107,25 @@ public class DocumentoDao {
                     } else {
                         oDocumentoBean.setFecha(new Date(0));
                     }
+                    
                     oDocumentoBean.setNota(Integer.parseInt(oMysql.getOne("documento", "nota", oDocumentoBean.getId())));
-                    // String intIdUsuario = oMysql.getOne("documento", "id_usuario", oDocumentoBean.getId());
-                    // if (intIdUsuario != null) {
-                    //    oDocumentoBean.getUsuario().setId(Integer.parseInt(intIdUsuario));
-                    //    UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-                    //    oDocumentoBean.setUsuario(oUsuarioDao.get(oDocumentoBean.getUsuario()));
-                    // }
+                    
+                    UsuarioBean oUsuarioBean = new UsuarioBean();
+                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("documento", "id_usuario", oDocumentoBean.getId())));
+                    
+                    UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+                    oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
+                    
+                    oDocumentoBean.setUsuario(oUsuarioBean);
+                    
                     oDocumentoBean.setEtiquetas(oMysql.getOne("documento", "etiquetas", oDocumentoBean.getId()));
-                }
+                
             } catch (Exception e) {
                 throw new Exception("DocumentoDao.getDocumento: Error: " + e.getMessage());
             } finally {
                 oMysql.desconexion();
             }
-        } else {
-            oDocumentoBean.setId(0);
-        }
+        
         return oDocumentoBean;
     }
 
@@ -140,22 +143,18 @@ public class DocumentoDao {
                 oDocumentoBean.setId(oMysql.insertOne("documento"));
             }
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "titulo", oDocumentoBean.getTitulo());
-            String contenido = "";
+            /*String contenido = "";
             if (oDocumentoBean.getContenido() != null) {
                 contenido = oDocumentoBean.getContenido().replace("'''", "''''''");
                 //contenido = contenido.replace("''", "''''");
                 System.out.println(contenido);
-            }
-            oMysql.updateOne(oDocumentoBean.getId(), "documento", "contenido", contenido);
+            }*/
+            oMysql.updateOne(oDocumentoBean.getId(), "documento", "contenido", oDocumentoBean.getContenido());
             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "fecha", oSimpleDateFormat.format(oDocumentoBean.getFecha()));
             oMysql.updateOne(oDocumentoBean.getId(), "documento", "nota", Integer.toString(oDocumentoBean.getNota()));
-            //Integer id_usuario = oDocumentoBean.getUsuario().getId();
-            // if (id_usuario > 0) {
-            //     oMysql.updateOne(oDocumentoBean.getId(), "documento", "id_usuario", id_usuario.toString());
-            // } else {
-            //     oMysql.setNull(oDocumentoBean.getId(), "documento", "id_usuario");
-            //  }
+            oMysql.updateOne(oDocumentoBean.getId(), "documento", "id_usuario", Integer.toString(oDocumentoBean.getUsuario().getId()));
+            
             String etiquetasFormateadas = "";
             if (oDocumentoBean.getEtiquetas() != null) {
                 String[] etiquetas = oDocumentoBean.getEtiquetas().split(",");

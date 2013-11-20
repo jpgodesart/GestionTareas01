@@ -23,11 +23,14 @@ public class DocumentoBean {
     private String etiquetas = "";
 
     public DocumentoBean() {
-
+        this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
     }
 
     public DocumentoBean(int id) {
         this.id = id;
+        this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
     }
 
     public int getId() {

@@ -14,6 +14,8 @@
     String contenido = "";
     String fecha = "";
     Integer nota = 0;
+    String id_usuario = "";
+    String descId_usuario = "";
     String etiquetas = "";
 
     DocumentoBean oDocumentoBean = (DocumentoBean) oContexto.getParametro();
@@ -22,6 +24,10 @@
     contenido = oDocumentoBean.getContenido();
     fecha = new SimpleDateFormat("yyyy-MM-dd").format(oDocumentoBean.getFecha());
     nota = oDocumentoBean.getNota();
+    id_usuario = Integer.toString(oDocumentoBean.getUsuario().getId());
+    if (oDocumentoBean.getUsuario().getId() > 0) {
+        descId_usuario = oDocumentoBean.getUsuario().getLogin();
+    }
     etiquetas = oDocumentoBean.getEtiquetas();
 
     if (oContexto.getMetodo().equals("update")) {
@@ -65,6 +71,16 @@
                 <input id="nota" name="nota" type="text" size="30" maxlength="50" value="<%=nota%>" /> <br />
             </div>
         </div>
+        <div class="control-group">
+            <label class="control-label" for="id_usuario">Id_Usuario: </label> 
+            <div class="controls">                
+                <input readonly="true" id="id_usuario" class="input-mini"
+                       name="id_usuario" type="text" size="5" maxlength="5"
+                       value="<%=id_usuario%>" />  
+                <input type="submit" name="searchingfor" value="id_usuario" />
+                <span class="alert alert-success"><%=descId_usuario%></span>
+            </div>
+        </div> 
         <div class="control-group">
             <label class="control-label" for="etiquetas">Etiquetas: </label> 
             <div class="controls">
