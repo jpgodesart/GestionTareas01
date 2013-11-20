@@ -16,7 +16,7 @@
     String strControlEnabled = "";
     String strValueBoton = "Enviar";
     Integer id = 0;
-    Integer id_usuario = 0;
+    String id_usuario = "";
     String resumen = "";
     String cambios = "";
     String id_estado = "";
@@ -53,7 +53,7 @@
     
      id_usuario = Integer.toString(oIncidenciasBean.getUsuario().getId());
     if (oIncidenciasBean.getUsuario().getId() > 0) {
-       nomid_usuario = oIncidenciasBean.getUsuario().getId();
+       nomid_usuario = Integer.toString(oIncidenciasBean.getUsuario().getId());
     }
     
     
@@ -93,17 +93,42 @@
 
         
         <div class="control-group">
-        <label class="control-label" for="id_metadocumento">Id_Estado: </label> 
+        <label class="control-label" for="id_estado">Id_Estado: </label> 
         <div class="controls">                
             <input readonly="true" id="id_estado" class="input-mini"
                    name="id_estado" type="text" size="5" maxlength="5"
                    value="<%=id_estado%>" />  
             <input <%=strControlEnabled%> type="submit" name="searchingfor" value="estado" />
-            <span class="alert alert-success"><%=descid_estado%></span>
+            <span class="alert alert-success"><%=nomid_estado%></span>
         </div>
     </div>  
         
         
+        <div class="control-group">
+        <label class="control-label" for="id_repositorio">Id_Repositorio: </label> 
+        <div class="controls">                
+            <input readonly="true" id="id_repositorio" class="input-mini"
+                   name="id_repositorio" type="text" size="5" maxlength="5"
+                   value="<%=id_repositorio%>" />  
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="repositorio" />
+            <span class="alert alert-success"><%=titid_repositorio%></span>
+        </div>
+    </div>
+        
+        
+        
+        
+        
+        <div class="control-group">
+        <label class="control-label" for="id_usuario">Id_Usuario: </label> 
+        <div class="controls">                
+            <input readonly="true" id="id_usuario" class="input-mini"
+                   name="id_usuario" type="text" size="5" maxlength="5"
+                   value="<%=id_usuario%>" />  
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="usuario" />
+            <span class="alert alert-success"><%=nomid_usuario%></span>
+        </div>
+    </div> 
         
         
         
