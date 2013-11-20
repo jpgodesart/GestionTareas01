@@ -148,7 +148,7 @@
             BolsaBean oBolsaBEAN = oIterador.next();
             //getOne(String strTabla, String strCampo, int id)
             Mysql sql = new Mysql();
-            //----------------------------------------------------obtener titulos de...
+            //----------------------------------------------------obtener titulos de...aqui no, en el dao
             String documento1 = sql.getOne("documento", "titulo", oBolsaBEAN.getId_documento1());
     %>
     <tr>
