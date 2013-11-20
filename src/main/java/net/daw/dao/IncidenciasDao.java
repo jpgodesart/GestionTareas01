@@ -33,7 +33,7 @@ public class IncidenciasDao {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
-            pages = oMysql.getPages("metadocumentos", intRegsPerPag, alFilter, hmOrder);
+            pages = oMysql.getPages("incidencias", intRegsPerPag, alFilter, hmOrder);
             oMysql.desconexion();
             return pages;
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class IncidenciasDao {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
-            pages = oMysql.getCount("metadocumentos", hmFilter);
+            pages = oMysql.getCount("incidencias", hmFilter);
             oMysql.desconexion();
             return pages;
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class IncidenciasDao {
         ArrayList<IncidenciasBean> arrIncidencias = new ArrayList<>();
         try {
             oMysql.conexion(enumTipoConexion);
-            arrId = oMysql.getPage("metadocumentos", intRegsPerPag, intPage, alFilter, hmOrder);
+            arrId = oMysql.getPage("incidencias", intRegsPerPag, intPage, alFilter, hmOrder);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 IncidenciasBean oIncidenciasBean = new IncidenciasBean(iterador.next());
@@ -150,7 +150,7 @@ public class IncidenciasDao {
     public void remove(IncidenciasBean oIncidenciasBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
-            oMysql.removeOne(oIncidenciasBean.getId(), "metadocumentos");
+            oMysql.removeOne(oIncidenciasBean.getId(), "incidencias");
             oMysql.desconexion();
         } catch (Exception e) {
             throw new Exception("IncidenciasDao.remove: Error: " + e.getMessage());

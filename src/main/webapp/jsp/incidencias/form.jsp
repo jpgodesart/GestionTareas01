@@ -19,22 +19,45 @@
     Integer id_usuario = 0;
     String resumen = "";
     String cambios = "";
-    Integer id_estado = 0;
-    Integer id_repositorio = 0;
+    String id_estado = "";
+    String id_repositorio = "";
     String fechaAlta = "";
     String fechaResolucion = "";
+    String nomid_estado="";
+    String titid_repositorio= "";
+    String nomid_usuario= "";
 
     if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
         IncidenciasBean oIncidenciasBean = (IncidenciasBean) oContexto.getParametro();
         id = oIncidenciasBean.getId();
         resumen = oIncidenciasBean.getResumen();
         cambios = oIncidenciasBean.getCambios();
-        id_estado = oIncidenciasBean.getId_estado();
-        id_repositorio = oIncidenciasBean.getId_repositorio();
-        id_usuario = oIncidenciasBean.getId_usuario();
+        
+        
+        
         fechaAlta = oIncidenciasBean.getFechaAlta();
         fechaResolucion = oIncidenciasBean.getFechaResolucion();
     }
+     IncidenciasBean oIncidenciasBean = (IncidenciasBean) oContexto.getParametro();
+    id_estado = Integer.toString(oIncidenciasBean.getEstado().getId());
+    if (oIncidenciasBean.getEstado().getId() > 0) {
+       nomid_estado = oIncidenciasBean.getEstado().getNombre();
+    }
+    
+    
+    id_repositorio = Integer.toString(oIncidenciasBean.getRepositorio().getId());
+    if (oIncidenciasBean.getEstado().getId() > 0) {
+       titid_repositorio = oIncidenciasBean.getRepositorio().getTitulo();
+    }
+    
+    
+     id_usuario = Integer.toString(oIncidenciasBean.getUsuario().getId());
+    if (oIncidenciasBean.getUsuario().getId() > 0) {
+       nomid_usuario = oIncidenciasBean.getUsuario().getId();
+    }
+    
+    
+    
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
@@ -48,15 +71,7 @@
         strTitulo = "Alta";
         strValueBoton = "Crear";
     }
-/*
-    if (oContexto.getMetodo().equals("new")) {
-        Mysql oMysql;
-        net.daw.helper.Enum.Connection enumTipoConexion;
-        oMysql = new Mysql();
-        oMysql.conexion(Connection.DataSource);
-        
-        id_estado = Integer.parseInt(oMysql.getId("estado", "true", "true"));
-    }*/
+
 
 %>
 <h1><%=strTitulo%> de cliente</h1>
@@ -76,6 +91,25 @@
             <textarea <%=strControlEnabled%> id="cambios" name="cambios" type="text" size="30" maxlength="50" value="<%=cambios%>" ></textarea><br />
         </div>
 
+        
+        <div class="control-group">
+        <label class="control-label" for="id_metadocumento">Id_Estado: </label> 
+        <div class="controls">                
+            <input readonly="true" id="id_estado" class="input-mini"
+                   name="id_estado" type="text" size="5" maxlength="5"
+                   value="<%=id_estado%>" />  
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="estado" />
+            <span class="alert alert-success"><%=descid_estado%></span>
+        </div>
+    </div>  
+        
+        
+        
+        
+        
+        
+        
+        
         <div>
             <label for="fechaAlta">Fecha Alta: </label> 
             <input <%=strControlEnabled%> id="fechaAlta" name="fechaAlta" type="date" size="30" maxlength="50" value="<%=fechaAlta%>" /> <br />
