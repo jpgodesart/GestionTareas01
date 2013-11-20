@@ -15,6 +15,7 @@
     String contenidoParse = "";
     String fecha = "";
     Integer nota = 0;
+    String usuario = "";
     String etiquetas = "";
 
     DocumentoBean oDocumentoBean = (DocumentoBean) oContexto.getParametro();
@@ -24,6 +25,10 @@
     contenidoParse = oDocumentoBean.getContenidoParse();
     fecha = new SimpleDateFormat("dd-MM-yyyy").format(oDocumentoBean.getFecha());
     nota = oDocumentoBean.getNota();
+    usuario = oDocumentoBean.getUsuario().getLogin();
+    if (usuario.isEmpty()!=true) {
+        usuario = usuario.substring(0, 1).toUpperCase() + usuario.substring(1, usuario.length());
+    }
     etiquetas = oDocumentoBean.getEtiquetas();
 
     System.out.println(oDocumentoBean.getContenidoParse());
@@ -51,7 +56,7 @@
 <form class="form-horizontal" action="Controller" method="post" id="clienteForm">
     <fieldset>
         <legend>
-            <p>Fecha: <%=fecha%></p><p <%=classNota%>>Nota: <%=nota%></p>
+            <p>Fecha: <%=fecha%></p><p <%=classNota%>>Nota: <%=nota%></p><p>Autor: <%=usuario%></p>
         </legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
         <input type="hidden" name="class" value="documento" /> 

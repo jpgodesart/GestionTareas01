@@ -77,7 +77,7 @@
                 <input readonly="true" id="id_usuario" class="input-mini"
                        name="id_usuario" type="text" size="5" maxlength="5"
                        value="<%=id_usuario%>" />  
-                <input type="submit" name="searchingfor" value="id_usuario" />
+                <input type="submit" name="searchingfor" value="usuario" />
                 <span class="alert alert-success"><%=descId_usuario%></span>
             </div>
         </div> 
