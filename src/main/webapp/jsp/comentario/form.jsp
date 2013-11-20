@@ -34,11 +34,7 @@
     
     id_usuario = Integer.toString(oComentBean.getId_usuario().getId());
     if (oComentBean.getId_usuario().getId() > 0) {
-        descUsuario = oComentBean.getId_usuario().getId();
-    }
-    id_documento = Integer.toString(oComentBean.getId_documento().getId());
-    if (oComentBean.getId_documento().getId() > 0) {
-        descDocumento = oComentBean.getId_documento().getDescripcion();
+        descUsuario = Integer.toString(oComentBean.getId_usuario().getId());
     }
     if (oComentBean.getId_documento().getId() > 0) {
         descDocumento = oComentBean.getId_documento().getTitulo();
