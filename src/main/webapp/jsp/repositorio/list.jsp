@@ -13,7 +13,7 @@
     Iterator<RepositorioBean> oIterador = alPagina.listIterator();
 %>
 <div class="row-fluid">
-    <div class="span9">
+    <div class="span8">
         <h1>Listado de repositorios</h1>
         <%
             if (!oIterador.hasNext()) {
@@ -34,22 +34,22 @@
                 ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
                 Iterator iterator = alFilter.iterator();
                 int bAddProductToClient = 0;
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     FilterBean oFilterBean = (FilterBean) iterator.next();
                     out.print("(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + " )");
-                    if (oFilterBean.getFilter().equals("id_usuario") && oFilterBean.getFilterOperator().equals("equals")){
+                    if (oFilterBean.getFilter().equals("id_usuario") && oFilterBean.getFilterOperator().equals("equals")) {
                         bAddProductToClient = Integer.parseInt(oFilterBean.getFilterValue());
                     }
                 }
                 out.print("<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>");
-                if (bAddProductToClient>0){
-                   out.print("<a class=\"btn\" type=\"button\" href=\"Controller?searchingfor=cliente&class=compra&method=new&id_cliente=" + bAddProductToClient + "\">Añadir producto al cliente " + bAddProductToClient + "</a>"); 
+                if (bAddProductToClient > 0) {
+                    out.print("<a class=\"btn\" type=\"button\" href=\"Controller?searchingfor=cliente&class=compra&method=new&id_cliente=" + bAddProductToClient + "\">Añadir producto al cliente " + bAddProductToClient + "</a>");
                 }
             } else {
                 out.print("<p>Sin filtrar</p>");
             }
         %>
-         <%
+        <%
             Integer registers = (Integer) alObjetoParametro.get(2);
             out.print("Mostrando " + oContexto.getNrpp().toString() + " registros de un total de " + registers.toString());
         %>  
@@ -71,9 +71,11 @@
                     <span>
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
-                            <option>id_cliente</option>
-                            <option>id_producto</option>
-                            <option>cantidad</option>
+                            <option>titulo</option>
+                            <option>contenido</option>
+                            <option>id_usuario</option>
+                            <option>id_lenguaje</option>
+                             <option>id_documento</option>
                             <option>fecha</option>                            
                         </select> 
                     </span>
@@ -96,7 +98,7 @@
                 </fieldset>
             </form>
         </div>
-                            <div class="text-right">
+        <div class="text-right">
             <legend>Registros por página</legend> 
             <form class="navbar-form pull-right" action="Controller" method="post" id="nrrpForm" >
                 <fieldset>                                               
@@ -135,28 +137,28 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
         <th>titulo
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=titulo&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=titulo&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
         <th>contenido
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=contenido&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=contenido&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
         <th>id_usuario
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
         <th>id_lenguaje
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_lenguaje&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_lenguaje&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
         <th>id_documento
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
         <th>fecha
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
         <th>Operaciones</th>
     </tr>

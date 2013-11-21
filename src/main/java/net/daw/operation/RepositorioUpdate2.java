@@ -30,7 +30,7 @@ public class RepositorioUpdate2 implements Operation {
                 oContexto.setFase("1");
                 oContexto.setSearchingFor("lenguaje");
                 oContexto.setClaseRetorno("repositorio");
-                oContexto.setMetodoRetorno("new");
+                oContexto.setMetodoRetorno("update");
                 oContexto.setFaseRetorno("1");
                 oContexto.removeParam("id_lenguaje");
                 LenguajeList1 oOperacion = new LenguajeList1();
