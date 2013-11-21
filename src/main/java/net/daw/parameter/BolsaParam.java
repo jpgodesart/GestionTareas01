@@ -42,10 +42,10 @@ public class BolsaParam {
     public BolsaBean load(BolsaBean oBolsaBean) throws NumberFormatException {
         try {
             if ((request.getParameter("id_documento1") != null)) {
-                oBolsaBean.setId_documento1(Integer.parseInt(request.getParameter("id_documento1")));
+                oBolsaBean.getDocumento1().setId(Integer.parseInt(request.getParameter("id_documento1")));
             }
             if ((request.getParameter("id_documento2") != null)) {
-                oBolsaBean.setId_documento2(Integer.parseInt(request.getParameter("id_documento2")));
+                oBolsaBean.getDocumento2().setId(Integer.parseInt(request.getParameter("id_documento2")));
             }
             if ((request.getParameter("fecha") != null) && (request.getParameter("fecha") != "")) {
                 Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha"));

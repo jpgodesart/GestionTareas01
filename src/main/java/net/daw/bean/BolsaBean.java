@@ -17,6 +17,8 @@ public class BolsaBean {
     private int id_documento1;
     private int id_documento2;
     private Date fecha;
+    private DocumentoBean documento1;
+    private DocumentoBean documento2;
 
     public BolsaBean() {
 
@@ -58,4 +60,20 @@ public class BolsaBean {
         this.fecha = fecha;
     }
 
+    public DocumentoBean getDocumento1() {
+        return documento1;
+    }
+
+    public void setDocumento1(DocumentoBean documento1) {
+        this.documento1 = documento1;
+    }
+
+    public DocumentoBean getDocumento2() {
+        return documento2;
+    }
+
+    public void setDocumento2(DocumentoBean documento2) {
+        this.documento2 = documento2;
+    }
+    
 }

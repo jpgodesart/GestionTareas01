@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.BolsaBean;
+import net.daw.bean.DocumentoBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 
@@ -93,12 +94,19 @@ public class BolsaDao {
     public BolsaBean get(BolsaBean oBolsaBean) throws Exception {
         if (oBolsaBean.getId() > 0) {
             try {
+                DocumentoBean oDocumentoBean1 = new DocumentoBean();
+                DocumentoBean oDocumentoBean2 = new DocumentoBean();
+                
                 oMysql.conexion(enumTipoConexion);
                 if (!oMysql.existsOne("bolsa", oBolsaBean.getId())) {
                     oBolsaBean.setId(0);
                 } else {
                     oBolsaBean.setId_documento1(Integer.parseInt(oMysql.getOne("bolsa", "id_documento1", oBolsaBean.getId())));
                     oBolsaBean.setId_documento2(Integer.parseInt(oMysql.getOne("bolsa", "id_documento2", oBolsaBean.getId())));
+                    
+                    oDocumentoBean1.setTitulo(oMysql.getOne("documento", "titulo", oBolsaBean.getId_documento1()));
+                    
+                    
                     String strFecha = oMysql.getOne("bolsa", "fecha", oBolsaBean.getId());
                     if (strFecha != null) {
                         Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
@@ -106,7 +114,7 @@ public class BolsaDao {
                     } else {
                         oBolsaBean.setFecha(new Date(0));
                     }
-                    
+
                 }
             } catch (Exception e) {
                 throw new Exception("BolsaDao.getBolsa: Error: " + e.getMessage());

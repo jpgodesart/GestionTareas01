@@ -146,15 +146,12 @@
     </tr>
     <%        while (oIterador.hasNext()) {
             BolsaBean oBolsaBEAN = oIterador.next();
-            //getOne(String strTabla, String strCampo, int id)
-            Mysql sql = new Mysql();
-            //----------------------------------------------------obtener titulos de...aqui no, en el dao
-            String documento1 = sql.getOne("documento", "titulo", oBolsaBEAN.getId_documento1());
+            
     %>
     <tr>
         <td><%=oBolsaBEAN.getId()%></td>
-        <td><%=oBolsaBEAN.getId_documento1()%></td>
-        <td><%=oBolsaBEAN.getId_documento2()%></td>
+        <td><%=oBolsaBEAN.getId_documento1()+" "+oBolsaBEAN.getDocumento1().getTitulo()%></td>
+        <td><%=oBolsaBEAN.getId_documento2()+" "%></td>
         <td><%=oBolsaBEAN.getFecha()%></td>
 
 
