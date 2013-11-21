@@ -16,17 +16,18 @@ public class ParserConverter {
     /**
      *
      * @param text
+     * @param token
+     * @param type
      * @return
      * @throws java.lang.Exception
      */
-    public String h(String text, String token) throws Exception {
+    public String h(String text, String token, int type) throws Exception {
 
         String[] textSplit = text.split(token);
 
         String textFomat = "";
         String close = "";
         boolean h6 = false;
-        int hx = token.length();
 
         try {
             for (int x = 0; x < textSplit.length; x++) {
@@ -38,14 +39,14 @@ public class ParserConverter {
                     h6 = true;
                 }
 
-                textFomat += textSplit[x] + "<" + close + "h"+hx+">";
+                textFomat += textSplit[x] + "<" + close + "h"+type+">";
 
             }
             if (h6 == true) {
                 textFomat = textFomat.substring(0, textFomat.length() - 4);
             }
         } catch (Exception e) {
-            throw new ServletException("Method h"+hx+" Error: " + e.getMessage());
+            throw new ServletException("Method h"+type+" Error: " + e.getMessage());
         }
         return textFomat;
     }

@@ -5,12 +5,6 @@
  */
 package net.daw.helper;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
 import javax.servlet.ServletException;
 
 /**
@@ -22,12 +16,12 @@ public class TextParser {
     public static String toHtml(String text) throws Exception {
         ParserConverter oParserConverter = new ParserConverter();
         try {
-            text = oParserConverter.h(text, "======");
-            text = oParserConverter.h(text, "=====");
-            text = oParserConverter.h(text, "====");
-            text = oParserConverter.h(text, "===");
-            text = oParserConverter.h(text, "==");
-            text = oParserConverter.h(text, "=");
+            text = oParserConverter.h(text, "======", 6);
+            text = oParserConverter.h(text, "=====", 5);
+            text = oParserConverter.h(text, "====", 4);
+            text = oParserConverter.h(text, "===", 3);
+            text = oParserConverter.h(text, "==", 2);
+            text = oParserConverter.h(text, "=", 1);
             text = oParserConverter.aExtern(text);
             text = oParserConverter.p(text);
         } catch (Exception e) {
