@@ -173,9 +173,38 @@
         <td><%=oIncidenciasBEAN.getId()%></td>
         <td><%=oIncidenciasBEAN.getResumen()%></td>
         <td><%=oIncidenciasBEAN.getCambios()%></td>
-        <td><%=oIncidenciasBEAN.getId_estado()%></td>
-         <td><%=oIncidenciasBEAN.getId_repositorio()%></td>
-        <td><%=oIncidenciasBEAN.getId_usuario()%></td>
+        
+        
+        <td>
+            <%=oIncidenciasBEAN.getEstado().getNombre()%> (<%=oIncidenciasBEAN.getEstado().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=estado&method=list&id=<%=oIncidenciasBEAN.getId()%>&searchingfor=estado&returnclass=incidencias&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
+        
+        
+
+         
+         <td>
+            <%=oIncidenciasBEAN.getRepositorio().getTitulo()%> (<%=oIncidenciasBEAN.getRepositorio().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=repositorio&method=list&id=<%=oIncidenciasBEAN.getId()%>&searchingfor=repositorio&returnclass=incidencias&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
+         
+       
+        
+        
+        <td>
+            <%=oIncidenciasBEAN.getUsuario().getId()%> (<%=oIncidenciasBEAN.getUsuario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oIncidenciasBEAN.getId()%>&searchingfor=usuario&returnclass=incidencias&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
+        
+        
+        
+        
         <td><%=oIncidenciasBEAN.getFechaAlta()%></td>
         <td><%=oIncidenciasBEAN.getFechaResolucion()%></td>
                

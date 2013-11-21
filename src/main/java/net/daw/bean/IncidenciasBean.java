@@ -10,7 +10,9 @@ package net.daw.bean;
  */
 public class IncidenciasBean {
     private int id = 0;
-    private int id_usuario = 0;
+    private EstadoBean estado = null;
+    private RepositorioBean repositorio = null;
+    private UsuarioBean usuario = null;
     private String resumen = "";
     private String cambios = "";
     private int id_estado = 0;
@@ -34,13 +36,30 @@ public class IncidenciasBean {
         this.id = id;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public EstadoBean getEstado() {
+        return estado;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setEstado(EstadoBean estado) {
+        this.estado = estado;
     }
+
+    public RepositorioBean getRepositorio() {
+        return repositorio;
+    }
+
+    public void setRepositorio(RepositorioBean repositorio) {
+        this.repositorio = repositorio;
+    }
+
+    public UsuarioBean getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioBean usuario) {
+        this.usuario = usuario;
+    }
+   
 
     public String getResumen() {
         return resumen;
