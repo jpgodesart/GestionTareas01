@@ -16,12 +16,12 @@ public class TextParser {
     public static String toHtml(String text) throws Exception {
         ParserConverter oParserConverter = new ParserConverter();
         try {
-            text = oParserConverter.h6(text);
-            text = oParserConverter.h5(text);
-            text = oParserConverter.h4(text);
-            text = oParserConverter.h3(text);
-            text = oParserConverter.h2(text);
-            text = oParserConverter.h1(text);
+            text = oParserConverter.h(text,"======");
+            text = oParserConverter.h(text,"=====");
+            text = oParserConverter.h(text,"====");
+            text = oParserConverter.h(text,"===");
+            text = oParserConverter.h(text,"==");
+            text = oParserConverter.h(text,"=");
             text = oParserConverter.aExtern(text);
             text = oParserConverter.p(text);
         } catch (Exception e) {
