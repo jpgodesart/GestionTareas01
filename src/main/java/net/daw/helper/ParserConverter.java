@@ -26,6 +26,7 @@ public class ParserConverter {
         String textFomat = "";
         String close = "";
         boolean h6 = false;
+        int hx = token.length();
 
         try {
             for (int x = 0; x < textSplit.length; x++) {
@@ -37,14 +38,14 @@ public class ParserConverter {
                     h6 = true;
                 }
 
-                textFomat += textSplit[x] + "<" + close + "h6>";
+                textFomat += textSplit[x] + "<" + close + "h"+hx+">";
 
             }
             if (h6 == true) {
                 textFomat = textFomat.substring(0, textFomat.length() - 4);
             }
         } catch (Exception e) {
-            throw new ServletException("Method h6 Error: " + e.getMessage());
+            throw new ServletException("Method h"+hx+" Error: " + e.getMessage());
         }
         return textFomat;
     }
