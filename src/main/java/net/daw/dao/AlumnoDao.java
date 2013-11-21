@@ -63,6 +63,18 @@ public class AlumnoDao {
         }
     }
 
+    public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+        int pages;
+        try {
+            oMysql.conexion(enumTipoConexion);
+            pages = oMysql.getCount("alumno", hmFilter);
+            oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("AlumnoDao.getCount: Error: " + e.getMessage());
+        }
+    }
+
     public AlumnoBean get(AlumnoBean oAlumnoBean) throws Exception {
         if (oAlumnoBean.getId() > 0) {
             try {
@@ -152,5 +164,24 @@ public class AlumnoDao {
         } finally {
             oMysql.desconexion();
         }
+    }
+
+    public AlumnoBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {
+        AlumnoBean oAlumnoBean = new AlumnoBean();
+        if (oUsuarioBean.getId() > 0) {
+            try {
+                oMysql.conexion(enumTipoConexion);
+                String id_usuario = Integer.toString(oUsuarioBean.getId());
+                Integer id_user = Integer.parseInt(oMysql.getId("alumno", "id_usuario", id_usuario));
+                oAlumnoBean.setId(id_user);
+            } catch (Exception e) {
+                throw new Exception("AlumnoDao.getFromId_usuario: Error: " + e.getMessage());
+            } finally {
+                oMysql.desconexion();
+            }
+        } else {
+            oAlumnoBean.setId(0);
+        }
+        return oAlumnoBean;
     }
 }

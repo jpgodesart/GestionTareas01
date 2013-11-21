@@ -63,6 +63,18 @@ public class ProfesorDao {
         }
     }
 
+    public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+        int pages;
+        try {
+            oMysql.conexion(enumTipoConexion);
+            pages = oMysql.getCount("profesor", hmFilter);
+            oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("ProfesorDao.getCount: Error: " + e.getMessage());
+        }
+    }
+
     public ProfesorBean get(ProfesorBean oProfesorBean) throws Exception {
         if (oProfesorBean.getId() > 0) {
             try {
@@ -140,5 +152,23 @@ public class ProfesorDao {
         } finally {
             oMysql.desconexion();
         }
+    }
+    
+    public ProfesorBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {        
+        ProfesorBean oProfesorBean=new ProfesorBean();
+        if (oUsuarioBean.getId()> 0) {
+            try {
+                oMysql.conexion(enumTipoConexion);      
+                
+                    oProfesorBean.setId(Integer.parseInt(oMysql.getId("profesor", "id_usuario", Integer.toString(oUsuarioBean.getId()))));                                                                   
+            } catch (Exception e) {                
+                throw new Exception("ProfesorDao.getProfesor: Error: " + e.getMessage());
+            } finally {
+                oMysql.desconexion();
+            }
+        } else {
+            oProfesorBean.setId(0);
+        }
+        return oProfesorBean;
     }
 }
