@@ -96,17 +96,18 @@ public class BolsaDao {
             try {
                 DocumentoBean oDocumentoBean1 = new DocumentoBean();
                 DocumentoBean oDocumentoBean2 = new DocumentoBean();
-                
+
                 oMysql.conexion(enumTipoConexion);
                 if (!oMysql.existsOne("bolsa", oBolsaBean.getId())) {
                     oBolsaBean.setId(0);
                 } else {
                     oBolsaBean.setId_documento1(Integer.parseInt(oMysql.getOne("bolsa", "id_documento1", oBolsaBean.getId())));
                     oBolsaBean.setId_documento2(Integer.parseInt(oMysql.getOne("bolsa", "id_documento2", oBolsaBean.getId())));
-                    
+
                     oDocumentoBean1.setTitulo(oMysql.getOne("documento", "titulo", oBolsaBean.getId_documento1()));
-                    
-                    
+                    oDocumentoBean2.setTitulo(oMysql.getOne("documento", "titulo", oBolsaBean.getId_documento2()));
+
+
                     String strFecha = oMysql.getOne("bolsa", "fecha", oBolsaBean.getId());
                     if (strFecha != null) {
                         Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
@@ -114,6 +115,17 @@ public class BolsaDao {
                     } else {
                         oBolsaBean.setFecha(new Date(0));
                     }
+
+
+                    DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
+
+                    oDocumentoBean1 = oDocumentoDao.get(oDocumentoBean1);
+                    oDocumentoBean2 = oDocumentoDao.get(oDocumentoBean2);
+                    
+                    oBolsaBean.setDocumento1(oDocumentoBean1);
+                    oBolsaBean.setDocumento2(oDocumentoBean2);
+
+
 
                 }
             } catch (Exception e) {

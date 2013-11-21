@@ -1,6 +1,7 @@
 <%@page import="net.daw.data.Mysql"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="net.daw.bean.BolsaBean"%>
@@ -151,8 +152,12 @@
     <tr>
         <td><%=oBolsaBEAN.getId()%></td>
         <td><%=oBolsaBEAN.getId_documento1()+" "+oBolsaBEAN.getDocumento1().getTitulo()%></td>
-        <td><%=oBolsaBEAN.getId_documento2()+" "%></td>
-        <td><%=oBolsaBEAN.getFecha()%></td>
+        <td><%=oBolsaBEAN.getId_documento2()+" "+oBolsaBEAN.getDocumento2().getTitulo()%></td>
+        <%
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
+        
+        %>
+        <td><%=formatoFecha.format(oBolsaBEAN.getFecha())%></td>
 
 
         <td>
