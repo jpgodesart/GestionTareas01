@@ -53,6 +53,7 @@ public class ComentParam {
             }
             if ((request.getParameter("id_documento") != null)) {
                 oComent.getId_documento().setId(Integer.parseInt(request.getParameter("id_documento")));
+               // oComent.setId_documento(Integer.parseInt(request.getParameter("id_documento")));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ComentParam: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());

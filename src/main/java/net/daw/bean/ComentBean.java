@@ -21,17 +21,17 @@ public class ComentBean {
 
     public ComentBean(Integer id) {
         this.id = id;
-        this.id_documento = new DocumentoBean();
         this.id_usuario = new UsuarioBean();
-        this.id_documento.setId(0);
+        this.id_documento = new DocumentoBean();
         this.id_usuario.setId(0);
+        this.id_documento.setId(0);
     }
     
     public ComentBean() {
-        this.id_documento = new DocumentoBean();
-        this.id_documento.setId(0);
         this.id_usuario = new UsuarioBean();
+        this.id_documento = new DocumentoBean();
         this.id_usuario.setId(0);
+        this.id_documento.setId(0);
     }
 
     
@@ -84,5 +84,4 @@ public class ComentBean {
         this.fecha = fecha;
     }
 
-   
 }
