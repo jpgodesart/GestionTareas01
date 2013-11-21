@@ -1,5 +1,5 @@
 
-<%@page import="net.daw.bean.TipodocumentoBean"%>
+<%@page import="net.daw.bean.BolsaBean"%>
 <%@page import="net.daw.helper.Contexto"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
     String strTitulo = "";
@@ -9,10 +9,10 @@
     Integer id = 0;
     String descripcion = "";
     if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
-        TipodocumentoBean oTipodocumentoBean = (TipodocumentoBean) oContexto.getParametro();
-        id = oTipodocumentoBean.getId();
-        descripcion = oTipodocumentoBean.getDescripcion();
-        privado = oTipodocumentoBean.isPrivado();
+        BolsaBean oBolsaBean = (BolsaBean) oContexto.getParametro();
+        id = oBolsaBean.getId();
+        descripcion = oBolsaBean.getDescripcion();
+        privado = oBolsaBean.isPrivado();
     }
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -28,12 +28,12 @@
         strValueBoton = "Crear";
     }
 %>
-<h1><%=strTitulo%> de tipodocumento</h1>
-<form class="semantic" action="Controller" method="post" id="tipodocumentoForm">
+<h1><%=strTitulo%> de bolsa</h1>
+<form class="semantic" action="Controller" method="post" id="bolsaForm">
     <fieldset>
-        <legend>Formulario de Tipodocumento</legend>
+        <legend>Formulario de Bolsa</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="tipodocumento" /> 
+        <input type="hidden" name="class" value="bolsa" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div>
