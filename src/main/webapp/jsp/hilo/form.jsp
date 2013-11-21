@@ -30,7 +30,7 @@
         strValueBoton = "Crear";
     }
 %>
-<h1><%=strTitulo%> de compra</h1>
+<h1><%=strTitulo%> de hilo</h1>
 <form class="form-horizontal" action="Controller" method="post" id="hiloForm">
     <legend>Formulario de hilo</legend>
     <input type="hidden" name="id" value="<%=id%>" /> 
