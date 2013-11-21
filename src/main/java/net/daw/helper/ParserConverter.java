@@ -271,9 +271,9 @@ public class ParserConverter {
                     String[] spl = textSplit[x].split("\\]");
                     String[] split = spl[0].split("\\|");
                     if (spl.length == 1) {
-                        tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i></a>";
+                        tag = "<a href='" + split[0] + "'>" + split[1] + "&nbsp<i class='icon-globe'></i></a>";
                     } else {
-                        tag = "<a href='" + split[0] + "'>" + split[1] + "<i class='icon-globe'></i></a>" + spl[1];
+                        tag = "<a href='" + split[0] + "'>" + split[1] + "&nbsp<i class='icon-globe'></i></a>" + spl[1];
                     }
                     textFomat += tag;
                 }
