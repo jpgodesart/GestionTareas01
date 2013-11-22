@@ -15,6 +15,7 @@ import net.daw.bean.ProfesorBean;
 import net.daw.dao.ProfesorDao;
 import net.daw.helper.Contexto;
 
+
 /**
  *
  * @author al037184
@@ -147,11 +148,12 @@ public class ProfesorRellena1 implements Operation {
         int contador = 0;
         Iterator<String> iterador = arrNombres.listIterator();
         Random generator;
+        
+        
         while (iterador.hasNext()) {
             contador++;
             nombre = iterador.next();
             generator = new Random();
-            //index = generator.nextInt(arrNombre.size());
             oProfesorBean.setId(0);
             oProfesorBean.setId_usuario(0);
 
@@ -190,15 +192,12 @@ public class ProfesorRellena1 implements Operation {
             oProfesorBean.setEmail(randomNOMBRE + randomAPE1 + randomEMAIL);
             generator = new Random();
 
-            /*
-             UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-             oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
-             oProfesorBean.setUsuario(oUsuarioBean);
-             */
+            
             index = generator.nextInt(arrNombres.size());
             String randomLOGIN = arrNombres.get(index);
             oProfesorBean.getUsuario().setLogin(randomLOGIN + contador);
-
+            
+            
             index = generator.nextInt(arrNombres.size());
             String randomPASSWORD = arrNombres.get(index);
             oProfesorBean.getUsuario().setPassword(randomPASSWORD + contador);
