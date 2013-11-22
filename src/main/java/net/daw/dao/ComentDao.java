@@ -38,10 +38,11 @@ public class ComentDao {
             }
             oMysql.updateOne(oComentBean.getId(), "comentario", "titulo", oComentBean.getTitulo());
             oMysql.updateOne(oComentBean.getId(), "comentario", "contenido", oComentBean.getContenido());
+            
             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
             oMysql.updateOne(oComentBean.getId(), "comentario", "fecha", oSimpleDateFormat.format(oComentBean.getFecha()));
-            oMysql.updateOne(oComentBean.getId(), "comentario", "id_usuario", String.valueOf(oComentBean.getId_usuario().getId()));
-            oMysql.updateOne(oComentBean.getId(), "comentario", "id_documento", String.valueOf(oComentBean.getId_documento().getId()));
+            oMysql.updateOne(oComentBean.getId(), "comentario", "id_usuario", Integer.toString(oComentBean.getId_usuario().getId()));
+            oMysql.updateOne(oComentBean.getId(), "comentario", "id_documento", Integer.toString(oComentBean.getId_documento().getId()));
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
