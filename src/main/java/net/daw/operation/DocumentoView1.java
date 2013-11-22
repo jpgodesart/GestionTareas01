@@ -36,7 +36,7 @@ public class DocumentoView1 implements Operation {
         oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
         try {
             oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
-            oDocumentoBean.setContenidoParse(TextParser.toHtml(oDocumentoBean.getContenido()));
+            oDocumentoBean.setContenidoParse(TextParser.toHtml(oDocumentoBean.getContenido(),oContexto.getSerializedParamsExceptOrder()));
         } catch (Exception e) {
             throw new ServletException("DocumentoController: View Error: Phase 1: " + e.getMessage());
         }

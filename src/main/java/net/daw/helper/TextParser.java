@@ -13,16 +13,18 @@ import javax.servlet.ServletException;
  */
 public class TextParser {
 
-    public static String toHtml(String text) throws Exception {
+    public static String toHtml(String text, String url) throws Exception {
         ParserConverter oParserConverter = new ParserConverter();
         try {
-            text = oParserConverter.h(text, "======", 6);
-            text = oParserConverter.h(text, "=====", 5);
-            text = oParserConverter.h(text, "====", 4);
-            text = oParserConverter.h(text, "===", 3);
-            text = oParserConverter.h(text, "==", 2);
-            text = oParserConverter.h(text, "=", 1);
-            text = oParserConverter.aExtern(text);
+            text = oParserConverter.tag(text, "======", "h6");
+            text = oParserConverter.tag(text, "=====", "h5");
+            text = oParserConverter.tag(text, "====", "h4");
+            text = oParserConverter.tag(text, "===", "h3");
+            text = oParserConverter.tag(text, "==", "h2");
+            text = oParserConverter.tag(text, "=", "h1");
+            text = oParserConverter.tag(text, "\\*\\*", "b");
+            text = oParserConverter.tag(text, "\\$\\$", "i");
+            text = oParserConverter.a(text, url);
             text = oParserConverter.p(text);
         } catch (Exception e) {
             throw new ServletException("TextParser Error: " + e.getMessage());
