@@ -2,7 +2,6 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.daw.helper.Contexto"%>
 <%@page import="net.daw.bean.DocumentoBean"%>
