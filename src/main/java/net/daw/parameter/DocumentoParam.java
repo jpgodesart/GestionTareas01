@@ -5,6 +5,8 @@
  */
 package net.daw.parameter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.DocumentoBean;
 
@@ -50,7 +52,7 @@ public class DocumentoParam {
      * @return
      * @throws NumberFormatException
      */
-    public DocumentoBean load(DocumentoBean oDocumento) throws NumberFormatException {
+    public DocumentoBean load(DocumentoBean oDocumento) throws NumberFormatException, ParseException {
         try {
             if ((request.getParameter("titulo") != null)) {
                 oDocumento.setTitulo(request.getParameter("titulo"));
@@ -59,7 +61,7 @@ public class DocumentoParam {
                 oDocumento.setContenido(request.getParameter("contenido"));
             }
             if ((request.getParameter("fecha") != null)) {
-                oDocumento.setFecha(request.getParameter("fecha"));
+                oDocumento.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha")));
             }
             if ((request.getParameter("nota") != null)) {
                 oDocumento.setNota(Integer.parseInt(request.getParameter("nota")));
@@ -71,7 +73,7 @@ public class DocumentoParam {
                 oDocumento.setEtiquetas(request.getParameter("etiquetas"));
             }
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
+            throw new NumberFormatException("DocumentoParam: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oDocumento;
     }

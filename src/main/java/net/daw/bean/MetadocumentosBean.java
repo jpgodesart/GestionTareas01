@@ -11,10 +11,10 @@ package net.daw.bean;
  */
 public class MetadocumentosBean {
 
-    private int id;
+    private int id = 0;
     private MetadocumentoBean metadocumento = null;
     private DocumentoBean documento = null;
-    private int orden;
+    private int orden = 0;
 
     public MetadocumentosBean() {
         this.metadocumento = new MetadocumentoBean();
@@ -63,6 +63,4 @@ public class MetadocumentosBean {
         this.orden = orden;
     }
 
-    
-    
 }

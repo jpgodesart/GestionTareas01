@@ -337,9 +337,7 @@ public class Mysql implements GenericData {
                             strSQL += " AND " + oFilterBean.getFilter() + " >= " + oFilterBean.getFilterValue() + "";
                             break;
                     }
-
                 }
-
             }
             if (hmOrder != null) {
                 strSQL += " ORDER BY";

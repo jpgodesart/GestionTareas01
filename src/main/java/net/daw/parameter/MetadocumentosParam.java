@@ -39,9 +39,9 @@ public class MetadocumentosParam {
 
     public MetadocumentosBean load(MetadocumentosBean oMetadocumentos) throws NumberFormatException, ParseException {
         try {
-           // if ((request.getParameter("id_metadocumento") != null)) {
-          //      oMetadocumentos.getCliente().setId(Integer.parseInt(request.getParameter("id_cliente")));
-           // }
+            if ((request.getParameter("id_metadocumento") != null)) {
+                oMetadocumentos.getMetadocumento().setId(Integer.parseInt(request.getParameter("id_metadocumento")));
+            }
             if ((request.getParameter("id_documento") != null)) {
                 oMetadocumentos.getDocumento().setId(Integer.parseInt(request.getParameter("id_documento")));
             }
