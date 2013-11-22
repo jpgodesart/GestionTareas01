@@ -50,13 +50,13 @@
         <div class="control-group">
             <label class="control-label" for="titulo">Titulo: </label> 
             <div class="controls">
-                <input id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
+                <input id="titulo" class="input_resize" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="contenido">Contenido: </label>
             <div class="controls">
-                <textarea class="field span6" id="contenido" name="contenido" type="text" rows="10" ><%=contenido%></textarea><br />
+                <textarea class="field input_resize" id="contenido" name="contenido" type="text" rows="10" ><%=contenido%></textarea><br />
             </div>
         </div>
         <div class="control-group">
