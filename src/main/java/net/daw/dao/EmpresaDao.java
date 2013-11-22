@@ -56,7 +56,8 @@ public class EmpresaDao {
             oMysql.desconexion();
         }
     }
-     public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+
+    public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
@@ -159,5 +160,24 @@ public class EmpresaDao {
         } finally {
             oMysql.desconexion();
         }
+    }
+
+    public EmpresaBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {
+        EmpresaBean oEmpresaBean = new EmpresaBean();
+        if (oUsuarioBean.getId() > 0) {
+            try {
+                oMysql.conexion(enumTipoConexion);
+                String id_usuario = Integer.toString(oUsuarioBean.getId());
+                Integer id_user = Integer.parseInt(oMysql.getId("empresa", "id_usuario", id_usuario));
+                oEmpresaBean.setId(id_user);
+            } catch (Exception e) {
+                throw new Exception("EmpresaDao.getEmpresa: Error: " + e.getMessage());
+            } finally {
+                oMysql.desconexion();
+            }
+        } else {
+            oEmpresaBean.setId(0);
+        }
+        return oEmpresaBean;
     }
 }
