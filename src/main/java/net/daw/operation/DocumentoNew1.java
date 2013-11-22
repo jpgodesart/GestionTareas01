@@ -27,7 +27,7 @@ public class DocumentoNew1 implements Operation{
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
         try {
             oDocumentoBean = oDocumentoParam.load(oDocumentoBean);
-           // oDocumentoBean.setUsuario(oUsuarioDao.get(oDocumentoBean.getUsuario()));
+            oDocumentoBean.setUsuario(oUsuarioDao.get(oDocumentoBean.getUsuario()));
 
         } catch (NumberFormatException e) {
             oContexto.setVista("jsp/mensaje.jsp");
