@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.operation;
 
 import java.util.ArrayList;
@@ -19,8 +18,8 @@ import net.daw.helper.Pagination;
  *
  * @author al037294
  */
-public class DocumentoList1 implements Operation{
-    
+public class DocumentoList1 implements Operation {
+
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -36,7 +35,7 @@ public class DocumentoList1 implements Operation{
                 oContexto.setPage(1);
             }
             ArrayList<DocumentoBean> listado = oDocumentoDAO.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
-            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";            
+            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";
             ArrayList<String> vecindad = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);

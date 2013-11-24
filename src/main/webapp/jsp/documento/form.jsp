@@ -1,4 +1,5 @@
 
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>
@@ -71,13 +72,27 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="id_usuario">Id_Usuario: </label> 
-            <div class="controls">                
+            <label class="control-label" for="id_usuario">Usuario: </label> 
+            <div class="controls">
+                <%
+                    if (session.getAttribute("usuarioBean") != null) {
+                        UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
+                        if (oUsuarioBean.getTipoUsuario().equals("Profesor")) {
+                %>
                 <input readonly="true" id="id_usuario" class="input-mini"
                        name="id_usuario" type="text" size="5" maxlength="5"
                        value="<%=id_usuario%>" />  
                 <input type="submit" name="searchingfor" value="usuario" />
                 <span class="alert alert-success"><%=descId_usuario%></span>
+                <%
+                } else {
+
+                %>
+                <input type="hidden" name="id_usuario" value="<%=oUsuarioBean.getId()%>" /> 
+                <span class="alert alert-success"><%=oUsuarioBean.getLogin()%></span>
+                <%                        }
+                    }
+                %>
             </div>
         </div> 
         <div class="control-group">
