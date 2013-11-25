@@ -163,4 +163,23 @@ public class AlumnoDao {
             oMysql.desconexion();
         }
     }
+
+    public AlumnoBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {
+        AlumnoBean oAlumnoBean = new AlumnoBean();
+        if (oUsuarioBean.getId() > 0) {
+            try {
+                oMysql.conexion(enumTipoConexion);
+                String id_usuario = Integer.toString(oUsuarioBean.getId());
+                Integer id_user = Integer.parseInt(oMysql.getId("alumno", "id_usuario", id_usuario));
+                oAlumnoBean.setId(id_user);
+            } catch (Exception e) {
+                throw new Exception("AlumnoDao.getFromId_usuario: Error: " + e.getMessage());
+            } finally {
+                oMysql.desconexion();
+            }
+        } else {
+            oAlumnoBean.setId(0);
+        }
+        return oAlumnoBean;
+    }
 }
