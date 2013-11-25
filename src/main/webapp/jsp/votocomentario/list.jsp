@@ -127,6 +127,14 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
+        <th>id_usuario
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        </th>
+         <th>id_comentario
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_comentario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_comentario&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        </th> 
         <th>valor
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=desc"><i class="icon-arrow-down"></i></a>
@@ -144,7 +152,17 @@
     %>
     <tr>
         <td><%=oVotoComentarioBEAN.getId()%></td>
+       <td>
+            <%=oVotoComentarioBEAN.getId_usuario().getId()%> <%=oVotoComentarioBEAN.getId_usuario().getId()%> (<%=oVotoComentarioBEAN.getId_usuario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=id_usuario&method=list&id=<%=oVotoComentarioBEAN.getId()%>&searchingfor=id_usuario&returnclass=votocomentario&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>            
+        </td>
+        
        
+        
+        
+        
         
         <td><%=oVotoComentarioBEAN.getValor()%></td>
        

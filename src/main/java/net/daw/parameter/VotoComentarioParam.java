@@ -34,11 +34,11 @@ public class VotoComentarioParam {
 
     public VotoComentarioBean load(VotoComentarioBean oVotoComentarioBean) throws NumberFormatException {
         try {
-            /*if ((request.getParameter("id_usuario") != null)) {
-                oVotoComentarioBean.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+            if ((request.getParameter("id_usuario") != null)) {
+                oVotoComentarioBean.getId_usuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
             }
-            if ((request.getParameter("id_comentario") != null)) {
-               oVotoComentarioBean.setId_comentario(Integer.parseInt(request.getParameter("id_comentario")));
+            /*if ((request.getParameter("id_comentario") != null)) {
+               oVotoComentarioBean.getId_comentario.setId(Integer.parseInt(request.getParameter("id_comentario")));
             }*/
             if ((request.getParameter("valor") != null)) {
                 oVotoComentarioBean.setValor(Integer.parseInt(request.getParameter("valor")));
