@@ -153,13 +153,18 @@
     <tr>
         <td><%=oVotoComentarioBEAN.getId()%></td>
        <td>
-            <%=oVotoComentarioBEAN.getId_usuario().getId()%> <%=oVotoComentarioBEAN.getId_usuario().getId()%> (<%=oVotoComentarioBEAN.getId_usuario().getId()%>)
+            <%=oVotoComentarioBEAN.getId_usuario().getLogin()%> (<%=oVotoComentarioBEAN.getId_usuario().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=id_usuario&method=list&id=<%=oVotoComentarioBEAN.getId()%>&searchingfor=id_usuario&returnclass=votocomentario&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
         </td>
         
-       
+        <td>
+            <%=oVotoComentarioBEAN.getId_comentario().getTitulo()%> (<%=oVotoComentarioBEAN.getId_comentario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=id_comentario&method=list&id=<%=oVotoComentarioBEAN.getId()%>&searchingfor=id_comentario&returnclass=votocomentario&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>            
+        </td>
         
         
         

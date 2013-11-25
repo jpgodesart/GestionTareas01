@@ -11,22 +11,22 @@ package net.daw.bean;
 public class VotoComentarioBean {
     
     private int id = 0;
-    /*private ComentBean id_comentario = null;*/
+    private ComentBean id_comentario = null;
     private UsuarioBean id_usuario = null;
     private int valor = 0;
     
     
     public VotoComentarioBean() { 
-       /* this.id_comentario = new ComentBean();
-        this.id_comentario.setId(0);*/
+        this.id_comentario = new ComentBean();
+        this.id_comentario.setId(0);
         this.id_usuario = new UsuarioBean();
         this.id_usuario.setId(0);
     }
 
     public VotoComentarioBean(int id) {
         this.id = id;
-      /*  this.id_comentario = new ComentBean();
-        this.id_comentario.setId(0);*/
+        this.id_comentario = new ComentBean();
+        this.id_comentario.setId(0);
         this.id_usuario = new UsuarioBean();
         this.id_usuario.setId(0);
     }
@@ -39,13 +39,13 @@ public class VotoComentarioBean {
         this.id = id;
     }
 
-   /* public ComentBean getId_comentario() {
+    public ComentBean getId_comentario() {
         return id_comentario;
     }
 
     public void setId_comentario(ComentBean id_comentario) {
         this.id_comentario = id_comentario;
-    }*/
+    }
 
     public UsuarioBean getId_usuario() {
         return id_usuario;

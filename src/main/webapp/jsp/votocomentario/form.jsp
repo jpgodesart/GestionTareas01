@@ -9,8 +9,8 @@
     Integer id = 0;
     String id_usuario = "";
     String descId_usuario = "";
-    /*Integer id_comentario = 0;
-     String descId_comentario = "";*/
+    Integer id_comentario = 0;
+    String descId_comentario = "";
     Integer valor = 0;
 
     VotoComentarioBean oVotoComentarioBean = (VotoComentarioBean) oContexto.getParametro();
@@ -20,9 +20,9 @@
         descId_usuario = oVotoComentarioBean.getId_usuario().getLogin();
     }
 
-    /*if (!(oVotoComentarioBean.getId_comentario().getTitulo().equals(""))) {
-     descId_comentario = oVotoComentarioBean.getId_comentario().getTitulo();
-     }*/
+    if (!(oVotoComentarioBean.getId_comentario().getTitulo().equals(""))) {
+        descId_comentario = oVotoComentarioBean.getId_comentario().getTitulo();
+    }
 
     valor = oVotoComentarioBean.getValor();
 
@@ -60,8 +60,17 @@
                 <span class="alert alert-success"><%=descId_usuario%></span>
             </div>
         </div>   
- 
 
+        <div class="control-group">
+            <label class="control-label" for="id_comentario">Id_comentario: </label> 
+            <div class="controls">                
+                <input readonly="true" id="id_comentario" class="input-mini"
+                       name="id_comentario" type="text" size="5" maxlength="5"
+                       value="<%=id_comentario%>" />  
+                <input <%=strControlEnabled%> type="submit" name="searchingfor" value="id_comentario" />
+                <span class="alert alert-success"><%=descId_comentario%></span>
+            </div>
+        </div>  
 
         <div>
             <label for="nombre">Valor: </label> 

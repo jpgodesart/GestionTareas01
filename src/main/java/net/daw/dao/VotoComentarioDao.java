@@ -7,6 +7,7 @@ package net.daw.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import net.daw.bean.ComentBean;
 import net.daw.bean.UsuarioBean;
 import net.daw.bean.VotoComentarioBean;
 import net.daw.data.Mysql;
@@ -82,20 +83,20 @@ public class VotoComentarioDao {
             oMysql.conexion(enumTipoConexion);
 
             UsuarioBean oUsuarioBean = new UsuarioBean();
-            //ComentBean oComentBean = new ComentBean();
+            ComentBean oComentBean = new ComentBean();
             
             oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("votocomentario", "id_usuario", oVotoComentarioBean.getId())));
-            //oComentBean.setId(Integer.parseInt(oMysql.getOne("votocomentario", "id_comentario", oVotoComentarioBean.getId())));
+            oComentBean.setId(Integer.parseInt(oMysql.getOne("votocomentario", "id_comentario", oVotoComentarioBean.getId())));
             oVotoComentarioBean.setValor(Integer.parseInt(oMysql.getOne("votocomentario", "valor", oVotoComentarioBean.getId())));
 
             UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-            //ComentDao oComentDao = new ComentDao(enumTipoConexion);
+            ComentDao oComentDao = new ComentDao(enumTipoConexion);
            
             oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
-            //ComentBean = oUsuarioDao.get(oComentBean);         
+            oComentBean = oComentDao.get(oComentBean);         
 
             oVotoComentarioBean.setId_usuario(oUsuarioBean);
-            //oComentBean.setId_comentario(oComentBean);
+            oVotoComentarioBean.setId_comentario(oComentBean);
          
             oMysql.desconexion();
         } catch (Exception e) {
@@ -114,7 +115,7 @@ public class VotoComentarioDao {
             if (oVotoComentarioBean.getId() == 0) {
                 oVotoComentarioBean.setId(oMysql.insertOne("votocomentario"));
             }
-            //oMysql.updateOne(oVotoComentarioBean.getId(), "votocomentario", "id_comentario", Integer.toString(oVotoComentarioBean.getId_comentario().getId()));
+            oMysql.updateOne(oVotoComentarioBean.getId(), "votocomentario", "id_comentario", Integer.toString(oVotoComentarioBean.getId_comentario().getId()));
             oMysql.updateOne(oVotoComentarioBean.getId(), "votocomentario", "id_usuario", Integer.toString(oVotoComentarioBean.getId_usuario().getId()));
             oMysql.updateOne(oVotoComentarioBean.getId(), "votocomentario", "valor", Integer.toString(oVotoComentarioBean.getValor()));
             oMysql.commitTrans();
