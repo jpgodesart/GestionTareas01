@@ -111,6 +111,8 @@ public class ProfesorDao {
         try {
             oMysql.conexion(enumTipoConexion);
             oMysql.initTrans();
+            
+            UsuarioBean oUsuarioBean = new UsuarioBean();
 
             if (oProfesorBean.getId() == 0) {
                 oProfesorBean.setId(oMysql.insertOne("profesor"));
