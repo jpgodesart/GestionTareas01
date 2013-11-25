@@ -15,10 +15,11 @@ import net.daw.helper.Enum;
 import net.daw.helper.FilterBean;
 import java.util.Date;
 import net.daw.bean.LenguajeBean;
+import net.daw.bean.DocumentoBean;
 
 /**
  *
- * @author al037793
+ * @author Ana
  */
 public class RepositorioDao {
 
@@ -29,8 +30,8 @@ public class RepositorioDao {
         oMysql = new Mysql();
         enumTipoConexion = tipoConexion;
     }
-    
-     public int getPages(int intRegsPerPag, ArrayList<FilterBean> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+
+    public int getPages(int intRegsPerPag, ArrayList<FilterBean> hmFilter, HashMap<String, String> hmOrder) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
@@ -44,8 +45,8 @@ public class RepositorioDao {
             oMysql.desconexion();
         }
     }
-   
-      public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+
+    public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
         int pages;
         try {
             oMysql.conexion(enumTipoConexion);
@@ -56,13 +57,13 @@ public class RepositorioDao {
             throw new Exception("RepositorioDao.getCount: Error: " + e.getMessage());
         }
     }
-      
-       public ArrayList<RepositorioBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> hmFilter, HashMap<String, String> hmOrder) throws Exception {
+
+    public ArrayList<RepositorioBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
         ArrayList<RepositorioBean> arrRepositorio = new ArrayList<>();
         try {
             oMysql.conexion(enumTipoConexion);
-            arrId = oMysql.getPage("repositorio", intRegsPerPag, intPage, hmFilter, hmOrder);
+            arrId = oMysql.getPage("repositorio", intRegsPerPag, intPage, alFilter, hmOrder);
             Iterator<Integer> iterador = arrId.listIterator();
             while (iterador.hasNext()) {
                 RepositorioBean oRepositorioBean = new RepositorioBean(iterador.next());
@@ -77,39 +78,43 @@ public class RepositorioDao {
         }
     }
 
-     
     public RepositorioBean get(RepositorioBean oRepositorioBean) throws Exception {
-       
-            try {
-                oMysql.conexion(enumTipoConexion);
-                
-                    LenguajeBean oLenguajeBean = new LenguajeBean();
-                    
-                    oRepositorioBean.setTitulo(oMysql.getOne("repositorio", "titulo", oRepositorioBean.getId()));
-                    oRepositorioBean.setContenido(oMysql.getOne("repositorio", "contenido", oRepositorioBean.getId()));
-                    //oRepositorioBean.setId_usuario(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
-                    oLenguajeBean.setId(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
-                    //oRepositorioBean.setId_documento(Integer.parseInt(oMysql.getOne("repositorio", "id_documento", oRepositorioBean.getId())));
-                    String strFecha = oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId());
-                    if (strFecha != null) {
-                        Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
-                        oRepositorioBean.setFecha(dFecha);
-                    } else {
-                        oRepositorioBean.setFecha(new Date(0));
-                    }
 
-                    LenguajeDao oLenguajeDao = new LenguajeDao(enumTipoConexion);
-                    
-                    oLenguajeBean = oLenguajeDao.get(oLenguajeBean);
+        try {
+            oMysql.conexion(enumTipoConexion);
 
-                    oRepositorioBean.setLenguaje(oLenguajeBean);
-oMysql.desconexion();
-            } catch (Exception e) {
-                throw new Exception("RepositorioDao.getRespositorio: Error: " + e.getMessage());
-            } finally {
-                oMysql.desconexion();
+            LenguajeBean oLenguajeBean = new LenguajeBean();
+            DocumentoBean oDocumentoBean = new DocumentoBean();
+
+            oRepositorioBean.setTitulo(oMysql.getOne("repositorio", "titulo", oRepositorioBean.getId()));
+            oRepositorioBean.setContenido(oMysql.getOne("repositorio", "contenido", oRepositorioBean.getId()));
+            //oRepositorioBean.setId_usuario(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
+            oLenguajeBean.setId(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
+            oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("repositorio", "id_documento", oRepositorioBean.getId())));
+            String strFecha = oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId());
+            if (strFecha != null) {
+                Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
+                oRepositorioBean.setFecha(dFecha);
+            } else {
+                oRepositorioBean.setFecha(new Date(0));
             }
-    
+
+            LenguajeDao oLenguajeDao = new LenguajeDao(enumTipoConexion);
+            DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
+
+            oLenguajeBean = oLenguajeDao.get(oLenguajeBean);
+            oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
+
+            oRepositorioBean.setLenguaje(oLenguajeBean);
+            oRepositorioBean.setDocumento(oDocumentoBean);
+            
+            oMysql.desconexion();
+        } catch (Exception e) {
+            throw new Exception("RepositorioDao.getRespositorio: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
+        }
+
         return oRepositorioBean;
     }
 
@@ -124,15 +129,15 @@ oMysql.desconexion();
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "contenido", oRepositorioBean.getContenido());
             //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_usuario", Integer.toString(oRepositorioBean.getId_usuario()));
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", Integer.toString(oRepositorioBean.getLenguaje().getId()));
-            //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_documento", Integer.toString(oRepositorioBean.getId_documento()));
-             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "fecha", oSimpleDateFormat.format(oRepositorioBean.getFecha()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_documento", Integer.toString(oRepositorioBean.getDocumento().getId()));
+            java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "fecha", oSimpleDateFormat.format(oRepositorioBean.getFecha()));
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
             throw new Exception("RepositorioDao.setRepositorio: Error: " + e.getMessage());
 
-        }finally{
+        } finally {
             oMysql.desconexion();
         }
 
@@ -149,9 +154,4 @@ oMysql.desconexion();
             oMysql.desconexion();
         }
     }
-
-   
 }
-   
-
-   

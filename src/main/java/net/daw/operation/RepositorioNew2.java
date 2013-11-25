@@ -35,6 +35,19 @@ public class RepositorioNew2 implements Operation {
                 LenguajeList1 oOperacion = new LenguajeList1();
                 return oOperacion.execute(request, response);
         }
+                case "documento": {
+            oContexto.setVista("jsp/documento/list.jsp");
+                oContexto.setClase("documento");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("documento");
+                oContexto.setClaseRetorno("repositorio");
+                oContexto.setMetodoRetorno("new");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_documento");
+                LenguajeList1 oOperacion = new LenguajeList1();
+                return oOperacion.execute(request, response);
+        }
         default:
         oContexto.setVista("jsp/mensaje.jsp");
         RepositorioBean oRepositorioBean = new RepositorioBean();

@@ -14,7 +14,7 @@ import net.daw.bean.RepositorioBean;
 
 /**
  *
- * @author Alvaro
+ * @author Ana
  */
 public class RepositorioParam {
 
@@ -37,7 +37,7 @@ public class RepositorioParam {
         return oRepositorioBean;
     }
 
-    public RepositorioBean load(RepositorioBean oRepositorioBean) throws NumberFormatException {
+    public RepositorioBean load(RepositorioBean oRepositorioBean) throws NumberFormatException, ParseException {
         try {
             if ((request.getParameter("titulo") != null)) {
                 oRepositorioBean.setTitulo(request.getParameter("titulo"));
@@ -52,7 +52,7 @@ public class RepositorioParam {
                 oRepositorioBean.getLenguaje().setId(Integer.parseInt(request.getParameter("id_lenguaje")));
             }
             if ((request.getParameter("id_documento") != null)) {
-                oRepositorioBean.setId_documento(Integer.parseInt(request.getParameter("id_documento")));
+                oRepositorioBean.getDocumento().setId(Integer.parseInt(request.getParameter("id_documento")));
             }
              if ((request.getParameter("fecha") != null)) {
                 oRepositorioBean.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha")));

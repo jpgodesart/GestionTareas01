@@ -7,6 +7,7 @@ package net.daw.operation;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.RepositorioBean;
+import net.daw.dao.DocumentoDao;
 import net.daw.dao.LenguajeDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.RepositorioParam;
@@ -23,9 +24,12 @@ public class RepositorioNew1 implements Operation{
         RepositorioParam oRepositorioParam = new RepositorioParam(request);
         RepositorioBean oRepositorioBean = new RepositorioBean();
         LenguajeDao oLenguajeDao = new LenguajeDao(oContexto.getEnumTipoConexion());
+        DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
         try {
             oRepositorioBean = oRepositorioParam.load(oRepositorioBean);
             oRepositorioBean.setLenguaje(oLenguajeDao.get(oRepositorioBean.getLenguaje()));
+            oRepositorioBean = oRepositorioParam.load(oRepositorioBean);
+            oRepositorioBean.setDocumento(oDocumentoDao.get(oRepositorioBean.getDocumento()));
         } catch (NumberFormatException e) {
             oContexto.setVista("jsp/mensaje.jsp");
             return "Tipo de dato incorrecto en uno delos campos del formulario";

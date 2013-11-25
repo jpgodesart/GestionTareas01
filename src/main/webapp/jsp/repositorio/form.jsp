@@ -14,7 +14,8 @@
     Integer id_usuario = 0;
     String lenguaje = "";
     String nombreLengueje = "";
-    Integer id_documento = 0;
+    String documento = "";
+    String tituloDocumento = "";
     String fecha = "";
 
 
@@ -26,6 +27,10 @@
     lenguaje = Integer.toString(oRepositorioBean.getLenguaje().getId());
     if (oRepositorioBean.getLenguaje().getId() > 0) {
         nombreLengueje = oRepositorioBean.getLenguaje().getNombre();
+    }
+    documento = Integer.toString(oRepositorioBean.getDocumento().getId());
+    if (oRepositorioBean.getDocumento().getId() > 0) {
+        tituloDocumento = oRepositorioBean.getDocumento().getTitulo();
     }
     fecha = new SimpleDateFormat("yyyy-MM-dd").format(oRepositorioBean.getFecha());
 
@@ -80,12 +85,16 @@
             <span class="alert alert-success"><%=nombreLengueje%></span>
         </div>
     </div>
-        <!--
-        <div>
-            <label for="id_documento">Id_documento: </label>
-            <input <a%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<a%=id_documento%>" /><br />
+        <div class="control-group">
+        <label class="control-label" for="documento">Id_documento: </label>
+        <div class="controls">  
+            <input readonly="true" id="documento" class="input-mini"
+                   name="id_documento" type="text" size="5" maxlength="5"
+                   value="<%=documento%>" />
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="documento" />
+            <span class="alert alert-success"><%=tituloDocumento%></span>
         </div>
-        -->
+    </div>
         <div class="control-group">
         <label class="control-label" for="fecha">Fecha: </label> 
         <div class="controls">
