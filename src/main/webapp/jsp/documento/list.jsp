@@ -1,3 +1,4 @@
+<%@page import="net.daw.helper.Enum.TipoUsuario"%>
 <%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Arrays"%>
@@ -191,7 +192,7 @@
             if (session.getAttribute("usuarioBean") != null) {
                 UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
                 System.out.println(oUsuarioBean.getTipoUsuario());
-                if (oUsuarioBean.getTipoUsuario().equals("Profesor")) {
+                    if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
         %>
         <td>    
             <%=usuario%> (<%=oDocumentoBEAN.getUsuario().getId()%>)

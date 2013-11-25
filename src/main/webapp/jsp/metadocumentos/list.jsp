@@ -12,7 +12,7 @@
 %>
 <div class="row-fluid">
     <div class="span8">
-        <h1>Listado de documentos</h1>
+        <h1>Listado de metadocumentos</h1>
         <%
             if (!oIterador.hasNext()) {
                 out.print("<h4>Listado vacío</h4>");
@@ -55,7 +55,7 @@
     </div>
     <div class="span4">
         <div class="text-right">
-            <legend>Filtro de documento</legend> 
+            <legend>Filtro de metadocumentos</legend> 
             <form class="navbar-form pull-right" action="Controller" method="post" id="clienteForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       

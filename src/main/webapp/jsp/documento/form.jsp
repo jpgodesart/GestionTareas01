@@ -1,4 +1,5 @@
 
+<%@page import="net.daw.helper.Enum.TipoUsuario"%>
 <%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
@@ -77,7 +78,7 @@
                 <%
                     if (session.getAttribute("usuarioBean") != null) {
                         UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
-                        if (oUsuarioBean.getTipoUsuario().equals("Profesor")) {
+                        if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
                 %>
                 <input readonly="true" id="id_usuario" class="input-mini"
                        name="id_usuario" type="text" size="5" maxlength="5"
