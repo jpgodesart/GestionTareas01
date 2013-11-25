@@ -169,6 +169,29 @@ public class AlumnoRellena1 implements Operation {
         arrValidado.add("Si");
         arrValidado.add("No");
         
+        ArrayList<String> arrLogin = new ArrayList<>();
+        arrLogin.add("1");
+        arrLogin.add("2");
+        arrLogin.add("3");
+        arrLogin.add("4");
+        arrLogin.add("5");
+        arrLogin.add("6");
+        arrLogin.add("7");
+        arrLogin.add("8");
+        arrLogin.add("9");
+        arrLogin.add("10");
+        
+        ArrayList<String> arrPass = new ArrayList<>();
+        arrPass.add("Perro");
+        arrPass.add("Gato");
+        arrPass.add("Loro");
+        arrPass.add("Ballena");
+        arrPass.add("Canguro");
+        arrPass.add("Panda");
+        arrPass.add("Elefante");
+        arrPass.add("Jirafa");
+        arrPass.add("Rinoceronte");
+        arrPass.add("Leon");
         
         int index;
         int contador = 0;
@@ -178,7 +201,6 @@ public class AlumnoRellena1 implements Operation {
             contador++;
             nombre = iterador.next();
             generator = new Random();
-            //index = generator.nextInt(arrNombre.size());
             oAlumnoBean.setId(0);
             oAlumnoBean.setId_usuario(0);
             
@@ -245,18 +267,17 @@ public class AlumnoRellena1 implements Operation {
             index = generator.nextInt(arrValidado.size());
             String randomVALIDADO = arrValidado.get(index);
             oAlumnoBean.setValidado(randomVALIDADO);
-            /*
-            UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-            oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
-            oAlumnoBean.setUsuario(oUsuarioBean);
-               */
-            index = generator.nextInt(arrNombre.size());
-            String randomLOGIN = arrNombre.get(index);
-            oAlumnoBean.getUsuario().setLogin(randomLOGIN + contador);
+            generator = new Random();
             
-            index = generator.nextInt(arrNombre.size());
-            String randomPASSWORD = arrNombre.get(index);
+            index = generator.nextInt(arrLogin.size());
+            String randomLOGIN = arrLogin.get(index);
+            oAlumnoBean.getUsuario().setLogin(randomLOGIN + contador);
+            generator = new Random();
+            
+            index = generator.nextInt(arrPass.size());
+            String randomPASSWORD = arrPass.get(index);
             oAlumnoBean.getUsuario().setPassword(randomPASSWORD + contador);
+            generator = new Random();
             
             try {
                 oAlumnoDao.set(oAlumnoBean);

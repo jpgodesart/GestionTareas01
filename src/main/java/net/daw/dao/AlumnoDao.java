@@ -84,12 +84,13 @@ public class AlumnoDao {
                 } else {                 
                     UsuarioBean oUsuarioBean = new UsuarioBean();
                     
-                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("alumno", "id_usuario", oAlumnoBean.getId())));
+                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("usuario", "id", oAlumnoBean.getId())));
                     
                     UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
                     oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
                     oAlumnoBean.setUsuario(oUsuarioBean);
                     
+                    oAlumnoBean.setId_usuario(Integer.parseInt(oMysql.getOne("alumno", "id_usuario", oAlumnoBean.getId())));
                     oAlumnoBean.setDni(oMysql.getOne("alumno", "dni", oAlumnoBean.getId()));
                     oAlumnoBean.setNumexpediente(oMysql.getOne("alumno", "numexpediente", oAlumnoBean.getId()));
                     oAlumnoBean.setNombre(oMysql.getOne("alumno", "nombre", oAlumnoBean.getId()));
