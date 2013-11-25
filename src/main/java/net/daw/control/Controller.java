@@ -21,7 +21,7 @@ public class Controller extends HttpServlet {
         ContextParam oContextParam = new ContextParam(request);
         oContexto=oContextParam.loadSession(oContexto);
         oContexto = oContextParam.load(oContexto); 
-        oContexto.setEnumTipoConexion(net.daw.helper.Enum.Connection.DataSource);
+        oContexto.setEnumTipoConexion(net.daw.helper.Enum.Connection.DriverManager);
         request.setAttribute("contexto", oContexto);
         try {
             String strNombreOperacion = "net.daw.operation." + oContexto.getOperacion();
@@ -52,7 +52,7 @@ public class Controller extends HttpServlet {
             throw new ServletException("Controller: Error: ClassNotFoundException " + ex.getMessage());
         }
     }
-
+//
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
