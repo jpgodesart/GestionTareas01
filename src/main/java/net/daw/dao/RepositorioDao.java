@@ -16,6 +16,7 @@ import net.daw.helper.FilterBean;
 import java.util.Date;
 import net.daw.bean.LenguajeBean;
 import net.daw.bean.DocumentoBean;
+import net.daw.bean.UsuarioBean;
 
 /**
  *
@@ -85,10 +86,11 @@ public class RepositorioDao {
 
             LenguajeBean oLenguajeBean = new LenguajeBean();
             DocumentoBean oDocumentoBean = new DocumentoBean();
+            UsuarioBean oUsuarioBean = new UsuarioBean();
 
             oRepositorioBean.setTitulo(oMysql.getOne("repositorio", "titulo", oRepositorioBean.getId()));
             oRepositorioBean.setContenido(oMysql.getOne("repositorio", "contenido", oRepositorioBean.getId()));
-            //oRepositorioBean.setId_usuario(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
+            oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("repositorio", "id_usuario", oRepositorioBean.getId())));
             oLenguajeBean.setId(Integer.parseInt(oMysql.getOne("repositorio", "id_lenguaje", oRepositorioBean.getId())));
             oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("repositorio", "id_documento", oRepositorioBean.getId())));
             String strFecha = oMysql.getOne("repositorio", "fecha", oRepositorioBean.getId());
@@ -101,12 +103,15 @@ public class RepositorioDao {
 
             LenguajeDao oLenguajeDao = new LenguajeDao(enumTipoConexion);
             DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
+            UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
 
             oLenguajeBean = oLenguajeDao.get(oLenguajeBean);
             oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
+            oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
 
             oRepositorioBean.setLenguaje(oLenguajeBean);
             oRepositorioBean.setDocumento(oDocumentoBean);
+            oRepositorioBean.setUsuario(oUsuarioBean);
             
             oMysql.desconexion();
         } catch (Exception e) {
@@ -127,7 +132,7 @@ public class RepositorioDao {
             }
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "titulo", oRepositorioBean.getTitulo());
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "contenido", oRepositorioBean.getContenido());
-            //oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_usuario", Integer.toString(oRepositorioBean.getId_usuario()));
+            oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_usuario", Integer.toString(oRepositorioBean.getUsuario().getId()));
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_lenguaje", Integer.toString(oRepositorioBean.getLenguaje().getId()));
             oMysql.updateOne(oRepositorioBean.getId(), "repositorio", "id_documento", Integer.toString(oRepositorioBean.getDocumento().getId()));
             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");

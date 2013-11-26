@@ -22,6 +22,19 @@ public class RepositorioNew2 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         switch (oContexto.getSearchingFor()){
+            case "usuario": {
+            oContexto.setVista("jsp/usuario/list.jsp");
+                oContexto.setClase("usuario");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("usuario");
+                oContexto.setClaseRetorno("repositorio");
+                oContexto.setMetodoRetorno("new");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_usuario");
+                UsuarioList1 oOperacion = new UsuarioList1();
+                return oOperacion.execute(request, response);
+        }
             case "lenguaje": {
             oContexto.setVista("jsp/lenguaje/list.jsp");
                 oContexto.setClase("lenguaje");

@@ -16,7 +16,7 @@ public class RepositorioBean {
     private int id = 0;
     private String titulo = "";
     private String contenido = "";
-    private int id_usuario;
+    private UsuarioBean usuario = null;
     private LenguajeBean lenguaje = null;
     private DocumentoBean documento = null;
     private Date fecha = new Date();
@@ -26,6 +26,8 @@ public class RepositorioBean {
         this.lenguaje.setId(0);
         this.documento = new DocumentoBean();
         this.documento.setId(0);
+         this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
     }
 
     public RepositorioBean(int id) {
@@ -56,12 +58,12 @@ public class RepositorioBean {
         this.contenido = contenido;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public UsuarioBean getUsuario() {
+        return usuario;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setUsuario(UsuarioBean usuario) {
+        this.usuario = usuario;
     }
 
     public LenguajeBean getLenguaje() {
