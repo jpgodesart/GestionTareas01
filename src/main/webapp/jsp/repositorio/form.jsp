@@ -16,12 +16,13 @@
     String nombreLengueje = "";
     String documento = "";
     String tituloDocumento = "";
+    String contenidoDocumento = "";
     String fecha = "";
 
 
     RepositorioBean oRepositorioBean = (RepositorioBean) oContexto.getParametro();
     titulo = oRepositorioBean.getTitulo();
-    contenido = oRepositorioBean.getTitulo();
+    contenido = oRepositorioBean.getContenido();
     
     id = oRepositorioBean.getId();
     lenguaje = Integer.toString(oRepositorioBean.getLenguaje().getId());
@@ -58,14 +59,14 @@
     <div class="control-group">
         <label class="control-label" for="titulo">Titulo: </label> 
         <div class="controls">
-            <input <%=strControlEnabled%> id="titulo" name="titulo" type="text" size="30" maxlength="50" value="<%=titulo%>" /><br />
+            <input <%=strControlEnabled%> id="titulo" class="input_resize" name="titulo" type="text" size="30" maxlength="50" value="<%=titulo%>" /><br />
 
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="contenido">Contenido: </label>
         <div class="controls">
-        <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
+        <textarea <%=strControlEnabled%> id="contenido" class="input_resize" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
     
         </div>
     </div>

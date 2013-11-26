@@ -45,7 +45,7 @@ public class RepositorioNew2 implements Operation {
                 oContexto.setMetodoRetorno("new");
                 oContexto.setFaseRetorno("1");
                 oContexto.removeParam("id_documento");
-                LenguajeList1 oOperacion = new LenguajeList1();
+                DocumentoList1 oOperacion = new DocumentoList1();
                 return oOperacion.execute(request, response);
         }
         default:
