@@ -14,21 +14,22 @@ import java.util.Date;
 public class RepositorioBean {
 
     private int id = 0;
-    private String titulo;
-    private String contenido;
+    private String titulo = "";
+    private String contenido = "";
     private int id_usuario;
-    private int id_lenguaje;
+    private LenguajeBean lenguaje = null;
     private int id_documento;
-    private Date fecha;
+    private Date fecha = new Date();
 
     public RepositorioBean() {
-        
+        this.lenguaje = new LenguajeBean();
+        this.lenguaje.setId(0);
     }
 
     public RepositorioBean(int id) {
         this.id = id;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -61,20 +62,20 @@ public class RepositorioBean {
         this.id_usuario = id_usuario;
     }
 
-    public int getId_lenguaje() {
-        return id_lenguaje;
-    }
-
-    public void setId_lenguaje(int id_lenguaje) {
-        this.id_lenguaje = id_lenguaje;
-    }
-
     public int getId_documento() {
         return id_documento;
     }
 
     public void setId_documento(int id_documento) {
         this.id_documento = id_documento;
+    }
+
+    public LenguajeBean getLenguaje() {
+        return lenguaje;
+    }
+
+    public void setLenguaje(LenguajeBean lenguaje) {
+        this.lenguaje = lenguaje;
     }
 
     public Date getFecha() {
@@ -84,5 +85,4 @@ public class RepositorioBean {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
 }

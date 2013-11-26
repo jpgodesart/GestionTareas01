@@ -23,7 +23,7 @@ public class DocumentoNew2 implements Operation{
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        if ("id_usuario".equals(oContexto.getSearchingFor())) {
+        if ("usuario".equals(oContexto.getSearchingFor())) {
             oContexto.setVista("jsp/usuario/list.jsp");
             oContexto.setClase("usuario");
             oContexto.setMetodo("list");
@@ -32,7 +32,8 @@ public class DocumentoNew2 implements Operation{
             oContexto.setMetodoRetorno("new");
             oContexto.setFaseRetorno("1");
             oContexto.removeParam("id_usuario");
-            return null;
+            UsuarioList1 oOperacion = new UsuarioList1();
+            return oOperacion.execute(request, response);
         } else {
             oContexto.setVista("jsp/mensaje.jsp");
             DocumentoBean oDocumentoBean = new DocumentoBean();

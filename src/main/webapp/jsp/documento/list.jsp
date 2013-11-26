@@ -67,6 +67,7 @@
                             <option>contenido</option>
                             <option>fecha</option>
                             <option>nota</option>
+                            <option>id_usuario</option>
                             <option>etiquetas</option>                            
                         </select>  
                     </span>
@@ -143,6 +144,10 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nota&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nota&ordervalue=desc"><i class="icon-arrow-down"></i></a>                
         </th>
+        <th>id_usuario
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>                
+        </th>
         <th>etiquetas
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=etiquetas&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=etiquetas&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
@@ -152,16 +157,45 @@
     <%
         while (oIterador.hasNext()) {
             DocumentoBean oDocumentoBEAN = oIterador.next();
+            String contenido = "";
+            if (oDocumentoBEAN.getContenido().length() >= 50) {
+                contenido = oDocumentoBEAN.getContenido().substring(0, 50) + "... <a href=\"Controller?class=documento&method=view&id=" + oDocumentoBEAN.getId() + "\">Ver más</a>";
+            } else {
+                contenido = oDocumentoBEAN.getContenido();
+            }
+            /*String classNota = "";
+            if (oDocumentoBEAN.getNota() == 5) {
+                classNota = "class=\"text-warning\"";
+            } else if (oDocumentoBEAN.getNota() <= 4) {
+                classNota = "class=\"text-error\"";
+            } else if (oDocumentoBEAN.getNota() >= 6) {
+                classNota = "class=\"text-success\"";
+            }*/
+            String classNota = "";
+            if (oDocumentoBEAN.getNota() == 5) {
+                classNota = "class=\"warning\"";
+            } else if (oDocumentoBEAN.getNota() <= 4) {
+                classNota = "class=\"error\"";
+            } else if (oDocumentoBEAN.getNota() >= 6) {
+                classNota = "class=\"success\"";
+            }
     %>
-    <tr>
+    <tr <%=classNota%>>
         <td><%=oDocumentoBEAN.getId()%></td>
         <td><%=oDocumentoBEAN.getTitulo()%></td>
-        <td><%=oDocumentoBEAN.getContenido()%></td>
+        <td><%=contenido%></td>
         <%
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oDocumentoBEAN.getFecha())%></td>
+        <!--<td><span </%=classNota%>></%=oDocumentoBEAN.getNota()%></span></td>-->
         <td><%=oDocumentoBEAN.getNota()%></td>
+        <td>
+            <%=oDocumentoBEAN.getUsuario().getLogin()%> (<%=oDocumentoBEAN.getUsuario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oDocumentoBEAN.getId()%>&searchingfor=usuario&returnclass=documento&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
         <td><%=oDocumentoBEAN.getEtiquetas()%></td>
         <td>
             <div class="btn-toolbar">

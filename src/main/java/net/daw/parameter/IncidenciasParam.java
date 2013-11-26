@@ -46,12 +46,12 @@ public class IncidenciasParam {
             if ((request.getParameter("cambios") != null)) {
                 oIncidencias.setCambios(request.getParameter("cambios"));
             }
-            
-             if ((request.getParameter("id_estado") != null)) {
+
+            if ((request.getParameter("id_estado") != null)) {
                 oIncidencias.getEstado().setId(Integer.parseInt(request.getParameter("id_estado")));
             }
-            
-             if ((request.getParameter("id_repositorio") != null)) {
+
+            if ((request.getParameter("id_repositorio") != null)) {
                 oIncidencias.getRepositorio().setId(Integer.parseInt(request.getParameter("id_repositorio")));
             }
             if ((request.getParameter("id_usuario") != null)) {

@@ -31,7 +31,7 @@ public class MetadocumentosUpdate2 implements Operation{
                 oContexto.setFase("1");
                 oContexto.setSearchingFor("documento");
                 oContexto.setClaseRetorno("metadocumentos");
-                oContexto.setMetodoRetorno("new");
+                oContexto.setMetodoRetorno("update");
                 oContexto.setFaseRetorno("1");
                 oContexto.removeParam("id_documento");
                 DocumentoList1 oOperacion = new DocumentoList1();
@@ -44,7 +44,7 @@ public class MetadocumentosUpdate2 implements Operation{
                 oContexto.setFase("1");
                 oContexto.setSearchingFor("metadocumento");
                 oContexto.setClaseRetorno("metadocumentos");
-                oContexto.setMetodoRetorno("new");
+                oContexto.setMetodoRetorno("update");
                 oContexto.setFaseRetorno("1");
                 oContexto.removeParam("id_metadocumento");
                 MetadocumentoList1 oOperacion = new MetadocumentoList1();

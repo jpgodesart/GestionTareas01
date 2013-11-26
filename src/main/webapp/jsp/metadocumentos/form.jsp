@@ -21,9 +21,11 @@
        descid_metadocumento = oMetadocumentosBean.getMetadocumento().getTitulo();
     }
     id_documento = Integer.toString(oMetadocumentosBean.getDocumento().getId());
-    if (!(oMetadocumentosBean.getDocumento().getTitulo().equals(""))) {
+    
+        if(oMetadocumentosBean.getDocumento().getTitulo() != null){
         descId_documento = oMetadocumentosBean.getDocumento().getTitulo();
-    }
+        }
+    
     orden = Integer.toString(oMetadocumentosBean.getOrden());
     
     if (oContexto.getMetodo().equals("view")) {

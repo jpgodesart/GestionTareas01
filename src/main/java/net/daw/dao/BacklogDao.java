@@ -78,7 +78,6 @@ public class BacklogDao {
         }
     }
 
-
     public BacklogBean get(BacklogBean oBacklogBean) throws Exception {
         if (oBacklogBean.getId() > 0) {
             try {
@@ -87,11 +86,17 @@ public class BacklogDao {
                 if (!oMysql.existsOne("backlog", oBacklogBean.getId())) {
                     oBacklogBean.setId(0);
                 } else {
+                    
+                    
+                    UsuarioBean oUsuarioBean = new UsuarioBean();
+                    UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+                    
                     oBacklogBean.setId(Integer.parseInt(oMysql.getOne("backlog", "id", oBacklogBean.getId())));
                     oBacklogBean.setId_requerimiento(Integer.parseInt(oMysql.getOne("backlog", "id_requerimiento", oBacklogBean.getId())));
 
                     oBacklogBean.setEnunciado(oMysql.getOne("backlog", "enunciado", oBacklogBean.getId()));
                     oBacklogBean.setDescripciondetallada(oMysql.getOne("backlog", "descripciondetallado", oBacklogBean.getId()));
+                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("backlog", "id_usuario", oBacklogBean.getId())));
 
                     oBacklogBean.setFechainicioprevista(dateFormat.parse(oMysql.getOne("backlog", "fechainicioprevista", oBacklogBean.getId())));
                     oBacklogBean.setFechafinprevista(dateFormat.parse(oMysql.getOne("backlog", "fechafinprevista", oBacklogBean.getId())));
@@ -106,9 +111,6 @@ public class BacklogDao {
                     oBacklogBean.setSprint(Integer.parseInt(oMysql.getOne("backlog", "sprint", oBacklogBean.getId())));
                     oBacklogBean.setRelease(Integer.parseInt(oMysql.getOne("backlog", "releasetabla", oBacklogBean.getId())));
 
-                    UsuarioBean oUsuarioBean = new UsuarioBean();
-                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("backlog", "id_usuario", oBacklogBean.getId())));
-                    UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
                     oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
                     oBacklogBean.setUsuario(oUsuarioBean);
 
@@ -133,18 +135,20 @@ public class BacklogDao {
             }
 
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "id", Integer.toString(oBacklogBean.getId()));
-
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "enunciado", oBacklogBean.getEnunciado());
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "descripciondetallado", oBacklogBean.getDescripciondetallada());
-
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "id_usuario", Integer.toString(oBacklogBean.getUsuario().getId()));
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "id_requerimiento", Integer.toString(oBacklogBean.getId_requerimiento()));
-                        
+
             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-          oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechainicioprevista", oSimpleDateFormat.format(oBacklogBean.getFechainicioprevista()));
-          oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechafinprevista", oSimpleDateFormat.format(oBacklogBean.getFechafinprevista()));
-          oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechafin", oSimpleDateFormat.format(oBacklogBean.getFechafin()));
-          oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechainicio", oSimpleDateFormat.format(oBacklogBean.getFechainicio()));
-          oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechaalta", oSimpleDateFormat.format(oBacklogBean.getFechaalta()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechainicioprevista", oSimpleDateFormat.format(oBacklogBean.getFechainicioprevista()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechafinprevista", oSimpleDateFormat.format(oBacklogBean.getFechafinprevista()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechafin", oSimpleDateFormat.format(oBacklogBean.getFechafin()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechainicio", oSimpleDateFormat.format(oBacklogBean.getFechainicio()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechaalta", oSimpleDateFormat.format(oBacklogBean.getFechaalta()));
+
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "porcentajecompletado", Integer.toString(oBacklogBean.getPorcentajecompletado()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "horasduracionprevista", Integer.toString(oBacklogBean.getHorasduracionprevista()));
 
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "sprint", Integer.toString(oBacklogBean.getSprint()));
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "releasetabla", Integer.toString(oBacklogBean.getRelease()));
