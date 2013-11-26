@@ -36,6 +36,7 @@
     if (oComentBean.getId_usuario().getId() > 0) {
         nomUsuario = oComentBean.getId_usuario().getLogin();
     }
+    id_documento = Integer.toString(oComentBean.getId_documento().getId());
     if (oComentBean.getId_documento().getId() > 0) {
         titDocumento = oComentBean.getId_documento().getTitulo();
     }

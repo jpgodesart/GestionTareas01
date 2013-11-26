@@ -58,7 +58,7 @@
     </div>
     <div class="span4">
         <div class="text-right">
-            <legend>Filtro de documentoario</legend> 
+            <legend>Filtro de Comentario</legend> 
             <form class="navbar-form pull-right" action="Controller" method="post" id="ComentForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
@@ -102,19 +102,19 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=titulo&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=titulo&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        <th>contenido
+        <th> contenido
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=contenido&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=contenido&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        <th>fecha
+        <th> fecha
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
-        <th>id de documento
+        <th> documento
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
         </th>
-       <th>id de usuario
+       <th> usuario
             <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
         </th>
@@ -133,7 +133,7 @@
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oComentBean.getFecha())%></td>
-       <!-- <td><//%=oComentBean.getId_documento()%></td>-->
+        <td><//%=oComentBean.getId_documento()%></td>
        <td>
             <//%=oComentBean.getId_documento().getTitulo()%>(<//%=oComentBean.getId_documento().getId()%>)
             <div class="btn-group">
