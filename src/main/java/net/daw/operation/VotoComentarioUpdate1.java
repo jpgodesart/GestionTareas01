@@ -18,14 +18,6 @@ import net.daw.parameter.VotoComentarioParam;
  */
 public class VotoComentarioUpdate1 implements Operation {
 
-    /**
-     *
-     * @author Diana Ortega
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -33,15 +25,19 @@ public class VotoComentarioUpdate1 implements Operation {
         VotoComentarioBean oVotoComentarioBean;
         VotoComentarioDao oVotoComentarioDao;
         oVotoComentarioBean = new VotoComentarioBean();
-        VotoComentarioParam oClienteParam = new VotoComentarioParam(request);
-        oVotoComentarioBean = oClienteParam.loadId(oVotoComentarioBean);
+        VotoComentarioParam oVotoComentarioParam = new VotoComentarioParam(request);
+        oVotoComentarioBean = oVotoComentarioParam.loadId(oVotoComentarioBean);
         oVotoComentarioDao = new VotoComentarioDao(oContexto.getEnumTipoConexion());
         try {
             oVotoComentarioBean = oVotoComentarioDao.get(oVotoComentarioBean);
         } catch (Exception e) {
             throw new ServletException("ClienteController: Update Error: Phase 1: " + e.getMessage());
+        }try {
+            oVotoComentarioBean = oVotoComentarioParam.load(oVotoComentarioBean);
+        } catch (NumberFormatException e) {
+            oContexto.setVista("jsp/mensaje.jsp");
+            return "Tipo de dato incorrecto en uno de los campos del formulario";
         }
-        oVotoComentarioBean = oClienteParam.load(oVotoComentarioBean);
         return oVotoComentarioBean;
     }
 }

@@ -31,7 +31,9 @@ public class VotoComentarioRemove2 implements Operation {
         } catch (Exception e) {
             throw new ServletException("VotoComentarioController: Remove Error: " + e.getMessage());
         }
-        String Mensaje = ("Se ha eliminado la información del votoComentario con id=" + Integer.toString(oVotoComentarioBean.getId()));
+        String strMensaje = ("Se ha eliminado la infcompraormación del votoComentario con id=" + Integer.toString(oVotoComentarioBean.getId()));
+        strMensaje += "<a href=\"Controller?class=votocomentario&method=list\">Ir al listado de votoComentario</a><br />";
+        String Mensaje = strMensaje;
         return Mensaje;
     }
 }

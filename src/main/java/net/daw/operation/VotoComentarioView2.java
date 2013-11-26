@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package net.daw.operation;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +12,7 @@ import net.daw.helper.Contexto;
 
 /**
  *
- * @author Diana Ortega
+ * @author Diana
  */
 public class VotoComentarioView2 implements Operation {
     
@@ -23,5 +25,6 @@ public class VotoComentarioView2 implements Operation {
         oContexto.setFase("1");
         VotoComentarioList1 oOperacion = new VotoComentarioList1();
         return oOperacion.execute(request, response);
-    }   
+    }
+    
 }

@@ -21,23 +21,54 @@ public class VotoComentarioUpdate2 implements Operation {
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/mensaje.jsp");
-        VotoComentarioBean oVotoComentarioBean = new VotoComentarioBean();
-        VotoComentarioDao oVotoComentarioDao = new VotoComentarioDao(oContexto.getEnumTipoConexion());
-        VotoComentarioParam oVotoComentarioParam = new VotoComentarioParam(request);
-        oVotoComentarioBean = oVotoComentarioParam.loadId(oVotoComentarioBean);
-        try {
-            oVotoComentarioBean = oVotoComentarioParam.load(oVotoComentarioBean);
-        } catch (NumberFormatException e) {
-            return "Tipo de dato incorrecto en uno de los campos del formulario";
+        switch (oContexto.getSearchingFor()) {
+            case "id_usuario": {
+                oContexto.setVista("jsp/usuario/list.jsp");
+                oContexto.setClase("usuario");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("id_usuario");
+                oContexto.setClaseRetorno("votocomentario");
+                oContexto.setMetodoRetorno("update");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_usuario");
+                VotoComentarioList1 oOperacion = new VotoComentarioList1();
+                return oOperacion.execute(request, response);
+            }
+            case "id_comentario": {
+                oContexto.setVista("jsp/comentario/list.jsp");
+                oContexto.setClase("comentario");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("id_comentario");
+                oContexto.setClaseRetorno("votocomentario");
+                oContexto.setMetodoRetorno("update");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_comentario");
+                UsuarioList1 oOperacion = new UsuarioList1();
+                return oOperacion.execute(request, response);
+            }
+            default:
+                oContexto.setVista("jsp/mensaje.jsp");
+                VotoComentarioBean oVotoComentarioBean = new VotoComentarioBean();
+                VotoComentarioDao oVotoComentarioDao = new VotoComentarioDao(oContexto.getEnumTipoConexion());
+                VotoComentarioParam oVotoComentarioParam = new VotoComentarioParam(request);
+                oVotoComentarioBean = oVotoComentarioParam.loadId(oVotoComentarioBean);
+                oVotoComentarioBean = oVotoComentarioDao.get(oVotoComentarioBean);
+                try {
+                    oVotoComentarioBean = oVotoComentarioParam.load(oVotoComentarioBean);
+                } catch (NumberFormatException e) {
+                    return "Tipo de dato incorrecto en uno de los campos del formulario";
+                }
+                try {
+                    oVotoComentarioDao.set(oVotoComentarioBean);
+                } catch (Exception e) {
+                    throw new ServletException("VotoComentarioController: Update Error: Phase 2: " + e.getMessage());
+                }
+                String strMensaje = "Se ha cambiado la información de votocomentario con id=" + Integer.toString(oVotoComentarioBean.getId()) + "<br />";
+               /* strMensaje += "<a href=\"Controller?class=votocomentario&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oVotoComentarioBean.getCliente().getId() + "\">Ver votocomentario de este cliente</a><br />";*/
+                strMensaje += "<a href=\"Controller?class=votocomentario&method=view&id=" + oVotoComentarioBean.getId() + "\">Ver votocomentario creada en el formulario</a><br />";
+                return strMensaje;
         }
-        try {
-            oVotoComentarioDao.set(oVotoComentarioBean);
-        } catch (Exception e) {
-            throw new ServletException("RepositorioController: Update Error: Phase 2: " + e.getMessage());
-        }
-        String strMensaje = "Se ha modificado la información de votoComentario con id=" + Integer.toString(oVotoComentarioBean.getId()) + "<br />";
-        strMensaje += "<a href=\"Controller?class=votoComentario&method=view&id=" + oVotoComentarioBean.getId() + "\">Ver votoComentario de la modificación</a><br />";
-        return strMensaje;
     }
 }
