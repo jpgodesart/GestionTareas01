@@ -13,6 +13,7 @@ import net.daw.bean.DocumentoBean;
 import net.daw.dao.DocumentoDao;
 import net.daw.helper.Contexto;
 import net.daw.helper.Pagination;
+import net.daw.helper.FilterBean;
 
 /**
  *
@@ -25,6 +26,8 @@ public class DocumentoList1 implements Operation {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/documento/list.jsp");
         try {
+            FilterBean oFilterBean = new FilterBean();
+            oFilterBean.setFilter("");
             DocumentoDao oDocumentoDAO = new DocumentoDao(oContexto.getEnumTipoConexion());
             Integer intPages = oDocumentoDAO.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
             Integer intRegisters = oDocumentoDAO.getCount(oContexto.getAlFilter());
