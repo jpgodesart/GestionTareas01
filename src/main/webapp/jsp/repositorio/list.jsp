@@ -177,7 +177,11 @@
                 <a class="btn btn-mini" href="Controller?class=lenguaje&method=list&id=<%=oRepositorioBean.getId()%>&searchingfor=lenguaje&returnclass=repositorio&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
-        <td><%=oRepositorioBean.getId_documento()%></td>
+        <td><%=oRepositorioBean.getDocumento().getTitulo()%> (<%=oRepositorioBean.getDocumento().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oRepositorioBean.getId()%>&searchingfor=documento&returnclass=repositorio&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
         <td><%=formato.format(oRepositorioBean.getFecha())%></td>
         <td>
             <div class="btn-toolbar">
