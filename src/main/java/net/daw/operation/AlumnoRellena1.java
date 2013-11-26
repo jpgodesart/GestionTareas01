@@ -30,20 +30,7 @@ public class AlumnoRellena1 implements Operation {
         oContexto.setVista("jsp/mensaje.jsp");
         AlumnoBean oAlumnoBean = new AlumnoBean();
         AlumnoDao oAlumnoDao = new AlumnoDao(oContexto.getEnumTipoConexion());
-        String dni = "";
-        String numexpediente = "";
-        String nombre = "";
-        String ape1 = "";
-        String ape2 = "";
-        String sexo = "";
-        String domicilio = "";
-        String codpostal = "";
-        String poblacion = "";
-        String provincia = "";
-        String telefono = "";
-        String email = "";
-        String validado = "";
-        
+        String nombre = "";        
 
         ArrayList<String> arrDni = new ArrayList<>();
         arrDni.add("0077000A");

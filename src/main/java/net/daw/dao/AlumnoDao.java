@@ -43,7 +43,7 @@ public class AlumnoDao {
         }
     }
 
-    public ArrayList<AlumnoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
+public ArrayList<AlumnoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
         ArrayList<AlumnoBean> arrAlumno = new ArrayList<>();
         try {
@@ -81,15 +81,15 @@ public class AlumnoDao {
                 oMysql.conexion(enumTipoConexion);
                 if (!oMysql.existsOne("alumno", oAlumnoBean.getId())) {
                     oAlumnoBean.setId(0);
-                } else {                 
+                } else {
                     UsuarioBean oUsuarioBean = new UsuarioBean();
-                    
-                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("usuario", "id", oAlumnoBean.getId())));
-                    
+
+                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("alumno", "id_usuario", oAlumnoBean.getId())));
+
                     UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
                     oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
                     oAlumnoBean.setUsuario(oUsuarioBean);
-                    
+
                     oAlumnoBean.setId_usuario(Integer.parseInt(oMysql.getOne("alumno", "id_usuario", oAlumnoBean.getId())));
                     oAlumnoBean.setDni(oMysql.getOne("alumno", "dni", oAlumnoBean.getId()));
                     oAlumnoBean.setNumexpediente(oMysql.getOne("alumno", "numexpediente", oAlumnoBean.getId()));
@@ -104,7 +104,7 @@ public class AlumnoDao {
                     oAlumnoBean.setTelefono(oMysql.getOne("alumno", "telefono", oAlumnoBean.getId()));
                     oAlumnoBean.setEmail(oMysql.getOne("alumno", "email", oAlumnoBean.getId()));
                     oAlumnoBean.setValidado(oMysql.getOne("alumno", "validado", oAlumnoBean.getId()));
-                    
+
                 }
             } catch (Exception e) {
                 throw new Exception("AlumnoDao.getAlumno: Error: " + e.getMessage());
@@ -125,6 +125,11 @@ public class AlumnoDao {
             if (oAlumnoBean.getId() == 0) {
                 oAlumnoBean.setId(oMysql.insertOne("alumno"));
             }
+            UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+            oUsuarioDao.set(oAlumnoBean.getUsuario());
+            
+            oAlumnoBean.setUsuario(oUsuarioDao.getFromLogin(oAlumnoBean.getUsuario()));
+            
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "id_usuario", Integer.toString(oAlumnoBean.getUsuario().getId()));
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "dni", oAlumnoBean.getDni());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "numexpediente", oAlumnoBean.getNumexpediente());
@@ -140,9 +145,6 @@ public class AlumnoDao {
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "email", oAlumnoBean.getEmail());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "validado", oAlumnoBean.getValidado());
             
-             UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-             oUsuarioDao.set(oAlumnoBean.getUsuario());
-                        
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
