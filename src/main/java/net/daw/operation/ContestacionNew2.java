@@ -49,7 +49,7 @@ public class ContestacionNew2 implements Operation {
                 PreguntaList1 oOperacion = new PreguntaList1();
                 return oOperacion.execute(request, response);
             }
-                case "opcion": {
+            case "opcion": {
                 oContexto.setVista("jsp/opcion/list.jsp");
                 oContexto.setClase("opcion");
                 oContexto.setMetodo("list");

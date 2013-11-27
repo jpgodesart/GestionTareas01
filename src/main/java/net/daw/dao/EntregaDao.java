@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import net.daw.bean.ActividadBean;
+import net.daw.bean.DocumentoBean;
 import net.daw.bean.UsuarioBean;
 import net.daw.bean.EntregaBean;
 import net.daw.bean.OpcionBean;

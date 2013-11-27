@@ -42,7 +42,7 @@ public class EntregaParam {
     public EntregaBean load(EntregaBean oEntrega) throws NumberFormatException, ParseException {
         try {
             if (request.getParameter("id_documento") != null) {
-                oEntrega.getDocumento.setId(request.getParameter("id_documento"));
+                oEntrega.getDocumento().setId(Integer.parseInt(request.getParameter("id_documento")));
             }
             if (request.getParameter("id_actividad") != null) {
                 oEntrega.getActividad().setId(Integer.parseInt(request.getParameter("id_actividad")));
