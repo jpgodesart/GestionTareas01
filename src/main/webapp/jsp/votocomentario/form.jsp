@@ -7,7 +7,7 @@
     String strControlEnabled = "";
     String strValueBoton = "Enviar";
     Integer id = 0;
-    String id_usuario = "";
+    Integer id_usuario = 0;
     String descId_usuario = "";
     Integer id_comentario = 0;
     String descId_comentario = "";
@@ -16,16 +16,16 @@
     VotoComentarioBean oVotoComentarioBean = (VotoComentarioBean) oContexto.getParametro();
 
     id = oVotoComentarioBean.getId();
+    id_usuario = oVotoComentarioBean.getId_usuario().getId();
     if (!(oVotoComentarioBean.getId_usuario().getLogin().equals(""))) {
         descId_usuario = oVotoComentarioBean.getId_usuario().getLogin();
     }
-
+    id_comentario = oVotoComentarioBean.getId_comentario().getId();
     if (!(oVotoComentarioBean.getId_comentario().getTitulo().equals(""))) {
         descId_comentario = oVotoComentarioBean.getId_comentario().getTitulo();
     }
 
     valor = oVotoComentarioBean.getValor();
-
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";

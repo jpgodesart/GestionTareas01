@@ -27,12 +27,12 @@ public class VotoComentarioUpdate2 implements Operation {
                 oContexto.setClase("usuario");
                 oContexto.setMetodo("list");
                 oContexto.setFase("1");
-                oContexto.setSearchingFor("id_usuario");
-                oContexto.setClaseRetorno("votocomentario");
+                oContexto.setSearchingFor("usuario");
+                oContexto.setClaseRetorno("votoComentario");
                 oContexto.setMetodoRetorno("update");
                 oContexto.setFaseRetorno("1");
-                oContexto.removeParam("id_usuario");
-                VotoComentarioList1 oOperacion = new VotoComentarioList1();
+                oContexto.removeParam("usuario");
+                UsuarioList1 oOperacion = new UsuarioList1();
                 return oOperacion.execute(request, response);
             }
             case "id_comentario": {
@@ -40,12 +40,12 @@ public class VotoComentarioUpdate2 implements Operation {
                 oContexto.setClase("comentario");
                 oContexto.setMetodo("list");
                 oContexto.setFase("1");
-                oContexto.setSearchingFor("id_comentario");
-                oContexto.setClaseRetorno("votocomentario");
+                oContexto.setSearchingFor("comentario");
+                oContexto.setClaseRetorno("votoComentario");
                 oContexto.setMetodoRetorno("update");
                 oContexto.setFaseRetorno("1");
-                oContexto.removeParam("id_comentario");
-                UsuarioList1 oOperacion = new UsuarioList1();
+                oContexto.removeParam("comentario");
+               ComentList1 oOperacion = new ComentList1();
                 return oOperacion.execute(request, response);
             }
             default:

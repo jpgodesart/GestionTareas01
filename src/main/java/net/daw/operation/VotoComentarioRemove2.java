@@ -32,7 +32,7 @@ public class VotoComentarioRemove2 implements Operation {
             throw new ServletException("VotoComentarioController: Remove Error: " + e.getMessage());
         }
         String strMensaje = ("Se ha eliminado la infcompraormación del votoComentario con id=" + Integer.toString(oVotoComentarioBean.getId()));
-        strMensaje += "<a href=\"Controller?class=votocomentario&method=list\">Ir al listado de votoComentario</a><br />";
+        strMensaje += "<a href=\"Controller?class=votoComentario&method=list\">Ir al listado de votoComentario</a><br />";
         String Mensaje = strMensaje;
         return Mensaje;
     }

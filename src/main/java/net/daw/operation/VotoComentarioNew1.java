@@ -37,7 +37,7 @@ public class VotoComentarioNew1 implements Operation {
             oContexto.setVista("jsp/mensaje.jsp");
             return "Tipo de dato incorrecto en uno de los campos del formulario";
         }
-        oContexto.setVista("jsp/votocomentario/form.jsp");
+        oContexto.setVista("jsp/votoComentario/form.jsp");
         return oVotoComentarioBean;
     }
     

@@ -85,11 +85,11 @@ public class ComentDao {
         }
     }
 
-    public ComentBean get(ComentBean oComentBean) throws Exception {
+     public ComentBean get(ComentBean oComentBean) throws Exception {
         if (oComentBean.getId() > 0) {
             try {
                 oMysql.conexion(enumTipoConexion);
-                if (!oMysql.existsOne("producto", oComentBean.getId())) {
+                if (!oMysql.existsOne("comentario", oComentBean.getId())) {
                     oComentBean.setId(0);
                 } else {
                     oComentBean.setTitulo(oMysql.getOne("comentario", "titulo", oComentBean.getId()));

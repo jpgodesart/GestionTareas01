@@ -19,7 +19,7 @@ public class VotoComentarioView2 implements Operation {
      @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/votocomentario/list.jsp");
+        oContexto.setVista("jsp/votoComentario/list.jsp");
         oContexto.setClase("votocomentario");
         oContexto.setMetodo("list");
         oContexto.setFase("1");

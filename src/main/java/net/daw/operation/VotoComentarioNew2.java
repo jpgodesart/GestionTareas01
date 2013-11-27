@@ -29,11 +29,11 @@ public class VotoComentarioNew2 implements Operation {
                 oContexto.setClase("usuario");
                 oContexto.setMetodo("list");
                 oContexto.setFase("1");
-                oContexto.setSearchingFor("id_usuario");
-                oContexto.setClaseRetorno("votocomentario");
+                oContexto.setSearchingFor("usuario");
+                oContexto.setClaseRetorno("votoComentario");
                 oContexto.setMetodoRetorno("new");
                 oContexto.setFaseRetorno("1");
-                oContexto.removeParam("id_usuario");
+                oContexto.removeParam("usuario");
                 UsuarioList1 oOperacion = new UsuarioList1();
                 return oOperacion.execute(request, response);
             }
@@ -42,11 +42,11 @@ public class VotoComentarioNew2 implements Operation {
                 oContexto.setClase("comentario");
                 oContexto.setMetodo("list");
                 oContexto.setFase("1");
-                oContexto.setSearchingFor("id_comentario");
-                oContexto.setClaseRetorno("votocomentario");
+                oContexto.setSearchingFor("comentario");
+                oContexto.setClaseRetorno("votoComentario");
                 oContexto.setMetodoRetorno("new");
                 oContexto.setFaseRetorno("1");
-                oContexto.removeParam("id_comentario");
+                oContexto.removeParam("comentario");
                 ComentList1 oOperacion = new ComentList1();
                 return oOperacion.execute(request, response);
             }
