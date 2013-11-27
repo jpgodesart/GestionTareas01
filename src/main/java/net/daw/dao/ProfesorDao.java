@@ -78,15 +78,16 @@ public class ProfesorDao {
                 oMysql.conexion(enumTipoConexion);
                 if (!oMysql.existsOne("profesor", oProfesorBean.getId())) {
                     oProfesorBean.setId(0);
-                } else {                 
+                } else {
                     UsuarioBean oUsuarioBean = new UsuarioBean();
-                    
+
                     oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("profesor", "id_usuario", oProfesorBean.getId())));
-                    
+
                     UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
                     oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
                     oProfesorBean.setUsuario(oUsuarioBean);
-                    
+
+                    oProfesorBean.setId_usuario(Integer.parseInt(oMysql.getOne("profesor", "id_usuario", oProfesorBean.getId())));
                     oProfesorBean.setDni(oMysql.getOne("profesor", "dni", oProfesorBean.getId()));
                     oProfesorBean.setNombre(oMysql.getOne("profesor", "nombre", oProfesorBean.getId()));
                     oProfesorBean.setApe1(oMysql.getOne("profesor", "ape1", oProfesorBean.getId()));
@@ -94,7 +95,6 @@ public class ProfesorDao {
                     oProfesorBean.setSexo(oMysql.getOne("profesor", "sexo", oProfesorBean.getId()));
                     oProfesorBean.setTelefono(oMysql.getOne("profesor", "telefono", oProfesorBean.getId()));
                     oProfesorBean.setEmail(oMysql.getOne("profesor", "email", oProfesorBean.getId()));
-                    
                 }
             } catch (Exception e) {
                 throw new Exception("ProfesorDao.getProfesor: Error: " + e.getMessage());
@@ -111,12 +111,15 @@ public class ProfesorDao {
         try {
             oMysql.conexion(enumTipoConexion);
             oMysql.initTrans();
-            
-            UsuarioBean oUsuarioBean = new UsuarioBean();
 
             if (oProfesorBean.getId() == 0) {
                 oProfesorBean.setId(oMysql.insertOne("profesor"));
             }
+            UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+            oUsuarioDao.set(oProfesorBean.getUsuario());
+
+            oProfesorBean.setUsuario(oUsuarioDao.getFromLogin(oProfesorBean.getUsuario()));
+
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "id_usuario", Integer.toString(oProfesorBean.getUsuario().getId()));
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "dni", oProfesorBean.getDni());
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "nombre", oProfesorBean.getNombre());
@@ -125,10 +128,7 @@ public class ProfesorDao {
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "sexo", oProfesorBean.getSexo());
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "telefono", oProfesorBean.getTelefono());
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "email", oProfesorBean.getEmail());
-            
-             UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-             oUsuarioDao.set(oProfesorBean.getUsuario());
-                        
+
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
@@ -149,8 +149,8 @@ public class ProfesorDao {
             oMysql.desconexion();
         }
     }
-    
-     public ProfesorBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {
+
+    public ProfesorBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {
         ProfesorBean oProfesorBean = new ProfesorBean();
         if (oUsuarioBean.getId() > 0) {
             try {

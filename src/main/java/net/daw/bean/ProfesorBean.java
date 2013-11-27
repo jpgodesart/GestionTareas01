@@ -9,7 +9,7 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author al037184
+ * @author Pedro Benito
  */
 @Stateless
 public class ProfesorBean {

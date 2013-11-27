@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.ProfesorBean;
 import net.daw.dao.ProfesorDao;
+import net.daw.dao.UsuarioDao;
 import net.daw.helper.Contexto;
 
 
@@ -201,7 +202,7 @@ public class ProfesorRellena1 implements Operation {
             index = generator.nextInt(arrNombres.size());
             String randomPASSWORD = arrNombres.get(index);
             oProfesorBean.getUsuario().setPassword(randomPASSWORD + contador);
-
+            
             try {
                 oProfesorDao.set(oProfesorBean);
 
