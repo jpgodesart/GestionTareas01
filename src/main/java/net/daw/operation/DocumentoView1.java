@@ -13,6 +13,7 @@ import net.daw.bean.DocumentoBean;
 import net.daw.bean.UsuarioBean;
 import net.daw.dao.DocumentoDao;
 import net.daw.helper.Contexto;
+import static net.daw.helper.Enum.TipoUsuario.Profesor;
 import net.daw.helper.TextParser;
 import net.daw.parameter.DocumentoParam;
 
@@ -26,6 +27,7 @@ public class DocumentoView1 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         Integer idUsuario = oUsuarioBean.getId();
+        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
 
         DocumentoBean oDocumentoBean;
@@ -42,14 +44,18 @@ public class DocumentoView1 implements Operation {
         }
         oDocumentoBean = oDocumentoParam.load(oDocumentoBean);
 
-        if (idUsuario == oDocumentoBean.getUsuario().getId()) {
-
+        if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
             oContexto.setVista("jsp/documento/view.jsp");
             return oDocumentoBean;
         } else {
-            oContexto.setVista("jsp/mensaje.jsp");
-            return "<div class=\"alert alert-error\">No tienes permisos suficientes para visualizar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario de este documento.</li><li>Ha habido un error en el servidor.</li></ul></div>";
-        }
+            if (idUsuario == oDocumentoBean.getUsuario().getId()) {
 
+                oContexto.setVista("jsp/documento/view.jsp");
+                return oDocumentoBean;
+            } else {
+                oContexto.setVista("jsp/mensaje.jsp");
+                return "<div class=\"alert alert-error\">No se puede visualizar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario o no tienes los permisos suficientes en este documento.</li><li>El documento al que intentas acceder no exsiste.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+            }
+        }
     }
 }

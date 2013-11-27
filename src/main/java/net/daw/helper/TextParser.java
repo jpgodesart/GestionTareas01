@@ -18,27 +18,31 @@ public class TextParser {
     public static String toHtml(String text, String url) throws Exception {
         ParserConverter oParserConverter = new ParserConverter();
         try {
-            text = oParserConverter.tag(text, "======", "h6");
-            text = oParserConverter.tag(text, "=====", "h5");
-            text = oParserConverter.tag(text, "====", "h4");
-            text = oParserConverter.tag(text, "===", "h3");
-            text = oParserConverter.tag(text, "==", "h2");
-            text = oParserConverter.tag(text, "=", "h1");
-            text = oParserConverter.tag(text, "\\*\\*", "b");
-            text = oParserConverter.tag(text, "\\$\\$", "i");
-            text = oParserConverter.a(text, url);
-            text = oParserConverter.p(text);
+            if (text != null) {
+                if (!text.equals("")) {
+                    text = oParserConverter.tag(text, "======", "h6");
+                    text = oParserConverter.tag(text, "=====", "h5");
+                    text = oParserConverter.tag(text, "====", "h4");
+                    text = oParserConverter.tag(text, "===", "h3");
+                    text = oParserConverter.tag(text, "==", "h2");
+                    text = oParserConverter.tag(text, "=", "h1");
+                    text = oParserConverter.tag(text, "\\*\\*", "b");
+                    text = oParserConverter.tag(text, "\\$\\$", "i");
+                    text = oParserConverter.a(text, url);
+                    text = oParserConverter.p(text);
+                }
+            }
         } catch (Exception e) {
             throw new ServletException("TextParser Error: " + e.getMessage());
         }
         return text;
     }
-  
-  public static void miau(){
-      //URLEncoder.encode(null, null);
-  }
 
-  public static void miau1(){
-      //URLDecoder.decode(null, null);
-  }
+    public static void miau() {
+        //URLEncoder.encode(null, null);
+    }
+
+    public static void miau1() {
+        //URLDecoder.decode(null, null);
+    }
 }

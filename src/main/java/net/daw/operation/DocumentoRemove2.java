@@ -36,7 +36,8 @@ public class DocumentoRemove2 implements Operation {
 
         UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         Integer idUsuario = oUsuarioBean.getId();
-        if (idUsuario == oDocumentoBean.getUsuario().getId()) {
+        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+        if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
             try {
                 DocumentoDao oDocumentoDAO = new DocumentoDao(oContexto.getEnumTipoConexion());
                 oDocumentoDAO.remove(oDocumentoBean);
@@ -46,10 +47,20 @@ public class DocumentoRemove2 implements Operation {
             String Mensaje = ("Se ha eliminado la información del documento con id=" + Integer.toString(oDocumentoBean.getId()));
             return Mensaje;
         } else {
-            oContexto.setVista("jsp/mensaje.jsp");
-            return "<div class=\"alert alert-error\">No tienes permisos suficientes para eliminar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario de este documento.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+            if (idUsuario == oDocumentoBean.getUsuario().getId()) {
+                try {
+                    DocumentoDao oDocumentoDAO = new DocumentoDao(oContexto.getEnumTipoConexion());
+                    oDocumentoDAO.remove(oDocumentoBean);
+                } catch (Exception e) {
+                    throw new ServletException("DocumentoController: Remove Error: " + e.getMessage());
+                }
+                String Mensaje = ("Se ha eliminado la información del documento con id=" + Integer.toString(oDocumentoBean.getId()));
+                return Mensaje;
+            } else {
+                oContexto.setVista("jsp/mensaje.jsp");
+                return "<div class=\"alert alert-error\">No se puede eliminar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario o no tienes los permisos suficientes en este documento.</li><li>El documento al que intentas acceder no exsiste.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+            }
         }
-
     }
 
 }

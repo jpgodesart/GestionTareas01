@@ -50,7 +50,8 @@ public class DocumentoUpdate2 implements Operation {
             UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
             Integer idUsuario = oUsuarioBean.getId();
 
-            if (idUsuario == oDocumentoBean.getUsuario().getId()) {
+            java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+            if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
                 try {
                     oDocumentoDao.set(oDocumentoBean);
                 } catch (Exception e) {
@@ -59,12 +60,21 @@ public class DocumentoUpdate2 implements Operation {
                 String strMensaje = "Se ha añadido la información del documento con id=" + Integer.toString(oDocumentoBean.getId()) + "<br />";
                 strMensaje += "<a href=\"Controller?class=documento&method=view&id=" + oDocumentoBean.getId() + "\">Ver documento actualizado</a><br />";
                 return strMensaje;
-
             } else {
-                oContexto.setVista("jsp/mensaje.jsp");
-                return "<div class=\"alert alert-error\">No tienes permisos suficientes para editar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario de este documento.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+                if (idUsuario == oDocumentoBean.getUsuario().getId()) {
+                    try {
+                        oDocumentoDao.set(oDocumentoBean);
+                    } catch (Exception e) {
+                        throw new ServletException("DocumentoController: Update Error: Phase 2: " + e.getMessage());
+                    }
+                    String strMensaje = "Se ha añadido la información del documento con id=" + Integer.toString(oDocumentoBean.getId()) + "<br />";
+                    strMensaje += "<a href=\"Controller?class=documento&method=view&id=" + oDocumentoBean.getId() + "\">Ver documento actualizado</a><br />";
+                    return strMensaje;
+                } else {
+                    oContexto.setVista("jsp/mensaje.jsp");
+                    return "<div class=\"alert alert-error\">No se puede modificar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario o no tienes los permisos suficientes en este documento.</li><li>El documento al que intentas acceder no exsiste.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+                }
             }
-
         }
     }
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.operation;
 
 import javax.servlet.ServletException;
@@ -20,13 +19,13 @@ import net.daw.parameter.DocumentoParam;
  *
  * @author Alvaro
  */
-public class DocumentoRemove1 implements Operation{
-    
+public class DocumentoRemove1 implements Operation {
+
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/confirmForm.jsp");        
-        DocumentoBean oDocumentoBean = new DocumentoBean(); 
+        oContexto.setVista("jsp/confirmForm.jsp");
+        DocumentoBean oDocumentoBean = new DocumentoBean();
         DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
         DocumentoParam oDocumentoParam = new DocumentoParam(request);
         oDocumentoBean = oDocumentoParam.loadId(oDocumentoBean);
@@ -37,16 +36,20 @@ public class DocumentoRemove1 implements Operation{
         }
         UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         Integer idUsuario = oUsuarioBean.getId();
-        System.out.println(oDocumentoBean.getTitulo());
-        System.out.println(oDocumentoBean.getUsuario().getId());
-        if (idUsuario == oDocumentoBean.getUsuario().getId()) {
-             oContexto.setVista("jsp/confirmForm.jsp");  
+        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+        if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
+            oContexto.setVista("jsp/confirmForm.jsp");
             return "Borrar el documento " + oDocumentoBean.getId();
-        }else{
-            oContexto.setVista("jsp/mensaje.jsp");
-            return "<div class=\"alert alert-error\">No tienes permisos suficientes para eliminar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario de este documento.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+        } else {
+            if (idUsuario == oDocumentoBean.getUsuario().getId()) {
+                oContexto.setVista("jsp/confirmForm.jsp");
+                return "Borrar el documento " + oDocumentoBean.getId();
+            } else {
+                oContexto.setVista("jsp/mensaje.jsp");
+                return "<div class=\"alert alert-error\">No se puede eliminar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario o no tienes los permisos suficientes en este documento.</li><li>El documento al que intentas acceder no exsiste.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+            }
         }
-       
+
     }
-    
+
 }
