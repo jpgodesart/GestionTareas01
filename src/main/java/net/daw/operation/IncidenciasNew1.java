@@ -8,10 +8,17 @@ package net.daw.operation;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.daw.bean.IncidenciasBean;
+import net.daw.dao.EstadoDao;
+import net.daw.dao.RepositorioDao;
+import net.daw.dao.UsuarioDao;
 import net.daw.helper.Contexto;
+import net.daw.parameter.IncidenciasParam;
 
-public class IncidenciasNew1 implements Operation {
 
+
+  public class IncidenciasNew1 implements Operation{
+    
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -34,5 +41,5 @@ public class IncidenciasNew1 implements Operation {
         oContexto.setVista("jsp/incidencias/form.jsp");
         return oIncidenciasBean;
     }
-
+    
 }
