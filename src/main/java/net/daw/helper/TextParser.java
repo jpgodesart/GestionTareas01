@@ -5,6 +5,8 @@
  */
 package net.daw.helper;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 
 /**

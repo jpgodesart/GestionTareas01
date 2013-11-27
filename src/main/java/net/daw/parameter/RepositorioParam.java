@@ -43,6 +43,7 @@ public class RepositorioParam {
                 oRepositorioBean.setTitulo(request.getParameter("titulo"));
             }
             if ((request.getParameter("contenido") != null)) {
+                //rafael tocar
                 oRepositorioBean.setContenido(request.getParameter("contenido"));
             }
             if ((request.getParameter("id_usuario") != null)) {

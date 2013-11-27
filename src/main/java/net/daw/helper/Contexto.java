@@ -215,6 +215,7 @@ public class Contexto {
     }
 
     public String getSerializedParamsExcept(ArrayList<String> alExcept) {
+        //rafael tocar
         return getExceptParams(alExcept);
     }
 
