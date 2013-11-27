@@ -50,6 +50,7 @@
                 strFiltro = "<p>Sin filtrar</p>";
             }
             out.print(strFiltro);
+            
         %>    
         <%
             Integer registers = (Integer) alObjetoParametro.get(2);
