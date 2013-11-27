@@ -20,7 +20,7 @@ public class IncidenciasView1 implements Operation{
       @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/incidencias/form.jsp");        
+        oContexto.setVista("jsp/incidencias/formJor.jsp");        
         IncidenciasBean oIncidenciasBean;
         IncidenciasDao oIncidenciasDao;
         oIncidenciasBean = new IncidenciasBean();

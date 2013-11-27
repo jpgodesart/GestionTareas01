@@ -27,8 +27,8 @@
     IncidenciasBean oIncidenciasBean = (IncidenciasBean) oContexto.getParametro();
     id = oIncidenciasBean.getId();
     id_usuario = Integer.toString(oIncidenciasBean.getUsuario().getId());
-    if (!(oIncidenciasBean.getUsuario().getNombre().equals("") && oIncidenciasBean.getUsuario().getApe1().equals(""))) {
-        descUsuario = oIncidenciasBean.getUsuario().getNombre() + " " + oIncidenciasBean.getUsuario().getApe1();
+    if (!(oIncidenciasBean.getUsuario().getId().equals("") && oIncidenciasBean.getUsuario().getId().equals(""))) {
+        descUsuario = oIncidenciasBean.getUsuario().getId() + " " + oIncidenciasBean.getUsuario().getId();
     }
     id_producto = Integer.toString(oIncidenciasBean.getProducto().getId());
     if (oIncidenciasBean.getProducto().getId() > 0) {
