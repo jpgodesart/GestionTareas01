@@ -15,18 +15,10 @@ import net.daw.parameter.RepositorioParam;
 
 /**
  *
- * @author Alvaro Crego
+ * @author Ana 
  */
 public class RepositorioUpdate1 implements Operation {
 
-    /**
-     *
-     * @author Alvaro Crego
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -34,15 +26,20 @@ public class RepositorioUpdate1 implements Operation {
         RepositorioBean oRepositorioBean;
         RepositorioDao oRepositorioDao;
         oRepositorioBean = new RepositorioBean();
-        RepositorioParam oClienteParam = new RepositorioParam(request);
-        oRepositorioBean = oClienteParam.loadId(oRepositorioBean);
+        RepositorioParam oRepositorioParam = new RepositorioParam(request);
+        oRepositorioBean = oRepositorioParam.loadId(oRepositorioBean);
         oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
         try {
             oRepositorioBean = oRepositorioDao.get(oRepositorioBean);
         } catch (Exception e) {
             throw new ServletException("ClienteController: Update Error: Phase 1: " + e.getMessage());
         }
-        oRepositorioBean = oClienteParam.load(oRepositorioBean);
+        try{
+        oRepositorioBean = oRepositorioParam.load(oRepositorioBean);
+         }catch (NumberFormatException e){
+             oContexto.setVista("jsp/mensaje.jsp");
+             return "Tipo de dato incorrecto en uno de los campos del formulario";
+         }
         return oRepositorioBean;
     }
 

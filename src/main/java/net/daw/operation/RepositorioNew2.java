@@ -21,6 +21,21 @@ public class RepositorioNew2 implements Operation {
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
+        switch (oContexto.getSearchingFor()){
+            case "lenguaje": {
+            oContexto.setVista("jsp/lenguaje/list.jsp");
+                oContexto.setClase("lenguaje");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("lenguaje");
+                oContexto.setClaseRetorno("repositorio");
+                oContexto.setMetodoRetorno("new");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_lenguaje");
+                LenguajeList1 oOperacion = new LenguajeList1();
+                return oOperacion.execute(request, response);
+        }
+        default:
         oContexto.setVista("jsp/mensaje.jsp");
         RepositorioBean oRepositorioBean = new RepositorioBean();
         RepositorioDao oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
@@ -36,7 +51,12 @@ public class RepositorioNew2 implements Operation {
         } catch (Exception e) {
             throw new ServletException("RepositorioController: Update Error: Phase 2: " + e.getMessage());
         }
-        return "Se ha añadido la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId());
+        String strMensaje = "Se ha añadido la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()) + "<br />";
+         //strMensaje += "<a href=\"Controller?class=compra&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oCompraBean.getCliente().getId() + "\">Ver compras de este cliente</a><br />";
+        // strMensaje += "<a href=\"Controller?class=compra&method=view&id=" + oCompraBean.getId() + "\">Ver compra creada</a><br />";
+        return strMensaje;
+    
+        }
     }
     
 }
