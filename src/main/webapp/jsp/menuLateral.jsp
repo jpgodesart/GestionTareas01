@@ -192,7 +192,7 @@
 
     menu += "<a href=\"Controller?class=actividadoffline&method=list\">Listar</a></li>";
 
-     menu += "</ul></div></div></div>";
+    menu += "</ul></div></div></div>";
 
     menu += "</ul></div>";
 %>
