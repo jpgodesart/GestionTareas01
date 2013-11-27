@@ -19,12 +19,21 @@ public class ComentBean {
     private String contenido = "";
     private Date fecha = new Date();
 
-    public ComentBean(Integer id) {
-        this.id = id;
+    public ComentBean(Integer Intid) {
+        this.id = Intid;
+        this.id_usuario = new UsuarioBean();
+        this.id_usuario.setId(0);
         this.id_documento = new DocumentoBean();
-       /* this.id_usuario = new UsuarioBean();*/
+        this.id_documento.setId(0);
     }
-/*
+
+    public ComentBean() {
+        this.id_usuario = new UsuarioBean();
+        this.id_usuario.setId(0);
+        this.id_documento = new DocumentoBean();
+        this.id_documento.setId(0);
+    }
+
     public UsuarioBean getId_usuario() {
         return id_usuario;
     }
@@ -32,20 +41,13 @@ public class ComentBean {
     public void setId_usuario(UsuarioBean id_usuario) {
         this.id_usuario = id_usuario;
     }
-*/
+
     public DocumentoBean getId_documento() {
         return id_documento;
     }
 
     public void setId_documento(DocumentoBean id_documento) {
         this.id_documento = id_documento;
-    }
-
-    public ComentBean() {
-        this.id_documento = new DocumentoBean();
-        this.id_documento.setId(0);
-        /* this.id_usuario = new UsuarioBean();
-         this.id_usuario.setId(0);*/
     }
 
     public int getId() {

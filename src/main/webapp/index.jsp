@@ -1,5 +1,6 @@
-<%@page import="net.daw.bean.UsuarioBean"%>
+<%@page import="net.daw.dao.UsuarioDao"%>
 <%@page import="net.daw.helper.Contexto"%>
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%
     Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -47,7 +48,8 @@
                             <%
                                 if (oUserBean != null) {
                             %>
-                            Estás logueado como <%=oUserBean.getLogin()%>&nbsp;&nbsp;&nbsp;&nbsp;
+                            Estás logueado como <%=oUserBean.getLogin()%> y eres <%=oUserBean.getTipoUsuario()%>&nbsp;&nbsp;&nbsp;&nbsp;
+                            
                             <a class="navbar-link" href="Controller?class=usuario&method=logout">(Salir del sistema)</a>
                             <%
                             } else {
@@ -84,7 +86,7 @@
                     out.print("</div>");
                 %>    
                 <div class="row-fluid">
-                <div class="span12"><hr><footer><p>&copy; Alumnos de Rafael Aznar (2013)</p></footer></div>   
+                    <div class="span12"><hr><footer><p>&copy; Alumnos de Rafael Aznar (2013)</p></footer></div>   
                 </div>
             </div>
         </div>

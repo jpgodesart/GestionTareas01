@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.ComentBean;
 import net.daw.bean.DocumentoBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 
@@ -26,28 +27,6 @@ public class ComentDao {
     public ComentDao(net.daw.helper.Enum.Connection tipoConexion) {
         oMysql = new Mysql();
         enumTipoConexion = tipoConexion;
-    }
-
-    public void set(ComentBean oComentBean) throws Exception {
-        try {
-            oMysql.conexion(enumTipoConexion);
-            oMysql.initTrans();
-            if (oComentBean.getId() == 0) {
-                oComentBean.setId(oMysql.insertOne("comentario"));
-            }
-            oMysql.updateOne(oComentBean.getId(), "comentario", "titulo", oComentBean.getTitulo());
-            oMysql.updateOne(oComentBean.getId(), "comentario", "contenido", oComentBean.getContenido());
-            java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-            oMysql.updateOne(oComentBean.getId(), "comentario", "fecha", oSimpleDateFormat.format(oComentBean.getFecha()));
-            //  oMysql.updateOne(oUsuarioBean.getId(), "comentario", "id_usuario", String.valueOf(oComentBean.getId_usuario()));
-            oMysql.updateOne(oComentBean.getId(), "comentario", "id_documento", String.valueOf(oComentBean.getId_documento()));
-            oMysql.commitTrans();
-        } catch (Exception e) {
-            oMysql.rollbackTrans();
-            throw new Exception("ComentDao.setComent: Error: " + e.getMessage());
-        } finally {
-            oMysql.desconexion();
-        }
     }
 
     public int getPages(int intRegsPerPag, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
@@ -85,64 +64,69 @@ public class ComentDao {
     }
 
     public ComentBean get(ComentBean oComentBean) throws Exception {
-        if (oComentBean.getId() > 0) {
             try {
                 oMysql.conexion(enumTipoConexion);
-                if (!oMysql.existsOne("producto", oComentBean.getId())) {
-                    oComentBean.setId(0);
+
+                DocumentoBean oDocumentoBean = new DocumentoBean();
+                UsuarioBean oUsuarioBean = new UsuarioBean();
+
+                oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("comentario", "id_documento", oComentBean.getId())));
+                oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("comentario", "id_usuario", oComentBean.getId())));
+
+                oComentBean.setTitulo(oMysql.getOne("comentario", "titulo", oComentBean.getId()));
+                oComentBean.setContenido(oMysql.getOne("comentario", "contenido", oComentBean.getId()));
+
+
+
+                UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+                DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
+
+                oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
+                oComentBean.setId_usuario(oUsuarioBean);
+
+                oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
+                oComentBean.setId_documento(oDocumentoBean);
+
+
+                String strFecha = oMysql.getOne("comentario", "fecha", oComentBean.getId());
+                if (strFecha != null) {
+                    Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
+                    oComentBean.setFecha(dFecha);
                 } else {
-                    oComentBean.setTitulo(oMysql.getOne("comentario", "titulo", oComentBean.getId()));
-                    oComentBean.setContenido(oMysql.getOne("comentario", "contenido", oComentBean.getId()));
-                    String intId_documento = oMysql.getOne("comentario", "id_documento", oComentBean.getId());
-//                    String intId_usuario = oMysql.getOne("comentario", "id_usuario", oComentBean.getId());
-                    if (intId_documento != null) {
-                        oComentBean.getId_documento().setId(Integer.parseInt(intId_documento));
-                        DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
-                        oComentBean.setId_documento(oDocumentoDao.get(oComentBean.getId_documento()));
-                    }
+                    oComentBean.setFecha(new Date(0));
                 }
+                oMysql.desconexion();
             } catch (Exception e) {
                 throw new Exception("ComentDao.get: Error: " + e.getMessage());
             } finally {
                 oMysql.desconexion();
             }
-        } else {
-            oComentBean.setId(0);
-        }
         return oComentBean;
     }
 
-//    public ComentBean get(ComentBean oComentBean) throws Exception {
-//        try {
-//            oMysql.conexion(enumTipoConexion);
-//            
-//            DocumentoBean oDocumentoBean = new DocumentoBean();
-//            
-//            oComentBean.setTitulo(oMysql.getOne("comentario", "titulo", oComentBean.getId()));
-//            oComentBean.setContenido(oMysql.getOne("comentario", "contenido", oComentBean.getId()));
-//            oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("comentario", "id_documento", oComentBean.getId())));
-//           // oUsuarioBean.setId_usuario(Integer.parseInt(oMysql.getOne("comentario", "id_usuario", oComentBean.getId())));
-//            
-//            String strFecha = oMysql.getOne("comentario", "fecha", oComentBean.getId());
-//            if (strFecha!=null) {
-//                Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
-//                oComentBean.setFecha(dFecha);
-//            } else {
-//                oComentBean.setFecha(new Date(0));
-//            }
-//
-//            DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
-//            oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
-//            
-//            
-//            oMysql.desconexion();
-//        } catch (Exception e) {
-//            throw new Exception("DocumentoDao.getComent: Error: " + e.getMessage());
-//        } finally {
-//            oMysql.desconexion();
-//        }
-//        return oComentBean;
-//    }
+    public void set(ComentBean oComentBean) throws Exception {
+        try {
+            oMysql.conexion(enumTipoConexion);
+            oMysql.initTrans();
+            if (oComentBean.getId() == 0) {
+                oComentBean.setId(oMysql.insertOne("comentario"));
+            }
+            oMysql.updateOne(oComentBean.getId(), "comentario", "titulo", oComentBean.getTitulo());
+            oMysql.updateOne(oComentBean.getId(), "comentario", "contenido", oComentBean.getContenido());
+            oMysql.updateOne(oComentBean.getId(), "comentario", "id_usuario", Integer.toString(oComentBean.getId_usuario().getId()));
+            oMysql.updateOne(oComentBean.getId(), "comentario", "id_documento", Integer.toString(oComentBean.getId_documento().getId()));
+
+            java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            oMysql.updateOne(oComentBean.getId(), "comentario", "fecha", oSimpleDateFormat.format(oComentBean.getFecha()));
+            oMysql.commitTrans();
+        } catch (Exception e) {
+            oMysql.rollbackTrans();
+            throw new Exception("ComentDao.setComent: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
+        }
+    }
+
     public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
         int pages;
         try {

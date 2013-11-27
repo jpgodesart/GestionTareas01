@@ -4,6 +4,8 @@
  */
 package net.daw.parameter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.IncidenciasBean;
@@ -33,7 +35,7 @@ public class IncidenciasParam {
         return oIncidencias;
     }
 
-    public IncidenciasBean load(IncidenciasBean oIncidencias) throws NumberFormatException {
+    public IncidenciasBean load(IncidenciasBean oIncidencias) throws NumberFormatException, ParseException {
         try {
             if ((request.getParameter("id") != null)) {
                 oIncidencias.setId(Integer.parseInt(request.getParameter("id")));
@@ -44,20 +46,25 @@ public class IncidenciasParam {
             if ((request.getParameter("cambios") != null)) {
                 oIncidencias.setCambios(request.getParameter("cambios"));
             }
+
             if ((request.getParameter("id_estado") != null)) {
-                oIncidencias.setId_estado(Integer.parseInt(request.getParameter("id_estado")));
+                oIncidencias.getEstado().setId(Integer.parseInt(request.getParameter("id_estado")));
             }
+
             if ((request.getParameter("id_repositorio") != null)) {
-                oIncidencias.setId_repositorio(Integer.parseInt(request.getParameter("id_repositorio")));
+                oIncidencias.getRepositorio().setId(Integer.parseInt(request.getParameter("id_repositorio")));
             }
             if ((request.getParameter("id_usuario") != null)) {
-                oIncidencias.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+                oIncidencias.getUsuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
             }
-            if ((request.getParameter("fechaAlta") != null)) {
-                oIncidencias.setFechaAlta(request.getParameter("fechaAlta"));
+            
+           
+           if ((request.getParameter("fechaAlta") != null)) {
+                oIncidencias.setFechaAlta(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fechaAlta")));
             }
+           
             if ((request.getParameter("fechaResolucion") != null)) {
-                oIncidencias.setFechaResolucion(request.getParameter("fechaResolucion"));
+                oIncidencias.setFechaResolucion(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fechaResolucion")));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());

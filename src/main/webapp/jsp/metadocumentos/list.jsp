@@ -62,6 +62,7 @@
                     <span>
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
+                            <option>id_metadoucmento</option>
                             <option>id_documento</option>
                             <option>orden</option>                      
                         </select>  
@@ -123,6 +124,10 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
+        <th>id_metadoucmento
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_metadoucmento&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_metadoucmento&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
+        </th>
         <th>id_documento
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
@@ -140,9 +145,15 @@
     <tr>
         <td><%=oMetadocumentosBEAN.getId()%></td>
         <td>
+            <%=oMetadocumentosBEAN.getMetadocumento().getTitulo()%> (<%=oMetadocumentosBEAN.getMetadocumento().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=metadocumento&method=list&id=<%=oMetadocumentosBEAN.getId()%>&searchingfor=metadocumento&returnclass=metadocumentos&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
+        <td>
             <%=oMetadocumentosBEAN.getDocumento().getTitulo()%> (<%=oMetadocumentosBEAN.getDocumento().getId()%>)
             <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oMetadocumentosBEAN.getId()%>&searchingfor=documento&returnclass=metadocumento&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oMetadocumentosBEAN.getId()%>&searchingfor=documento&returnclass=metadocumentos&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
         <td><%=oMetadocumentosBEAN.getOrden()%></td>
