@@ -38,7 +38,7 @@ import net.daw.parameter.IncidenciasParam;
             oContexto.setVista("jsp/mensaje.jsp");
             return "Tipo de dato incorrecto en uno de los campos del formulario";
         }
-        oContexto.setVista("jsp/incidencias/formJor.jsp");
+        oContexto.setVista("jsp/incidencias/form.jsp");
         return oIncidenciasBean;
     }
     
