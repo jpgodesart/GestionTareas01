@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class RepositorioBean {
 
+    
     private int id = 0;
     private String titulo = "";
     private String contenido = "";
