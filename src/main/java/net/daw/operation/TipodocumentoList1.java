@@ -26,6 +26,8 @@ public class TipodocumentoList1 implements Operation {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/tipodocumento/list.jsp");
         try {
+            /*
+             * PERMISOS
             UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
             java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
             ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
@@ -40,7 +42,7 @@ public class TipodocumentoList1 implements Operation {
                 oFilterBean.setFilterOrigin("system");
                 alFilter.add(oFilterBean);
                 oContexto.setAlFilter(alFilter);
-            }
+            }*/
             
             
             TipodocumentoDao oEstadoDAO = new TipodocumentoDao(oContexto.getEnumTipoConexion());
