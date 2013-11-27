@@ -170,7 +170,12 @@
         <td><%=oRepositorioBean.getId()%></td>
         <td><%=oRepositorioBean.getTitulo()%></td>
         <td><%=oRepositorioBean.getContenido()%></td>
-        <td><%=oRepositorioBean.getId_usuario()%></td>
+        <td>
+            <%=oRepositorioBean.getUsuario().getLogin()%> (<%=oRepositorioBean.getUsuario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oRepositorioBean.getId()%>&searchingfor=usuario&returnclass=repositorio&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
         <td>
             <%=oRepositorioBean.getLenguaje().getNombre()%> (<%=oRepositorioBean.getLenguaje().getId()%>)
             <div class="btn-group">

@@ -11,12 +11,12 @@
     Integer id = 0;
     String titulo = "";
     String contenido = "";
-    Integer id_usuario = 0;
+    String usuario = "";
+    String nombreUsuario = "";
     String lenguaje = "";
     String nombreLengueje = "";
     String documento = "";
     String tituloDocumento = "";
-    String contenidoDocumento = "";
     String fecha = "";
 
 
@@ -25,6 +25,10 @@
     contenido = oRepositorioBean.getContenido();
     
     id = oRepositorioBean.getId();
+    usuario = Integer.toString(oRepositorioBean.getUsuario().getId());
+    if (oRepositorioBean.getUsuario().getId() > 0) {
+        nombreUsuario = oRepositorioBean.getUsuario().getLogin();
+    }
     lenguaje = Integer.toString(oRepositorioBean.getLenguaje().getId());
     if (oRepositorioBean.getLenguaje().getId() > 0) {
         nombreLengueje = oRepositorioBean.getLenguaje().getNombre();
@@ -70,12 +74,16 @@
     
         </div>
     </div>
-    <!--
-    <div>
-        <label for="id_usuario">Id_usuario: </label>
-        <input <a%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<a%=id_usuario%>" /><br />
-    </div>
-    -->
+     <div class="control-group">
+        <label class="control-label" for="usuario">Id_usuario: </label>
+        <div class="controls">  
+            <input readonly="true" id="usuario" class="input-mini"
+                   name="id_usuario" type="text" size="5" maxlength="5"
+                   value="<%=usuario%>" />
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="usuario" />
+            <span class="alert alert-success"><%=nombreUsuario%></span>
+        </div>
+     </div>
     <div class="control-group">
         <label class="control-label" for="lenguaje">Id_lenguaje: </label>
         <div class="controls">  
