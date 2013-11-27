@@ -189,7 +189,6 @@
     } else {
         menu += "<li>";
     }
-
     menu += "<a href=\"Controller?class=actividadoffline&method=list\">Listar</a></li>";
     menu += "</ul></div></div></div>";
     // ------------------------------------------------------
