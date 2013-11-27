@@ -30,6 +30,7 @@ public class ComentView1 implements Operation {
         ComentParam oComentParam = new ComentParam(request);
         oComentBean = oComentParam.loadId(oComentBean);
         oComentDao = new ComentDao(oContexto.getEnumTipoConexion());
+        
         DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
         try {

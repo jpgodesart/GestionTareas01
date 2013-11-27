@@ -82,10 +82,10 @@ public class ComentDao {
                 DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
 
                 oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
-                oComentBean.setId_usuario(oUsuarioDao.get(oComentBean.getId_usuario()));
+                oComentBean.setId_usuario(oUsuarioBean);
 
                 oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
-                oComentBean.setId_documento(oDocumentoDao.get(oComentBean.getId_documento()));
+                oComentBean.setId_documento(oDocumentoBean);
 
 
                 String strFecha = oMysql.getOne("comentario", "fecha", oComentBean.getId());

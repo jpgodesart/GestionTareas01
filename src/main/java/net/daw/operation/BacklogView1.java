@@ -30,6 +30,7 @@ public class BacklogView1 implements Operation {
         BacklogParam oBacklogParam = new BacklogParam(request);
         oBacklogBean = oBacklogParam.loadId(oBacklogBean);
         oBacklogDao = new BacklogDao(oContexto.getEnumTipoConexion());
+        
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
         try {
             oBacklogBean = oBacklogDao.get(oBacklogBean);
