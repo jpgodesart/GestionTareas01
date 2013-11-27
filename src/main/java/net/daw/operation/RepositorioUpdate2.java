@@ -15,7 +15,7 @@ import net.daw.parameter.RepositorioParam;
 
 /**
  *
- * @author al037294
+ * @author Ana
  */
 public class RepositorioUpdate2 implements Operation {
 
@@ -23,6 +23,19 @@ public class RepositorioUpdate2 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         switch (oContexto.getSearchingFor()) {
+             case "usuario": {
+            oContexto.setVista("jsp/usuario/list.jsp");
+                oContexto.setClase("usuario");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("usuario");
+                oContexto.setClaseRetorno("repositorio");
+                oContexto.setMetodoRetorno("update");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_usuario");
+                UsuarioList1 oOperacion = new UsuarioList1();
+                return oOperacion.execute(request, response);
+        }
             case "lenguaje": {
                 oContexto.setVista("jsp/lenguaje/list.jsp");
                 oContexto.setClase("lenguaje");
@@ -34,6 +47,19 @@ public class RepositorioUpdate2 implements Operation {
                 oContexto.setFaseRetorno("1");
                 oContexto.removeParam("id_lenguaje");
                 LenguajeList1 oOperacion = new LenguajeList1();
+                return oOperacion.execute(request, response);
+            }
+            case "documento": {
+                oContexto.setVista("jsp/documento/list.jsp");
+                oContexto.setClase("documento");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("documento");
+                oContexto.setClaseRetorno("repositorio");
+                oContexto.setMetodoRetorno("update");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_documento");
+                DocumentoList1 oOperacion = new DocumentoList1();
                 return oOperacion.execute(request, response);
             }
             default:
