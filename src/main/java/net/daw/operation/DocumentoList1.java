@@ -29,18 +29,16 @@ public class DocumentoList1 implements Operation {
         try {
             UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
             java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
-            ArrayList<FilterBean> alFilter = new ArrayList<>();
+            ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
             FilterBean oFilterBean = new FilterBean();
             if (!tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
                 oFilterBean.setFilter("id_usuario");
                 oFilterBean.setFilterOperator("like");
-                oFilterBean.setFilterValue(oUsuarioBean.getLogin());
+                oFilterBean.setFilterValue(Integer.toString(oUsuarioBean.getId()));
                 oFilterBean.setFilterOrigin("permisos");
-                alFilter = oContexto.getAlFilter();
-                alFilter.add(oFilterBean);
-                oContexto.setAlFilter(alFilter);
+                //alFilter.add(oFilterBean);
             }
-            
+            oContexto.setAlFilter(alFilter);
             
             DocumentoDao oDocumentoDAO = new DocumentoDao(oContexto.getEnumTipoConexion());
             Integer intPages = oDocumentoDAO.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
