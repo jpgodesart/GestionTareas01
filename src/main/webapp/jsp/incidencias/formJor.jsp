@@ -68,7 +68,7 @@
     <fieldset>
         <legend>Formulario de Incidencias</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="coment" /> 
+        <input type="hidden" name="class" value="incidencias" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div class="control-group">
