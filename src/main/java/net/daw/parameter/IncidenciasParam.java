@@ -44,15 +44,19 @@ public class IncidenciasParam {
             if ((request.getParameter("cambios") != null)) {
                 oIncidencias.setCambios(request.getParameter("cambios"));
             }
+
             if ((request.getParameter("id_estado") != null)) {
-                oIncidencias.setId_estado(Integer.parseInt(request.getParameter("id_estado")));
+                oIncidencias.getEstado().setId(Integer.parseInt(request.getParameter("id_estado")));
             }
+
             if ((request.getParameter("id_repositorio") != null)) {
-                oIncidencias.setId_repositorio(Integer.parseInt(request.getParameter("id_repositorio")));
+                oIncidencias.getRepositorio().setId(Integer.parseInt(request.getParameter("id_repositorio")));
             }
             if ((request.getParameter("id_usuario") != null)) {
-                oIncidencias.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+                oIncidencias.getUsuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
             }
+
+
             if ((request.getParameter("fechaAlta") != null)) {
                 oIncidencias.setFechaAlta(request.getParameter("fechaAlta"));
             }
