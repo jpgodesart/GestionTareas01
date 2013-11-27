@@ -30,18 +30,26 @@
             }
         %>
         <%
+            String strFiltro = "";
             if (oContexto.getAlFilter() != null) {
-                out.print("<p>Listado filtrado: ");
+                strFiltro += "<p>Listado filtrado: ";
                 ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
                 Iterator iterator = alFilter.iterator();
                 while (iterator.hasNext()) {
                     FilterBean oFilterBean = (FilterBean) iterator.next();
-                    out.print("(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + ") ");
+                    if (oFilterBean.getFilterOrigin() != "system") {
+                        strFiltro += "(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + ") ";
+                    }
                 }
-                out.print("<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>");
+                if (!strFiltro.equals("<p>Listado filtrado: ")) {
+                    strFiltro += "<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>";
+                } else {
+                    strFiltro = "<p>Sin filtrar</p>";
+                }
             } else {
-                out.print("<p>Sin filtrar</p>");
+                strFiltro = "<p>Sin filtrar</p>";
             }
+            out.print(strFiltro);
         %>    
         <%
             Integer registers = (Integer) alObjetoParametro.get(2);
@@ -192,7 +200,7 @@
             if (session.getAttribute("usuarioBean") != null) {
                 UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
                 System.out.println(oUsuarioBean.getTipoUsuario());
-                    if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
+                if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
         %>
         <td>    
             <%=usuario%> (<%=oDocumentoBEAN.getUsuario().getId()%>)

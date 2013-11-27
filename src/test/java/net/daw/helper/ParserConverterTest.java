@@ -31,7 +31,7 @@ public class ParserConverterTest {
 
     @Before
     public void setUp() {
-        System.out.println("test: ParserConverterText");
+        System.out.println("test: ParserConverterTest");
     }
 
     @After
