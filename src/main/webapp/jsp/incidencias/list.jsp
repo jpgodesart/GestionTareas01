@@ -4,7 +4,6 @@
     Author     : Enrique
 --%>
 
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
 <%@ page import="java.util.ArrayList"%>
@@ -206,11 +205,8 @@
         
         
         
-        <%
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
-        %>
-        <td><%=formatoFecha.format(oIncidenciasBEAN.getFechaAlta())%></td>
-        <td><%=formatoFecha.format(oIncidenciasBEAN.getFechaResolucion())%></td>
+        <td><%=oIncidenciasBEAN.getFechaAlta()%></td>
+        <td><%=oIncidenciasBEAN.getFechaResolucion()%></td>
                
         <td>
             <div class="btn-toolbar">

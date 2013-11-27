@@ -33,12 +33,7 @@ public class ComentUpdate1 implements Operation{
         } catch (Exception e) {
             throw new ServletException("ComentController: Update Error: Phase 1: " + e.getMessage());
         }
-        try {
-            oComentBean = oComentParam.load(oComentBean);
-        } catch (NumberFormatException e) {
-            oContexto.setVista("jsp/mensaje.jsp");
-            return "Tipo de dato incorrecto en uno de los campos del formulario";
-        }
+        oComentBean = oComentParam.load(oComentBean);
         return oComentBean;
     }
     

@@ -20,25 +20,19 @@ public class IncidenciasUpdate1 implements Operation {
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/incidencias/formJor.jsp");
+        oContexto.setVista("jsp/incidencias/form.jsp");
         IncidenciasBean oIncidenciasBean;
         IncidenciasDao oIncidenciasDao;
         oIncidenciasBean = new IncidenciasBean();
-        IncidenciasParam oIncidenciasParam = new IncidenciasParam(request);
-        oIncidenciasBean = oIncidenciasParam.loadId(oIncidenciasBean);
+        IncidenciasParam oClienteParam = new IncidenciasParam(request);
+        oIncidenciasBean = oClienteParam.loadId(oIncidenciasBean);
         oIncidenciasDao = new IncidenciasDao(oContexto.getEnumTipoConexion());
         try {
             oIncidenciasBean = oIncidenciasDao.get(oIncidenciasBean);
         } catch (Exception e) {
-            throw new ServletException("IncidenciasController: Update Error: Phase 1: " + e.getMessage());
+            throw new ServletException("ClienteController: Update Error: Phase 1: " + e.getMessage());
         }
-
-            try {
-                oIncidenciasBean = oIncidenciasParam.load(oIncidenciasBean);
-            } catch (NumberFormatException e) {
-                oContexto.setVista("jsp/mensaje.jsp");
-                return "Tipo de dato incorrecto en uno de los campos del formulario";
-            }
+        oIncidenciasBean = oClienteParam.load(oIncidenciasBean);
         return oIncidenciasBean;
     }
 }

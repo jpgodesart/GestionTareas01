@@ -74,6 +74,5 @@ public class BolsaBean {
 
     public void setDocumento2(DocumentoBean documento2) {
         this.documento2 = documento2;
-    }
-    
+    }    
 }

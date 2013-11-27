@@ -103,7 +103,7 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fechaalta&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fechaalta&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
-
+        
         <th>Operaciones</th>
     </tr>
     <%
@@ -113,23 +113,23 @@
     <tr>
         <td><%=oRequerimientoBean.getId()%></td>
         <td><%=oRequerimientoBean.getEnunciado()%></td>
-        <%
+         <%
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oRequerimientoBean.getFecha())%></td>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <%
+                 <%
                         if (oContexto.getSearchingFor().equals("requerimiento")) {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_requerimiento", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_requerimiento=" + oRequerimientoBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=requerimiento&method=view&id=" + oRequerimientoBean.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=requerimiento&method=update&id=" + oRequerimientoBean.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=requerimiento&method=remove&id=" + oRequerimientoBean.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=requerimiento&method=remove&id=" + oRequerimientoBean.getId() + "\"><i class=\"icon-trash\"></i></a>");                   
                         }
                     %>                 
-                </div>
+            </div>
             </div>
         </td>
     </tr>
