@@ -5,6 +5,7 @@
  */
 package net.daw.helper;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import javax.servlet.ServletException;
@@ -15,6 +16,13 @@ import javax.servlet.ServletException;
  */
 public class TextParser {
 
+    /**
+     *
+     * @param text
+     * @param url
+     * @return
+     * @throws Exception
+     */
     public static String toHtml(String text, String url) throws Exception {
         ParserConverter oParserConverter = new ParserConverter();
         try {
@@ -38,11 +46,35 @@ public class TextParser {
         return text;
     }
 
-    public static void miau() {
-        //URLEncoder.encode(null, null);
+    /**
+     *
+     * @param textEncode
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public static String textEncode(String textEncode) throws UnsupportedEncodingException, ServletException {
+        String encode = "";
+        try{
+        encode = URLEncoder.encode(textEncode, "UTF-8");
+        }catch(UnsupportedEncodingException e){
+            throw new ServletException("Encode: " + e.getMessage());
+        }
+        return encode;
     }
 
-    public static void miau1() {
-        //URLDecoder.decode(null, null);
+    /**
+     *
+     * @param textDecode
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public static String textDecode(String textDecode) throws UnsupportedEncodingException, ServletException {
+        String decode = "";
+        try {
+            decode = URLDecoder.decode(textDecode, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new ServletException("Decode: " + e.getMessage());
+        }
+        return decode;
     }
 }
