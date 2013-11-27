@@ -6,10 +6,14 @@
 
 package net.daw.operation;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.DocumentoBean;
+import net.daw.bean.UsuarioBean;
+import net.daw.dao.DocumentoDao;
 import net.daw.helper.Contexto;
+import net.daw.helper.TextParser;
 import net.daw.parameter.DocumentoParam;
 
 /**
@@ -22,10 +26,27 @@ public class DocumentoRemove1 implements Operation{
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/confirmForm.jsp");        
-        DocumentoBean oDocumentoBean = new DocumentoBean();        
+        DocumentoBean oDocumentoBean = new DocumentoBean(); 
+        DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
         DocumentoParam oDocumentoParam = new DocumentoParam(request);
         oDocumentoBean = oDocumentoParam.loadId(oDocumentoBean);
-        return "Borrar el documento " + oDocumentoBean.getId();
+        try {
+            oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
+        } catch (Exception e) {
+            throw new ServletException("DocumentoController: Remove Error: Phase 1: " + e.getMessage());
+        }
+        UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+        Integer idUsuario = oUsuarioBean.getId();
+        System.out.println(oDocumentoBean.getTitulo());
+        System.out.println(oDocumentoBean.getUsuario().getId());
+        if (idUsuario == oDocumentoBean.getUsuario().getId()) {
+             oContexto.setVista("jsp/confirmForm.jsp");  
+            return "Borrar el documento " + oDocumentoBean.getId();
+        }else{
+            oContexto.setVista("jsp/mensaje.jsp");
+            return "<div class=\"alert alert-error\">No tienes permisos suficientes para eliminar este documento<br/><br/>Posibles razones más frecuentes<ul><li>No eres el propietario de este documento.</li><li>Ha habido un error en el servidor.</li></ul></div>";
+        }
+       
     }
     
 }
