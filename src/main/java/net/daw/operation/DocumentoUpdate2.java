@@ -23,17 +23,17 @@ public class DocumentoUpdate2 implements Operation{
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        if ("id_usuario".equals(oContexto.getSearchingFor())) {
+        if ("usuario".equals(oContexto.getSearchingFor())) {
             oContexto.setVista("jsp/usuario/list.jsp");
             oContexto.setClase("usuario");
-            oContexto.setMetodo("selectone");
+            oContexto.setMetodo("list");
             oContexto.setFase("1");
             oContexto.setClaseRetorno("documento");
             oContexto.setMetodoRetorno("update");
             oContexto.setFaseRetorno("1");
             oContexto.removeParam("id_usuario");
-            oContexto.removeParam("page");
-            return null;
+            UsuarioList1 oOperation = new UsuarioList1();
+            return oOperation.execute(request, response);
         } else {
             oContexto.setVista("jsp/mensaje.jsp");
             DocumentoBean oDocumentoBean = new DocumentoBean();

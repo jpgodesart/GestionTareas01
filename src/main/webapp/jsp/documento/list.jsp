@@ -1,3 +1,5 @@
+<%@page import="net.daw.helper.Enum.TipoUsuario"%>
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
@@ -28,18 +30,27 @@
             }
         %>
         <%
+            String strFiltro = "";
             if (oContexto.getAlFilter() != null) {
-                out.print("<p>Listado filtrado: ");
+                strFiltro += "<p>Listado filtrado: ";
                 ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
                 Iterator iterator = alFilter.iterator();
                 while (iterator.hasNext()) {
                     FilterBean oFilterBean = (FilterBean) iterator.next();
-                    out.print("(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + ") ");
+                    if (oFilterBean.getFilterOrigin() != "system") {
+                        strFiltro += "(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + ") ";
+                    }
                 }
-                out.print("<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>");
+                if (!strFiltro.equals("<p>Listado filtrado: ")) {
+                    strFiltro += "<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>";
+                } else {
+                    strFiltro = "<p>Sin filtrar</p>";
+                }
             } else {
-                out.print("<p>Sin filtrar</p>");
+                strFiltro = "<p>Sin filtrar</p>";
             }
+            out.print(strFiltro);
+            
         %>    
         <%
             Integer registers = (Integer) alObjetoParametro.get(2);
@@ -67,6 +78,7 @@
                             <option>contenido</option>
                             <option>fecha</option>
                             <option>nota</option>
+                            <option>id_usuario</option>
                             <option>etiquetas</option>                            
                         </select>  
                     </span>
@@ -143,6 +155,10 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nota&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nota&ordervalue=desc"><i class="icon-arrow-down"></i></a>                
         </th>
+        <th>id_usuario
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>                
+        </th>
         <th>etiquetas
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=etiquetas&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=etiquetas&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
@@ -152,16 +168,58 @@
     <%
         while (oIterador.hasNext()) {
             DocumentoBean oDocumentoBEAN = oIterador.next();
+            String contenido = "";
+            if (oDocumentoBEAN.getContenido().length() >= 50) {
+                contenido = oDocumentoBEAN.getContenido().substring(0, 50) + "... <a href=\"Controller?class=documento&method=view&id=" + oDocumentoBEAN.getId() + "\">Ver más</a>";
+            } else {
+                contenido = oDocumentoBEAN.getContenido();
+            }
+            String classNota = "";
+            if (oDocumentoBEAN.getNota() == 5) {
+                classNota = "class=\"warning\"";
+            } else if (oDocumentoBEAN.getNota() <= 4) {
+                classNota = "class=\"error\"";
+            } else if (oDocumentoBEAN.getNota() >= 6) {
+                classNota = "class=\"success\"";
+            }
     %>
-    <tr>
+    <tr <%=classNota%>>
         <td><%=oDocumentoBEAN.getId()%></td>
         <td><%=oDocumentoBEAN.getTitulo()%></td>
-        <td><%=oDocumentoBEAN.getContenido()%></td>
+        <td><%=contenido%></td>
         <%
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oDocumentoBEAN.getFecha())%></td>
         <td><%=oDocumentoBEAN.getNota()%></td>
+
+        <%
+            String usuario = oDocumentoBEAN.getUsuario().getLogin();
+            if (usuario.isEmpty() != true) {
+                usuario = usuario.substring(0, 1).toUpperCase() + usuario.substring(1, usuario.length());
+            }
+            if (session.getAttribute("usuarioBean") != null) {
+                UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
+                System.out.println(oUsuarioBean.getTipoUsuario());
+                if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
+        %>
+        <td>    
+            <%=usuario%> (<%=oDocumentoBEAN.getUsuario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oDocumentoBEAN.getId()%>&searchingfor=usuario&returnclass=documento&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
+        <%
+        } else {
+        %>
+        <td>
+            <%=usuario%>
+        </td>
+        <%
+                }
+            }
+        %>
+
         <td><%=oDocumentoBEAN.getEtiquetas()%></td>
         <td>
             <div class="btn-toolbar">

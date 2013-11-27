@@ -18,21 +18,26 @@
     String strControlEnabled = "";
     String strValueBoton = "Enviar";
     Integer id = 0;
-    Integer id_usuario = 0;
+    String id_usuario = "";
     String titulo = "";
     String contenido = "";
-    Integer id_documento = 0;
+    String id_documento = "";
     String fecha = "";
+    String descDocumento ="";
+    String descUsuario ="";
 
 
     ComentBean oComentBean = (ComentBean) oContexto.getParametro();
     id = oComentBean.getId();
     titulo = oComentBean.getTitulo();
     contenido = oComentBean.getContenido();
-    id_usuario = oComentBean.getId_usuario();
-    id_documento = Integer.toString(oComentBean.getDocumento().getId());
-    if (oComentBean.getDocumento().getId() > 0) {
-        descDocumento = oComentBean.getDocumento().getDescripcion();
+    
+    id_usuario = Integer.toString(oComentBean.getId_usuario().getId());
+    if (oComentBean.getId_usuario().getId() > 0) {
+        descUsuario = Integer.toString(oComentBean.getId_usuario().getId());
+    }
+    if (oComentBean.getId_documento().getId() > 0) {
+        descDocumento = oComentBean.getId_documento().getTitulo();
     }
     fecha = new SimpleDateFormat("yyyy-MM-dd").format(oComentBean.getFecha());
 
@@ -77,10 +82,10 @@
             <div class="controls">
                 <input <%=strControlEnabled%>  id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /></div> 
         </div>
-        <!-- <div class="control-group">
+        <div class="control-group">
              <label for="id_usuario">ID del Usuario: </label> 
              <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<%=id_usuario%>" /> <br />
-         </div>-->
+         </div>
         <div class="control-group">
             <label for="id_documento">ID del Documento: </label> 
             <input <%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<%=id_documento%>" /> <br />
