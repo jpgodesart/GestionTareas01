@@ -31,7 +31,6 @@
     }
     etiquetas = oDocumentoBean.getEtiquetas();
 
-    System.out.println(oDocumentoBean.getContenidoParse());
     strTitulo = "Vista";
     strValueBoton = "Cerrar";
 %>
@@ -62,6 +61,7 @@
         <input type="hidden" name="class" value="documento" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
+        <h1><%=titulo%></h1>
         <%=contenidoParse%>
         <div class="control-group">
             <br/>

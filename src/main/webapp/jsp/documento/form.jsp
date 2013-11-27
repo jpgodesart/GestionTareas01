@@ -1,8 +1,9 @@
 
+<%@page import="net.daw.helper.Enum.TipoUsuario"%>
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.FileWriter"%>
 <%@page import="java.io.File"%>
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.daw.helper.Contexto"%>
 <%@page import="net.daw.bean.DocumentoBean"%>
@@ -50,13 +51,13 @@
         <div class="control-group">
             <label class="control-label" for="titulo">Titulo: </label> 
             <div class="controls">
-                <input id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
+                <input id="titulo" class="input_resize" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="contenido">Contenido: </label>
             <div class="controls">
-                <textarea class="field span6" id="contenido" name="contenido" type="text" rows="10" ><%=contenido%></textarea><br />
+                <textarea class="field input_resize" id="contenido" name="contenido" type="text" rows="10" ><%=contenido%></textarea><br />
             </div>
         </div>
         <div class="control-group">
@@ -72,13 +73,27 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="id_usuario">Id_Usuario: </label> 
-            <div class="controls">                
+            <label class="control-label" for="id_usuario">Usuario: </label> 
+            <div class="controls">
+                <%
+                    if (session.getAttribute("usuarioBean") != null) {
+                        UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
+                        if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
+                %>
                 <input readonly="true" id="id_usuario" class="input-mini"
                        name="id_usuario" type="text" size="5" maxlength="5"
                        value="<%=id_usuario%>" />  
                 <input type="submit" name="searchingfor" value="usuario" />
                 <span class="alert alert-success"><%=descId_usuario%></span>
+                <%
+                } else {
+
+                %>
+                <input type="hidden" name="id_usuario" value="<%=oUsuarioBean.getId()%>" /> 
+                <span class="alert alert-success"><%=oUsuarioBean.getLogin()%></span>
+                <%                        }
+                    }
+                %>
             </div>
         </div> 
         <div class="control-group">

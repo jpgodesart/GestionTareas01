@@ -153,4 +153,22 @@ public class ProfesorDao {
             oMysql.desconexion();
         }
     }
+    
+    public ProfesorBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {        
+        ProfesorBean oProfesorBean=new ProfesorBean();
+        if (oUsuarioBean.getId()> 0) {
+            try {
+                oMysql.conexion(enumTipoConexion);      
+                
+                    oProfesorBean.setId(Integer.parseInt(oMysql.getId("profesor", "id_usuario", Integer.toString(oUsuarioBean.getId()))));                                                                   
+            } catch (Exception e) {                
+                throw new Exception("ProfesorDao.getProfesor: Error: " + e.getMessage());
+            } finally {
+                oMysql.desconexion();
+            }
+        } else {
+            oProfesorBean.setId(0);
+        }
+        return oProfesorBean;
+    }
 }

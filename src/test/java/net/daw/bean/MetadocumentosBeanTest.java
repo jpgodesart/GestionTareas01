@@ -32,6 +32,7 @@ public class MetadocumentosBeanTest {
     
     @Before
     public void setUp() {
+        System.out.println("test: MetadocumentosBean");
     }
     
     @After
@@ -39,15 +40,20 @@ public class MetadocumentosBeanTest {
     }
 
     @Test
-    public void testsGetterSetters() {
-        System.out.println("test: MetadocumentosBean");
+    public void testsGetterSettersId() {
+        System.out.println("test: Method Get Set Id");
         MetadocumentosBean oMetadocumentosBean = new MetadocumentosBean();
         
         oMetadocumentosBean.setId(1);
         assertEquals("getId: devuelve 1", oMetadocumentosBean.getId(), 1);
+    }
+    
+    @Test
+    public void testsGetterSettersOrden() {
+        System.out.println("test: Method Get Set Orden");
+        MetadocumentosBean oMetadocumentosBean = new MetadocumentosBean();
         
         oMetadocumentosBean.setOrden(7);
         assertEquals("getNombre: devuelve 7", oMetadocumentosBean.getOrden(), 7);
-        
     }
 }

@@ -14,7 +14,7 @@
 <div class="row-fluid">
     <div class="span8">
         <% if (!oContexto.getMetodo().equalsIgnoreCase("selectone")) {
-                out.print("<h1>Listado de tipos de hilos</h1>");
+                out.print("<h1>Listado de hilos</h1>");
             } else {
                 out.print("<h1>Selección de un hilo</h1>");
             }
@@ -61,7 +61,7 @@
     </div>
     <div class="span4">
         <div class="text-right">
-            <legend>Filtro de cliente</legend> 
+            <legend>Filtro de hilo</legend> 
             <form class="navbar-form pull-right" action="Controller" method="post" id="hiloForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
