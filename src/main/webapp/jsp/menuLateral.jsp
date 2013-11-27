@@ -279,7 +279,32 @@
     }
     menu += "<a href=\"Controller?class=contestacion&method=list\">Listar</a></li>";
     menu += "</ul></div></div></div>";
+    
+        // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseThirteen\">"
+            + "<i class=\"icon-star-empty\"></i> Actividad</a></div>"
+            + "<div id=\"collapseThirteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("actividad") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=actividad&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("actividad") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=actividad&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
     // ------------------------------------------------------
+    
+    
     menu += "</ul></div>";
 
 %>
