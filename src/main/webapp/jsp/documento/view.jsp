@@ -31,7 +31,6 @@
     }
     etiquetas = oDocumentoBean.getEtiquetas();
 
-    System.out.println(oDocumentoBean.getContenidoParse());
     strTitulo = "Vista";
     strValueBoton = "Cerrar";
 %>

@@ -11,21 +11,31 @@
     Integer id = 0;
     String titulo = "";
     String contenido = "";
-    Integer id_usuario = 0;
+    String usuario = "";
+    String nombreUsuario = "";
     String lenguaje = "";
     String nombreLengueje = "";
-    Integer id_documento = 0;
+    String documento = "";
+    String tituloDocumento = "";
     String fecha = "";
 
 
     RepositorioBean oRepositorioBean = (RepositorioBean) oContexto.getParametro();
     titulo = oRepositorioBean.getTitulo();
-    contenido = oRepositorioBean.getTitulo();
+    contenido = oRepositorioBean.getContenido();
     
     id = oRepositorioBean.getId();
+    usuario = Integer.toString(oRepositorioBean.getUsuario().getId());
+    if (oRepositorioBean.getUsuario().getId() > 0) {
+        nombreUsuario = oRepositorioBean.getUsuario().getLogin();
+    }
     lenguaje = Integer.toString(oRepositorioBean.getLenguaje().getId());
     if (oRepositorioBean.getLenguaje().getId() > 0) {
         nombreLengueje = oRepositorioBean.getLenguaje().getNombre();
+    }
+    documento = Integer.toString(oRepositorioBean.getDocumento().getId());
+    if (oRepositorioBean.getDocumento().getId() > 0) {
+        tituloDocumento = oRepositorioBean.getDocumento().getTitulo();
     }
     fecha = new SimpleDateFormat("yyyy-MM-dd").format(oRepositorioBean.getFecha());
 
@@ -53,23 +63,27 @@
     <div class="control-group">
         <label class="control-label" for="titulo">Titulo: </label> 
         <div class="controls">
-            <input <%=strControlEnabled%> id="titulo" name="titulo" type="text" size="30" maxlength="50" value="<%=titulo%>" /><br />
+            <input <%=strControlEnabled%> id="titulo" class="input_resize" name="titulo" type="text" size="30" maxlength="50" value="<%=titulo%>" /><br />
 
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="contenido">Contenido: </label>
         <div class="controls">
-        <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
+        <textarea <%=strControlEnabled%> id="contenido" class="input_resize" name="contenido" type="text" size="30" ><%=contenido%></textarea><br />
     
         </div>
     </div>
-    <!--
-    <div>
-        <label for="id_usuario">Id_usuario: </label>
-        <input <a%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<a%=id_usuario%>" /><br />
-    </div>
-    -->
+     <div class="control-group">
+        <label class="control-label" for="usuario">Id_usuario: </label>
+        <div class="controls">  
+            <input readonly="true" id="usuario" class="input-mini"
+                   name="id_usuario" type="text" size="5" maxlength="5"
+                   value="<%=usuario%>" />
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="usuario" />
+            <span class="alert alert-success"><%=nombreUsuario%></span>
+        </div>
+     </div>
     <div class="control-group">
         <label class="control-label" for="lenguaje">Id_lenguaje: </label>
         <div class="controls">  
@@ -80,12 +94,16 @@
             <span class="alert alert-success"><%=nombreLengueje%></span>
         </div>
     </div>
-        <!--
-        <div>
-            <label for="id_documento">Id_documento: </label>
-            <input <a%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<a%=id_documento%>" /><br />
+        <div class="control-group">
+        <label class="control-label" for="documento">Id_documento: </label>
+        <div class="controls">  
+            <input readonly="true" id="documento" class="input-mini"
+                   name="id_documento" type="text" size="5" maxlength="5"
+                   value="<%=documento%>" />
+            <input <%=strControlEnabled%> type="submit" name="searchingfor" value="documento" />
+            <span class="alert alert-success"><%=tituloDocumento%></span>
         </div>
-        -->
+    </div>
         <div class="control-group">
         <label class="control-label" for="fecha">Fecha: </label> 
         <div class="controls">

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.operation;
 
 import javax.servlet.ServletException;
@@ -16,15 +15,15 @@ import net.daw.parameter.RepositorioParam;
 
 /**
  *
- * @author al037294
+ * @author Ana
  */
-public class RepositorioRemove2 implements Operation{
-    
+public class RepositorioRemove2 implements Operation {
+
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/mensaje.jsp");   
-        RepositorioBean oRepositorioBean = new RepositorioBean(); 
+        oContexto.setVista("jsp/mensaje.jsp");
+        RepositorioBean oRepositorioBean = new RepositorioBean();
         RepositorioParam oRepositorioParam = new RepositorioParam(request);
         oRepositorioBean = oRepositorioParam.loadId(oRepositorioBean);
         try {
@@ -33,7 +32,9 @@ public class RepositorioRemove2 implements Operation{
         } catch (Exception e) {
             throw new ServletException("RepositorioController: Remove Error: " + e.getMessage());
         }
-        String Mensaje = ("Se ha eliminado la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()));
+        String strMensaje = ("Se ha eliminado la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()));
+        strMensaje += "<a href=\"Controller?class=compra&method=list\">Ir al listado de repositorio</a><br />";
+        String Mensaje = strMensaje;
         return Mensaje;
     }
 }

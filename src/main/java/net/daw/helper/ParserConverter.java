@@ -52,27 +52,6 @@ public class ParserConverter {
         return textFomat;
     }
 
-//    public String aIntern(String text) {
-//
-//        String[] textSplit = text.split("=");
-//
-//        String textFomat = "";
-//        String close = "";
-//        boolean a = false;
-//
-//        for (int x = 0; x < textSplit.length; x++) {
-//            if (a) {
-//                a = false;
-//                close = "/";
-//            } else {
-//                close = "";
-//                a = true;
-//            }
-//            textFomat += textSplit[x] + "<a" + close + ">";
-//
-//        }
-//        return textFomat;
-//    }
     /**
      *
      * @param text
@@ -115,17 +94,17 @@ public class ParserConverter {
                             if (urlSplit2[0].equals("method")) {
                                 strUrl += urlSplit2[0] + "=" + urlSplit2[1];
                             }
-                            if (g != ulrSplit.length-1) {
+                            if (g != ulrSplit.length - 1) {
                                 strUrl += "&";
                             }
-                            if(strUrl.length()==1){
-                                strUrl ="";
+                            if (strUrl.length() == 1) {
+                                strUrl = "";
                             }
                         }
                         if (spl.length == 1) {
-                            tag = "<a href='Controller?"+strUrl+"&id="+split[0]+"'>" + split[1] + "&nbsp<i class='icon-globe'></i></a>";
+                            tag = "<a href='Controller?" + strUrl + "&id=" + split[0] + "'>" + split[1] + "&nbsp<i class='icon-globe'></i></a>";
                         } else {
-                            tag = "<a href='Controller?"+strUrl+"&id="+split[0]+"'>" + split[1] + "&nbsp<i class='icon-globe'></i></a>" + spl[1];
+                            tag = "<a href='Controller?" + strUrl + "&id=" + split[0] + "'>" + split[1] + "&nbsp<i class='icon-globe'></i></a>" + spl[1];
                         }
                     }
 

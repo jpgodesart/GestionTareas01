@@ -23,8 +23,8 @@
     String contenido = "";
     String id_documento = "";
     String fecha = "";
-    String titDocumento ="";
-    String nomUsuario ="";
+    String descDocumento ="";
+    String descUsuario ="";
 
 
     ComentBean oComentBean = (ComentBean) oContexto.getParametro();
@@ -34,14 +34,14 @@
     
     id_usuario = Integer.toString(oComentBean.getId_usuario().getId());
     if (oComentBean.getId_usuario().getId() > 0) {
-        nomUsuario = oComentBean.getId_usuario().getLogin();
+        descUsuario = Integer.toString(oComentBean.getId_usuario().getId());
     }
-    id_documento = Integer.toString(oComentBean.getId_documento().getId());
     if (oComentBean.getId_documento().getId() > 0) {
-        titDocumento = oComentBean.getId_documento().getTitulo();
+        descDocumento = oComentBean.getId_documento().getTitulo();
     }
-    
     fecha = new SimpleDateFormat("yyyy-MM-dd").format(oComentBean.getFecha());
+
+
 
     if (oContexto.getMetodo().equals("update")) {
         strTitulo = "Edición";
@@ -72,7 +72,6 @@
             <label for="titulo">Título: </label> 
             <input <%=strControlEnabled%> id="titulo" name="titulo" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=titulo%>" /><br />
         </div>
-        
         <div class="control-group">
             <label for="contenido">Contenido: </label>
             <textarea <%=strControlEnabled%> id="contenido" name="contenido" type="text" size="30" maxlength="50" ><%=contenido%></textarea><br />
@@ -83,29 +82,14 @@
             <div class="controls">
                 <input <%=strControlEnabled%>  id="fecha" name="fecha" type="date" size="30" maxlength="50" value="<%=fecha%>" /></div> 
         </div>
-        
         <div class="control-group">
-            <label class="control-label" for="id_usuario">Usuario: </label> 
-            <div class="controls">                
-                <input readonly="true" id="id_usuario" class="input-mini"
-                       name="id_usuario" type="text" size="5" maxlength="5"
-                       value="<%=id_usuario%>" />  
-                <input <%=strControlEnabled%> type="submit" name="searchingfor" value="usuario" />
-                <span class="alert alert-success"><%=nomUsuario%></span>
-            </div>
-        </div>  
-            
+             <label for="id_usuario">ID del Usuario: </label> 
+             <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" value="<%=id_usuario%>" /> <br />
+         </div>
         <div class="control-group">
-            <label class="control-label" for="id_usuario">Documento: </label> 
-            <div class="controls">                
-                <input readonly="true" id="id_documento" class="input-mini"
-                       name="id_documento" type="text" size="5" maxlength="5"
-                       value="<%=id_documento%>" />  
-                <input <%=strControlEnabled%> type="submit" name="searchingfor" value="documento" />
-                <span class="alert alert-success"><%=titDocumento%></span>
-            </div>
-        </div>  
-            
+            <label for="id_documento">ID del Documento: </label> 
+            <input <%=strControlEnabled%> id="id_documento" name="id_documento" type="text" size="30" maxlength="50" value="<%=id_documento%>" /> <br />
+        </div>
         <div>
             <input type="submit" name="enviar" value="<%=strValueBoton%>" />
         </div>

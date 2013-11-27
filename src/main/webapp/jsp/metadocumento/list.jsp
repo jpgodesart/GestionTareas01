@@ -127,6 +127,7 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
+        <th>Relaciones</th>
         <th>Operaciones</th>
     </tr>
     <%
@@ -137,6 +138,13 @@
         <td><%=oMetadocumentoBean.getId()%></td>
         <td><%=oMetadocumentoBean.getTitulo()%></td>
         <td><%=oMetadocumentoBean.getFecha()%></td>
+        <td>
+            <div class="btn-toolbar">
+                <div class="btn-group">                    
+                    <a class="btn btn-mini" href="Controller?class=metadocumentos&method=list&filter=id_metadocumento&filteroperator=equals&filtervalue=<%=oMetadocumentoBean.getId()%>">Documentos</a>
+                </div>
+            </div>
+        </td>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">

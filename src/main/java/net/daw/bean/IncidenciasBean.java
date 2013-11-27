@@ -4,8 +4,6 @@
  */
 package net.daw.bean;
 
-import java.util.Date;
-
 /**
  *
  * @author al037877
@@ -17,27 +15,17 @@ public class IncidenciasBean {
     private UsuarioBean usuario = null;
     private String resumen = "";
     private String cambios = "";
-     private Date fechaAlta = new Date();
-     private Date fechaResolucion = new Date();
-    
+    private int id_estado = 0;
+    private int id_repositorio = 0;
+    private String fechaAlta = "";
+    private String fechaResolucion = "";
     
     public IncidenciasBean(int id) {
-        this.estado = new EstadoBean();
-        this.estado.setId(0);
-        this.repositorio = new RepositorioBean();
-        this.repositorio.setId(0);
-         this.usuario = new UsuarioBean();
-        this.usuario.setId(0);
         this.id = id;
     }
 
     public IncidenciasBean() {
-        this.estado = new EstadoBean();
-        this.estado.setId(0);
-        this.repositorio = new RepositorioBean();
-        this.repositorio.setId(0);
-         this.usuario = new UsuarioBean();
-        this.usuario.setId(0);
+        
     }
 
     public int getId() {
@@ -89,25 +77,37 @@ public class IncidenciasBean {
         this.cambios = cambios;
     }
 
-    public Date getFechaAlta() {
+    public int getId_estado() {
+        return id_estado;
+    }
+
+    public void setId_estado(int id_estado) {
+        this.id_estado = id_estado;
+    }
+
+    public int getId_repositorio() {
+        return id_repositorio;
+    }
+
+    public void setId_repositorio(int id_repositorio) {
+        this.id_repositorio = id_repositorio;
+    }
+
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
-    public Date getFechaResolucion() {
+    public String getFechaResolucion() {
         return fechaResolucion;
     }
 
-    public void setFechaResolucion(Date fechaResolucion) {
+    public void setFechaResolucion(String fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
     }
-
-  
-
-   
     
     
     

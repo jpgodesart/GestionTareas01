@@ -1,3 +1,5 @@
+<%@page import="net.daw.helper.Enum.TipoUsuario"%>
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
@@ -28,18 +30,27 @@
             }
         %>
         <%
+            String strFiltro = "";
             if (oContexto.getAlFilter() != null) {
-                out.print("<p>Listado filtrado: ");
+                strFiltro += "<p>Listado filtrado: ";
                 ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
                 Iterator iterator = alFilter.iterator();
                 while (iterator.hasNext()) {
                     FilterBean oFilterBean = (FilterBean) iterator.next();
-                    out.print("(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + ") ");
+                    if (oFilterBean.getFilterOrigin() != "system") {
+                        strFiltro += "(" + oFilterBean.getFilter() + " " + oFilterBean.getFilterOperator() + " " + oFilterBean.getFilterValue() + ") ";
+                    }
                 }
-                out.print("<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>");
+                if (!strFiltro.equals("<p>Listado filtrado: ")) {
+                    strFiltro += "<a href=\"Controller?" + oContexto.getSerializedParamsExceptFilter() + "\">(Quitar filtro)</a></p>";
+                } else {
+                    strFiltro = "<p>Sin filtrar</p>";
+                }
             } else {
-                out.print("<p>Sin filtrar</p>");
+                strFiltro = "<p>Sin filtrar</p>";
             }
+            out.print(strFiltro);
+            
         %>    
         <%
             Integer registers = (Integer) alObjetoParametro.get(2);
@@ -163,14 +174,6 @@
             } else {
                 contenido = oDocumentoBEAN.getContenido();
             }
-            /*String classNota = "";
-            if (oDocumentoBEAN.getNota() == 5) {
-                classNota = "class=\"text-warning\"";
-            } else if (oDocumentoBEAN.getNota() <= 4) {
-                classNota = "class=\"text-error\"";
-            } else if (oDocumentoBEAN.getNota() >= 6) {
-                classNota = "class=\"text-success\"";
-            }*/
             String classNota = "";
             if (oDocumentoBEAN.getNota() == 5) {
                 classNota = "class=\"warning\"";
@@ -188,14 +191,35 @@
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oDocumentoBEAN.getFecha())%></td>
-        <!--<td><span </%=classNota%>></%=oDocumentoBEAN.getNota()%></span></td>-->
         <td><%=oDocumentoBEAN.getNota()%></td>
-        <td>
-            <%=oDocumentoBEAN.getUsuario().getLogin()%> (<%=oDocumentoBEAN.getUsuario().getId()%>)
+
+        <%
+            String usuario = oDocumentoBEAN.getUsuario().getLogin();
+            if (usuario.isEmpty() != true) {
+                usuario = usuario.substring(0, 1).toUpperCase() + usuario.substring(1, usuario.length());
+            }
+            if (session.getAttribute("usuarioBean") != null) {
+                UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
+                System.out.println(oUsuarioBean.getTipoUsuario());
+                if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
+        %>
+        <td>    
+            <%=usuario%> (<%=oDocumentoBEAN.getUsuario().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oDocumentoBEAN.getId()%>&searchingfor=usuario&returnclass=documento&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
+        <%
+        } else {
+        %>
+        <td>
+            <%=usuario%>
+        </td>
+        <%
+                }
+            }
+        %>
+
         <td><%=oDocumentoBEAN.getEtiquetas()%></td>
         <td>
             <div class="btn-toolbar">
