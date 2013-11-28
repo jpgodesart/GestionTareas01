@@ -77,7 +77,7 @@ public class CalificacionActividadOfflineDao {
                     oCalificacionActividadOfflineBean.setId(0);
                 } else {
                     SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-                    Date fecha = formatoFecha.parse(oMysql.getOne("cuestionario", "fecha", oCalificacionActividadOfflineBean.getId()) );
+                    Date fecha = formatoFecha.parse(oMysql.getOne("calificacionactividadoffline", "fecha", oCalificacionActividadOfflineBean.getId()) );
                     oCalificacionActividadOfflineBean.setFecha( fecha );
                     String intId_calificacionactividadoffline = oMysql.getOne("calificacionactividadoffline", "id_usuario", oCalificacionActividadOfflineBean.getId());
                     if (intId_calificacionactividadoffline != null) {
