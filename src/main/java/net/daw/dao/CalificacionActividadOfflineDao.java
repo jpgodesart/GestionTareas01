@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import net.daw.bean.ActividadofflineBean;
 import net.daw.bean.CalificacionActividadOfflineBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 import net.daw.helper.Enum;
@@ -70,10 +72,30 @@ public class CalificacionActividadOfflineDao {
     }*/
 
     public CalificacionActividadOfflineBean get(CalificacionActividadOfflineBean oCalificacionActividadOfflineBean) throws Exception {
-        if (oCalificacionActividadOfflineBean.getId() > 0) {
+        //if (oCalificacionActividadOfflineBean.getId() > 0) {
             try {
                 oMysql.conexion(enumTipoConexion);
-                if (!oMysql.existsOne("calificacionactividadoffline", oCalificacionActividadOfflineBean.getId())) {
+                
+                UsuarioBean oUsuarioBean = new UsuarioBean();
+                ActividadofflineBean oActividadofflineBean = new ActividadofflineBean();
+                
+                oActividadofflineBean.setId(Integer.parseInt(oMysql.getOne("calificacionactividadoffline", "id_actividadoffline", oCalificacionActividadOfflineBean.getId())));
+                oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("calificacionactividadoffline", "id_usuario", oCalificacionActividadOfflineBean.getId())));
+                
+                UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+                ActividadofflineDao oActividadofflineDao = new ActividadofflineDao(enumTipoConexion);
+                
+                oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
+                oActividadofflineBean = oActividadofflineDao.get(oActividadofflineBean);
+                
+                oCalificacionActividadOfflineBean.setUsuario(oUsuarioBean);
+                oCalificacionActividadOfflineBean.setActividad_offline(oActividadofflineBean);
+                
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = formatoFecha.parse(oMysql.getOne("calificacionactividadoffline", "fecha", oCalificacionActividadOfflineBean.getId()) );
+                    oCalificacionActividadOfflineBean.setFecha( fecha );
+                
+                /*if (!oMysql.existsOne("calificacionactividadoffline", oCalificacionActividadOfflineBean.getId())) {
                     oCalificacionActividadOfflineBean.setId(0);
                 } else {
                     SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,12 +110,16 @@ public class CalificacionActividadOfflineDao {
                 }
             } catch (Exception e) {
                 throw new Exception("CalificacionActividadOfflineDao.get: Error: " + e.getMessage());
+            } finally {*/
+                oMysql.desconexion();
+            } catch (Exception e) {
+            throw new Exception("CalificacionActividadOfflineDao.get: Error: " + e.getMessage());
             } finally {
                 oMysql.desconexion();
             }
-        } else {
-            oCalificacionActividadOfflineBean.setId(0);
-        }
+     //   } else {
+     //       oCalificacionActividadOfflineBean.setId(0);
+      //  }
         return oCalificacionActividadOfflineBean;
     }
 
@@ -108,12 +134,15 @@ public class CalificacionActividadOfflineDao {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
             String fecha = formatoFecha.format( oCalificacionActividadOfflineBean.getFecha() );
             oMysql.updateOne(oCalificacionActividadOfflineBean.getId(), "calificacionactividadoffline", "fecha", fecha);
-            if (id_usuario > 0) {
+            oMysql.updateOne(oCalificacionActividadOfflineBean.getId(), "calificacionactividadoffline", "id_usuario", Integer.toString( oCalificacionActividadOfflineBean.getUsuario().getId()) );
+            oMysql.updateOne(oCalificacionActividadOfflineBean.getId(), "calificacionactividadoffline", "id_actividadoffline", Integer.toString( oCalificacionActividadOfflineBean.getActividad_offline().getId()) );
+            oMysql.commitTrans();
+            /*if (id_usuario > 0) {
                 oMysql.updateOne(oCalificacionActividadOfflineBean.getId(), "calificacionactividadoffline", "id_usuario", id_usuario.toString());
             } else {
                 oMysql.setNull(oCalificacionActividadOfflineBean.getId(), "calificacionactividadoffline", "id_usuario");
             }
-            oMysql.commitTrans();
+            oMysql.commitTrans();*/
         } catch (Exception e) {
             oMysql.rollbackTrans();
             throw new Exception("CalificacionActividadOfflineDao.set: Error: " + e.getMessage());

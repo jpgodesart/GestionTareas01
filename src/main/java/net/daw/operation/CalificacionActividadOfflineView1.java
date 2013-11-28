@@ -11,7 +11,7 @@ import net.daw.bean.CalificacionActividadOfflineBean;
 import net.daw.bean.UsuarioBean;
 import net.daw.dao.CalificacionActividadOfflineDao;
 import net.daw.dao.OpcionDao;
-import net.daw.dao.ActividadOfflineDao;
+import net.daw.dao.ActividadofflineDao;
 import net.daw.dao.UsuarioDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.CalificacionActividadOfflineParam;
@@ -39,7 +39,7 @@ public class CalificacionActividadOfflineView1 implements Operation{
         oCalificacionActividadOfflineBean = oCalificacionActividadOfflineParam.loadId(oCalificacionActividadOfflineBean);
         oCalificacionActividadOfflineDao = new CalificacionActividadOfflineDao(oContexto.getEnumTipoConexion());
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
-        ActividadOfflineDao oActividadOfflineDao = new ActividadOfflineDao(oContexto.getEnumTipoConexion());
+        ActividadofflineDao oActividadOfflineDao = new ActividadofflineDao(oContexto.getEnumTipoConexion());
 
         //Validacion
         if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)
@@ -47,7 +47,7 @@ public class CalificacionActividadOfflineView1 implements Operation{
             try {
                 oCalificacionActividadOfflineBean = oCalificacionActividadOfflineDao.get(oCalificacionActividadOfflineBean);
                 oCalificacionActividadOfflineBean.setUsuario(oUsuarioDao.get(oCalificacionActividadOfflineBean.getUsuario()));
-                oCalificacionActividadOfflineBean.setActividad_Offline(oActividadOfflineDao.get(oCalificacionActividadOfflineBean.getActividad_Offline()));
+                oCalificacionActividadOfflineBean.setActividad_offline(oActividadOfflineDao.get(oCalificacionActividadOfflineBean.getActividad_offline()));
             } catch (Exception e) {
                 throw new ServletException("UsuarioController: View Error: Phase 1: " + e.getMessage());
             }

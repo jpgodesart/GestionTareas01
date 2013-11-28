@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.CalificacionActividadOfflineBean;
 import net.daw.bean.UsuarioBean;
-import net.daw.dao.Actividad_OfflineDao;
+import net.daw.dao.ActividadofflineDao;
 import net.daw.dao.UsuarioDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.CalificacionActividadOfflineParam;
@@ -32,7 +32,7 @@ public class CalificacionActividadOfflineNew1 implements Operation{
         CalificacionActividadOfflineParam oCalificacionActividadOfflineParam = new CalificacionActividadOfflineParam(request);
         CalificacionActividadOfflineBean oCalificacionActividadOfflineBean = new CalificacionActividadOfflineBean();
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
-        Actividad_OfflineDao oActividad_OfflineDao = new Actividad_OfflineDao(oContexto.getEnumTipoConexion());
+        ActividadofflineDao oActividadofflineDao = new ActividadofflineDao(oContexto.getEnumTipoConexion());
         //Validacion
         if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
 
@@ -40,8 +40,9 @@ public class CalificacionActividadOfflineNew1 implements Operation{
                 oCalificacionActividadOfflineBean = oCalificacionActividadOfflineParam.load(oCalificacionActividadOfflineBean);
                 oCalificacionActividadOfflineBean.setUsuario(oUsuarioDao.get(oCalificacionActividadOfflineBean.getUsuario()));
                 oCalificacionActividadOfflineBean = oCalificacionActividadOfflineParam.load(oCalificacionActividadOfflineBean);
-                oCalificacionActividadOfflineBean = oCalificacionActividadOfflineParam.load(oCalificacionActividadOfflineBean);
-                oCalificacionActividadOfflineBean.setActividad_offline(oActividad_OfflineDao.get(oCalificacionActividadOfflineBean.getActividadOffline()));
+                oCalificacionActividadOfflineBean.setActividad_offline(oActividadofflineDao.get(oCalificacionActividadOfflineBean.getActividad_offline()));
+                //oCalificacionActividadOfflineBean = oCalificacionActividadOfflineParam.load(oCalificacionActividadOfflineBean);
+                
             } catch (NumberFormatException e) {
                 oContexto.setVista("jsp/mensaje.jsp");
                 return "Tipo de dato incorrecto en uno de los campos del formulario";

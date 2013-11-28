@@ -52,7 +52,7 @@
     <div class="span4">
         <div class="text-right">
             <legend>Filtro de Calificacion Actividad Offline</legend> 
-            <form class="navbar-form pull-right" action="Controller" method="post" id="calificacion_actividad_offlineForm">
+            <form class="navbar-form pull-right" action="Controller" method="post" id="calificacionactividadofflineForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
                     <span>
@@ -141,7 +141,7 @@
             </div>            
         </td>
         <td>
-            <%=oCalificacionActividadOfflineBEAN.getActividadOffline().getDescripcion()%> (<%=oCalificacionActividadOfflineBEAN.getActividadOffline().getId()%>)
+            <%=oCalificacionActividadOfflineBEAN.getActividad_offline().getEnunciado()%> (<%=oCalificacionActividadOfflineBEAN.getActividad_offline().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=actividadoffline&method=list&id=<%=oCalificacionActividadOfflineBEAN.getId()%>&searchingfor=actividadoffline&returnclass=calificacionactividadoffline&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
@@ -151,7 +151,7 @@
                 <div class="btn-group"> 
                     <%
                         if (oContexto.getSearchingFor().equals("calificacionactividadoffline")) {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_contestacion", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_contestacion=" + oContestacionBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_contestacion", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_contestacion=" + oCalificacionActividadOfflineBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=calificacionactividadoffline&method=view&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=calificacionactividadoffline&method=update&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");

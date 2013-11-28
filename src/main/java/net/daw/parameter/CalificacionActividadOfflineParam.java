@@ -7,6 +7,7 @@ package net.daw.parameter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.CalificacionActividadOfflineBean;
 
@@ -22,7 +23,7 @@ public class CalificacionActividadOfflineParam {
         this.request = request;
     }
 
-    public CalificacionActividadOfflineBean loadId(CalificacionActividadOfflineBean oCalificacionActividadOffline) throws NumberFormatException {
+    public CalificacionActividadOfflineBean loadId(CalificacionActividadOfflineBean oCalificacionActividadOffline) throws NumberFormatException, ServletException {
         try {
             if (request.getParameter("id") != null) {
                 oCalificacionActividadOffline.setId(Integer.parseInt(request.getParameter("id")));
@@ -30,7 +31,7 @@ public class CalificacionActividadOfflineParam {
                 oCalificacionActividadOffline.setId(0);
             }
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
+            throw new ServletException("Controller: Error: loadId: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oCalificacionActividadOffline;
     }

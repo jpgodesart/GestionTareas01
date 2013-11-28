@@ -54,7 +54,7 @@ public class CalificacionActividadOfflineNew2 implements Operation{
                     oContexto.setMetodoRetorno("new");
                     oContexto.setFaseRetorno("1");
                     oContexto.removeParam("id_actividad_offline");
-                    ActividadOfflineList1 oOperacion = new ActividadOfflineList1();
+                    ActividadofflineList1 oOperacion = new ActividadofflineList1();
                     return oOperacion.execute(request, response);
                 }
                 default:
