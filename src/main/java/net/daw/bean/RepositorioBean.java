@@ -32,6 +32,7 @@ public class RepositorioBean {
     }
 
     public RepositorioBean(int id) {
+   
         this.id = id;
     }
 

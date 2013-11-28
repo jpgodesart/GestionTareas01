@@ -9,7 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.RepositorioBean;
+import net.daw.dao.DocumentoDao;
+import net.daw.dao.LenguajeDao;
 import net.daw.dao.RepositorioDao;
+import net.daw.dao.UsuarioDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.RepositorioParam;
 
@@ -40,7 +43,13 @@ public class RepositorioUpdate1 implements Operation {
              oContexto.setVista("jsp/mensaje.jsp");
              return "Tipo de dato incorrecto en uno de los campos del formulario";
          }
+        UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
+        LenguajeDao oLenguajeDao = new LenguajeDao(oContexto.getEnumTipoConexion());
+        DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
+        oRepositorioBean.setUsuario(oUsuarioDao.get(oRepositorioBean.getUsuario()));            
+        oRepositorioBean.setLenguaje(oLenguajeDao.get(oRepositorioBean.getLenguaje()));
+        oRepositorioBean.setDocumento(oDocumentoDao.get(oRepositorioBean.getDocumento()));
         return oRepositorioBean;
     }
-
+       
 }
