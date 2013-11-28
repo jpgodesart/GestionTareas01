@@ -81,8 +81,7 @@ public class RepositorioUpdate2 implements Operation {
                 }
 
                 String strMensaje = "Se ha cambiado la información de repositorio con id=" + Integer.toString(oRepositorioBean.getId()) + "<br />";
-                //strMensaje += "<a href=\"Controller?class=compra&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oCompraBean.getCliente().getId() + "\">Ver compras de este cliente</a><br />";
-                //strMensaje += "<a href=\"Controller?class=compra&method=view&id=" + oCompraBean.getId() + "\">Ver compra creada en el formulario</a><br />";
+        strMensaje += "<a href=\"Controller?class=repositorio&method=view&id=" + oRepositorioBean.getId() + "\">Ver repositorio modificado</a><br />";
                 return strMensaje;
 
         }

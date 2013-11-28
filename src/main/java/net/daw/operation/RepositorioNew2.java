@@ -78,8 +78,7 @@ public class RepositorioNew2 implements Operation {
             throw new ServletException("RepositorioController: Update Error: Phase 2: " + e.getMessage());
         }
         String strMensaje = "Se ha añadido la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()) + "<br />";
-         //strMensaje += "<a href=\"Controller?class=compra&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oCompraBean.getCliente().getId() + "\">Ver compras de este cliente</a><br />";
-        // strMensaje += "<a href=\"Controller?class=compra&method=view&id=" + oCompraBean.getId() + "\">Ver compra creada</a><br />";
+        strMensaje += "<a href=\"Controller?class=repositorio&method=view&id=" + oRepositorioBean.getId() + "\">Ver repositorio creado</a><br />";
         return strMensaje;
     
         }

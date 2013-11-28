@@ -33,7 +33,7 @@ public class RepositorioRemove2 implements Operation {
             throw new ServletException("RepositorioController: Remove Error: " + e.getMessage());
         }
         String strMensaje = ("Se ha eliminado la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()));
-        strMensaje += "<a href=\"Controller?class=compra&method=list\">Ir al listado de repositorio</a><br />";
+        strMensaje += "<a href=\"Controller?class=repositorio&method=list\">Ir al listado de repositorio</a><br />";
         String Mensaje = strMensaje;
         return Mensaje;
     }
