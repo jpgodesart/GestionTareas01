@@ -242,7 +242,7 @@
     menu += "<div class=\"accordion-group\">"
             + "<div class=\"accordion-heading\">"
             + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseEleven\">"
-            + "<i class=\"icon-user\"></i> Comentario</a></div>"
+            + "<i class=\"icon-comment\"></i> Comentario</a></div>"
             + "<div id=\"collapseEleven\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
             + "<div class=\"accordion-inner\">"
             + "<ul>";
@@ -402,6 +402,54 @@
 <%
     menu += "<div class=\"accordion-group\">"
             + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseVotocomentario\">"
+            + "<i class=\"icon-file\"></i> VotoComentario</a></div>"
+            + "<div id=\"collapseVotocomentario\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseEstado\">"
+            + "<i class=\"icon-file\"></i> Estado</a></div>"
+            + "<div id=\"collapseEstado\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
             + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseNine\">"
             + "<i class=\"icon-list-alt\"></i> Cuestionario</a></div>"
             + "<div id=\"collapseNine\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
@@ -487,6 +535,31 @@
     }
     menu += "<a href=\"Controller?class=contestacion&method=list\">Listar</a></li>";
     menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseBolsa\">"
+            + "<i class=\"icon-file\"></i> Bolsa</a></div>"
+            + "<div id=\"collapseBolsa\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("bolsa") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=bolsa&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("bolsa") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=bolsa&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
     menu += "</ul></div>";
 
 %>

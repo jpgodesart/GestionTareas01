@@ -200,6 +200,7 @@
             }
             if (session.getAttribute("usuarioBean") != null) {
                 UsuarioBean oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
+                System.out.println(oUsuarioBean.getTipoUsuario());
                 if (oUsuarioBean.getTipoUsuario().equals(TipoUsuario.Profesor)) {
         %>
         <td>    
@@ -227,12 +228,20 @@
                         if (oContexto.getSearchingFor().equals("documento")) {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_documento", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_documento=" + oDocumentoBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=documento&method=view&id=" + oDocumentoBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=documento&method=update&id=" + oDocumentoBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=documento&method=remove&id=" + oDocumentoBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            if (oContexto.getSearchingFor().equals("documento1")) {
+                                out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_documento1", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_documento1=" + oDocumentoBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                            } else {
+                                if (oContexto.getSearchingFor().equals("documento2")) {
+                                    out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_documento2", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_documento2=" + oDocumentoBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                                } else {
+                                    out.print("<a class=\"btn btn-mini\" href=\"Controller?class=documento&method=view&id=" + oDocumentoBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
+                                    out.print("<a class=\"btn btn-mini\" href=\"Controller?class=documento&method=update&id=" + oDocumentoBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
+                                    out.print("<a class=\"btn btn-mini\" href=\"Controller?class=documento&method=remove&id=" + oDocumentoBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                                }
+                            }
                         }
                     %>                 
-                </div>                
+                </div>
             </div>
         </td>
     </tr>
