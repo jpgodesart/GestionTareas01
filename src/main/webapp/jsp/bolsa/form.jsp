@@ -36,7 +36,7 @@
         documento2 = oBolsaBean.getDocumento2().getTitulo();
     }
     fecha = new SimpleDateFormat("dd/MM/yyyy").format(oBolsaBean.getFecha());
-
+    
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
@@ -60,6 +60,14 @@
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div class="control-group">
+            <label class="control-label" for="id">ID: </label> 
+            <div class="controls">                
+                <input readonly="true" id="id" class="input-mini"
+                       name="id" type="text" size="5" maxlength="5"
+                       value="<%=id%>" />  
+            </div>
+        </div>
+        <div class="control-group">
             <label class="control-label" for="id_documento1">Documento 1: </label> 
             <div class="controls">                
                 <input readonly="true" id="id_documento1" class="input-mini"
@@ -80,10 +88,11 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="fecha">Documento 2: </label> 
+            <label class="control-label" for="fecha">Fecha 2: </label> 
             <div class="controls">                
-                <input <%=strControlEnabled%> id="fecha" class="input-medium"
-                       name="fecha" type="date" value="<%=fecha%>" />  
+                <input <%=strControlEnabled%>  id="fecha"
+                                               name="fecha" type="date" size="30" maxlength="50"
+                                               value="<%=fecha%>" /> 
             </div>
         </div>
         <div>
