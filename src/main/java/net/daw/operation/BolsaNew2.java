@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.operation;
 
 import javax.servlet.ServletException;
@@ -18,8 +17,8 @@ import net.daw.parameter.BolsaParam;
  *
  * @author al037294
  */
-public class BolsaNew2 implements Operation{
-    
+public class BolsaNew2 implements Operation {
+
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -29,11 +28,24 @@ public class BolsaNew2 implements Operation{
                 oContexto.setClase("documento");
                 oContexto.setMetodo("list");
                 oContexto.setFase("1");
-                oContexto.setSearchingFor("documento");
+                oContexto.setSearchingFor("documento1");
                 oContexto.setClaseRetorno("bolsa");
                 oContexto.setMetodoRetorno("new");
                 oContexto.setFaseRetorno("1");
-                oContexto.removeParam("id_documento");
+                oContexto.removeParam("id_documento1");
+                DocumentoList1 oOperacion = new DocumentoList1();
+                return oOperacion.execute(request, response);
+            }
+            case "documento2": {
+                oContexto.setVista("jsp/documento/list.jsp");
+                oContexto.setClase("documento");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("documento2");
+                oContexto.setClaseRetorno("bolsa");
+                oContexto.setMetodoRetorno("new");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_documento2");
                 DocumentoList1 oOperacion = new DocumentoList1();
                 return oOperacion.execute(request, response);
             }
