@@ -14,8 +14,8 @@ public class BolsaBean {
 
     private int id = 0;
     private Date fecha;
-    private DocumentoBean documento1;
-    private DocumentoBean documento2;
+    private DocumentoBean documento1 = new DocumentoBean();
+    private DocumentoBean documento2 = new DocumentoBean();
 
     public BolsaBean() {
     }
