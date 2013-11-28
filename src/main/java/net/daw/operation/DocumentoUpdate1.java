@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.DocumentoBean;
 import net.daw.bean.UsuarioBean;
 import net.daw.dao.DocumentoDao;
+import net.daw.dao.UsuarioDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.DocumentoParam;
 
@@ -30,14 +31,10 @@ public class DocumentoUpdate1 implements Operation {
         DocumentoParam oDocumentoParam = new DocumentoParam(request);
         oDocumentoBean = oDocumentoParam.loadId(oDocumentoBean);
         oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
-        
 
-        
-        //oDocumentoBean.setUsuario(oUsuarioBean);
-        
         try {
             oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
-            
+
         } catch (Exception e) {
             throw new ServletException("DocumentoController: Update Error: Phase 1: " + e.getMessage());
         }
@@ -47,6 +44,8 @@ public class DocumentoUpdate1 implements Operation {
         if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
             try {
                 oDocumentoBean = oDocumentoParam.load(oDocumentoBean);
+                UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
+                oDocumentoBean.setUsuario(oUsuarioDao.get(oDocumentoBean.getUsuario()));
             } catch (NumberFormatException e) {
                 oContexto.setVista("jsp/mensaje.jsp");
                 return "<div class=\"alert alert-error\">Tipo de dato incorrecto en uno de los campos del formulario</div>";
@@ -56,6 +55,8 @@ public class DocumentoUpdate1 implements Operation {
             if (idUsuario == oDocumentoBean.getUsuario().getId()) {
                 try {
                     oDocumentoBean = oDocumentoParam.load(oDocumentoBean);
+                    UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
+                    oDocumentoBean.setUsuario(oUsuarioDao.get(oDocumentoBean.getUsuario()));
                 } catch (NumberFormatException e) {
                     oContexto.setVista("jsp/mensaje.jsp");
                     return "Tipo de dato incorrecto en uno de los campos del formulario";
