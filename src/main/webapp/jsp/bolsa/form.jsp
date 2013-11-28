@@ -35,7 +35,7 @@
     if (oBolsaBean.getDocumento2().getId() > 0) {
         documento2 = oBolsaBean.getDocumento2().getTitulo();
     }
-    //fecha = new SimpleDateFormat("dd/MM/yyyy").format(oBolsaBean.getFecha());
+    fecha = new SimpleDateFormat("dd/MM/yyyy").format(oBolsaBean.getFecha());
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
@@ -82,7 +82,7 @@
         <div class="control-group">
             <label class="control-label" for="fecha">Documento 2: </label> 
             <div class="controls">                
-                <input readonly="true" id="fecha" class="input-medium"
+                <input <%=strControlEnabled%> id="fecha" class="input-medium"
                        name="fecha" type="date" value="<%=fecha%>" />  
             </div>
         </div>

@@ -13,7 +13,7 @@ import java.util.Date;
 public class BolsaBean {
 
     private int id = 0;
-    private Date fecha;
+    private Date fecha = new Date();
     private DocumentoBean documento1 = new DocumentoBean();
     private DocumentoBean documento2 = new DocumentoBean();
 
