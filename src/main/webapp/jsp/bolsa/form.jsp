@@ -4,6 +4,7 @@
     Author     : al037877
 --%>
 
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.daw.bean.DocumentoBean"%>
@@ -36,7 +37,7 @@
         documento2 = oBolsaBean.getDocumento2().getTitulo();
     }
     fecha = new SimpleDateFormat("dd/MM/yyyy").format(oBolsaBean.getFecha());
-    
+
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
@@ -50,6 +51,12 @@
         strTitulo = "Alta";
         strValueBoton = "Crear";
     }
+
+
+    //Permisos
+    UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+    Integer idUsuario = oUsuarioBean.getId();
+    java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
 %>
 <h1><%=strTitulo%> de bolsa</h1>
 <form class="semantic" action="Controller" method="post" id="bolsaForm">
@@ -73,7 +80,14 @@
                 <input readonly="true" id="id_documento1" class="input-mini"
                        name="id_documento1" type="text" size="5" maxlength="5"
                        value="<%=id_documento1%>" />  
+                <%
+                    //permisos
+                    if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Empresa)) {
+                %>
                 <input <%=strControlEnabled%> type="submit" name="searchingfor" value="documento1" />
+                <%
+                    }//permisos
+                %>
                 <span class="alert alert-success"><%=documento1%></span>
             </div>
         </div>
@@ -83,7 +97,13 @@
                 <input readonly="true" id="id_documento2" class="input-mini"
                        name="id_documento2" type="text" size="5" maxlength="5"
                        value="<%=id_documento2%>" />  
+                <%
+                    if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Alumno)) {
+                %>
                 <input <%=strControlEnabled%> type="submit" name="searchingfor" value="documento2" />
+                <%
+                    }
+                %>
                 <span class="alert alert-success"><%=documento2%></span>
             </div>
         </div>
