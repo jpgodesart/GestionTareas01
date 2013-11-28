@@ -44,7 +44,7 @@ public class DocumentoRemove2 implements Operation {
             } catch (Exception e) {
                 throw new ServletException("DocumentoController: Remove Error: " + e.getMessage());
             }
-            String Mensaje = ("Se ha eliminado la información del documento con id=" + Integer.toString(oDocumentoBean.getId()));
+            String Mensaje = ("<div class=\"alert alert-success\">Se ha eliminado la información del documento con id=" + Integer.toString(oDocumentoBean.getId())+"</div>");
             return Mensaje;
         } else {
             if (idUsuario == oDocumentoBean.getUsuario().getId()) {
@@ -54,7 +54,7 @@ public class DocumentoRemove2 implements Operation {
                 } catch (Exception e) {
                     throw new ServletException("DocumentoController: Remove Error: " + e.getMessage());
                 }
-                String Mensaje = ("Se ha eliminado la información del documento con id=" + Integer.toString(oDocumentoBean.getId()));
+                String Mensaje = ("<div class=\"alert alert-success\">Se ha eliminado la información del documento con id=" + Integer.toString(oDocumentoBean.getId())+"</div>");
                 return Mensaje;
             } else {
                 oContexto.setVista("jsp/mensaje.jsp");
