@@ -157,8 +157,18 @@
     %>
     <tr>
         <td><%=oBolsaBEAN.getId()%></td>
-        <td><%=oBolsaBEAN.getDocumento1().getId() + " " + oBolsaBEAN.getDocumento1().getTitulo()%></td>
-        <td><%=oBolsaBEAN.getDocumento2().getId() + " " + oBolsaBEAN.getDocumento2().getTitulo()%></td>
+        <td>
+            <%=oBolsaBEAN.getDocumento1().getId() + " " + oBolsaBEAN.getDocumento1().getTitulo()%>
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getDocumento1().getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
+        <td>
+            <%=oBolsaBEAN.getDocumento2().getId() + " " + oBolsaBEAN.getDocumento2().getTitulo()%>
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getDocumento2().getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
         <%
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
 
