@@ -48,7 +48,7 @@ public class EntregaParam {
                 oEntrega.getActividad().setId(Integer.parseInt(request.getParameter("id_actividad")));
             }
             if (request.getParameter("nota") != null) {
-                oEntrega.setNota( Double.valueOf(request.getParameter("nota")) );
+                oEntrega.setNota( Integer.valueOf(request.getParameter("nota")) );
             }
             if(request.getParameter("fecha") != null) {
                 String fecha = request.getParameter("fecha");

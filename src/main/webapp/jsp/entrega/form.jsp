@@ -19,11 +19,11 @@
     id = oEntregaBean.getId();
     id_documento = Integer.toString(oEntregaBean.getDocumento().getId());
     if (oEntregaBean.getDocumento().getId() > 0) {
-        descDocumento = oEntregaBean.getDocumento().getDescripcion();
+        descDocumento = oEntregaBean.getDocumento().getTitulo();
     }
     id_actividad = Integer.toString(oEntregaBean.getActividad().getId());
     if(oEntregaBean.getDocumento().getId() > 0) {
-        descActividad = oEntregaBean.getActividad.getDescripcion();
+        descActividad = oEntregaBean.getActividad().getEnunciado();
     }
     nota = Double.toString(oEntregaBean.getNota());
     SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -43,7 +43,7 @@
 %>
 <h1>Formulario de entrega</h1>
 <hr/>
-<form class="form-horizontal" action="Controller" method="post" id="clienteForm">
+<form class="form-horizontal" action="Controller" method="post" id="entregaForm">
     <fieldset>
         <!-- <legend>Formulario de entrega</legend> -->
         <input type="hidden" name="id" value="<%=id%>" /> 
@@ -74,14 +74,18 @@
             </div>
         </div> 
         <div class="control-group">
-            <label class="control-label" for="nota">Nota </label> 
+            <label class="control-label" for="nota">Nota: </label> 
             <div class="controls">                
-                <div class="controls">
-                <input <%=strControlEnabled%> type="range" id="nota" name="nota" min="0" max="100" step="0.1" value="<%=nota%>">
+                <input <%=strControlEnabled%> type="range" id="nota" name="nota" min="0" max="100" step="1" value="<%=nota%>">
                 <span class="alert alert-success"><%=nota%>%</span>
-                </div>
             </div>
         </div>     
+        <div class="control-group">
+            <label class="control-label" for="fecha">Fecha: </label> 
+            <div class="controls">                
+                <input <%=strControlEnabled%> type="date" id="fecha" value="<%=fecha%>">
+            </div>
+        </div>         
         <div class="control-group">
             <div class="controls">
                 <input type="submit" name="enviar" value="<%=strValueBoton%>" />

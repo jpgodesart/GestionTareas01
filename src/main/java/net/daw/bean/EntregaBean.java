@@ -19,7 +19,7 @@ public class EntregaBean {
     private Integer id = 0;
     private DocumentoBean documento = null;
     private ActividadBean actividad = null;
-    private Double nota = 0.0;
+    private Integer nota = 0;
     private Date fecha;
 
     public EntregaBean() {
@@ -57,11 +57,11 @@ public class EntregaBean {
         this.actividad = actividad;
     }
 
-    public Double getNota() {
+    public Integer getNota() {
         return nota;
     }
 
-    public void setNota(Double nota) {
+    public void setNota(Integer nota) {
         this.nota = nota;
     }
 

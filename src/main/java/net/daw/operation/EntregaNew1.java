@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.EntregaBean;
 import net.daw.bean.UsuarioBean;
+import net.daw.dao.ActividadDao;
+import net.daw.dao.DocumentoDao;
 import net.daw.dao.PreguntaDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.EntregaParam;
@@ -15,8 +17,8 @@ public class EntregaNew1 implements Operation {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         EntregaParam oEntregaParam = new EntregaParam(request);
         EntregaBean oEntregaBean = new EntregaBean();
-        //DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
-        //ActividadDao oActividadDao = new ActividadDao(oContexto.getEnumTipoConexion());
+        DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
+        ActividadDao oActividadDao = new ActividadDao(oContexto.getEnumTipoConexion());
 
         //Parte para saber el tipo de usuario
         UsuarioBean oUsuarioBean;
@@ -28,8 +30,8 @@ public class EntregaNew1 implements Operation {
 
             try {
                 oEntregaBean = oEntregaParam.load(oEntregaBean);
-                //oEntregaBean.setDocumento(oDocumentoDao.get(oEntregaBean.getDocumento()));
-                //oEntregaBean.setActividad(oActividadDao.get(oEntregaBean.getActividad()));
+                oEntregaBean.setDocumento(oDocumentoDao.get(oEntregaBean.getDocumento()));
+                oEntregaBean.setActividad(oActividadDao.get(oEntregaBean.getActividad()));
 
             } catch (NumberFormatException e) {
                 oContexto.setVista("jsp/mensaje.jsp");

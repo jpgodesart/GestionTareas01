@@ -84,7 +84,7 @@ public class EntregaDao {
                 oDocumentoBean.setId(Integer.parseInt(oMysql.getOne("entrega", "id_documento", oEntregaBean.getId())));
                 oActividadBean.setId(Integer.parseInt(oMysql.getOne("entrega", "id_actividad", oEntregaBean.getId())));
                 
-                oEntregaBean.setNota( Double.valueOf( oMysql.getOne("entrega","nota", oEntregaBean.getId())) );
+                oEntregaBean.setNota( Integer.valueOf( oMysql.getOne("entrega","nota", oEntregaBean.getId())) );
                 SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
                 oEntregaBean.setFecha(formatoFecha.parse( oMysql.getOne("entrega","fecha",oEntregaBean.getId() )));
                 
@@ -118,9 +118,14 @@ public class EntregaDao {
             }
             oMysql.updateOne(oEntregaBean.getId(), "entrega", "id_documento", Integer.toString(oEntregaBean.getDocumento().getId()));
             oMysql.updateOne(oEntregaBean.getId(), "entrega", "id_actividad", Integer.toString(oEntregaBean.getActividad().getId()));
-            oMysql.updateOne(oEntregaBean.getId(), "entrega", "nota", Double.toString(oEntregaBean.getNota()));
+            oMysql.updateOne(oEntregaBean.getId(), "entrega", "nota", Integer.toString(oEntregaBean.getNota()));
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-            String fecha = formatoFecha.format(oEntregaBean.getFecha());
+            Date date = oEntregaBean.getFecha();
+            if(date == null){
+                date = new Date();
+            }
+            String fecha = formatoFecha.format(date);
+            
             oMysql.updateOne(oEntregaBean.getId(), "entrega", "fecha", fecha);
             oMysql.commitTrans();
         } catch (Exception e) {

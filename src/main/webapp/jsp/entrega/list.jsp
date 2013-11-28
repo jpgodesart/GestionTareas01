@@ -146,13 +146,13 @@
     <tr>
         <td><%=oEntregaBEAN.getId()%></td>
         <td>
-            <%=oEntregaBEAN.getDocumento().getDescripcion()%> (<%=oEntregaBEAN.getDocumento().getId()%>)
+            <%=oEntregaBEAN.getDocumento().getTitulo()%> (<%=oEntregaBEAN.getDocumento().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oEntregaBEAN.getId()%>&searchingfor=documento&returnclass=entrega&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
         <td>
-            <%=oEntregaBEAN.getActividad().getDescripcion()%> (<%=oEntregaBEAN.getActividad().getId()%>)
+            <%=oEntregaBEAN.getActividad().getEnunciado()%> (<%=oEntregaBEAN.getActividad().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=actividad&method=list&id=<%=oEntregaBEAN.getId()%>&searchingfor=actividad&returnclass=entrega&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
