@@ -1,3 +1,4 @@
+<%@page import="net.daw.helper.Enum.TipoUsuario"%>
 <%@page import="net.daw.helper.Contexto"%>
 <%@page import="net.daw.bean.AlumnoBean"%>
 <%@page import="net.daw.bean.UsuarioBean"%>

@@ -22,6 +22,7 @@ public class AlumnoUpdate2 implements Operation {
         oContexto.setVista("jsp/mensaje.jsp");   
         AlumnoBean oAlumnoBean = new AlumnoBean();
         AlumnoDao oAlumnoDao = new AlumnoDao(oContexto.getEnumTipoConexion());
+
         AlumnoParam oAlumnoParam = new AlumnoParam(request);
         oAlumnoBean = oAlumnoParam.loadId(oAlumnoBean);
         try {
