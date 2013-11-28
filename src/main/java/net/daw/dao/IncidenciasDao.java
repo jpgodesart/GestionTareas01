@@ -82,7 +82,7 @@ public class IncidenciasDao {
             oMysql.conexion(enumTipoConexion);
 
             EstadoBean oEstadoBean = new EstadoBean();
-            RepositorioBean oRepositorioBean = new RepositorioBean();
+           RepositorioBean oRepositorioBean = new RepositorioBean();
             UsuarioBean oUsuarioBean = new UsuarioBean();
 
             oEstadoBean.setId(Integer.parseInt(oMysql.getOne("incidencias", "id_estado", oIncidenciasBean.getId())));
