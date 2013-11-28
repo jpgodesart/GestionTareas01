@@ -147,15 +147,25 @@
     </tr>
     <%        while (oIterador.hasNext()) {
             BolsaBean oBolsaBEAN = oIterador.next();
-            
+
     %>
     <tr>
         <td><%=oBolsaBEAN.getId()%></td>
-        <td><%=oBolsaBEAN.getId_documento1()+" "+oBolsaBEAN.getDocumento1().getTitulo()%></td>
-        <td><%=oBolsaBEAN.getId_documento2()+" "+oBolsaBEAN.getDocumento2().getTitulo()%></td>
+        <td>
+            <%=oBolsaBEAN.getId_documento1() + " " + oBolsaBEAN.getDocumento1().getTitulo()%>
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
+        <td>
+            <%=oBolsaBEAN.getId_documento2() + " " + oBolsaBEAN.getDocumento2().getTitulo()%>
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>
+        </td>
         <%
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
-        
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
+
         %>
         <td><%=formatoFecha.format(oBolsaBEAN.getFecha())%></td>
 
