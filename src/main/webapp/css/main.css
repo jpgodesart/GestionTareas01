@@ -76,3 +76,7 @@ hr {
 .input_disabled {
     disabled:true;
 } 
+
+.input_resize{
+    width: 95%;
+}
