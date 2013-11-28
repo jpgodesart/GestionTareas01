@@ -54,6 +54,7 @@ public class ComentUpdate2 implements Operation {
                 ComentDao oComentDao = new ComentDao(oContexto.getEnumTipoConexion());
                 ComentParam oComentParam = new ComentParam(request);
                 oComentBean = oComentParam.loadId(oComentBean);
+                oComentBean = oComentDao.get(oComentBean);
                 try {
                     oComentBean = oComentParam.load(oComentBean);
                 } catch (NumberFormatException e) {

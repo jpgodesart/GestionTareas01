@@ -243,7 +243,7 @@
     menu += "<div class=\"accordion-group\">"
             + "<div class=\"accordion-heading\">"
             + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseEleven\">"
-            + "<i class=\"icon-user\"></i> Comentario</a></div>"
+            + "<i class=\"icon-comment\"></i> Comentario</a></div>"
             + "<div id=\"collapseEleven\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
             + "<div class=\"accordion-inner\">"
             + "<ul>";
