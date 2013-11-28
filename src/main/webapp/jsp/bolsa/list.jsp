@@ -4,6 +4,7 @@
     Author     : al037877
 --%>
 
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="net.daw.data.Mysql"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
@@ -180,12 +181,19 @@
             <div class="btn-toolbar">
                 <div class="btn-group"> 
                     <%
+                        //Permisos
+                        UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+                        Integer idUsuario = oUsuarioBean.getId();
+                        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+                        
                         if (oContexto.getSearchingFor().equals("bolsa")) {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_bolsa", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_bolsa=" + oBolsaBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=bolsa&method=view&id=" + oBolsaBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=bolsa&method=update&id=" + oBolsaBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=bolsa&method=remove&id=" + oBolsaBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Empresa)) {//permisos
+                                out.print("<a class=\"btn btn-mini\" href=\"Controller?class=bolsa&method=remove&id=" + oBolsaBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            }
                         }
                     %>  
                 </div>
