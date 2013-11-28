@@ -6,9 +6,11 @@
 
 package net.daw.operation;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.BolsaBean;
+import net.daw.dao.DocumentoDao;
 import net.daw.dao.DocumentoDao;
 import net.daw.dao.BolsaDao;
 import net.daw.helper.Contexto;
@@ -18,25 +20,28 @@ import net.daw.parameter.BolsaParam;
  *
  * @author Jacobo Segovia
  */
-public class BolsaNew1 implements Operation{
+public class BolsaView1 implements Operation{
     
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
+        oContexto.setVista("jsp/bolsa/form.jsp");
+        BolsaBean oBolsaBean;
+        BolsaDao oBolsaDao;
+        oBolsaBean = new BolsaBean();
         BolsaParam oBolsaParam = new BolsaParam(request);
-        BolsaBean oBolsaBean = new BolsaBean();
+        oBolsaBean = oBolsaParam.loadId(oBolsaBean);
+        oBolsaDao = new BolsaDao(oContexto.getEnumTipoConexion());
         DocumentoDao oDocumento1Dao = new DocumentoDao(oContexto.getEnumTipoConexion());
         DocumentoDao oDocumento2Dao = new DocumentoDao(oContexto.getEnumTipoConexion());
         try {
-            oBolsaBean = oBolsaParam.load(oBolsaBean);
+            oBolsaBean = oBolsaDao.get(oBolsaBean);
             oBolsaBean.setDocumento1(oDocumento1Dao.get(oBolsaBean.getDocumento1()));
-            oBolsaBean = oBolsaParam.load(oBolsaBean);
             oBolsaBean.setDocumento2(oDocumento2Dao.get(oBolsaBean.getDocumento2()));
-        } catch (NumberFormatException e) {
-            oContexto.setVista("jsp/mensaje.jsp");
-            return "Tipo de dato incorrecto en uno de los campos del formulario";
+        } catch (Exception e) {
+            throw new ServletException("BolsaController: View Error: Phase 1: " + e.getMessage());
         }
-        oContexto.setVista("jsp/bolsa/form.jsp");
+        
         return oBolsaBean;
     }
 }

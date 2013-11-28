@@ -14,7 +14,7 @@ import net.daw.parameter.BolsaParam;
 
 /**
  *
- * @author al037431
+ * @author al037877
  */
 public class BolsaUpdate1 implements Operation{
       
