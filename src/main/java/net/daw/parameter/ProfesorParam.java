@@ -20,17 +20,17 @@ public class ProfesorParam {
         this.request = request;
     }
 
-    public ProfesorBean loadId(ProfesorBean oAlumno) throws NumberFormatException {
+    public ProfesorBean loadId(ProfesorBean oProfesor) throws NumberFormatException {
         try {
             if (request.getParameter("id") != null) {
-                oAlumno.setId(Integer.parseInt(request.getParameter("id")));
+                oProfesor.setId(Integer.parseInt(request.getParameter("id")));
             } else {
-                oAlumno.setId(0);
+                oProfesor.setId(0);
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
-        return oAlumno;
+        return oProfesor;
     }
 
     public ProfesorBean load(ProfesorBean oProfesor) throws NumberFormatException {
@@ -58,6 +58,12 @@ public class ProfesorParam {
             }
             if ((request.getParameter("email") != null)) {
                 oProfesor.setEmail(request.getParameter("email"));
+            }
+             if ((request.getParameter("login") != null)) {
+                oProfesor.getUsuario().setLogin(request.getParameter("login"));
+            }
+             if ((request.getParameter("password") != null)) {
+                oProfesor.getUsuario().setPassword(request.getParameter("password"));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());

@@ -1,5 +1,5 @@
 <%@page import="net.daw.helper.Contexto"%>
-<% Contexto oContexto = (Contexto) request.getAttribute("contexto"); %>
+<% Contexto oContexto = (Contexto) request.getAttribute("contexto");%>
 <%
     String menu = "<div class=\"accordion\" id=\"leftMenu\">";
 
@@ -189,11 +189,97 @@
     } else {
         menu += "<li>";
     }
-
     menu += "<a href=\"Controller?class=actividadoffline&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseNine\">"
+            + "<i class=\"icon-list-alt\"></i> Cuestionario</a></div>"
+            + "<div id=\"collapseNine\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
 
-     menu += "</ul></div></div></div>";
+    if (oContexto.getClase().equals("cuestionario") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=cuestionario&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("cuestionario") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=cuestionario&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseTen\">"
+            + "<i class=\"icon-question-sign\"></i> Pregunta</a></div>"
+            + "<div id=\"collapseTen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
 
+    if (oContexto.getClase().equals("pregunta") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=pregunta&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("pregunta") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=pregunta&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseEleven\">"
+            + "<i class=\"icon-check\"></i> Opcion</a></div>"
+            + "<div id=\"collapseEleven\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("opcion") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=opcion&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("opcion") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=opcion&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseTwelve\">"
+            + "<i class=\"icon-certificate\"></i> Contestación</a></div>"
+            + "<div id=\"collapseTwelve\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("contestacion") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=contestacion&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("contestacion") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=contestacion&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
     menu += "</ul></div>";
 %>
 <%=menu%>
