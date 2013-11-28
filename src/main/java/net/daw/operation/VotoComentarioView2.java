@@ -20,7 +20,7 @@ public class VotoComentarioView2 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/votoComentario/list.jsp");
-        oContexto.setClase("votocomentario");
+        oContexto.setClase("votoComentario");
         oContexto.setMetodo("list");
         oContexto.setFase("1");
         VotoComentarioList1 oOperacion = new VotoComentarioList1();

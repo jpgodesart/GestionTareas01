@@ -51,7 +51,7 @@
         <input type="hidden" name="phase" value="2" />
 
         <div class="control-group">
-            <label class="control-label" for="id_usuario">Id_suario: </label> 
+            <label class="control-label" for="id_usuario">Id_usuario: </label> 
             <div class="controls">                
                 <input readonly="true" id="id_usuario" class="input-mini"
                        name="id_usuario" type="text" size="5" maxlength="5"

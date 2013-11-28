@@ -68,7 +68,7 @@ public class VotoComentarioNew2 implements Operation {
                 }
                 String strMensaje = "Se ha añadido la información de votocomentario con id=" + Integer.toString(oVotoComentarioBean.getId()) + "<br />";
                 /*strMensaje += "<a href=\"Controller?class=compra&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oVotoComentarioBean.getCliente().getId() + "\">Ver compras de este cliente</a><br />";*/
-                strMensaje += "<a href=\"Controller?class=votocomentario&method=view&id=" + oVotoComentarioBean.getId() + "\">Ver votoComentario creado en el formulario</a><br />";
+                strMensaje += "<a href=\"Controller?class=votoComentario&method=view&id=" + oVotoComentarioBean.getId() + "\">Ver votoComentario creado en el formulario</a><br />";
                 return strMensaje;
         }
     }
