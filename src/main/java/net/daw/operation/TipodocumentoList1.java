@@ -9,8 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.TipodocumentoBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.dao.TipodocumentoDao;
 import net.daw.helper.Contexto;
+import net.daw.helper.FilterBean;
 import net.daw.helper.Pagination;
 
 /**
@@ -24,6 +26,25 @@ public class TipodocumentoList1 implements Operation {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/tipodocumento/list.jsp");
         try {
+            /*
+             * PERMISOS
+            UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+            java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+            ArrayList<FilterBean> alFilter = oContexto.getAlFilter();
+            if (alFilter==null) {
+                alFilter = new ArrayList<>();
+            }
+            FilterBean oFilterBean = new FilterBean();
+            if (!tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
+                oFilterBean.setFilter("id_usuario");
+                oFilterBean.setFilterOperator("equals");
+                oFilterBean.setFilterValue(Integer.toString(oUsuarioBean.getId()));
+                oFilterBean.setFilterOrigin("system");
+                alFilter.add(oFilterBean);
+                oContexto.setAlFilter(alFilter);
+            }*/
+            
+            
             TipodocumentoDao oEstadoDAO = new TipodocumentoDao(oContexto.getEnumTipoConexion());
             Integer intPages = oEstadoDAO.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
             Integer intRegisters = oEstadoDAO.getCount(oContexto.getAlFilter());
