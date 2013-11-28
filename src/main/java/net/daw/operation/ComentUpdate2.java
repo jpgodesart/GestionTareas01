@@ -21,6 +21,8 @@ public class ComentUpdate2 implements Operation {
      @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
+        String strMensaje = "";
+        ComentBean oComentBean = new ComentBean();
         switch (oContexto.getSearchingFor()) {
             case "documento": {
                 oContexto.setVista("jsp/documento/list.jsp");
@@ -50,7 +52,6 @@ public class ComentUpdate2 implements Operation {
             }
             default:
                 oContexto.setVista("jsp/mensaje.jsp");
-                ComentBean oComentBean = new ComentBean();
                 ComentDao oComentDao = new ComentDao(oContexto.getEnumTipoConexion());
                 ComentParam oComentParam = new ComentParam(request);
                 oComentBean = oComentParam.loadId(oComentBean);
@@ -65,11 +66,8 @@ public class ComentUpdate2 implements Operation {
                 } catch (Exception e) {
                     throw new ServletException("ComentController: Update Error: Phase 2: " + e.getMessage());
                 }
-                String strMensaje = "Se ha modificado la información de comentario con id=" + Integer.toString(oComentBean.getId()) + "<br />";
-                strMensaje += "<a href=\"Controller?class=coment&method=view&id=" + oComentBean.getId() + "\">Ver comentario de la modificación</a><br />";
-                return strMensaje;
         }
-        String strMensaje = "Se ha modificado la información de comentario con id=" + Integer.toString(oComentBean.getId()) + "<br />";
+        strMensaje = "Se ha modificado la información de comentario con id=" + Integer.toString(oComentBean.getId()) + "<br />";
         strMensaje += "<a href=\"Controller?class=coment&method=view&id=" + oComentBean.getId() + "\">Ver comentario de la modificación</a><br />";
         return strMensaje;
     }
