@@ -76,6 +76,15 @@ public class EmpresaDao {
                 if (!oMysql.existsOne("empresa", oEmpresaBean.getId())) {
                     oEmpresaBean.setId(0);
                 } else {
+                    
+                   UsuarioBean oUsuarioBean = new UsuarioBean();
+
+                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("empresa", "id_usuario", oEmpresaBean.getId())));
+
+                    UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+                    oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
+                    oEmpresaBean.setUsuario(oUsuarioBean);
+                    
                     oEmpresaBean.setId_usuario(Integer.parseInt(oMysql.getOne("empresa", "id_usuario", oEmpresaBean.getId())));
                     oEmpresaBean.setNombre(oMysql.getOne("empresa", "nombre", oEmpresaBean.getId()));
                     oEmpresaBean.setCif(oMysql.getOne("empresa", "cif", oEmpresaBean.getId()));
@@ -89,16 +98,6 @@ public class EmpresaDao {
                     oEmpresaBean.setNombrecontacto(oMysql.getOne("empresa", "nombrecontacto", oEmpresaBean.getId()));
                     oEmpresaBean.setEmailcontacto(oMysql.getOne("empresa", "emailcontacto", oEmpresaBean.getId()));
                     oEmpresaBean.setValidada(oMysql.getOne("empresa", "validada", oEmpresaBean.getId()));
-                    /*
-                     String strId_usuario = oMysql.getOne("empresa", "id_usuario", oEmpresaBean.getId());
-                     if (strId_usuario != null) {
-                     UsuarioBean oUsuarioBean = new UsuarioBean();
-                     oEmpresaBean.setUsuario(oUsuarioBean);
-                     oEmpresaBean.getUsuario().setId(Integer.parseInt(strId_usuario));
-                     UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-                     oEmpresaBean.setUsuario(oUsuarioDao.get(oEmpresaBean.getUsuario()));
-                     }
-                     */
                 }
             } catch (Exception e) {
                 throw new Exception("EmpresaDao.getEmpresa: Error: " + e.getMessage());
@@ -119,7 +118,13 @@ public class EmpresaDao {
             if (oEmpresaBean.getId() == 0) {
                 oEmpresaBean.setId(oMysql.insertOne("empresa"));
             }
-            oMysql.updateOne(oEmpresaBean.getId(), "empresa", "id_usuario", Integer.toString(oEmpresaBean.getId_usuario()));
+            UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+            oUsuarioDao.set(oEmpresaBean.getUsuario());
+
+            
+            oEmpresaBean.setUsuario(oUsuarioDao.getFromLogin(oEmpresaBean.getUsuario()));
+            
+            oMysql.updateOne(oEmpresaBean.getId(), "empresa", "id_usuario", Integer.toString(oEmpresaBean.getUsuario().getId()));
             oMysql.updateOne(oEmpresaBean.getId(), "empresa", "nombre", oEmpresaBean.getNombre());
             oMysql.updateOne(oEmpresaBean.getId(), "empresa", "cif", oEmpresaBean.getCif());
             oMysql.updateOne(oEmpresaBean.getId(), "empresa", "direccion", oEmpresaBean.getDireccion());
@@ -132,15 +137,7 @@ public class EmpresaDao {
             oMysql.updateOne(oEmpresaBean.getId(), "empresa", "nombrecontacto", oEmpresaBean.getNombrecontacto());
             oMysql.updateOne(oEmpresaBean.getId(), "empresa", "emailcontacto", oEmpresaBean.getEmailcontacto());
             oMysql.updateOne(oEmpresaBean.getId(), "empresa", "validada", oEmpresaBean.getValidada());
-            /*
-             if (oEmpresaBean.getId_usuario() > 0) {
-             oMysql.updateOne(oEmpresaBean.getId_usuario(), "usuario", "password", oEmpresaBean.getPassword());
-             oMysql.updateOne(oEmpresaBean.getId_usuario(), "usuario", "login", oEmpresaBean.getLogin());
-             } else {
-             oMysql.setNull(oEmpresaBean.getId_usuario(), "usuario", "password");
-             oMysql.setNull(oEmpresaBean.getId_usuario(), "usuario", "login");
-             }
-             */
+
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();
@@ -161,8 +158,8 @@ public class EmpresaDao {
             oMysql.desconexion();
         }
     }
-
-    public EmpresaBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {
+    
+     public EmpresaBean getFromId_usuario(UsuarioBean oUsuarioBean) throws Exception {
         EmpresaBean oEmpresaBean = new EmpresaBean();
         if (oUsuarioBean.getId() > 0) {
             try {

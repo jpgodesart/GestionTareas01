@@ -43,7 +43,7 @@ public class AlumnoDao {
         }
     }
 
-    public ArrayList<AlumnoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
+public ArrayList<AlumnoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
         ArrayList<AlumnoBean> arrAlumno = new ArrayList<>();
         try {
@@ -82,6 +82,14 @@ public class AlumnoDao {
                 if (!oMysql.existsOne("alumno", oAlumnoBean.getId())) {
                     oAlumnoBean.setId(0);
                 } else {
+                    UsuarioBean oUsuarioBean = new UsuarioBean();
+
+                    oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("alumno", "id_usuario", oAlumnoBean.getId())));
+
+                    UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+                    oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
+                    oAlumnoBean.setUsuario(oUsuarioBean);
+
                     oAlumnoBean.setId_usuario(Integer.parseInt(oMysql.getOne("alumno", "id_usuario", oAlumnoBean.getId())));
                     oAlumnoBean.setDni(oMysql.getOne("alumno", "dni", oAlumnoBean.getId()));
                     oAlumnoBean.setNumexpediente(oMysql.getOne("alumno", "numexpediente", oAlumnoBean.getId()));
@@ -96,14 +104,7 @@ public class AlumnoDao {
                     oAlumnoBean.setTelefono(oMysql.getOne("alumno", "telefono", oAlumnoBean.getId()));
                     oAlumnoBean.setEmail(oMysql.getOne("alumno", "email", oAlumnoBean.getId()));
                     oAlumnoBean.setValidado(oMysql.getOne("alumno", "validado", oAlumnoBean.getId()));
-                    String strId_usuario = oMysql.getOne("alumno", "id_usuario", oAlumnoBean.getId());
-                    if (strId_usuario != null) {
-                        UsuarioBean oUsuarioBean = new UsuarioBean();
-                        oAlumnoBean.setUsuario(oUsuarioBean);
-                        oAlumnoBean.getUsuario().setId(Integer.parseInt(strId_usuario));
-                        UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-                        oAlumnoBean.setUsuario(oUsuarioDao.get(oAlumnoBean.getUsuario()));
-                    }
+
                 }
             } catch (Exception e) {
                 throw new Exception("AlumnoDao.getAlumno: Error: " + e.getMessage());
@@ -124,7 +125,12 @@ public class AlumnoDao {
             if (oAlumnoBean.getId() == 0) {
                 oAlumnoBean.setId(oMysql.insertOne("alumno"));
             }
-            oMysql.updateOne(oAlumnoBean.getId(), "alumno", "id_usuario", Integer.toString(oAlumnoBean.getId_usuario()));
+            UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
+            oUsuarioDao.set(oAlumnoBean.getUsuario());
+            
+            oAlumnoBean.setUsuario(oUsuarioDao.getFromLogin(oAlumnoBean.getUsuario()));
+            
+            oMysql.updateOne(oAlumnoBean.getId(), "alumno", "id_usuario", Integer.toString(oAlumnoBean.getUsuario().getId()));
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "dni", oAlumnoBean.getDni());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "numexpediente", oAlumnoBean.getNumexpediente());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "nombre", oAlumnoBean.getNombre());
@@ -138,13 +144,7 @@ public class AlumnoDao {
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "telefono", oAlumnoBean.getTelefono());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "email", oAlumnoBean.getEmail());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "validado", oAlumnoBean.getValidado());
-            if (oAlumnoBean.getId_usuario() > 0) {
-                oMysql.updateOne(oAlumnoBean.getId_usuario(), "usuario", "password", oAlumnoBean.getPassword());
-                oMysql.updateOne(oAlumnoBean.getId_usuario(), "usuario", "login", oAlumnoBean.getLogin());
-            } else {
-                oMysql.setNull(oAlumnoBean.getId_usuario(), "usuario", "password");
-                oMysql.setNull(oAlumnoBean.getId_usuario(), "usuario", "login");
-            }
+            
             oMysql.commitTrans();
         } catch (Exception e) {
             oMysql.rollbackTrans();

@@ -23,17 +23,18 @@ public class AlumnoList1 implements Operation {
         oContexto.setVista("jsp/alumno/list.jsp");
         try {
             AlumnoDao oAlumnoDao = new AlumnoDao(oContexto.getEnumTipoConexion());
+            
             Integer intPages = oAlumnoDao.getPages(oContexto.getNrpp(), oContexto.getAlFilter(), oContexto.getHmOrder());
-             Integer intRegisters = oAlumnoDao.getCount(oContexto.getAlFilter());
+            Integer intRegisters = oAlumnoDao.getCount(oContexto.getAlFilter());
             if (oContexto.getPage() >= intPages) {
                 oContexto.setPage(intPages);
             }
             ArrayList<AlumnoBean> listado = (ArrayList<AlumnoBean>) oAlumnoDao.getPage(oContexto.getNrpp(), oContexto.getPage(), oContexto.getAlFilter(), oContexto.getHmOrder());
-            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page="; 
+            String strUrl = "<a href=\"Controller?" + oContexto.getSerializedParamsExceptPage() + "&page=";
             ArrayList<String> botonera = Pagination.getButtonPad(strUrl, oContexto.getPage(), intPages, 2);
             ArrayList<Object> a = new ArrayList<>();
             a.add(listado);
-            a.add(botonera); 
+            a.add(botonera);
             a.add(intRegisters);
             return a;
         } catch (Exception e) {
