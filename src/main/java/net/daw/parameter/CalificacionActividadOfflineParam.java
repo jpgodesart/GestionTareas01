@@ -37,20 +37,16 @@ public class CalificacionActividadOfflineParam {
 
     public CalificacionActividadOfflineBean load(CalificacionActividadOfflineBean oCalificacionActividadOffline) throws NumberFormatException, ParseException {
         try {
-            if ((request.getParameter("descripcion") != null)) {
-                oCalificacionActividadOffline.setDescripcion(request.getParameter("descripcion"));
+            if ((request.getParameter("id_usuario") != null)) {
+                oCalificacionActividadOffline.getUsuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
             }
             if ((request.getParameter("fecha") != null)) {
                 SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
                 Date fecha = formatoFecha.parse(request.getParameter("fecha"));
                 oCalificacionActividadOffline.setFecha(fecha);
             }
-            if ((request.getParameter("evaluacion") != null)) {
-                oCalificacionActividadOffline.setEvaluacion(Integer.parseInt(request.getParameter("evaluacion")));
-            }
-            if ((request.getParameter("activo") != null)) {
-                String activo = request.getParameter("activo");
-                oCalificacionActividadOffline.setActivo( activo.equals("true") );
+            if ((request.getParameter("id_actividad_offline") != null)) {
+                oCalificacionActividadOffline.getActividad_offline().setId(Integer.parseInt(request.getParameter("id_actividad_offline")));
             }
             
         } catch (NumberFormatException e) {

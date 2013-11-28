@@ -25,6 +25,15 @@ public class CalificacionActividadOfflineBean {
         this.id = id;
         this.usuario = new UsuarioBean();
     }
+    
+    public CalificacionActividadOfflineBean() {
+        this.actividad_offline = new actividad_offlineBean();
+    }
+
+    public CalificacionActividadOfflineBean(Integer id) {
+        this.id = id;
+        this.actividad_offline = new actividad_offlineBean();
+    }
 
     /**
      * @return the id
@@ -52,6 +61,20 @@ public class CalificacionActividadOfflineBean {
      */
     public void setUsuario(UsuarioBean usuario) {
         this.usuario = usuario;
+    }
+    
+    /**
+     * @return the actividad_offline
+     */
+    public actividad_offlineBean getActividad_offline() {
+        return actividad_offline;
+    }
+
+    /**
+     * @param actividad_offline the actividad_offline to set
+     */
+    public void setActividad_offline(actividad_offlineBean actividad_offline) {
+        this.actividad_offline = actividad_offline;
     }
 
     /**
