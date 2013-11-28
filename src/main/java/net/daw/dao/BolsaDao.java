@@ -115,9 +115,6 @@ public class BolsaDao {
                     oBolsaBean.setDocumento2(oDocumentoBean2);
 
 
-
-
-
                     String strFecha = oMysql.getOne("bolsa", "fecha", oBolsaBean.getId());
                     if (strFecha != null) {
                         Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
