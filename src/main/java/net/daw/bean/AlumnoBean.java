@@ -4,15 +4,13 @@
  */
 package net.daw.bean;
 
-import javax.ejb.Stateless;
-
 /**
  *
  * @author Sergio Martín Tárraga
  * @version v2.0
  * @since mie, 12 noviembre 2013
  */
-@Stateless
+
 public class AlumnoBean {
 
     private int id = 0;
@@ -30,14 +28,14 @@ public class AlumnoBean {
     private String telefono = "";
     private String email = "";
     private String validado = "";
-    private String login = "";
-    private String password = "";
     private UsuarioBean usuario = null;
 
     /*
      * Constructor vacio
      */
     public AlumnoBean() {
+        this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
     }
 
     /*
@@ -45,6 +43,8 @@ public class AlumnoBean {
      */
     public AlumnoBean(int id) {
         this.id = id;
+        this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
     }
 
     /**
@@ -255,34 +255,6 @@ public class AlumnoBean {
      */
     public void setValidado(String validado) {
         this.validado = validado;
-    }
-
-    /**
-     * @return the login
-     */
-    public String getLogin() {
-        return login;
-    }
-
-    /**
-     * @param login the login to set
-     */
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     /**

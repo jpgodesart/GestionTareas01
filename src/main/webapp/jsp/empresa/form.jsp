@@ -19,9 +19,12 @@
     String nombrecontacto = "";
     String emailcontacto = "";
     String validada = "";
+    String login = "";
+    String password = "";
 
     if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
         EmpresaBean oEmpresaBean = (EmpresaBean) oContexto.getParametro();
+        //UsuarioBean oUsuarioBean = (UsuarioBean) oContexto.getParametro();
         id = oEmpresaBean.getId();
         id_usuario = oEmpresaBean.getId_usuario();
         nombre = oEmpresaBean.getNombre();
@@ -36,6 +39,8 @@
         nombrecontacto = oEmpresaBean.getNombrecontacto();
         emailcontacto = oEmpresaBean.getEmailcontacto();
         validada = oEmpresaBean.getValidada();
+        login = oEmpresaBean.getUsuario().getLogin();
+        password = oEmpresaBean.getUsuario().getPassword();
 
     }
     if (oContexto.getMetodo().equals("view")) {
@@ -60,12 +65,14 @@
         <input type="hidden" name="class" value="empresa" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
+        <!--
         <div class="control-group">
             <label class="control-label" for="id_usuario">Id de Empresa: </label> 
             <div class="controls">
                 <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=id_usuario%>" /><br />
             </div>
         </div>
+        -->
         <div class="control-group">
             <label class="control-label" for="nombre">Nombre: </label> 
             <div class="controls">
@@ -144,6 +151,18 @@
                             out.print("selected");
                         }%>>No</option>
                 </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="login">Usuario: </label> 
+            <div class="controls">
+                <input <%=strControlEnabled%> id="login" name="login" type="text" size="30" maxlength="50" value="<%=login%>" /><br />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Contraseña: </label> 
+            <div class="controls">
+                <input <%=strControlEnabled%> id="password" name="password" type="text" size="30" maxlength="50" value="<%=password%>" /><br />
             </div>
         </div>
         <div class="control-group">

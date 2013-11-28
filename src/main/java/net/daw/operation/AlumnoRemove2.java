@@ -30,7 +30,7 @@ public class AlumnoRemove2 implements Operation {
         } catch (Exception e) {
             throw new ServletException("AlumnoController: Remove Error: " + e.getMessage());
         }
-        String Mensaje = ("Se ha eliminado la información del alumno con id=" + Integer.toString(oAlumnoBean.getId()));
+        String Mensaje = ("Se ha eliminado la información del alumno con id = " + Integer.toString(oAlumnoBean.getId()));
         return Mensaje;
     }
 

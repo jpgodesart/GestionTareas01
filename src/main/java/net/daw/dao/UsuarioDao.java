@@ -119,7 +119,7 @@ public class UsuarioDao extends HttpServlet {
                 oUsuarioBean.setTipoUsuario(Enum.TipoUsuario.Profesor);
             } catch (Exception e2) {
                 try {
-                    EmpresaDao oEmpresaDao = new EmpresaDao(enumTipoConexion);
+                    EmpresaDao oEmpresaDao = new EmpresaDao(enumTipoConexion);                  
                     EmpresaBean oEmpresaBean = oEmpresaDao.getFromId_usuario(oUsuarioBean);
                     oUsuarioBean.setTipoUsuario(Enum.TipoUsuario.Empresa);
                 } catch (Exception e3) {
