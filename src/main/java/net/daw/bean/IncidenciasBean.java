@@ -72,6 +72,7 @@ public class IncidenciasBean {
         this.usuario = usuario;
     }
 
+    
     public String getResumen() {
         return resumen;
     }
