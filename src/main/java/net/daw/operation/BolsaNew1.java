@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.operation;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.BolsaBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.dao.DocumentoDao;
 import net.daw.dao.BolsaDao;
 import net.daw.helper.Contexto;
@@ -18,8 +18,8 @@ import net.daw.parameter.BolsaParam;
  *
  * @author Jacobo Segovia
  */
-public class BolsaNew1 implements Operation{
-    
+public class BolsaNew1 implements Operation {
+
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -36,7 +36,20 @@ public class BolsaNew1 implements Operation{
             oContexto.setVista("jsp/mensaje.jsp");
             return "Tipo de dato incorrecto en uno de los campos del formulario";
         }
-        oContexto.setVista("jsp/bolsa/form.jsp");
+
+        //permisos
+        UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+        Integer idUsuario = oUsuarioBean.getId();
+        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+
+        if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Empresa)) {
+
+            oContexto.setVista("jsp/bolsa/form.jsp");
+
+        } else {
+            oContexto.setVista("jsp/mensaje.jsp");
+            return "<div class=\"alert alert-error\">No tienes permisos para crear un articulo de bolsa de trabajo. Solamente puede crearlo las empresas.</div>";
+        }
         return oBolsaBean;
     }
 }

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.BolsaBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.dao.BolsaDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.BolsaParam;
@@ -68,7 +69,18 @@ public class BolsaNew2 implements Operation {
                 String strMensaje = "Se ha añadido la información de bolsa con id=" + Integer.toString(oBolsaBean.getId()) + "<br />";
                 //strMensaje += "<a href=\"Controller?class=bolsa&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oBolsaBean.getBolsa().getId() + "\">Ver bolsas de este cliente</a><br />";
                 strMensaje += "<a href=\"Controller?class=bolsa&method=view&id=" + oBolsaBean.getId() + "\">Ver bolsa creada en el formulario</a><br />";
-                return strMensaje;
+
+                //permisos
+                UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+                Integer idUsuario = oUsuarioBean.getId();
+                java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+
+                if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Empresa)) {
+                    return strMensaje;
+                } else {
+                    oContexto.setVista("jsp/mensaje.jsp");
+                    return "<div class=\"alert alert-error\">No tienes permisos para crear un articulo de bolsa de trabajo. Solamente puede crearlo las empresas.</div>";
+                }
         }
     }
 }
