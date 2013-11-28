@@ -30,8 +30,14 @@ public class DocumentoUpdate1 implements Operation {
         DocumentoParam oDocumentoParam = new DocumentoParam(request);
         oDocumentoBean = oDocumentoParam.loadId(oDocumentoBean);
         oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
+        
+
+        
+        //oDocumentoBean.setUsuario(oUsuarioBean);
+        
         try {
             oDocumentoBean = oDocumentoDao.get(oDocumentoBean);
+            
         } catch (Exception e) {
             throw new ServletException("DocumentoController: Update Error: Phase 1: " + e.getMessage());
         }

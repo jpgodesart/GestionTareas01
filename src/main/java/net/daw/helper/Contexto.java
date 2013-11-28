@@ -276,10 +276,9 @@ public class Contexto {
     public void setParameters(HashMap<String, String> parameters) throws UnsupportedEncodingException, ServletException {
 
         if (parameters.get("contenido") != null) {
-            //String text = URLEncoder.encode(parameters.get("contendio"), "ISO-8859-1");
-            //System.out.println(text);
-            //parameters.remove("contenido");
-            //parameters.put("contenido", text);
+            String text = TextParser.textEncode(parameters.get("contenido"));
+            parameters.remove("contenido");
+            parameters.put("contenido", text);
         }
 
         this.parameters = parameters;
