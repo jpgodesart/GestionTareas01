@@ -35,8 +35,10 @@ public class ProfesorNew2 implements Operation {
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
         oProfesorBean.setUsuario(oUsuarioDao.getFromLogin(oProfesorBean.getUsuario()));
 
-        if (oProfesorBean.getUsuario().getId()!=0) {
-        return "Ya existe el usuario" + Integer.toString(oProfesorBean.getUsuario().getId()) + ".<br/>" + "Por favor, pruebe con otro.";
+        if (oProfesorBean.getUsuario().getId() != 0) {
+            return "Lo sentimos. Ya existe el \'Login = " + oProfesorBean.getUsuario().getLogin()
+                     +"\'. Por favor, introduzca un \'Login distinto a "
+                     +oProfesorBean.getUsuario().getLogin() + "\'.";
         }
         try {
             oProfesorBean = oProfesorParam.load(oProfesorBean);
