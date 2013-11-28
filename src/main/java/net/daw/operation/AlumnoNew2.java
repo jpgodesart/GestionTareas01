@@ -33,7 +33,7 @@ public class AlumnoNew2 implements Operation {
         UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
         oAlumnoBean.setUsuario(oUsuarioDao.getFromLogin(oAlumnoBean.getUsuario()));
 
-        if (oAlumnoBean.getUsuario().getLogin() != "") {
+        if (oAlumnoBean.getUsuario().getId() != 0) {
             return "Lo sentimos. Ya existe el \'Login = " + oAlumnoBean.getUsuario().getLogin()
                     + "\'. Por favor, introduzca un \'Login distinto a "
                      + oAlumnoBean.getUsuario().getLogin() + "\'.";
