@@ -157,8 +157,8 @@
     %>
     <tr>
         <td><%=oBolsaBEAN.getId()%></td>
-        <td><%=oBolsaBEAN.getId_documento1() + " " + oBolsaBEAN.getDocumento1().getTitulo()%></td>
-        <td><%=oBolsaBEAN.getId_documento2() + " " + oBolsaBEAN.getDocumento2().getTitulo()%></td>
+        <td><%=oBolsaBEAN.getDocumento1().getId() + " " + oBolsaBEAN.getDocumento1().getTitulo()%></td>
+        <td><%=oBolsaBEAN.getDocumento2().getId() + " " + oBolsaBEAN.getDocumento2().getTitulo()%></td>
         <%
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
 

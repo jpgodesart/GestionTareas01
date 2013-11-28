@@ -99,22 +99,12 @@ public class BolsaDao {
                 oMysql.conexion(enumTipoConexion);
                 if (!oMysql.existsOne("bolsa", oBolsaBean.getId())) {
                     oBolsaBean.setId(0);
-                } else {
-                    oBolsaBean.setId_documento1(Integer.parseInt(oMysql.getOne("bolsa", "id_documento1", oBolsaBean.getId())));
-                    oBolsaBean.setId_documento2(Integer.parseInt(oMysql.getOne("bolsa", "id_documento2", oBolsaBean.getId())));
-
-                    oDocumentoBean1.setTitulo(oMysql.getOne("documento", "titulo", oBolsaBean.getId_documento1()));
-                    oDocumentoBean2.setTitulo(oMysql.getOne("documento", "titulo", oBolsaBean.getId_documento2()));
-
-
-                    String strFecha = oMysql.getOne("bolsa", "fecha", oBolsaBean.getId());
-                    if (strFecha != null) {
-                        Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
-                        oBolsaBean.setFecha(dFecha);
-                    } else {
-                        oBolsaBean.setFecha(new Date(0));
-                    }
-
+                } else {                    
+                    
+                    oDocumentoBean1.setId(Integer.parseInt(oMysql.getOne("bolsa", "id_documento1", oBolsaBean.getId())));
+                    oDocumentoBean1.setTitulo(oMysql.getOne("documento", "titulo", oDocumentoBean1.getId()));
+                    oDocumentoBean2.setId(Integer.parseInt(oMysql.getOne("bolsa", "id_documento2", oBolsaBean.getId())));
+                    oDocumentoBean2.setTitulo(oMysql.getOne("documento", "titulo", oDocumentoBean2.getId()));
 
                     DocumentoDao oDocumentoDao = new DocumentoDao(enumTipoConexion);
 
@@ -125,6 +115,16 @@ public class BolsaDao {
                     oBolsaBean.setDocumento2(oDocumentoBean2);
 
 
+
+
+
+                    String strFecha = oMysql.getOne("bolsa", "fecha", oBolsaBean.getId());
+                    if (strFecha != null) {
+                        Date dFecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
+                        oBolsaBean.setFecha(dFecha);
+                    } else {
+                        oBolsaBean.setFecha(new Date(0));
+                    }
 
                 }
             } catch (Exception e) {
@@ -151,8 +151,8 @@ public class BolsaDao {
             if (oBolsaBean.getId() == 0) {
                 oBolsaBean.setId(oMysql.insertOne("bolsa"));
             }
-            oMysql.updateOne(oBolsaBean.getId(), "bolsa", "id_documento1", String.valueOf(oBolsaBean.getId_documento1()));
-            oMysql.updateOne(oBolsaBean.getId(), "bolsa", "id_documento2", String.valueOf(oBolsaBean.getId_documento2()));
+            oMysql.updateOne(oBolsaBean.getId(), "bolsa", "id_documento1", String.valueOf(oBolsaBean.getDocumento1().getId()));
+            oMysql.updateOne(oBolsaBean.getId(), "bolsa", "id_documento2", String.valueOf(oBolsaBean.getDocumento2().getId()));
             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
             oMysql.updateOne(oBolsaBean.getId(), "bolsa", "fecha", oSimpleDateFormat.format(oBolsaBean.getFecha()));
             oMysql.commitTrans();

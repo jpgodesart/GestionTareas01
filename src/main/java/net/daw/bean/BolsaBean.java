@@ -13,8 +13,6 @@ import java.util.Date;
 public class BolsaBean {
 
     private int id = 0;
-    private int id_documento1;
-    private int id_documento2;
     private Date fecha;
     private DocumentoBean documento1;
     private DocumentoBean documento2;
@@ -32,22 +30,6 @@ public class BolsaBean {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_documento1() {
-        return id_documento1;
-    }
-
-    public void setId_documento1(int id_documento1) {
-        this.id_documento1 = id_documento1;
-    }
-
-    public int getId_documento2() {
-        return id_documento2;
-    }
-
-    public void setId_documento2(int id_documento2) {
-        this.id_documento2 = id_documento2;
     }
 
     public Date getFecha() {
