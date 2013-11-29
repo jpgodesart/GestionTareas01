@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.RepositorioBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.dao.RepositorioDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.RepositorioParam;
@@ -26,15 +27,23 @@ public class RepositorioRemove2 implements Operation {
         RepositorioBean oRepositorioBean = new RepositorioBean();
         RepositorioParam oRepositorioParam = new RepositorioParam(request);
         oRepositorioBean = oRepositorioParam.loadId(oRepositorioBean);
-        try {
-            RepositorioDao oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
-            oRepositorioDao.remove(oRepositorioBean);
-        } catch (Exception e) {
-            throw new ServletException("RepositorioController: Remove Error: " + e.getMessage());
+
+        UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+        if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Empresa)) {
+            oContexto.setVista("jsp/mensaje.jsp");
+            return "<div class=\"alert alert-error\">No tienes acceso</div>";
+        } else {
+            try {
+                RepositorioDao oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
+                oRepositorioDao.remove(oRepositorioBean);
+            } catch (Exception e) {
+                throw new ServletException("RepositorioController: Remove Error: " + e.getMessage());
+            }
+            String strMensaje = ("Se ha eliminado la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()));
+            strMensaje += "<a href=\"Controller?class=repositorio&method=list\">Ir al listado de repositorio</a><br />";
+            String Mensaje = strMensaje;
+            return Mensaje;
         }
-        String strMensaje = ("Se ha eliminado la información del repositorio con id=" + Integer.toString(oRepositorioBean.getId()));
-        strMensaje += "<a href=\"Controller?class=repositorio&method=list\">Ir al listado de repositorio</a><br />";
-        String Mensaje = strMensaje;
-        return Mensaje;
     }
 }
