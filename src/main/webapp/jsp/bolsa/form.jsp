@@ -36,7 +36,7 @@
     if (oBolsaBean.getDocumento2().getId() > 0) {
         documento2 = oBolsaBean.getDocumento2().getTitulo();
     }
-    fecha = new SimpleDateFormat("dd/MM/yyyy").format(oBolsaBean.getFecha());
+    fecha = new SimpleDateFormat("yyyy-MM-dd").format(oBolsaBean.getFecha());
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
