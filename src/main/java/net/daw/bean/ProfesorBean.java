@@ -9,7 +9,7 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author al037184
+ * @author Pedro Benito
  */
 @Stateless
 public class ProfesorBean {
@@ -25,15 +25,17 @@ public class ProfesorBean {
     private String telefono = "";
     private String email = "";
     private String dni = "";
-    private String login = "";
-    private String password = "";
     private UsuarioBean usuario = null;
 
     public ProfesorBean() {
+        this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
     }
 
     public ProfesorBean(int id) {
         this.id = id;
+        this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
     }
 
     /**
@@ -161,32 +163,7 @@ public class ProfesorBean {
     public void setDni(String dni) {
         this.dni = dni;
     }
-    
-     public String getLogin() {
-        return login;
-    }
 
-    /**
-     * @param login the login to set
-     */
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
     /**
      * @return the usuario
      */

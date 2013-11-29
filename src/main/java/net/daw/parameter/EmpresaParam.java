@@ -7,6 +7,7 @@ package net.daw.parameter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.EmpresaBean;
+import net.daw.bean.UsuarioBean;
 
 public class EmpresaParam {
 
@@ -30,6 +31,7 @@ public class EmpresaParam {
     }
 
     public EmpresaBean load(EmpresaBean oEmpresa) throws NumberFormatException {
+        UsuarioBean oUsuarioBean = new UsuarioBean();
         try {
             if ((request.getParameter("id_usuario") != null)) {
                 oEmpresa.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
@@ -69,6 +71,12 @@ public class EmpresaParam {
             }
             if ((request.getParameter("validada") != null)) {
                 oEmpresa.setValidada(request.getParameter("validada"));
+            }
+            if ((request.getParameter("login") != null)) {
+                oEmpresa.getUsuario().setLogin(request.getParameter("login"));
+            }
+            if ((request.getParameter("password") != null)) {
+                oEmpresa.getUsuario().setPassword(request.getParameter("password"));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
