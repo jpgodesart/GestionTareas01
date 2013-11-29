@@ -15,7 +15,7 @@
         <h1>Listado de contestaciones</h1>
         <%
             if (!oIterador.hasNext()) {
-                out.print("<h4>Listado vacío</h4>");
+                out.print("<h4>Listado vac?o</h4>");
             } else {
         %>
         <%
@@ -82,7 +82,7 @@
             </form>
         </div>
         <div class="text-right">
-            <legend>Registros por página</legend> 
+            <legend>Registros por p?gina</legend> 
             <form class="navbar-form pull-right" action="Controller" method="post" id="nrrpForm" >
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptNrppFormFormat()%>       
@@ -124,8 +124,8 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
         <th>actividad_offline
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_actividad_offline&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_actividad_offline&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_actividadoffline&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_actividadoffline&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
         <th>Operaciones</th>
     </tr>
@@ -137,25 +137,25 @@
         <td>
             <%=oCalificacionActividadOfflineBEAN.getUsuario().getLogin()%> (<%=oCalificacionActividadOfflineBEAN.getUsuario().getId()%>)
             <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oCalificacionActividadOfflineBEAN.getId()%>&searchingfor=usuario&returnclass=calificacionactividadoffline&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oCalificacionActividadOfflineBEAN.getId()%>&searchingfor=usuario&returnclass=CalificacionActividadOffline&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
         </td>
         <td>
             <%=oCalificacionActividadOfflineBEAN.getActividad_offline().getEnunciado()%> (<%=oCalificacionActividadOfflineBEAN.getActividad_offline().getId()%>)
             <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=actividadoffline&method=list&id=<%=oCalificacionActividadOfflineBEAN.getId()%>&searchingfor=actividadoffline&returnclass=calificacionactividadoffline&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+                <a class="btn btn-mini" href="Controller?class=actividadoffline&method=list&id=<%=oCalificacionActividadOfflineBEAN.getId()%>&searchingfor=actividadoffline&returnclass=CalificacionActividadOffline&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
         </td>      
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group"> 
                     <%
-                        if (oContexto.getSearchingFor().equals("calificacionactividadoffline")) {
+                        if (oContexto.getSearchingFor().equals("CalificacionActividadOffline")) {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_contestacion", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_contestacion=" + oCalificacionActividadOfflineBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=calificacionactividadoffline&method=view&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=calificacionactividadoffline&method=update&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=calificacionactividadoffline&method=remove&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=CalificacionActividadOffline&method=view&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=CalificacionActividadOffline&method=update&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=CalificacionActividadOffline&method=remove&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
                         }
                     %>  
                 </div>

@@ -26,7 +26,7 @@ public class CalificacionActividadOfflineView2 implements Operation{
         //
 
         oContexto.setVista("jsp/calificacion_actividad_offline/list.jsp");
-        oContexto.setClase("calificacion_actividad_offline");
+        oContexto.setClase("CalificacionActividadOffline");
         oContexto.setMetodo("list");
         oContexto.setFase("1");
         CalificacionActividadOfflineList1 oOperacion = new CalificacionActividadOfflineList1();

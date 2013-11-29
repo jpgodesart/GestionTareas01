@@ -37,7 +37,7 @@ public class CalificacionActividadOfflineNew2 implements Operation{
                     oContexto.setMetodo("list");
                     oContexto.setFase("1");
                     oContexto.setSearchingFor("usuario");
-                    oContexto.setClaseRetorno("calificacionactividadoffline");
+                    oContexto.setClaseRetorno("CalificacionActividadOffline");
                     oContexto.setMetodoRetorno("new");
                     oContexto.setFaseRetorno("1");
                     oContexto.removeParam("id_usuario");
@@ -50,10 +50,10 @@ public class CalificacionActividadOfflineNew2 implements Operation{
                     oContexto.setMetodo("list");
                     oContexto.setFase("1");
                     oContexto.setSearchingFor("actividad_offline");
-                    oContexto.setClaseRetorno("calificacionactividadoffline");
+                    oContexto.setClaseRetorno("CalificacionActividadOffline");
                     oContexto.setMetodoRetorno("new");
                     oContexto.setFaseRetorno("1");
-                    oContexto.removeParam("id_actividad_offline");
+                    oContexto.removeParam("id_actividadoffline");
                     ActividadofflineList1 oOperacion = new ActividadofflineList1();
                     return oOperacion.execute(request, response);
                 }
@@ -74,8 +74,8 @@ public class CalificacionActividadOfflineNew2 implements Operation{
                         throw new ServletException("CalificacionActividadOfflineController: Update Error: Phase 2: " + e.getMessage());
                     }
                     String strMensaje = "Se ha añadido la información de la Calificacion Actividad Offline con id=" + Integer.toString(oCalificacionActividadOfflineBean.getId()) + "<br />";
-                    strMensaje += "<a href=\"Controller?class=calificacionactividadoffline&method=list&filter=id_actividad_offline&filteroperator=equals&filtervalue=" + oCalificacionActividadOfflineBean.getActividad_offline().getId() + "\">Ver la calificacion de esta actividad offline</a><br />";
-                    strMensaje += "<a href=\"Controller?class=calificacionactividadoffline&method=view&id=" + oCalificacionActividadOfflineBean.getId() + "\">Ver la calificacion creada</a><br />";
+                    strMensaje += "<a href=\"Controller?class=CalificacionActividadOffline&method=list&filter=id_actividadoffline&filteroperator=equals&filtervalue=" + oCalificacionActividadOfflineBean.getActividad_offline().getId() + "\">Ver la calificacion de esta actividad offline</a><br />";
+                    strMensaje += "<a href=\"Controller?class=CalificacionActividadOffline&method=view&id=" + oCalificacionActividadOfflineBean.getId() + "\">Ver la calificacion creada</a><br />";
                     return strMensaje;
 
             }

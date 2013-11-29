@@ -46,8 +46,8 @@ public class CalificacionActividadOfflineParam {
                 Date fecha = formatoFecha.parse(request.getParameter("fecha"));
                 oCalificacionActividadOffline.setFecha(fecha);
             }
-            if ((request.getParameter("id_actividad_offline") != null)) {
-                oCalificacionActividadOffline.getActividad_offline().setId(Integer.parseInt(request.getParameter("id_actividad_offline")));
+            if ((request.getParameter("id_actividadoffline") != null)) {
+                oCalificacionActividadOffline.getActividad_offline().setId(Integer.parseInt(request.getParameter("id_actividadoffline")));
             }
             
         } catch (NumberFormatException e) {

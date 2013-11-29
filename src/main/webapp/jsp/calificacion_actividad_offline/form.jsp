@@ -18,9 +18,9 @@
         nombreUsuario = oCalificacionActividadOfflineBean.getUsuario().getLogin();
     }
     
-    id_actividad_offline = Integer.toString(oCalificacionActividadOfflineBean.getActividadOffline().getId()); /* Una vez este implementada la tabla actividad_offline cambiar esto. */
-    if( oCalificacionActividadOfflineBean.getActividadOffline().getId() > 0 ) { /* Una vez este implementada la tabla actividad_offline cambiar esto. */
-        actividadOffline = oCalificacionActividadOfflineBean.getActividadOffline().getDescripcion(); /* Una vez este implementada la tabla actividad_offline cambiar esto. */
+    id_actividad_offline = Integer.toString(oCalificacionActividadOfflineBean.getActividad_offline().getId()); /* Una vez este implementada la tabla actividad_offline cambiar esto. */
+    if( oCalificacionActividadOfflineBean.getActividad_offline().getId() > 0 ) { /* Una vez este implementada la tabla actividad_offline cambiar esto. */
+        actividadOffline = oCalificacionActividadOfflineBean.getActividad_offline().getEnunciado(); /* Una vez este implementada la tabla actividad_offline cambiar esto. */
     }
     
 
@@ -30,7 +30,7 @@
         strValueBoton = "Cerrar";
     }
     if (oContexto.getMetodo().equals("update")) {
-        strTitulo = "Edición";
+        strTitulo = "Edici?n";
         strValueBoton = "Modificar";
     }
     if (oContexto.getMetodo().equals("new")) {
@@ -38,12 +38,12 @@
         strValueBoton = "Crear";
     }
 %>
-<h1><%=strTitulo%> de contestacion</h1>
-<form class="form-horizontal" action="Controller" method="post" id="calificacion_actividad_offlineForm">
+<h1><%=strTitulo%> de calificacion</h1>
+<form class="form-horizontal" action="Controller" method="post" id="CalificacionActividadOfflineForm">
     <fieldset>
         <legend>Formulario de Calificacion Actividad Offline</legend>
         <input type="hidden" name="id" value="<%=id%>" /> 
-        <input type="hidden" name="class" value="calificacion_actividad_offline" /> 
+        <input type="hidden" name="class" value="CalificacionActividadOffline" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
         <div class="control-group">
@@ -57,10 +57,10 @@
         </div>
         </div>
         <div class="control-group">
-        <label class="control-label" for="id_actividad_offline">Actividad Offline </label>
+        <label class="control-label" for="id_actividadoffline">Actividad Offline </label>
         <div class="controls">                
-            <input readonly="true" id="id_actividad_offline" class="input-mini"
-                   name="id_actividad_offline" type="text" size="5" maxlength="5"
+            <input readonly="true" id="id_actividadoffline" class="input-mini"
+                   name="id_actividadoffline" type="text" size="5" maxlength="5"
                    value="<%=id_actividad_offline%>" />  
             <input <%=strControlEnabled%> type="submit" name="searchingfor" value="actividad_offline" />
             <span class="alert alert-success"><%=actividadOffline%></span>

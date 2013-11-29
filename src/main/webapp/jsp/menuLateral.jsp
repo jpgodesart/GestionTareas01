@@ -288,18 +288,18 @@
             + "<div class=\"accordion-inner\">"
             + "<ul>";
 
-    if (oContexto.getClase().equals("calificacionactividadoffline") && oContexto.getMetodo().equals("new")) {
+    if (oContexto.getClase().equals("CalificacionActividadOffline") && oContexto.getMetodo().equals("new")) {
         menu += "<li class=\"active\">";
     } else {
         menu += "<li>";
     }
-    menu += "<a href=\"Controller?class=calificacionactividadoffline&method=new\">Crear</a></li>";
-    if (oContexto.getClase().equals("calificacionactividadoffline") && oContexto.getMetodo().equals("list")) {
+    menu += "<a href=\"Controller?class=CalificacionActividadOffline&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("CalificacionActividadOffline") && oContexto.getMetodo().equals("list")) {
         menu += "<li class=\"active\">";
     } else {
         menu += "<li>";
     }
-    menu += "<a href=\"Controller?class=calificacionactividadoffline&method=list\">Listar</a></li>";
+    menu += "<a href=\"Controller?class=CalificacionActividadOffline&method=list\">Listar</a></li>";
     menu += "</ul></div></div></div>";
     // ------------------------------------------------------
     

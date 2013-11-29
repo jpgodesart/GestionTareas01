@@ -38,7 +38,7 @@ public class CalificacionActividadOfflineUpdate2 implements Operation{
                     oContexto.setMetodo("list");
                     oContexto.setFase("1");
                     oContexto.setSearchingFor("usuario");
-                    oContexto.setClaseRetorno("calificacionactividadoffline");
+                    oContexto.setClaseRetorno("CalificacionActividadOffline");
                     oContexto.setMetodoRetorno("update");
                     oContexto.setFaseRetorno("1");
                     oContexto.removeParam("id_usuario");
@@ -51,10 +51,10 @@ public class CalificacionActividadOfflineUpdate2 implements Operation{
                     oContexto.setMetodo("list");
                     oContexto.setFase("1");
                     oContexto.setSearchingFor("actividad_offline");
-                    oContexto.setClaseRetorno("calificacionactividadoffline");
+                    oContexto.setClaseRetorno("CalificacionActividadOffline");
                     oContexto.setMetodoRetorno("update");
                     oContexto.setFaseRetorno("1");
-                    oContexto.removeParam("id_actividad_offline");
+                    oContexto.removeParam("id_actividadoffline");
                     ActividadofflineList1 oOperacion = new ActividadofflineList1();
                     return oOperacion.execute(request, response);
                 }
@@ -76,7 +76,7 @@ public class CalificacionActividadOfflineUpdate2 implements Operation{
                         throw new ServletException("CalificacionActividadOfflineController: Update Error: Phase 2: " + e.getMessage());
                     }
                     String strMensaje = "Se ha modificado la información de la calificacion con id=" + Integer.toString(oCalificacionActividadOfflineBean.getId()) + "<br />";
-                    strMensaje += "<a href=\"Controller?class=calificacionactividadoffline&method=view&id=" + oCalificacionActividadOfflineBean.getId() + "\">Ver calificacion modificada</a><br />";
+                    strMensaje += "<a href=\"Controller?class=CalificacionActividadOffline&method=view&id=" + oCalificacionActividadOfflineBean.getId() + "\">Ver calificacion modificada</a><br />";
                     return strMensaje;
             }
         } else {

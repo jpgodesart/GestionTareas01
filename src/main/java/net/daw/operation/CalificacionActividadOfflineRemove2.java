@@ -44,7 +44,7 @@ public class CalificacionActividadOfflineRemove2 implements Operation{
                 throw new ServletException("CalificacionActividadOfflineController: Remove Error: " + e.getMessage());
             }
             String strMensaje = "Se ha eliminado la información de la calificacion con id=" + Integer.toString(oCalificacionActividadOfflineBean.getId()) + "<br />";
-            strMensaje += "<a href=\"Controller?class=calificacionactividadoffline&method=list\">Ir al listado de calificaciones</a><br />";
+            strMensaje += "<a href=\"Controller?class=CalificacionActividadOffline&method=list\">Ir al listado de calificaciones</a><br />";
             String Mensaje = strMensaje;
             return Mensaje;
         } else {
