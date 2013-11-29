@@ -477,7 +477,7 @@
             + "<div id=\"collapseTen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
             + "<div class=\"accordion-inner\">"
             + "<ul>";
-
+    
     if (oContexto.getClase().equals("pregunta") && oContexto.getMetodo().equals("new")) {
         menu += "<li class=\"active\">";
     } else {
@@ -649,6 +649,29 @@
     menu += "<a href=\"Controller?class=follower&method=list\">Listar</a></li>";
     menu += "</ul></div></div></div>";
     // ------------------------------------------------------
+        menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseThirteen\">"
+            + "<i class=\"icon-certificate\"></i> Calificacion Actividad Offline</a></div>"
+            + "<div id=\"collapseThirteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("CalificacionActividadOffline") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=CalificacionActividadOffline&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("CalificacionActividadOffline") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=CalificacionActividadOffline&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+    
     menu += "</ul></div>";
 
 %>
