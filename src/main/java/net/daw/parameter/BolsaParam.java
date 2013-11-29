@@ -1,9 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.daw.parameter;
 
 import java.text.ParseException;
@@ -16,7 +14,7 @@ import net.daw.bean.BolsaBean;
 
 /**
  *
- * @author Diana
+ * @author al037877
  */
 public class BolsaParam {
     
@@ -59,6 +57,6 @@ public class BolsaParam {
           }
         return oBolsaBean;
     }
-
+    
     
 }

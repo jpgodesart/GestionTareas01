@@ -1,6 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package net.daw.bean;
@@ -14,14 +13,11 @@ import java.util.Date;
 public class BolsaBean {
 
     private int id = 0;
-    private int id_documento1;
-    private int id_documento2;
-    private Date fecha;
-    private DocumentoBean documento1;
-    private DocumentoBean documento2;
+    private Date fecha = new Date();
+    private DocumentoBean documento1 = new DocumentoBean();
+    private DocumentoBean documento2 = new DocumentoBean();
 
     public BolsaBean() {
-
     }
 
     public BolsaBean(int id) {
@@ -34,22 +30,6 @@ public class BolsaBean {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_documento1() {
-        return id_documento1;
-    }
-
-    public void setId_documento1(int id_documento1) {
-        this.id_documento1 = id_documento1;
-    }
-
-    public int getId_documento2() {
-        return id_documento2;
-    }
-
-    public void setId_documento2(int id_documento2) {
-        this.id_documento2 = id_documento2;
     }
 
     public Date getFecha() {
@@ -74,5 +54,5 @@ public class BolsaBean {
 
     public void setDocumento2(DocumentoBean documento2) {
         this.documento2 = documento2;
-    }    
+    }
 }

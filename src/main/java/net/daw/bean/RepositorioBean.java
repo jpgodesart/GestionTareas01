@@ -31,7 +31,12 @@ public class RepositorioBean {
     }
 
     public RepositorioBean(int id) {
-
+        this.lenguaje = new LenguajeBean();
+        this.lenguaje.setId(0);
+        this.documento = new DocumentoBean();
+        this.documento.setId(0);
+        this.usuario = new UsuarioBean();
+        this.usuario.setId(0);
         this.id = id;
     }
 

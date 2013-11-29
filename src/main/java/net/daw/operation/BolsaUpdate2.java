@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package net.daw.operation;
 
 import javax.servlet.ServletException;
@@ -15,10 +16,10 @@ import net.daw.parameter.BolsaParam;
 
 /**
  *
- * @author al037877
+ * @author Jacobo Segovia
  */
-public class BolsaNew2 implements Operation {
-
+public class BolsaUpdate2 implements Operation{
+    
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -30,7 +31,7 @@ public class BolsaNew2 implements Operation {
                 oContexto.setFase("1");
                 oContexto.setSearchingFor("documento1");
                 oContexto.setClaseRetorno("bolsa");
-                oContexto.setMetodoRetorno("new");
+                oContexto.setMetodoRetorno("update");
                 oContexto.setFaseRetorno("1");
                 oContexto.removeParam("id_documento1");
                 DocumentoList1 oOperacion = new DocumentoList1();
@@ -43,10 +44,23 @@ public class BolsaNew2 implements Operation {
                 oContexto.setFase("1");
                 oContexto.setSearchingFor("documento2");
                 oContexto.setClaseRetorno("bolsa");
-                oContexto.setMetodoRetorno("new");
+                oContexto.setMetodoRetorno("update");
                 oContexto.setFaseRetorno("1");
                 oContexto.removeParam("id_documento2");
                 DocumentoList1 oOperacion = new DocumentoList1();
+                return oOperacion.execute(request, response);
+            }
+            case "metadocumento": {
+                oContexto.setVista("jsp/metadocumento/list.jsp");
+                oContexto.setClase("metadocumento");
+                oContexto.setMetodo("list");
+                oContexto.setFase("1");
+                oContexto.setSearchingFor("metadocumento");
+                oContexto.setClaseRetorno("bolsa");
+                oContexto.setMetodoRetorno("update");
+                oContexto.setFaseRetorno("1");
+                oContexto.removeParam("id_metadocumento");
+                MetadocumentoList1 oOperacion = new MetadocumentoList1();
                 return oOperacion.execute(request, response);
             }
             default:
@@ -66,8 +80,8 @@ public class BolsaNew2 implements Operation {
                     throw new ServletException("BolsaController: Update Error: Phase 2: " + e.getMessage());
                 }
                 String strMensaje = "Se ha añadido la información de bolsa con id=" + Integer.toString(oBolsaBean.getId()) + "<br />";
-                //strMensaje += "<a href=\"Controller?class=bolsa&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oBolsaBean.getBolsa().getId() + "\">Ver bolsas de este cliente</a><br />";
-                strMensaje += "<a href=\"Controller?class=bolsa&method=view&id=" + oBolsaBean.getId() + "\">Ver bolsa creada en el formulario</a><br />";
+                //strMensaje += "<a href=\"Controller?class=bolsa&method=list&filter=id_cliente&filteroperator=equals&filtervalue=" + oBolsaBean.getMetadocumento().getId() + "\">Ver bolsas de este cliente</a><br />";
+                strMensaje += "<a href=\"Controller?class=bolsa&method=view&id=" + oBolsaBean.getId() + "\">Ver bolsa actualizada en el formulario</a><br />";
                 return strMensaje;
         }
     }

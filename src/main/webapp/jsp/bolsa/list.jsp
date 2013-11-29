@@ -1,3 +1,9 @@
+<%-- 
+    Document   : list
+    Created on : 28-nov-2013, 9:25:11
+    Author     : al037877
+--%>
+
 <%@page import="net.daw.data.Mysql"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
@@ -152,15 +158,15 @@
     <tr>
         <td><%=oBolsaBEAN.getId()%></td>
         <td>
-            <%=oBolsaBEAN.getId_documento1() + " " + oBolsaBEAN.getDocumento1().getTitulo()%>
+            <%=oBolsaBEAN.getDocumento1().getId() + " " + oBolsaBEAN.getDocumento1().getTitulo()%>
             <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getDocumento1().getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
         <td>
-            <%=oBolsaBEAN.getId_documento2() + " " + oBolsaBEAN.getDocumento2().getTitulo()%>
+            <%=oBolsaBEAN.getDocumento2().getId() + " " + oBolsaBEAN.getDocumento2().getTitulo()%>
             <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oBolsaBEAN.getDocumento2().getId()%>&searchingfor=documento&returnclass=bolsa&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
         <%
