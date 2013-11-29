@@ -37,7 +37,7 @@ public class ComentNew2 implements Operation {
         } catch (Exception e) {
             throw new ServletException("ComentController: Update Error: Phase 2: " + e.getMessage());
         }
-        String strMensaje = "Se ha añadido la información del lenguaje con id=" + Integer.toString(oComentBean.getId()) + "<br />";
+        String strMensaje = "Se ha añadido la información del comentario con id=" + Integer.toString(oComentBean.getId()) + "<br />";
         strMensaje += "<a href=\"Controller?class=coment&method=view&id=" + oComentBean.getId() + "\">Ver Comentario creado en el formulario</a><br />";
         return strMensaje;
     }

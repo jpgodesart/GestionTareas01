@@ -5,16 +5,20 @@
  */
 package net.daw.parameter;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.RepositorioBean;
+import net.daw.helper.TextParser;
 
 /**
  *
- * @author Alvaro
+ * @author Ana
  */
 public class RepositorioParam {
 
@@ -37,26 +41,27 @@ public class RepositorioParam {
         return oRepositorioBean;
     }
 
-    public RepositorioBean load(RepositorioBean oRepositorioBean) throws NumberFormatException {
+    public RepositorioBean load(RepositorioBean oRepositorioBean) throws NumberFormatException, ParseException, UnsupportedEncodingException, ServletException {
         try {
             if ((request.getParameter("titulo") != null)) {
                 oRepositorioBean.setTitulo(request.getParameter("titulo"));
             }
             if ((request.getParameter("contenido") != null)) {
-                oRepositorioBean.setContenido(request.getParameter("contenido"));
+                //rafael tocar
+                oRepositorioBean.setContenido(TextParser.textEncode(request.getParameter("contenido")));
+                
             }
             if ((request.getParameter("id_usuario") != null)) {
-                oRepositorioBean.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+                oRepositorioBean.getUsuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
             }
             if ((request.getParameter("id_lenguaje") != null)) {
-                oRepositorioBean.setId_lenguaje(Integer.parseInt(request.getParameter("id_lenguaje")));
+                oRepositorioBean.getLenguaje().setId(Integer.parseInt(request.getParameter("id_lenguaje")));
             }
             if ((request.getParameter("id_documento") != null)) {
-                oRepositorioBean.setId_documento(Integer.parseInt(request.getParameter("id_documento")));
+                oRepositorioBean.getDocumento().setId(Integer.parseInt(request.getParameter("id_documento")));
             }
-            if ((request.getParameter("fecha") != null)) {
-                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                oRepositorioBean.setFecha(formato.parse(request.getParameter("fecha")));
+             if ((request.getParameter("fecha") != null)) {
+                oRepositorioBean.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha")));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());

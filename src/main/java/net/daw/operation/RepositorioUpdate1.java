@@ -9,24 +9,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.RepositorioBean;
+import net.daw.bean.UsuarioBean;
+import net.daw.dao.DocumentoDao;
+import net.daw.dao.LenguajeDao;
 import net.daw.dao.RepositorioDao;
+import net.daw.dao.UsuarioDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.RepositorioParam;
 
 /**
  *
- * @author Alvaro Crego
+ * @author Ana
  */
 public class RepositorioUpdate1 implements Operation {
 
-    /**
-     *
-     * @author Alvaro Crego
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -34,16 +30,34 @@ public class RepositorioUpdate1 implements Operation {
         RepositorioBean oRepositorioBean;
         RepositorioDao oRepositorioDao;
         oRepositorioBean = new RepositorioBean();
-        RepositorioParam oClienteParam = new RepositorioParam(request);
-        oRepositorioBean = oClienteParam.loadId(oRepositorioBean);
+        RepositorioParam oRepositorioParam = new RepositorioParam(request);
+        oRepositorioBean = oRepositorioParam.loadId(oRepositorioBean);
         oRepositorioDao = new RepositorioDao(oContexto.getEnumTipoConexion());
-        try {
-            oRepositorioBean = oRepositorioDao.get(oRepositorioBean);
-        } catch (Exception e) {
-            throw new ServletException("ClienteController: Update Error: Phase 1: " + e.getMessage());
-        }
-        oRepositorioBean = oClienteParam.load(oRepositorioBean);
-        return oRepositorioBean;
-    }
 
+        UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+        if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Empresa)) {
+            oContexto.setVista("jsp/mensaje.jsp");
+            return "<div class=\"alert alert-error\">No tienes acceso</div>";
+        } else {
+            try {
+                oRepositorioBean = oRepositorioDao.get(oRepositorioBean);
+            } catch (Exception e) {
+                throw new ServletException("ClienteController: Update Error: Phase 1: " + e.getMessage());
+            }
+            try {
+                oRepositorioBean = oRepositorioParam.load(oRepositorioBean);
+            } catch (NumberFormatException e) {
+                oContexto.setVista("jsp/mensaje.jsp");
+                return "Tipo de dato incorrecto en uno de los campos del formulario";
+            }
+            UsuarioDao oUsuarioDao = new UsuarioDao(oContexto.getEnumTipoConexion());
+            LenguajeDao oLenguajeDao = new LenguajeDao(oContexto.getEnumTipoConexion());
+            DocumentoDao oDocumentoDao = new DocumentoDao(oContexto.getEnumTipoConexion());
+            oRepositorioBean.setUsuario(oUsuarioDao.get(oRepositorioBean.getUsuario()));
+            oRepositorioBean.setLenguaje(oLenguajeDao.get(oRepositorioBean.getLenguaje()));
+            oRepositorioBean.setDocumento(oDocumentoDao.get(oRepositorioBean.getDocumento()));
+            return oRepositorioBean;
+        }
+    }
 }

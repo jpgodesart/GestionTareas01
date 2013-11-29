@@ -63,8 +63,8 @@
                     <span>
                         <select id="filter" name="filter" width="80" style="width: 80px">
                             <option>id</option>
-                            <option>nombre</option>
-                            
+                            <option>descripcion</option>
+                            <option value="privado">tipo</option>
                         </select>  
                     </span>
                     <span>

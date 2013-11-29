@@ -9,12 +9,13 @@ package net.daw.operation;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.RepositorioBean;
+import net.daw.bean.UsuarioBean;
 import net.daw.helper.Contexto;
 import net.daw.parameter.RepositorioParam;
 
 /**
  *
- * @author al037294
+ * @author Ana
  */
 public class RepositorioRemove1 implements Operation{
     @Override
@@ -24,7 +25,15 @@ public class RepositorioRemove1 implements Operation{
         RepositorioBean oRepositorioBean = new RepositorioBean();   
         RepositorioParam oRepositorioParam = new RepositorioParam(request);
         oRepositorioBean = oRepositorioParam.loadId(oRepositorioBean);
+        
+         UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+        java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+        if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Empresa)) {
+            oContexto.setVista("jsp/mensaje.jsp");
+            return "<div class=\"alert alert-error\">No tienes acceso</div>";
+        } else {
+        
         return "Borrar el Repositorio " + oRepositorioBean.getId();
-
+        }
     }
 }

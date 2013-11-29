@@ -133,13 +133,23 @@
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oComentBean.getFecha())%></td>
-      <!--  <td><//%=oComentBean.getId_usuario()%></td>-->
-        <td><%=oComentBean.getId_documento()%></td>
+        <td>
+            <%=oComentBean.getId_documento().getTitulo()%>(<%=oComentBean.getId_documento().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oComentBean.getId()%>&searchingfor=documento&returnclass=coment&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>          
+        </td>
+        <td>
+            <%=oComentBean.getId_usuario().getLogin()%>(<%=oComentBean.getId_usuario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oComentBean.getId()%>&searchingfor=usuario&returnclass=coment&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>          
+        </td>
         <td>
             <div class="btn-toolbar">
                  <%
                         if (oContexto.getSearchingFor().equals("comentario")) {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_coment", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_coment=" + oComentBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_comentario", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_comentario=" + oComentBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=view&id=" + oComentBean.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
                             out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=update&id=" + oComentBean.getId() + "\"><i class=\"icon-pencil\"></i></a>");

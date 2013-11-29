@@ -18,6 +18,7 @@ public class UsuarioDao extends HttpServlet {
     private final Enum.Connection enumTipoConexion;
 
     public UsuarioDao(Enum.Connection tipoConexion) throws Exception {
+        super();
         oMysql = new Mysql();
         enumTipoConexion = tipoConexion;
     }

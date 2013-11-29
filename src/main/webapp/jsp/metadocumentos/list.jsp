@@ -1,3 +1,4 @@
+<%@page import="net.daw.bean.UsuarioBean"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="net.daw.helper.FilterBean"%>
 <%@ page import="net.daw.helper.Contexto"%>
@@ -139,37 +140,93 @@
         <th>Operaciones</th>
     </tr>
     <%
+        UsuarioBean oUsuarioBean = null;
+        if (session.getAttribute("usuarioBean") != null) {
+            oUsuarioBean = (UsuarioBean) session.getAttribute("usuarioBean");
+
+        }
         while (oIterador.hasNext()) {
             MetadocumentosBean oMetadocumentosBEAN = oIterador.next();
+            System.out.println("Docuemnto " + oMetadocumentosBEAN.getDocumento().getUsuario().getId());
+            System.out.println("Usuario " + oUsuarioBean.getId());
     %>
     <tr>
         <td><%=oMetadocumentosBEAN.getId()%></td>
+        <%
+            if (oUsuarioBean != null) {
+                if (oUsuarioBean.getId() == oMetadocumentosBEAN.getDocumento().getUsuario().getId()) {
+
+
+        %>
         <td>
             <%=oMetadocumentosBEAN.getMetadocumento().getTitulo()%> (<%=oMetadocumentosBEAN.getMetadocumento().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=metadocumento&method=list&id=<%=oMetadocumentosBEAN.getId()%>&searchingfor=metadocumento&returnclass=metadocumentos&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
+        <%
+        } else {
+        %>
+        <td><%=oMetadocumentosBEAN.getMetadocumento().getTitulo()%></td>
+        <%
+                }
+            }
+        %>
+
+        <%
+            if (oUsuarioBean != null) {
+                if (oUsuarioBean.getId() == oMetadocumentosBEAN.getDocumento().getUsuario().getId()) {
+        %>
         <td>
             <%=oMetadocumentosBEAN.getDocumento().getTitulo()%> (<%=oMetadocumentosBEAN.getDocumento().getId()%>)
             <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oMetadocumentosBEAN.getId()%>&searchingfor=documento&returnclass=metadocumentos&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+                <a class="btn btn-mini" href="Controller?class=documento&method=list&id=<%=oMetadocumentosBEAN.getId()%>&searchingfor=metadocumento&returnclass=metadocumentos&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>
         </td>
+        <%
+        } else {
+        %>
+        <td><%=oMetadocumentosBEAN.getDocumento().getTitulo()%></td>
+        <%
+                }
+            }
+        %>
         <td><%=oMetadocumentosBEAN.getOrden()%></td>
         <td>
-            <div class="btn-toolbar">
-                <div class="btn-group">
-                    <%
-                        if (oContexto.getSearchingFor().equals("metadocumentos")) {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_documento", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_documento=" + oMetadocumentosBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+
+   
+                <%
+                    if (oUsuarioBean != null) {
+                        if (oUsuarioBean.getId() == oMetadocumentosBEAN.getDocumento().getUsuario().getId()) {
+                            if (oContexto.getSearchingFor().equals("metadocumentos")) {
+                                out.print("<div class=\"btn-toolbar\">");
+                                out.print("<div class=\"btn-group\">");
+                                out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_metadocumentos", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_documento=" + oMetadocumentosBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                                out.print("</div>");
+                                out.print("</div>");
+                            } else {
+                                out.print("<div class=\"btn-toolbar\">");
+                                out.print("<div class=\"btn-group\">");
+                                out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumentos&method=view&id=" + oMetadocumentosBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
+                                out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumentos&method=update&id=" + oMetadocumentosBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
+                                out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumentos&method=remove&id=" + oMetadocumentosBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                                out.print("</div>");
+                                out.print("</div>");
+                            }
                         } else {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumentos&method=view&id=" + oMetadocumentosBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumentos&method=update&id=" + oMetadocumentosBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=metadocumentos&method=remove&id=" + oMetadocumentosBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            if (oContexto.getSearchingFor().equals("metadocumentos")) {
+                                out.print("<div class=\"btn-toolbar\">");
+                                out.print("<div class=\"btn-group\">");
+                                out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_metadocumentos", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_documento=" + oMetadocumentosBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                                out.print("</div>");
+                                out.print("</div>");
+                            } else {
+                                out.print("<p class='text-error'>No tienes permisos</p>");
+                            }
                         }
-                    %>                 
-                </div>                
+                    }
+                %>                 
+            </div>                
             </div>
         </td>
     </tr>

@@ -14,9 +14,9 @@ import net.daw.bean.ComentBean;
  * @author Jordi Eslava Barrera
  */
 public class ComentParam {
+
     private HttpServletRequest request;
-    
-    
+
     public ComentParam(HttpServletRequest request) throws Exception {
         this.request = request;
     }
@@ -48,17 +48,15 @@ public class ComentParam {
             if ((request.getParameter("fecha") != null)) {
                 oComent.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha")));
             }
-        /*    if ((request.getParameter("id_usuario") != null)) {
-                oComent.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
-            }*/
+            if ((request.getParameter("id_usuario") != null)) {
+                oComent.getId_usuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
+            }
             if ((request.getParameter("id_documento") != null)) {
-                 oComent.getId_documento().setId(Integer.parseInt(request.getParameter("id_documento")));
+                oComent.getId_documento().setId(Integer.parseInt(request.getParameter("id_documento")));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ComentParam: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oComent;
     }
-    
-
 }
