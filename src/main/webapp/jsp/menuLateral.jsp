@@ -191,7 +191,263 @@
     }
     menu += "<a href=\"Controller?class=actividadoffline&method=list\">Listar</a></li>";
     menu += "</ul></div></div></div>";
-    // ------------------------------------------------------
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseNine\">"
+            + "<i class=\"icon-file\"></i> Tipodocumento</a></div>"
+            + "<div id=\"collapseNine\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("tipodocumento") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=tipodocumento&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("tipodocumento") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=tipodocumento&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseTen\">"
+            + "<i class=\"icon-user\"></i> Requerimiento</a></div>"
+            + "<div id=\"collapseTen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("requerimiento") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=requerimiento&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("requerimiento") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=requerimiento&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseEleven\">"
+            + "<i class=\"icon-comment\"></i> Comentario</a></div>"
+            + "<div id=\"collapseEleven\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("coment") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=coment&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("coment") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=coment&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseTwelve\">"
+            + "<i class=\"icon-file\"></i> Documento</a></div>"
+            + "<div id=\"collapseTwelve\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("documento") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=documento&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("documento") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=documento&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseThirteen\">"
+            + "<i class=\"icon-file\"></i> Metadocumentos</a></div>"
+            + "<div id=\"collapseThirteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("metadocumentos") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=metadocumentos&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("metadocumentos") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=metadocumentos&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseFourteen\">"
+            + "<i class=\"icon-file\"></i> Lenguaje</a></div>"
+            + "<div id=\"collapseFourteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=lenguaje&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("lenguaje") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=lenguaje&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseIncidencias\">"
+            + "<i class=\"icon-user\"></i> Incidencias</a></div>"
+            + "<div id=\"collapseIncidencias\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=incidencias&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("incidencias") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=incidencias&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseMetadocumento\">"
+            + "<i class=\"icon-user\"></i> Metadocumento</a></div>"
+            + "<div id=\"collapseMetadocumento\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=metadocumento&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("metadocumento") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=metadocumento&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseFifteen\">"
+            + "<i class=\"icon-user\"></i> Repositorio</a></div>"
+            + "<div id=\"collapseFifteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("repositorio") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=repositorio&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("repositorio") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=repositorio&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseVotocomentario\">"
+            + "<i class=\"icon-file\"></i> VotoComentario</a></div>"
+            + "<div id=\"collapseVotocomentario\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseEstado\">"
+            + "<i class=\"icon-file\"></i> Estado</a></div>"
+            + "<div id=\"collapseEstado\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("votoComentario") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=votoComentario&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+
+<%
     menu += "<div class=\"accordion-group\">"
             + "<div class=\"accordion-heading\">"
             + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseNine\">"
@@ -279,6 +535,119 @@
     }
     menu += "<a href=\"Controller?class=contestacion&method=list\">Listar</a></li>";
     menu += "</ul></div></div></div>";
+%>
+<%
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseBolsa\">"
+            + "<i class=\"icon-file\"></i> Bolsa</a></div>"
+            + "<div id=\"collapseBolsa\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("bolsa") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=bolsa&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("bolsa") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=bolsa&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+%>
+<%
+    // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseThirteen\">"
+            + "<i class=\"icon-headphones\"></i> Stream</a></div>"
+            + "<div id=\"collapseThirteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("stream") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=stream&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("stream") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=stream&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseFourteen\">"
+            + "<i class=\"icon-inbox\"></i> Entrega</a></div>"
+            + "<div id=\"collapseFourteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("entrega") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=entrega&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("entrega") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=entrega&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+    menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseFifteen\">"
+            + "<i class=\"icon-star-empty\"></i> Actividad</a></div>"
+            + "<div id=\"collapseFifteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("actividad") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=actividad&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("actividad") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=actividad&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
+    // ------------------------------------------------------
+        menu += "<div class=\"accordion-group\">"
+            + "<div class=\"accordion-heading\">"
+            + "<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#leftMenu\" href=\"#collapseSixteen\">"
+            + "<i class=\"icon-certificate\"></i> Follower</a></div>"
+            + "<div id=\"collapseSixteen\" class=\"accordion-body collapse\" style=\"height: 0px; \">"
+            + "<div class=\"accordion-inner\">"
+            + "<ul>";
+
+    if (oContexto.getClase().equals("follower") && oContexto.getMetodo().equals("new")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=follower&method=new\">Crear</a></li>";
+    if (oContexto.getClase().equals("follower") && oContexto.getMetodo().equals("list")) {
+        menu += "<li class=\"active\">";
+    } else {
+        menu += "<li>";
+    }
+    menu += "<a href=\"Controller?class=follower&method=list\">Listar</a></li>";
+    menu += "</ul></div></div></div>";
     // ------------------------------------------------------
         menu += "<div class=\"accordion-group\">"
             + "<div class=\"accordion-heading\">"
@@ -304,5 +673,6 @@
     // ------------------------------------------------------
     
     menu += "</ul></div>";
+
 %>
 <%=menu%>

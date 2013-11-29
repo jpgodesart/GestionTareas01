@@ -34,7 +34,7 @@ public class AlumnoParam {
     public AlumnoBean load(AlumnoBean oAlumno) throws NumberFormatException {
         try {
             if ((request.getParameter("id_usuario") != null)) {
-                oAlumno.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
+                oAlumno.getUsuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
             }
             if ((request.getParameter("dni") != null)) {
                 oAlumno.setDni(request.getParameter("dni"));
@@ -74,6 +74,12 @@ public class AlumnoParam {
             }
             if ((request.getParameter("validado") != null)) {
                 oAlumno.setValidado(request.getParameter("validado"));
+            }
+            if ((request.getParameter("login") != null)) {
+                oAlumno.getUsuario().setLogin(request.getParameter("login"));
+            }
+            if ((request.getParameter("password") != null)) {
+                oAlumno.getUsuario().setPassword(request.getParameter("password"));
             }
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Controller: Error: Load: Formato de datos en parámetros incorrecto " + e.getMessage());
