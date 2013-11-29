@@ -60,6 +60,40 @@
                 <textarea class="field input_resize" id="contenido" name="contenido" type="text" rows="10" ><%=contenido%></textarea><br />
             </div>
         </div>
+        <div class="accordion " id="accordionDocumentoForm">
+            <div class="accordion-group">
+                <div class="accordion-heading alert-info">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionDocumentoForm" href="#collapseDocumentoForm">
+                        Información Wiki-Parser
+                    </a>
+                </div>
+                <div id="collapseDocumentoForm" class="accordion-body collapse" style="height: 0px;">
+                    <div class="accordion-inner ">
+                        <p>Puedes dar formato al texto usando una determinada simbologia: </p>
+                        <ul>
+                            <li>Texto en <i>Cursiva</i>: Se realiza con "$$" ej. <code>$$cursiva$$</code></li>
+                            <li>Texto en <b>Negrita</b>: Se realiza con "**" ej. <code>**negrita**</code></li>
+                            <li>Titulos en diferentes tamaños: </li>
+                            <ul>
+                                <li>H1: Se realiza con "=" ej. <code>=Titulo1=</code></li>
+                                <li>H2: Se realiza con "==" ej. <code>==Titulo2==</code></li>
+                                <li>H3: Se realiza con "===" ej. <code>===Titulo3===</code></li>
+                                <li>H4: Se realiza con "====" ej. <code>====Titulo4====</code></li>
+                                <li>H5: Se realiza con "=====" ej. <code>=====Titulo5=====</code></li>
+                                <li>H6: Se realiza con "======" ej. <code>======Titulo6======</code></li>
+                            </ul>
+                            <li>Diferentes tipos de enlazes: </li>
+                            <ul>
+                                <li>Enlaze Interno: Se realiza con "['id del documento'|'Nombre del enlaze']" ej. <code>[8|Enlaze de Prueba]</code></li>
+                                <li>Enlaze Externo: Se realiza con "['URL Externa'|'Nombre del enlaze']" ej. <code>[http://www.google.com|Google]</code></li>
+                            </ul>
+                            <li>Parrafo: Se realiza con nuevas lineas pulsando <code>&crarr; Enter</code></li>
+                        </ul>
+                        <!--Agradecimientos a Álvaro Crego por haber hecho posible este parser-->
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="control-group">
             <label class="control-label" for="fecha">Fecha: </label> 
             <div class="controls">
