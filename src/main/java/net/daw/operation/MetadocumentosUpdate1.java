@@ -31,35 +31,27 @@ public class MetadocumentosUpdate1 implements Operation {
         oMetadocumentosBean = oMetadocumentosParam.loadId(oMetadocumentosBean);
         oMetadocumentosDao = new MetadocumentosDao(oContexto.getEnumTipoConexion());
 
+        try {
+            oMetadocumentosBean = oMetadocumentosDao.get(oMetadocumentosBean);
+        } catch (Exception e) {
+            throw new ServletException("MetadocumentosController: Update Error: Phase 1: " + e.getMessage());
+        }
+        try {
+            oMetadocumentosBean = oMetadocumentosParam.load(oMetadocumentosBean);
+        } catch (NumberFormatException e) {
+            oContexto.setVista("jsp/mensaje.jsp");
+            return "Tipo de dato incorrecto en uno de los campos del formulario";
+        }
+
         UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         Integer idUsuario = oUsuarioBean.getId();
         java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
         if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
-            try {
-                oMetadocumentosBean = oMetadocumentosDao.get(oMetadocumentosBean);
-            } catch (Exception e) {
-                throw new ServletException("MetadocumentosController: Update Error: Phase 1: " + e.getMessage());
-            }
-            try {
-                oMetadocumentosBean = oMetadocumentosParam.load(oMetadocumentosBean);
-            } catch (NumberFormatException e) {
-                oContexto.setVista("jsp/mensaje.jsp");
-                return "Tipo de dato incorrecto en uno de los campos del formulario";
-            }
+
             return oMetadocumentosBean;
         } else {
             if (idUsuario == oMetadocumentosBean.getDocumento().getUsuario().getId()) {
-                try {
-                    oMetadocumentosBean = oMetadocumentosDao.get(oMetadocumentosBean);
-                } catch (Exception e) {
-                    throw new ServletException("MetadocumentosController: Update Error: Phase 1: " + e.getMessage());
-                }
-                try {
-                    oMetadocumentosBean = oMetadocumentosParam.load(oMetadocumentosBean);
-                } catch (NumberFormatException e) {
-                    oContexto.setVista("jsp/mensaje.jsp");
-                    return "Tipo de dato incorrecto en uno de los campos del formulario";
-                }
+
                 return oMetadocumentosBean;
             } else {
                 oContexto.setVista("jsp/mensaje.jsp");

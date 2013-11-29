@@ -24,9 +24,17 @@ public class MetadocumentosRemove2 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/mensaje.jsp");
+        MetadocumentosDao oMetadocumentosDao;
         MetadocumentosBean oMetadocumentosBean = new MetadocumentosBean();
         MetadocumentosParam oMetadocumentosParam = new MetadocumentosParam(request);
         oMetadocumentosBean = oMetadocumentosParam.loadId(oMetadocumentosBean);
+        oMetadocumentosDao = new MetadocumentosDao(oContexto.getEnumTipoConexion());
+
+        try {
+            oMetadocumentosBean = oMetadocumentosDao.get(oMetadocumentosBean);
+        } catch (Exception e) {
+            throw new ServletException("MetadocumentosController: Update Error: Phase 1: " + e.getMessage());
+        }
 
         UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         Integer idUsuario = oUsuarioBean.getId();

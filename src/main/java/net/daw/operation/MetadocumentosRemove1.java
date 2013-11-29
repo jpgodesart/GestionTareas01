@@ -24,13 +24,21 @@ public class MetadocumentosRemove1 implements Operation {
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
         oContexto.setVista("jsp/confirmForm.jsp");
+        MetadocumentosDao oMetadocumentosDao;
         MetadocumentosBean oMetadocumentosBean = new MetadocumentosBean();
         MetadocumentosParam oMetadocumentosParam = new MetadocumentosParam(request);
         oMetadocumentosBean = oMetadocumentosParam.loadId(oMetadocumentosBean);
+        oMetadocumentosDao = new MetadocumentosDao(oContexto.getEnumTipoConexion());
 
         UsuarioBean oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         Integer idUsuario = oUsuarioBean.getId();
         java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
+        try {
+            oMetadocumentosBean = oMetadocumentosDao.get(oMetadocumentosBean);
+        } catch (Exception e) {
+            throw new ServletException("MetadocumentosController: Update Error: Phase 1: " + e.getMessage());
+        }
+        
         if (tipoUsuario.equals(net.daw.helper.Enum.TipoUsuario.Profesor)) {
             oContexto.setVista("jsp/confirmForm.jsp");
             return "Borrar el metadocumento " + oMetadocumentosBean.getId();
