@@ -1,22 +1,21 @@
 <%@page import="java.util.Arrays"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.daw.helper.FilterBean"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
-<%@ page import="net.daw.bean.CalificacionActividadOfflineBean"%>
+<%@ page import="net.daw.bean.ActividadofflineBean"%>
 <%@ page import="net.daw.helper.Contexto"%>
 <%
     Contexto oContexto = (Contexto) request.getAttribute("contexto");
-    ArrayList<Object> alObjetoParametro = (ArrayList<Object>) oContexto.getParametro();
-    ArrayList<CalificacionActividadOfflineBean> alPagina = (ArrayList<CalificacionActividadOfflineBean>) alObjetoParametro.get(0);
-    Iterator<CalificacionActividadOfflineBean> oIterador = alPagina.listIterator();
+    ArrayList<Object> actividadObjetoParametro = (ArrayList<Object>) oContexto.getParametro();
+    ArrayList<ActividadofflineBean> alPagina = (ArrayList<ActividadofflineBean>) actividadObjetoParametro.get(0);
+    Iterator<ActividadofflineBean> oIterador = alPagina.listIterator();
 %>
 <div class="row-fluid">
     <div class="span8">
-        <h1>Listado de contestaciones</h1>
+        <h1>Listado de Actividad Offline</h1>
         <%
             if (!oIterador.hasNext()) {
-                out.print("<h4>Listado vac?o</h4>");
+                out.print("<h4>Listado vacío</h4>");
             } else {
         %>
         <%
@@ -42,7 +41,7 @@
             }
         %>
         <%
-            ArrayList<String> paginacion = (ArrayList<String>) alObjetoParametro.get(1);
+            ArrayList<String> paginacion = (ArrayList<String>) actividadObjetoParametro.get(1);
             Iterator<String> iterador2 = paginacion.listIterator();
             while (iterador2.hasNext()) {
                 String o = iterador2.next();
@@ -52,17 +51,19 @@
     </div>
     <div class="span4">
         <div class="text-right">
-            <legend>Filtro de Calificacion Actividad Offline</legend> 
-            <form class="navbar-form pull-right" action="Controller" method="post" id="calificacionactividadofflineForm">
+            <legend>Filtro de Actividad Offline</legend> 
+            <form class="navbar-form pull-right" action="Controller" method="post" id="actividadofflineForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
                     <span>
-                        <select id="filter" name="filter" width="80" style="width: 80px">
-                            <option>id</option>
-                            <option>id_usuario</option>
-                            <option>id_actividad_offline</option>
-                            <option>fecha</option>
-                        </select>  
+                        <select id="filter" name="filter" width="80" style="width: 100px">
+                            <option value="id">Id</option>
+                            <option value="enunciado">Enunciado</option>
+                            <option value="fecha">Fecha</option>
+                            <option value="calificacion">Calificacion</option>
+                            <option value="evaluacion">Evaluacion</option>
+                            <option value="activo">Activo</option>
+                        </select>
                     </span>
                     <span>
                         <select id="filteroperator" name="filteroperator" width="80" style="width: 80px">
@@ -73,9 +74,9 @@
                             <option>less</option>
                             <option>lessorequal</option>
                             <option>greater</option>
-                            <option>greaterorequal</option>                            
-                        </select>  
-                        <input id="filtervalue" name="filtervalue" type="search" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
+                            <option>greaterorequal</option> 
+                        </select>
+                        <input id="filtervalue" name="filtervalue" type="text" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
                     </span>
                     <span>
                         <input type="submit" name="enviar" value="Filtrar" />
@@ -84,7 +85,7 @@
             </form>
         </div>
         <div class="text-right">
-            <legend>Registros por p?gina</legend> 
+            <legend>Registros por página</legend> 
             <form class="navbar-form pull-right" action="Controller" method="post" id="nrrpForm" >
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptNrppFormFormat()%>       
@@ -112,62 +113,60 @@
                     </span>                    
                 </fieldset>
             </form>
-        </div>
+        </div>        
     </div>
 </div>
 <table class="table table-hover table-condensed">
     <tr>
-        <th>id
+        <th>Id
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>usuario
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        <th>Enunciado
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=enunciado&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=enunciado&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>actividad_offline
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_actividadoffline&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_actividadoffline&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>fecha
+        <th>Fecha
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=fecha&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        </th>
+        <th>Calificacion
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=calificacion&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=calificacion&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        </th>
+        <th>Evaluacion
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=evaluacion&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=evaluacion&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        </th>
+        <th>Activo
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=activo&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=activo&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
         <th>Operaciones</th>
     </tr>
     <%        while (oIterador.hasNext()) {
-            CalificacionActividadOfflineBean oCalificacionActividadOfflineBEAN = oIterador.next();
+            ActividadofflineBean oActividadofflineBean = oIterador.next();
     %>
     <tr>
-        <td><%=oCalificacionActividadOfflineBEAN.getId()%></td>
-        <td>
-            <%=oCalificacionActividadOfflineBEAN.getUsuario().getLogin()%> (<%=oCalificacionActividadOfflineBEAN.getUsuario().getId()%>)
-            <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oCalificacionActividadOfflineBEAN.getId()%>&searchingfor=usuario&returnclass=CalificacionActividadOffline&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
-            </div>            
-        </td>
-        <td>
-            <%=oCalificacionActividadOfflineBEAN.getActividad_offline().getEnunciado()%> (<%=oCalificacionActividadOfflineBEAN.getActividad_offline().getId()%>)
-            <div class="btn-group">
-                <a class="btn btn-mini" href="Controller?class=actividadoffline&method=list&id=<%=oCalificacionActividadOfflineBEAN.getId()%>&searchingfor=actividadoffline&returnclass=CalificacionActividadOffline&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
-            </div>            
-        </td> 
-        <%
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-        %>
-        <td><%=formatoFecha.format(oCalificacionActividadOfflineBEAN.getFecha())%></td>
+        <td><%=oActividadofflineBean.getId()%></td>
+        <td><%=oActividadofflineBean.getEnunciado()%></td>
+        <td><%=oActividadofflineBean.getFecha()%></td>
+        <td><%=oActividadofflineBean.getCalificacion()%></td>
+        <td><%=oActividadofflineBean.getEvaluacion()%></td>
+        <td><%=oActividadofflineBean.getActivo()%></td>
+       
         <td>
             <div class="btn-toolbar">
-                <div class="btn-group"> 
+                <div class="btn-group">
                     <%
-                        if (oContexto.getSearchingFor().equals("CalificacionActividadOffline")) {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_contestacion", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_contestacion=" + oCalificacionActividadOfflineBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                        if (oContexto.getSearchingFor().equals("actividadoffline")) {
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id=" + oActividadofflineBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=CalificacionActividadOffline&method=view&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=CalificacionActividadOffline&method=update&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=CalificacionActividadOffline&method=remove&id=" + oCalificacionActividadOfflineBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=actividadoffline&method=view&id=" + oActividadofflineBean.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=actividadoffline&method=update&id=" + oActividadofflineBean.getId() + "\"><i class=\"icon-pencil\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=actividadoffline&method=remove&id=" + oActividadofflineBean.getId() + "\"><i class=\"icon-trash\"></i></a>");
                         }
-                    %>  
+                    %>
                 </div>
             </div>
         </td>

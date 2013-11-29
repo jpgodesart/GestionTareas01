@@ -45,12 +45,12 @@ public class CalificacionActividadOfflineUpdate2 implements Operation{
                     UsuarioList1 oOperacion = new UsuarioList1();
                     return oOperacion.execute(request, response);
                 }
-                case "actividad_offline": {
-                    oContexto.setVista("jsp/actividad_offline/list.jsp");
-                    oContexto.setClase("actividad_offline");
+                case "actividadoffline": {
+                    oContexto.setVista("jsp/actividadOffline/list.jsp");
+                    oContexto.setClase("actividadoffline");
                     oContexto.setMetodo("list");
                     oContexto.setFase("1");
-                    oContexto.setSearchingFor("actividad_offline");
+                    oContexto.setSearchingFor("actividadoffline");
                     oContexto.setClaseRetorno("CalificacionActividadOffline");
                     oContexto.setMetodoRetorno("update");
                     oContexto.setFaseRetorno("1");
