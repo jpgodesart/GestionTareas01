@@ -1,11 +1,13 @@
--- Base de datos incompleta para el proyecto
+-- --------------------------------------------------------
+
+--
+-- Base de datos: `ausiasyield` - 13-11-2013
+--
+
+-- --------------------------------------------------------
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
---
--- Base de datos: `ausiasyield`
---
 
 -- --------------------------------------------------------
 
@@ -318,31 +320,30 @@ CREATE TABLE IF NOT EXISTS `incidencias` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `resumen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cambios` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id_estado` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_estado` int(6) DEFAULT NULL,
   `id_repositorio` int(6) DEFAULT NULL,
   `id_usuario` int(6) DEFAULT NULL,
   `fechaalta` date DEFAULT NULL,
   `fecharesolucion` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- Volcado de datos para la tabla `incidencias`
 --
 
 INSERT INTO `incidencias` (`id`, `resumen`, `cambios`, `id_estado`, `id_repositorio`, `id_usuario`, `fechaalta`, `fecharesolucion`) VALUES
-(1, 'Incidencia 1', 'Cambio 1', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(2, 'Incidencia 2', 'Cambio 2', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(3, 'Incidencia 3', 'Cambio 3', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(4, 'Incidencia 4', 'Cambio 4', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(5, 'Incidencia 5', 'Cambio 5', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(6, 'Incidencia 6', 'Cambio 6', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(7, 'Incidencia 7', 'Cambio 7', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(8, 'Incidencia 8', 'Cambio 8', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(9, 'Incidencia 9', 'Cambio 9', NULL, NULL, NULL, '2013-11-03', '2013-11-04'),
-(10, 'Incidencia 10', 'Cambio 10', NULL, NULL, NULL, '2013-11-03', '2013-11-04');
+(1, 'Incidencia 1', 'Cambio 1', 5, 1, 2, '2013-11-03', '2013-11-04'),
+(3, 'Incidencia 3', 'Cambio 3', 3, 2, 2, '2013-11-03', '2013-11-04'),
+(4, 'Incidencia 4', 'Cambio 4', 3, 3, 3, '2013-11-03', '2013-11-04'),
+(5, 'Incidencia 5', 'Cambio 5', 4, 4, 4, '2013-11-03', '2013-11-04'),
+(6, 'Incidencia 6', 'Cambio 6', 5, 5, 5, '2013-11-03', '2013-11-04'),
+(7, 'Incidencia 7', 'Cambio 7', 6, 6, 6, '2013-11-03', '2013-11-04'),
+(8, 'Incidencia 8', 'Cambio 8', 7, 7, 7, '2013-11-03', '2013-11-04'),
+(9, 'Incidencia 9', 'Cambio 9', 8, 8, 8, '2013-11-03', '2013-11-04'),
+(10, 'Incidencia 10', 'Cambio 10', 9, 9, 9, '2013-11-03', '2013-11-04'),
+(11, '', 'aa', 0, 0, 0, '2013-11-12', '2013-11-21');
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `repositorio`
@@ -383,7 +384,7 @@ INSERT INTO `repositorio` (`id`, `titulo`, `contenido`, `id_usuario`, `id_lengua
 
 CREATE TABLE IF NOT EXISTS `requerimiento` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
-  `enunciado` int(6) DEFAULT NULL,
+  `enunciado` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fechaalta` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
@@ -393,18 +394,18 @@ CREATE TABLE IF NOT EXISTS `requerimiento` (
 --
 
 INSERT INTO `requerimiento` (`id`, `enunciado`, `fechaalta`) VALUES
-(1, 0, '2013-11-04'),
-(2, 1, '2013-10-04'),
-(3, 3, '2013-11-04'),
-(4, 2, '2013-11-04'),
-(5, 10, '2013-11-04'),
-(6, 4, '2013-11-04'),
-(7, 5, '2013-11-04'),
-(8, 7, '2013-11-04'),
-(9, 9, '2013-11-04'),
-(10, 6, '2013-11-04'),
-(11, 8, '2013-11-04'),
-(12, 8, '2013-11-04');
+(1, 'requerimiento 1', '2013-11-04'),
+(2, 'requerimiento 3', '2013-10-04'),
+(3, 'requerimiento 2', '2013-11-04'),
+(4, 'requerimiento 4', '2013-11-04'),
+(5, 'requerimiento 5', '2013-11-04'),
+(6, 'requerimiento 6', '2013-11-04'),
+(7, 'requerimiento 7', '2013-11-04'),
+(8, 'requerimiento 9', '2013-11-04'),
+(9, 'requerimiento 14', '2013-11-04'),
+(10, 'requerimiento 18', '2013-11-04'),
+(11, 'requerimiento 20', '2013-11-04'),
+(12, 'requerimiento 23', '2013-11-04');
 
 -- --------------------------------------------------------
 
@@ -477,6 +478,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
+
+-- --------------------------------------------------------
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -574,7 +577,6 @@ INSERT INTO `votodocumento` (`id`, `id_documento`, `id_usuario`, `valor`) VALUES
 (9, 3, 4, 7),
 (10, 5, 5, 4);
 
-
 -- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `profesor`
@@ -594,6 +596,8 @@ CREATE TABLE IF NOT EXISTS `profesor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
+-- --------------------------------------------------------
+
 --
 -- Volcado de datos para la tabla `profesor`
 --
@@ -609,6 +613,8 @@ INSERT INTO `profesor` (`id`, `id_usuario`, `nombre`, `ape1`, `ape2`, `sexo`, `t
 (8, 18, 'Luisa', 'Martinez', 'Benito', 'Mujer', '687123456', 'luisamartinez@gmail.com', '321456987'),
 (9, 19, 'Leon', 'Trotsky', 'Perez', 'Hombre', '625879321', 'leontrotsky@gmail.com', '4789651'),
 (10, 20, 'Rosa', 'Luxemburgo', 'Delicado', 'Mujer', '625132147', 'rosaluxe@gmail.com', '321456987');
+
+-- --------------------------------------------------------
 
 -- 
 -- Añadir tabla cuestionario
@@ -637,10 +643,6 @@ INSERT INTO `cuestionario` (`id`, `descripcion`, `fecha`, `evaluacion`, `activo`
 (10,'Descripcion diez','2013-11-01',1,0);
 
 
---
--- Base de datos: `ausiasyield`
---
-
 -- --------------------------------------------------------
 
 --
@@ -656,6 +658,8 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Creada por José Grancha' AUTO_INCREMENT=11 ;
+
+-- --------------------------------------------------------
 
 --
 -- Volcado de datos para la tabla `entrada`
@@ -673,31 +677,189 @@ INSERT INTO `entrada` (`id`, `titulo`, `contenido`, `id_usuario`, `id_hilo`, `fe
 (9, 'Listado Usuarios no está disponible', 'Arreglar', 9, 9, '2013-10-09'),
 (10, 'Realizar mantenimiento clases DAO', 'Probar y optimizar', 10, 10, '2013-11-20');
 
+
 -- --------------------------------------------------------
- 
+
 --
 -- Estructura de tabla para la tabla `hilo`
 --
- 
- CREATE TABLE IF NOT EXISTS `hilo` (
-   `id` int(11) NOT NULL AUTO_INCREMENT,
-   `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-   `fecha` date DEFAULT NULL,
-   PRIMARY KEY (`id`)
- ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='creada por jose grancha' AUTO_INCREMENT=11 ;
- 
- --
- -- Volcado de datos para la tabla `hilo`
- --
- 
- INSERT INTO `hilo` (`id`, `nombre`, `fecha`) VALUES
- (1, 'hilo 1', '2013-10-09'),
- (2, 'hilo 1', '2013-10-09'),
- (3, 'hilo 2', '2013-10-09'),
- (4, 'hilo 3', '2013-10-09'),
- (5, 'hilo 4', '2013-10-09'),
- (6, 'hilo 5', '2013-10-09'),
- (7, 'hilo 6', '2013-10-09'),
- (8, 'hilo 7', '2013-10-09'),
- (9, 'hilo 8', '2013-10-09'),
- (10, 'hilo 9', '2013-10-09');
+
+CREATE TABLE IF NOT EXISTS `hilo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='creada por jose grancha' AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `hilo`
+--
+
+INSERT INTO `hilo` (`id`, `nombre`, `fecha`) VALUES
+(1, 'hilo 1', '2013-10-09'),
+(2, 'hilo 1', '2013-10-09'),
+(3, 'hilo 2', '2013-10-09'),
+(4, 'hilo 3', '2013-10-09'),
+(5, 'hilo 4', '2013-10-09'),
+(6, 'hilo 5', '2013-10-09'),
+(7, 'hilo 6', '2013-10-09'),
+(8, 'hilo 7', '2013-10-09'),
+(9, 'hilo 8', '2013-10-09'),
+(10, 'hilo 9', '2013-10-09');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contestacion`
+-- by Salva Tamarit
+--
+
+CREATE TABLE IF NOT EXISTS `contestacion` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(6) DEFAULT NULL,
+  `id_pregunta` int(6) DEFAULT NULL,
+  `id_opcion` int(6) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+
+--
+-- Estructura de tabla para la tabla `metadocumento`
+--
+
+CREATE TABLE IF NOT EXISTS `metadocumento` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Volcado de datos para la tabla `metadocumento`
+--
+
+INSERT INTO `metadocumento` (`id`, `titulo`, `fecha`) VALUES
+(3, 'Enrique', '2013-11-28'),
+(4, 'Alv', '2013-11-26'),
+(5, 'Alvaro', '2013-11-30'),
+(6, 'Jacobo', '2013-11-19'),
+(7, 'Diana', '2013-11-12'),
+(8, 'Ana', '2013-11-30');
+
+-- --------------------------------------------------------
+
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE IF NOT EXISTS `comentario` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) DEFAULT NULL,
+  `contenido` varchar(255) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `id_usuario` int(6) DEFAULT NULL,
+  `id_documento` int(6) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `titulo`, `contenido`, `fecha`, `id_usuario`, `id_documento`) VALUES
+(10, 'titulo2', 'Cotnenido1', '2013-11-28', 1, 1),
+(11, 'titulo1', 'Contenido2', '2013-11-28', 3, 1),
+(12, 'titulo3', 'Contenido3', '2013-11-28', 3, 1),
+(13, 'titulo4', 'Contenido4', '2013-11-28', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `lenguaje`
+--
+
+CREATE TABLE IF NOT EXISTS `lenguaje` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+
+--
+-- Volcado de datos para la tabla `lenguaje`
+--
+
+INSERT INTO `lenguaje` (`id`, `nombre`) VALUES
+(1, 'java'),
+(2, 'javascript'),
+(3, 'php'),
+(4, 'css'),
+(5, 'html'),
+(6, 'xml'),
+(7, 'json'),
+(8, 'ruby'),
+(9, 'phyton'),
+(10, 'scala'),
+(14, 'jhihbi');
+
+-- --------------------------------------------------------
+
+
+
+--
+-- Estructura de tabla para la tabla `documento`
+--
+
+CREATE TABLE IF NOT EXISTS `documento` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contenido` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `fecha` date DEFAULT NULL,
+  `nota` int(6) DEFAULT NULL,
+  `id_usuario` int(6) DEFAULT NULL,
+  `etiquetas` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `documento`
+--
+
+INSERT INTO `documento` (`id`, `titulo`, `contenido`, `fecha`, `nota`, `id_usuario`, `etiquetas`) VALUES
+(1, 'Mi doc', '[http://github.com|Github] \r\nhola =miau= [http://intel.com|Intel] \r\n hola ====jujujuj==== [http://google.es|Google]\r\n\r\n\r\n=rafa=\r\n\r\nHolaaaaaa\r\n\r\n==segundo titulo==\r\n\r\n<table class="table">\r\n<th><td>hola</td></th>\r\n</table>', '2013-11-19', 6, 5, 'rafa'),
+(2, 'doc de rafa', '=Mi documento 01=\r\n\r\n[http://materialesdaw-raznar.rhcloud.com|metriales daw] de rafa', '2013-11-20', 4, 4, 'f'),
+(3, '', '', '2013-11-20', 0, 5, 'gfhgf'),
+(4, '', '', '2013-11-20', 0, 3, ''),
+(5, 'DFGDFG', 'HDFHDF', '2013-11-20', 1, 0, ''),
+(6, 'Mi doc', '[http://github.com|Github] \r\nhola =miau= [http://intel.com|Intel] \r\n hola ====jujujuj==== [http://google.es|Google]\r\n\r\n\r\n=rafa=\r\n\r\nHolaaaaaa\r\n\r\n==segundo titulo==\r\n\r\n<table class="table">\r\n<th><td>hola</td></th>\r\n</table>', '2013-11-19', 6, 5, 'rafa'),
+(7, 'doc de rafa', '=Mi documento 01=\r\n\r\n[http://materialesdaw-raznar.rhcloud.com|metriales daw] de rafa', '2013-11-20', 4, 4, 'f'),
+(8, '', '', '2013-11-20', 0, 5, 'gfhgf'),
+(9, '', '', '2013-11-20', 0, 3, ''),
+(10, 'DFGDFG', 'HDFHDF', '2013-11-20', 1, 0, '');
+
+-- --------------------------------------------------------
+
+
+--
+-- Estructura de tabla para la tabla `metadocumentos`
+--
+
+CREATE TABLE IF NOT EXISTS `metadocumentos` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `id_metadocumento` int(6) DEFAULT NULL,
+  `id_documento` int(6) DEFAULT NULL,
+  `orden` int(6) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `metadocumentos`
+--
+
+INSERT INTO `metadocumentos` (`id`, `id_metadocumento`, `id_documento`, `orden`) VALUES
+(2, 2, 11, 8),
+(3, 1, 12, 8),
+(4, 2, 13, 7);
+
+-- --------------------------------------------------------

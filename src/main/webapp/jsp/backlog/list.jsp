@@ -126,6 +126,10 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
+        <th>Requerimiento
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_requerimiento&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_requerimiento&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
+        </th>
         <th>Enunciado
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=enunciado&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=enunciado&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
@@ -150,6 +154,12 @@
             <%=oBacklogBEAN.getUsuario().getLogin()%>(<%=oBacklogBEAN.getUsuario().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oBacklogBEAN.getId()%>&searchingfor=usuario&returnclass=backlog&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>          
+        </td>
+        <td>
+            <%=oBacklogBEAN.getRequerimiento().getEnunciado()%>(<%=oBacklogBEAN.getRequerimiento().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=requerimiento&method=list&id=<%=oBacklogBEAN.getId()%>&searchingfor=requerimiento&returnclass=backlog&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>          
         </td>
         <td><%=oBacklogBEAN.getEnunciado()%></td>

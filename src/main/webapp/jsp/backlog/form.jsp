@@ -28,15 +28,15 @@
 
     id = oBacklogBean.getId();
 
-    id_requerimiento = Integer.toString(oBacklogBean.getId_requerimiento());
     id_usuario = Integer.toString(oBacklogBean.getUsuario().getId());
+    id_requerimiento = Integer.toString(oBacklogBean.getRequerimiento().getId());
 
     if (oBacklogBean.getUsuario().getId() > 0) {
         nomUsu = oBacklogBean.getUsuario().getLogin();
     }
 
-    if (oBacklogBean.getId_requerimiento() > 0) {
-        nomReq = Integer.toString(oBacklogBean.getId_requerimiento());
+    if (oBacklogBean.getRequerimiento().getId() > 0) {
+        nomReq = oBacklogBean.getRequerimiento().getEnunciado();
     }
 
     enunciado = oBacklogBean.getEnunciado();
@@ -58,7 +58,7 @@
         strValueBoton = "Cerrar";
     }
     if (oContexto.getMetodo().equals("update")) {
-        strTitulo = "Edición";
+        strTitulo = "Edicion";
         fechainicioprevista = new SimpleDateFormat("yyyy-MM-dd").format(oBacklogBean.getFechainicioprevista());
         fechafinprevista = new SimpleDateFormat("yyyy-MM-dd").format(oBacklogBean.getFechafinprevista());
         fechainicio = new SimpleDateFormat("yyyy-MM-dd").format(oBacklogBean.getFechainicio());
@@ -98,7 +98,7 @@
             </div>
         </div> 
         <div class="control-group">
-            <label class="control-label" for="id_usuario">Requerimiento </label> 
+            <label class="control-label" for="id_requerimiento">Requerimiento </label> 
             <div class="controls">                
                 <input readonly="true" id="id_requerimiento" class="input-mini"
                        name="id_requerimiento" type="text" size="5" maxlength="5"
@@ -126,7 +126,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="fecha">Fecha Inicio Prevista : </label> 
+            <label class="control-label" for="fecha">Fecha Inicio Prevista: </label> 
             <div class="controls">
                 <input <%=strControlEnabled%>  id="fechainicioprevista"
                                                name="fechainicioprevista" type="date" size="30" maxlength="50"
@@ -194,9 +194,6 @@
                                                value="<%=release%>" />
             </div>
         </div>
-
-
-
 
         </div>         
         <div class="control-group">

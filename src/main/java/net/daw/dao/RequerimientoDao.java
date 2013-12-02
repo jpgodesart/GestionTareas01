@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.RequerimientoBean;
-import net.daw.bean.DocumentoBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 
@@ -64,6 +63,18 @@ public class RequerimientoDao {
             oMysql.desconexion();
         }
     }
+    
+        public int getCount(ArrayList<FilterBean> hmFilter) throws Exception {
+        int pages;
+        try {
+            oMysql.conexion(enumTipoConexion);
+            pages = oMysql.getCount("requerimiento", hmFilter);
+            oMysql.desconexion();
+            return pages;
+        } catch (Exception e) {
+            throw new Exception("RequerimientoDao.getCount: Error: " + e.getMessage());
+        }
+    }
 
     public ArrayList<RequerimientoBean> getPage(int intRegsPerPag, int intPage, ArrayList<FilterBean> alFilter, HashMap<String, String> hmOrder) throws Exception {
         ArrayList<Integer> arrId;
@@ -88,8 +99,6 @@ public class RequerimientoDao {
     public RequerimientoBean get(RequerimientoBean oRequerimientoBean) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
-
-            DocumentoBean oDocumentoBean = new DocumentoBean();
 
             oRequerimientoBean.setEnunciado(oMysql.getOne("requerimiento", "enunciado", oRequerimientoBean.getId()));
             String strFecha = oMysql.getOne("requerimiento", "fechaalta", oRequerimientoBean.getId());
