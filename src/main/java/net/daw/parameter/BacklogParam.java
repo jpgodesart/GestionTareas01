@@ -44,14 +44,14 @@ public class BacklogParam {
             }
 
             if ((request.getParameter("id_requerimiento") != null)) {
-                oBacklog.setId_requerimiento(Integer.parseInt(request.getParameter("id_requerimiento")));
+                oBacklog.getRequerimiento().setId(Integer.parseInt(request.getParameter("id_requerimiento")));
             }
 
             if ((request.getParameter("enunciado") != null)) {
                 oBacklog.setEnunciado(request.getParameter("enunciado"));
             }
-            if ((request.getParameter("descripcion") != null)) {
-                oBacklog.setDescripciondetallada(request.getParameter("descripcion"));
+            if ((request.getParameter("descripciondetallada") != null)) {
+                oBacklog.setDescripciondetallada(request.getParameter("descripciondetallada"));
             }
 
             if ((request.getParameter("fechaalta") != null)) {
@@ -66,8 +66,8 @@ public class BacklogParam {
                 oBacklog.setFechafin(new SimpleDateFormat("dd-MM-yyyy").parse(request.getParameter("fechafin")));
             }
 
-            if ((request.getParameter("fechainiciovista") != null)) {
-                oBacklog.setFechainicioprevista(new SimpleDateFormat("dd-MM-yyyy").parse(request.getParameter("fechainiciovista")));
+            if ((request.getParameter("fechainicioprevista") != null)) {
+                oBacklog.setFechainicioprevista(new SimpleDateFormat("dd-MM-yyyy").parse(request.getParameter("fechainicioprevista")));
             }
 
             if ((request.getParameter("fechafinprevista") != null)) {

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import net.daw.bean.BacklogBean;
 import net.daw.bean.UsuarioBean;
+import net.daw.bean.RequerimientoBean;
 import net.daw.data.Mysql;
 import net.daw.helper.FilterBean;
 import net.daw.helper.Enum;
@@ -86,17 +87,19 @@ public class BacklogDao {
                 if (!oMysql.existsOne("backlog", oBacklogBean.getId())) {
                     oBacklogBean.setId(0);
                 } else {
-                    
-                    
+
                     UsuarioBean oUsuarioBean = new UsuarioBean();
                     UsuarioDao oUsuarioDao = new UsuarioDao(enumTipoConexion);
-                    
+
+                    RequerimientoBean oRequerimientoBean = new RequerimientoBean();
+                    RequerimientoDao oRequerimientoDao = new RequerimientoDao(enumTipoConexion);
+
                     oBacklogBean.setId(Integer.parseInt(oMysql.getOne("backlog", "id", oBacklogBean.getId())));
-                    oBacklogBean.setId_requerimiento(Integer.parseInt(oMysql.getOne("backlog", "id_requerimiento", oBacklogBean.getId())));
 
                     oBacklogBean.setEnunciado(oMysql.getOne("backlog", "enunciado", oBacklogBean.getId()));
                     oBacklogBean.setDescripciondetallada(oMysql.getOne("backlog", "descripciondetallado", oBacklogBean.getId()));
                     oUsuarioBean.setId(Integer.parseInt(oMysql.getOne("backlog", "id_usuario", oBacklogBean.getId())));
+                    oRequerimientoBean.setId(Integer.parseInt(oMysql.getOne("backlog", "id_requerimiento", oBacklogBean.getId())));
 
                     oBacklogBean.setFechainicioprevista(dateFormat.parse(oMysql.getOne("backlog", "fechainicioprevista", oBacklogBean.getId())));
                     oBacklogBean.setFechafinprevista(dateFormat.parse(oMysql.getOne("backlog", "fechafinprevista", oBacklogBean.getId())));
@@ -113,6 +116,9 @@ public class BacklogDao {
 
                     oUsuarioBean = oUsuarioDao.get(oUsuarioBean);
                     oBacklogBean.setUsuario(oUsuarioBean);
+
+                    oRequerimientoBean = oRequerimientoDao.get(oRequerimientoBean);
+                    oBacklogBean.setRequerimiento(oRequerimientoBean);
 
                 }
             } catch (Exception e) {
@@ -138,11 +144,12 @@ public class BacklogDao {
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "enunciado", oBacklogBean.getEnunciado());
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "descripciondetallado", oBacklogBean.getDescripciondetallada());
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "id_usuario", Integer.toString(oBacklogBean.getUsuario().getId()));
-            oMysql.updateOne(oBacklogBean.getId(), "backlog", "id_requerimiento", Integer.toString(oBacklogBean.getId_requerimiento()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "id_requerimiento", Integer.toString(oBacklogBean.getRequerimiento().getId()));
 
             java.text.SimpleDateFormat oSimpleDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-            oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechainicioprevista", oSimpleDateFormat.format(oBacklogBean.getFechainicioprevista()));
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechafinprevista", oSimpleDateFormat.format(oBacklogBean.getFechafinprevista()));
+            oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechainicioprevista", oSimpleDateFormat.format(oBacklogBean.getFechainicioprevista()));
+
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechafin", oSimpleDateFormat.format(oBacklogBean.getFechafin()));
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechainicio", oSimpleDateFormat.format(oBacklogBean.getFechainicio()));
             oMysql.updateOne(oBacklogBean.getId(), "backlog", "fechaalta", oSimpleDateFormat.format(oBacklogBean.getFechaalta()));

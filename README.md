@@ -1,6 +1,6 @@
 ausiasYield
 ===========
 
-[![Build Status](https://secure.travis-ci.org/AlvaroCrego/ausiasYield-v2.png)](http://travis-ci.org/AlvaroCrego/ausiasYield-v2)
+[![Build Status](https://travis-ci.org/JGrancha/ausiasYield.png?branch=master)](https://travis-ci.org/JGrancha/ausiasYield)
 
 ausiasYield

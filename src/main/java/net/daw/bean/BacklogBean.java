@@ -7,12 +7,12 @@ public class BacklogBean {
     private int id = 0;
     private String enunciado = "";
     private String descripciondetallada = "";
-    private int id_requerimiento = 0;
     private Date fechainicioprevista;
     private Date fechafinprevista;
     private Date fechainicio;
     private Date fechafin;
     private UsuarioBean usuario = null;
+    private RequerimientoBean requerimiento = null;
     private int horasduracionprevista = 0;
     private int porcentajecompletado = 0;
     private Date fechaalta;
@@ -22,12 +22,16 @@ public class BacklogBean {
     public BacklogBean() {
         this.usuario = new UsuarioBean();
         this.usuario.setId(0);
+        this.requerimiento = new RequerimientoBean();
+        this.requerimiento.setId(0);
     }
 
     public BacklogBean(Integer id) {
         this.id = id;
         this.usuario = new UsuarioBean();
         this.usuario.setId(0);
+        this.requerimiento = new RequerimientoBean();
+        this.requerimiento.setId(0);
     }  
     
     /**
@@ -70,20 +74,6 @@ public class BacklogBean {
      */
     public void setDescripciondetallada(String descripciondetallada) {
         this.descripciondetallada = descripciondetallada;
-    }
-
-    /**
-     * @return the id_requerimiento
-     */
-    public int getId_requerimiento() {
-        return id_requerimiento;
-    }
-
-    /**
-     * @param id_requerimiento the id_requerimiento to set
-     */
-    public void setId_requerimiento(int id_requerimiento) {
-        this.id_requerimiento = id_requerimiento;
     }
 
     /**
@@ -224,6 +214,20 @@ public class BacklogBean {
      */
     public void setUsuario(UsuarioBean usuario) {
         this.usuario = usuario;
+    }
+
+    /**
+     * @return the requerimiento
+     */
+    public RequerimientoBean getRequerimiento() {
+        return requerimiento;
+    }
+
+    /**
+     * @param requerimiento the requerimiento to set
+     */
+    public void setRequerimiento(RequerimientoBean requerimiento) {
+        this.requerimiento = requerimiento;
     }
 
 }
