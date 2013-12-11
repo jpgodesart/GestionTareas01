@@ -47,6 +47,7 @@
                 out.print("<p>Sin filtrar</p>");
             }
         %>    
+        <a  class="btn" href="Controller?class=<%=oContexto.getClase()%>&method=new">Crear <%=oContexto.getClase()%></i></a>   
         <%
             ArrayList<String> paginacion = (ArrayList<String>) alObjetoParametro.get(1);
             Iterator<String> iterador2 = paginacion.listIterator();
@@ -114,11 +115,11 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_documento&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
         </th>
-    <!--   <th>id de usuario
-            <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
-        </th>-->
-        
+        <!--   <th>id de usuario
+                <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+                <a href="Controller?</%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>                            
+            </th>-->
+
         <th>Operaciones</th>
     </tr>
     <%
@@ -129,7 +130,7 @@
         <td><%=oComentBean.getId()%></td>
         <td><%=oComentBean.getTitulo()%></td>
         <td><%=oComentBean.getContenido()%></td>
-         <%
+        <%
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/YYYY");
         %>
         <td><%=formatoFecha.format(oComentBean.getFecha())%></td>
@@ -147,15 +148,15 @@
         </td>
         <td>
             <div class="btn-toolbar">
-                 <%
-                        if (oContexto.getSearchingFor().equals("comentario")) {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_comentario", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_comentario=" + oComentBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
-                        } else {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=view&id=" + oComentBean.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=update&id=" + oComentBean.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=remove&id=" + oComentBean.getId() + "\"><i class=\"icon-trash\"></i></a>");
-                        }
-                    %>                 
+                <%
+                    if (oContexto.getSearchingFor().equals("comentario")) {
+                        out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_comentario", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_comentario=" + oComentBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                    } else {
+                        out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=view&id=" + oComentBean.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
+                        out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=update&id=" + oComentBean.getId() + "\"><i class=\"icon-pencil\"></i></a>");
+                        out.print("<a class=\"btn btn-mini\" href=\"Controller?class=coment&method=remove&id=" + oComentBean.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                    }
+                %>                 
             </div>
         </td>
     </tr>
