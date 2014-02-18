@@ -88,12 +88,9 @@ public class ProfesorDao {
                     oProfesorBean.setUsuario(oUsuarioBean);
 
                     oProfesorBean.setId_usuario(Integer.parseInt(oMysql.getOne("profesor", "id_usuario", oProfesorBean.getId())));
-                    oProfesorBean.setDni(oMysql.getOne("profesor", "dni", oProfesorBean.getId()));
                     oProfesorBean.setNombre(oMysql.getOne("profesor", "nombre", oProfesorBean.getId()));
                     oProfesorBean.setApe1(oMysql.getOne("profesor", "ape1", oProfesorBean.getId()));
                     oProfesorBean.setApe2(oMysql.getOne("profesor", "ape2", oProfesorBean.getId()));
-                    oProfesorBean.setSexo(oMysql.getOne("profesor", "sexo", oProfesorBean.getId()));
-                    oProfesorBean.setTelefono(oMysql.getOne("profesor", "telefono", oProfesorBean.getId()));
                     oProfesorBean.setEmail(oMysql.getOne("profesor", "email", oProfesorBean.getId()));
                 }
             } catch (Exception e) {
@@ -121,12 +118,9 @@ public class ProfesorDao {
             oProfesorBean.setUsuario(oUsuarioDao.getFromLogin(oProfesorBean.getUsuario()));
 
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "id_usuario", Integer.toString(oProfesorBean.getUsuario().getId()));
-            oMysql.updateOne(oProfesorBean.getId(), "profesor", "dni", oProfesorBean.getDni());
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "nombre", oProfesorBean.getNombre());
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "ape1", oProfesorBean.getApe1());
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "ape2", oProfesorBean.getApe2());
-            oMysql.updateOne(oProfesorBean.getId(), "profesor", "sexo", oProfesorBean.getSexo());
-            oMysql.updateOne(oProfesorBean.getId(), "profesor", "telefono", oProfesorBean.getTelefono());
             oMysql.updateOne(oProfesorBean.getId(), "profesor", "email", oProfesorBean.getEmail());
 
             oMysql.commitTrans();

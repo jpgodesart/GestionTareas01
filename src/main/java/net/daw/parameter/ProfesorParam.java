@@ -38,9 +38,6 @@ public class ProfesorParam {
             if ((request.getParameter("id_usuario") != null)) {
                 oProfesor.setId_usuario(Integer.parseInt(request.getParameter("id_usuario")));
             }
-            if ((request.getParameter("dni") != null)) {
-                oProfesor.setDni(request.getParameter("dni"));
-            }
             if ((request.getParameter("nombre") != null)) {
                 oProfesor.setNombre(request.getParameter("nombre"));
             }
@@ -49,12 +46,6 @@ public class ProfesorParam {
             }
             if ((request.getParameter("ape2") != null)) {
                 oProfesor.setApe2(request.getParameter("ape2"));
-            }
-            if ((request.getParameter("sexo") != null)) {
-                oProfesor.setSexo(request.getParameter("sexo"));
-            }
-            if ((request.getParameter("telefono") != null)) {
-                oProfesor.setTelefono(request.getParameter("telefono"));
             }
             if ((request.getParameter("email") != null)) {
                 oProfesor.setEmail(request.getParameter("email"));

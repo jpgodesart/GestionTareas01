@@ -12,7 +12,7 @@ public class DataSourceConnection implements GenericConnection {
     public Connection crearConexion() {
         try {
             InitialContext initialContext = new InitialContext();
-            DataSource dataSource = (DataSource) initialContext.lookup("java:comp/env/jdbc/ausiasyield");
+            DataSource dataSource = (DataSource) initialContext.lookup("java:comp/env/jdbc/gestiontareas");
             Connection connection = dataSource.getConnection();
             return connection;
         } catch (NamingException ex) {

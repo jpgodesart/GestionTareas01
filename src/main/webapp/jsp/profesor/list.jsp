@@ -1,9 +1,3 @@
-<%-- 
-    Document   : list
-    Created on : 07-nov-2013, 12:49:06
-    Author     : Pedro Benito
---%>
-
 
 <%@ page import="java.util.Arrays"%>
 <%@ page import="java.util.ArrayList"%>
@@ -71,11 +65,9 @@
                         <select id="filter" name="filter" width="80" style="width: 100px">
                             <option value="id">Id</option>
                             <option value="id_usuario">Id Usuario</option>
-                            <option value="dni">DNI</option>
                             <option value="nombre">Nombre</option>
                             <option value="ape1">1er Apellido</option>
                             <option value="ape2">2º Apellido</option>
-                            <option value="sexo">Sexo</option>
                             <option value="email">Em@il</option>
 
                             <!--  
@@ -144,10 +136,6 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>DNI
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=dni&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=dni&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
         <th>Nombre
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=desc"><i class="icon-arrow-down"></i></a>
@@ -160,20 +148,11 @@
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        <th>Sexo
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=sexo&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=sexo&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
         <th>em@il
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
         </th>
-        <!--
-   <th>Teléfono
-       <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=telefono&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-       <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=telefono&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-   </th>
-        -->
+
         <th>Operaciones</th>
     </tr>
     <%        while (oIterador.hasNext()) {
@@ -182,17 +161,11 @@
     <tr>
         <td><%=oProfesorBean.getId()%></td>
         <td><%=oProfesorBean.getId_usuario()%></td>
-        <td><%=oProfesorBean.getDni()%></td>
         <td><%=oProfesorBean.getNombre()%></td>
         <td><%=oProfesorBean.getApe1()%></td>
         <td><%=oProfesorBean.getApe2()%></td>
-        <td><%=oProfesorBean.getSexo()%></td>
         <td><%=oProfesorBean.getEmail()%></td>
 
-
-        <!--
-        <td><%=oProfesorBean.getTelefono()%></td>
-        -->
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">

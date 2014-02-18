@@ -36,12 +36,6 @@ public class AlumnoParam {
             if ((request.getParameter("id_usuario") != null)) {
                 oAlumno.getUsuario().setId(Integer.parseInt(request.getParameter("id_usuario")));
             }
-            if ((request.getParameter("dni") != null)) {
-                oAlumno.setDni(request.getParameter("dni"));
-            }
-            if ((request.getParameter("numexpediente") != null)) {
-                oAlumno.setNumexpediente(request.getParameter("numexpediente"));
-            }
             if ((request.getParameter("nombre") != null)) {
                 oAlumno.setNombre(request.getParameter("nombre"));
             }
@@ -50,24 +44,6 @@ public class AlumnoParam {
             }
             if ((request.getParameter("ape2") != null)) {
                 oAlumno.setApe2(request.getParameter("ape2"));
-            }
-            if ((request.getParameter("sexo") != null)) {
-                oAlumno.setSexo(request.getParameter("sexo"));
-            }
-            if ((request.getParameter("domicilio") != null)) {
-                oAlumno.setDomicilio(request.getParameter("domicilio"));
-            }
-            if ((request.getParameter("codpostal") != null)) {
-                oAlumno.setCodpostal(request.getParameter("codpostal"));
-            }
-            if ((request.getParameter("poblacion") != null)) {
-                oAlumno.setPoblacion(request.getParameter("poblacion"));
-            }
-            if ((request.getParameter("provincia") != null)) {
-                oAlumno.setProvincia(request.getParameter("provincia"));
-            }
-            if ((request.getParameter("telefono") != null)) {
-                oAlumno.setTelefono(request.getParameter("telefono"));
             }
             if ((request.getParameter("email") != null)) {
                 oAlumno.setEmail(request.getParameter("email"));
