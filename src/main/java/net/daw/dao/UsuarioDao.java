@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import javax.servlet.http.HttpServlet;
 import net.daw.bean.AlumnoBean;
-import net.daw.bean.EmpresaBean;
 import net.daw.bean.ProfesorBean;
 import net.daw.bean.UsuarioBean;
 import net.daw.data.Mysql;
