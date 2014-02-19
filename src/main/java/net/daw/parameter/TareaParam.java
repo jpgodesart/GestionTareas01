@@ -37,6 +37,12 @@ public class TareaParam {
 
     public TareaBean load(TareaBean oTarea) throws NumberFormatException, ParseException {
         try {
+            if ((request.getParameter("nombre") != null)) {
+                oTarea.setNombre(request.getParameter("nombre"));
+            }
+            if ((request.getParameter("descripcion") != null)) {
+                oTarea.setDescripcion(request.getParameter("descripcion"));
+            }
             if ((request.getParameter("id_estado") != null)) {
                 oTarea.getEstado().setId(Integer.parseInt(request.getParameter("id_estado")));
             }

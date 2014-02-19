@@ -63,6 +63,22 @@
             menu += "<li>";
         }
         menu += "<a href=\"Controller?class=proyecto&method=list\"><i class=\"icon-briefcase\"></i> proyecto</a></li>";
+                //----------------------------------------------------------------------
+
+        if (oContexto.getClase().equals("estado") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=estado&method=list\"><i class=\"icon-briefcase\"></i> estado</a></li>";
+                //----------------------------------------------------------------------
+
+        if (oContexto.getClase().equals("tarea") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=tarea&method=list\"><i class=\"icon-briefcase\"></i> tarea</a></li>";
 
     }
     menu += "</ul></div>";

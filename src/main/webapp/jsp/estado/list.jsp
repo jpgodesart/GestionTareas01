@@ -138,7 +138,7 @@
     <tr>
         <td><%=oEstadoBEAN.getId()%></td>
         <td><%=oEstadoBEAN.getNombre()%></td>
-       
+        <td>
             <div class="btn-toolbar">
                 <div class="btn-group"> 
                     <%

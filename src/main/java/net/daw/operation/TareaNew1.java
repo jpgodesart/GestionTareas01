@@ -47,7 +47,7 @@ public class TareaNew1 implements Operation {
                 oContexto.setVista("jsp/mensaje.jsp");
                 return "Tipo de dato incorrecto en uno de los campos del formulario";
             }
-            oContexto.setVista("jsp/contestacion/form.jsp");
+            oContexto.setVista("jsp/tarea/form.jsp");
             return oTareaBean;
         } else {
             //Mostramos el MENSAJE
