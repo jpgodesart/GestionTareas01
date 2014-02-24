@@ -19,7 +19,7 @@ public class AlumnoBean {
     private String ape1 = "";
     private String ape2 = "";
     private String email = "";
-    private String validado = "";
+    //private String validado = "";
     private UsuarioBean usuario = null;
 
     /*
@@ -85,13 +85,13 @@ public class AlumnoBean {
         this.email = email;
     }
 
-    public String getValidado() {
+    /*public String getValidado() {
         return validado;
     }
 
     public void setValidado(String validado) {
         this.validado = validado;
-    }
+    }*/
 
     public UsuarioBean getUsuario() {
         return usuario;

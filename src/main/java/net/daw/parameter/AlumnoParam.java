@@ -48,9 +48,9 @@ public class AlumnoParam {
             if ((request.getParameter("email") != null)) {
                 oAlumno.setEmail(request.getParameter("email"));
             }
-            if ((request.getParameter("validado") != null)) {
+           /* if ((request.getParameter("validado") != null)) {
                 oAlumno.setValidado(request.getParameter("validado"));
-            }
+            }*/
             if ((request.getParameter("login") != null)) {
                 oAlumno.getUsuario().setLogin(request.getParameter("login"));
             }

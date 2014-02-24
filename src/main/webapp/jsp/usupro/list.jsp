@@ -1,18 +1,24 @@
-<%@ page import="java.util.Arrays"%>
+<%-- 
+    Document   : list
+    Created on : 24-feb-2014, 8:43:27
+    Author     : al037721
+--%>
+
+<%@page import="java.util.Arrays"%>
+<%@page import="net.daw.helper.FilterBean"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="net.daw.helper.FilterBean"%>
 <%@ page import="java.util.Iterator"%>
-<%@ page import="net.daw.bean.AlumnoBean"%>
+<%@ page import="net.daw.bean.UsuproBean"%>
 <%@ page import="net.daw.helper.Contexto"%>
 <%
     Contexto oContexto = (Contexto) request.getAttribute("contexto");
     ArrayList<Object> alObjetoParametro = (ArrayList<Object>) oContexto.getParametro();
-    ArrayList<AlumnoBean> alPagina = (ArrayList<AlumnoBean>) alObjetoParametro.get(0);
-    Iterator<AlumnoBean> oIterador = alPagina.listIterator();
+    ArrayList<UsuproBean> alPagina = (ArrayList<UsuproBean>) alObjetoParametro.get(0);
+    Iterator<UsuproBean> oIterador = alPagina.listIterator();
 %>
 <div class="row-fluid">
     <div class="span8">
-        <h1>Listado de Alumnos</h1>
+        <h1>Listado de usupros</h1>
         <%
             if (!oIterador.hasNext()) {
                 out.print("<h4>Listado vacío</h4>");
@@ -40,10 +46,6 @@
                 out.print("<p>Sin filtrar</p>");
             }
         %>
-        <%
-            Integer registers = (Integer) alObjetoParametro.get(2);
-            out.print("<p>Mostrando " + oContexto.getNrpp().toString() + " registros de un total de " + registers.toString() + "</p>");
-        %>
         <a  class="btn" href="Controller?class=<%=oContexto.getClase()%>&method=new">Crear <%=oContexto.getClase()%></i></a>   
         <%
             ArrayList<String> paginacion = (ArrayList<String>) alObjetoParametro.get(1);
@@ -56,20 +58,16 @@
     </div>
     <div class="span4">
         <div class="text-right">
-            <legend>Filtro de Alumno</legend> 
-            <form class="navbar-form pull-right" action="Controller" method="post" id="alumnoForm">
+            <legend>Filtro de usupro</legend> 
+            <form class="navbar-form pull-right" action="Controller" method="post" id="usuproForm">
                 <fieldset>                                               
                     <%=oContexto.getSerializedParamsExceptFilterFormFormat()%>       
                     <span>
-                        <select id="filter" name="filter" width="80" style="width: 100px">
-                            <option value="id">Id</option>
-                            <option value="id_usuario">Id Usuario</option>
-                            <option value="nombre">Nombre</option>
-                            <option value="ape1">1er Apellido</option>
-                            <option value="ape2">2º Apellido</option>
-                            <option value="email">Em@il</option>
-                            
-                        </select>
+                        <select id="filter" name="filter" width="80" style="width: 80px">
+                            <option>id</option>
+                            <option>id_usuario</option>
+                            <option>id_proyecto</option>
+                        </select>  
                     </span>
                     <span>
                         <select id="filteroperator" name="filteroperator" width="80" style="width: 80px">
@@ -80,9 +78,9 @@
                             <option>less</option>
                             <option>lessorequal</option>
                             <option>greater</option>
-                            <option>greaterorequal</option> 
-                        </select>
-                        <input id="filtervalue" name="filtervalue" type="text" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
+                            <option>greaterorequal</option>                            
+                        </select>  
+                        <input id="filtervalue" name="filtervalue" type="search" size="20" maxlength="50" value=""  width="100" style="width: 100px"/>
                     </span>
                     <span>
                         <input type="submit" name="enviar" value="Filtrar" />
@@ -119,61 +117,54 @@
                     </span>                    
                 </fieldset>
             </form>
-        </div>        
+        </div>
     </div>
 </div>
 <table class="table table-hover table-condensed">
     <tr>
-        <th>Id
+        <th>id
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>Id Usu.
+        <th>usuario
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=asc"><i class="icon-arrow-up"></i></a>
             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_usuario&ordervalue=desc"><i class="icon-arrow-down"></i></a>
         </th>
-        <th>Nombre
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=nombre&ordervalue=desc"><i class="icon-arrow-down"></i></a>
+        <th>proyecto
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_proyecto&ordervalue=asc"><i class="icon-arrow-up"></i></a>
+            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_proyecto&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
         </th>
-        <th>Pr. Apellido
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape1&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>Seg. Apellido
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=ape2&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
-        </th>    
-         <th>em@il
-             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-             <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=email&ordervalue=desc"><i class="icon-arrow-down"></i></a>         
-         </th>
-        
         <th>Operaciones</th>
     </tr>
     <%        while (oIterador.hasNext()) {
-            AlumnoBean oAlumnoBean = oIterador.next();
+            UsuproBean oUsuproBEAN = oIterador.next();
     %>
     <tr>
-        <td><%=oAlumnoBean.getId()%></td>
-        <td><%=oAlumnoBean.getId_usuario()%></td>
-        <td><%=oAlumnoBean.getNombre()%></td>
-        <td><%=oAlumnoBean.getApe1()%></td>
-        <td><%=oAlumnoBean.getApe2()%></td>
-        <td><%=oAlumnoBean.getEmail()%></td>
-        
+        <td><%=oUsuproBEAN.getId()%></td>
+        <td>
+            <%=oUsuproBEAN.getUsuario().getLogin()%> (<%=oUsuproBEAN.getUsuario().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=usuario&method=list&id=<%=oUsuproBEAN.getId()%>&searchingfor=usuario&returnclass=usupro&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>            
+        </td>
+        <td>
+            <%=oUsuproBEAN.getProyecto().getNombre()%> (<%=oUsuproBEAN.getProyecto().getId()%>)
+            <div class="btn-group">
+                <a class="btn btn-mini" href="Controller?class=proyecto&method=list&id=<%=oUsuproBEAN.getId()%>&searchingfor=proyecto&returnclass=usupro&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
+            </div>            
+        </td>       
         <td>
             <div class="btn-toolbar">
-                <div class="btn-group">
+                <div class="btn-group"> 
                     <%
-                        if (oContexto.getSearchingFor().equals("alumno")) {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_alumno", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_alumno=" + oAlumnoBean.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
+                        if (oContexto.getSearchingFor().equals("usupro")) {
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?" + oContexto.getSerializedParamsExcept(new ArrayList<String>(Arrays.asList("class", "method", "phase", "id_usupro", "id", "returnclass", "returnmethod", "returnphase", "searchingfor"))) + "class=" + oContexto.getClaseRetorno() + "&method=" + oContexto.getMetodoRetorno() + "&phase=" + oContexto.getFaseRetorno() + "&id_usupro=" + oUsuproBEAN.getId() + "&id=" + oContexto.getId() + "\"><i class=\"icon-ok\"></i></a>");
                         } else {
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=alumno&method=view&id=" + oAlumnoBean.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=alumno&method=update&id=" + oAlumnoBean.getId() + "\"><i class=\"icon-pencil\"></i></a>");
-                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=alumno&method=remove&id=" + oAlumnoBean.getId() + "\"><i class=\"icon-trash\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=usupro&method=view&id=" + oUsuproBEAN.getId() + "\"><i class=\"icon-eye-open\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=usupro&method=update&id=" + oUsuproBEAN.getId() + "\"><i class=\"icon-pencil\"></i></a>");
+                            out.print("<a class=\"btn btn-mini\" href=\"Controller?class=usupro&method=remove&id=" + oUsuproBEAN.getId() + "\"><i class=\"icon-trash\"></i></a>");
                         }
-                    %>
+                    %>  
                 </div>
             </div>
         </td>

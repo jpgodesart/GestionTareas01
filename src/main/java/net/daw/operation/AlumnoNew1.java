@@ -7,13 +7,7 @@ import net.daw.bean.UsuarioBean;
 import net.daw.helper.Contexto;
 import net.daw.parameter.AlumnoParam;
 
-/**
- *
- * @author Sergio Martín Tárraga
- * @version v3.0
- * @since mie, 25 noviembre 2013
- * Añadido control de usuarios
- */
+
 public class AlumnoNew1 implements Operation {
 
     @Override

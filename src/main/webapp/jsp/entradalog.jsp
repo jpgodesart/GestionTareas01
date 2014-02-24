@@ -1,0 +1,2 @@
+                    <input type=button onClick="location.href = 'Controller?class=usuario&method=login'" value='Login'>
+                    <input type=button onClick="location.href = 'Controller?class=usuario&method=login'" value='Crear Usuario'>

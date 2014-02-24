@@ -79,7 +79,23 @@
             menu += "<li>";
         }
         menu += "<a href=\"Controller?class=tarea&method=list\"><i class=\"icon-briefcase\"></i> tarea</a></li>";
+        
+                        //----------------------------------------------------------------------
 
+        if (oContexto.getClase().equals("usupro") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=usupro&method=list\"><i class=\"icon-briefcase\"></i> usupro</a></li>";
+                        //----------------------------------------------------------------------
+
+        if (oContexto.getClase().equals("usutarea") && oContexto.getMetodo().equals("list")) {
+            menu += "<li class=\"active\">";
+        } else {
+            menu += "<li>";
+        }
+        menu += "<a href=\"Controller?class=usutarea&method=list\"><i class=\"icon-briefcase\"></i> usutarea</a></li>";
     }
     menu += "</ul></div>";
 

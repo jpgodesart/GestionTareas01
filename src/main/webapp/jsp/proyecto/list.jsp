@@ -115,29 +115,19 @@
         </div>
     </div>
 </div>
-<table class="table table-hover table-condensed">
-    <tr>
-        <th>id
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>nombre
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>descripcion
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>Operaciones</th>
-    </tr>
+
+
     <%        while (oIterador.hasNext()) {
             ProyectoBean oProyectoBEAN = oIterador.next();
     %>
+    <table class="tablaproyectos">
     <tr>
-        <td><%=oProyectoBEAN.getId()%></td>
-        <td><%=oProyectoBEAN.getNombre()%></td>
+        <td><h4><%=oProyectoBEAN.getNombre()%></h4></td>
+    </tr>
+    <tr>
         <td><%=oProyectoBEAN.getDescripcion()%></td>
+    </tr>
+    <tr>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group"> 
@@ -154,10 +144,11 @@
             </div>
         </td>
     </tr>
+    </table>
+
     <%
         }
     %>
-</table>
 <%
     }
 %>

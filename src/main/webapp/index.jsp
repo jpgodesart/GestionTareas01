@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/gestordetareas.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -54,7 +55,7 @@
                             <%
                             } else {
                             %>
-                            <a class="navbar-link" href="Controller?class=usuario&method=login">Login</a>
+                            
                             <%
                                 }
                             %>
@@ -84,7 +85,8 @@
                 <jsp:include page='<%=(String) oContexto.getVista()%>' />
                 <%
                     out.print("</div>");
-                %>    
+                %>
+                
                 <div class="row-fluid">
                     <div class="span12"><hr><footer><p>&copy; Juan Pérez Godesart (2013)</p></footer></div>   
                 </div>

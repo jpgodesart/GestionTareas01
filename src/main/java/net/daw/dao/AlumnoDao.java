@@ -95,7 +95,7 @@ public ArrayList<AlumnoBean> getPage(int intRegsPerPag, int intPage, ArrayList<F
                     oAlumnoBean.setApe1(oMysql.getOne("alumno", "ape1", oAlumnoBean.getId()));
                     oAlumnoBean.setApe2(oMysql.getOne("alumno", "ape2", oAlumnoBean.getId()));
                     oAlumnoBean.setEmail(oMysql.getOne("alumno", "email", oAlumnoBean.getId()));
-                    oAlumnoBean.setValidado(oMysql.getOne("alumno", "validado", oAlumnoBean.getId()));
+                    //oAlumnoBean.setValidado(oMysql.getOne("alumno", "validado", oAlumnoBean.getId()));
 
                 }
             } catch (Exception e) {
@@ -127,7 +127,7 @@ public ArrayList<AlumnoBean> getPage(int intRegsPerPag, int intPage, ArrayList<F
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "ape1", oAlumnoBean.getApe1());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "ape2", oAlumnoBean.getApe2());
             oMysql.updateOne(oAlumnoBean.getId(), "alumno", "email", oAlumnoBean.getEmail());
-            oMysql.updateOne(oAlumnoBean.getId(), "alumno", "validado", oAlumnoBean.getValidado());
+            //oMysql.updateOne(oAlumnoBean.getId(), "alumno", "validado", oAlumnoBean.getValidado());
             
             oMysql.commitTrans();
         } catch (Exception e) {

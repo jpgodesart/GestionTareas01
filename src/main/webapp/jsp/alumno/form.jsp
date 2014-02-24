@@ -12,7 +12,6 @@
     String ape1 = "";
     String ape2 = "";
     String email = "";
-    String validado = "";
     String login = "";
     String password = "";
     if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
@@ -23,7 +22,6 @@
         ape1 = oAlumnoBean.getApe1();
         ape2 = oAlumnoBean.getApe2();
         email = oAlumnoBean.getEmail();
-        validado = oAlumnoBean.getValidado();
         login = oAlumnoBean.getUsuario().getLogin();
         password = oAlumnoBean.getUsuario().getPassword();
     }
@@ -49,14 +47,7 @@
         <input type="hidden" name="class" value="alumno" /> 
         <input type="hidden" name="method" value="<%=oContexto.getMetodo()%>" /> 
         <input type="hidden" name="phase" value="2" />
-        <!--
-        <div class="control-group">
-            <label class="control-label" for="id_usuario">Id Usuario: </label> 
-            <div class="controls">
-                <input <%=strControlEnabled%> id="id_usuario" name="id_usuario" type="text" size="30" maxlength="50" autofocus="autofocus" value="<%=id_usuario%>" /><br />
-            </div>
-        </div>
-        -->
+
         <div class="control-group">
             <label class="control-label" for="nombre">Nombre: </label> 
             <div class="controls">
@@ -79,20 +70,6 @@
             <label class="control-label" for="email">Email: </label> 
             <div class="controls">
                 <input <%=strControlEnabled%> id="email" name="email" type="text" size="30" maxlength="50" value="<%=email%>" /><br />
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="validado">Validado: </label>
-            <div class="controls">
-                <select <%=strControlEnabled%> id="validado" name="validado" type="text" autofocus="autofocus" value="<%=validado%>" >
-                    <option>Seleccione una opción...</option>
-                    <option <%if (validado.equals("Si")) {
-                            out.print("selected");
-                        }%>>Si</option>
-                    <option <%if (validado.equals("No")) {
-                            out.print("selected");
-                        }%>>No</option>
-                </select>
             </div>
         </div>
         <div class="control-group">

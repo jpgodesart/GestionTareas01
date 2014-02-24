@@ -153,7 +153,7 @@ public class ProfesorDao {
                 Integer id_user = Integer.parseInt(oMysql.getId("profesor", "id_usuario", id_usuario));
                 oProfesorBean.setId(id_user);
             } catch (Exception e) {
-                throw new Exception("ProfesorDao.getEmpresa: Error: " + e.getMessage());
+                throw new Exception("ProfesorDao: Error: " + e.getMessage());
             } finally {
                 oMysql.desconexion();
             }
