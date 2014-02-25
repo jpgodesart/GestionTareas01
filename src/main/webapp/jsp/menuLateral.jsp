@@ -48,12 +48,6 @@
         }
         menu += "<a href=\"Controller?class=profesor&method=list\"><i class=\"icon-user\"></i> profesor</a></li>";
 
-        if (oContexto.getClase().equals("empresa") && oContexto.getMetodo().equals("list")) {
-            menu += "<li class=\"active\">";
-        } else {
-            menu += "<li>";
-        }
-        menu += "<a href=\"Controller?class=empresa&method=list\"><i class=\"icon-user\"></i> empresa</a></li>";
 
         //----------------------------------------------------------------------
 

@@ -28,7 +28,7 @@ public class ProyectoList1 implements Operation {
         UsuarioBean oUsuarioBean;
         oUsuarioBean = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         java.lang.Enum tipoUsuario = oUsuarioBean.getTipoUsuario();
-        //
+        //request.getparameter????
 
         oContexto.setVista("jsp/proyecto/list.jsp");
         //Validacion

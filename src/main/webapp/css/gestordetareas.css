@@ -28,3 +28,14 @@
 .tablaproyectos td{
     padding: 10px;
 }
+
+.tablatareas{
+    border: 5px solid #b3b3b3;
+    float: left;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.tablatareas td{
+    padding: 10px;
+}

@@ -16,7 +16,7 @@ public class ProyectoBean {
     private Integer id = 0;
     private String nombre = "";
     private String descripcion = "";
-
+    private UsuproBean usupro = null;
 
     public ProyectoBean() {
 
@@ -48,6 +48,14 @@ public class ProyectoBean {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public UsuproBean getUsupro() {
+        return usupro;
+    }
+
+    public void setUsupro(UsuproBean usupro) {
+        this.usupro = usupro;
     }
     
 }

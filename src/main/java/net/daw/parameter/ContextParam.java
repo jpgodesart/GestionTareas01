@@ -85,6 +85,7 @@ public class ContextParam {
                         oFilterBean.setFilterValue(request.getParameter("systemfiltervalue"));
                         oFilterBean.setFilterOrigin("system");
                         alFilter.add(oFilterBean);
+                    
                     }
                 }
             }

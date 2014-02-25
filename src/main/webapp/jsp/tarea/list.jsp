@@ -122,49 +122,35 @@
         </div>
     </div>
 </div>
-<table class="table table-hover table-condensed">
+<%        while (oIterador.hasNext()) {
+        TareaBean oTareaBEAN = oIterador.next();
+%>
+<table class="tablatareas">
+
+
     <tr>
-        <th>id
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>nombre
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>descripcion
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=descripcion&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>estado
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_estado&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_estado&ordervalue=desc"><i class="icon-arrow-down"></i></a>
-        </th>
-        <th>proyecto
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_proyecto&ordervalue=asc"><i class="icon-arrow-up"></i></a>
-            <a href="Controller?<%=oContexto.getSerializedParamsExceptOrder()%>&order=id_proyecto&ordervalue=desc"><i class="icon-arrow-down"></i></a>        
-        </th>
-        <th>Operaciones</th>
+        <td>TAREA: <%=oTareaBEAN.getNombre()%></td>
     </tr>
-    <%        while (oIterador.hasNext()) {
-            TareaBean oTareaBEAN = oIterador.next();
-    %>
     <tr>
-        <td><%=oTareaBEAN.getId()%></td>
-        <td><%=oTareaBEAN.getNombre()%></td>
         <td><%=oTareaBEAN.getDescripcion()%></td>
+    </tr>
+    <tr>
         <td>
             <%=oTareaBEAN.getEstado().getNombre()%> (<%=oTareaBEAN.getEstado().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=estado&method=list&id=<%=oTareaBEAN.getId()%>&searchingfor=estado&returnclass=tarea&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
         </td>
+     </tr>
+     <tr>
         <td>
             <%=oTareaBEAN.getProyecto().getNombre()%> (<%=oTareaBEAN.getProyecto().getId()%>)
             <div class="btn-group">
                 <a class="btn btn-mini" href="Controller?class=proyecto&method=list&id=<%=oTareaBEAN.getId()%>&searchingfor=proyecto&returnclass=tarea&returnmethod=update&returnphase=2"><i class="icon-search"></i></a>                                        
             </div>            
-        </td>       
+        </td>
+      </tr>
+      <tr>
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group"> 

@@ -4,6 +4,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="net.daw.bean.ProyectoBean"%>
+<%@ page import="net.daw.bean.TareaBean"%>
 <%@ page import="net.daw.helper.Contexto"%>
 <%
     Contexto oContexto = (Contexto) request.getAttribute("contexto");
@@ -122,8 +123,9 @@
     %>
     <table class="tablaproyectos">
     <tr>
-        <td><h4><%=oProyectoBEAN.getNombre()%></h4></td>
-    </tr>
+       <!-- <td><h4><a href="Controller?enviar=Filtrar&systemfilter=id_proyecto&systemfilteroperator=equals&systemfiltervalue=<%=oProyectoBEAN.getId()%>&class=tarea&method=list"><%=oProyectoBEAN.getNombre()%></a></h4></td> -->
+        <td><h4><a href="Controller?enviar=Filtrar&filter=id_proyecto&filteroperator=equals&filtervalue=<%=oProyectoBEAN.getId()%>&class=tarea&method=list"><%=oProyectoBEAN.getNombre()%></a></h4></td>
+    </tr> 
     <tr>
         <td><%=oProyectoBEAN.getDescripcion()%></td>
     </tr>

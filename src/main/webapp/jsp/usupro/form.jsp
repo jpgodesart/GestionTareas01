@@ -21,7 +21,7 @@
 
     id_usuario = Integer.toString(oUsuproBean.getUsuario().getId());
     if (oUsuproBean.getUsuario().getId() > 0) {
-        descUsuario = oUsuproBean.getUsuario().getNombre();
+        descUsuario = oUsuproBean.getUsuario().getLogin();
     }
 
     id_proyecto = Integer.toString(oUsuproBean.getProyecto().getId());

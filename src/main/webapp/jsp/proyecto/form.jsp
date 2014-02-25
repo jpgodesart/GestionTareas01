@@ -9,13 +9,16 @@
     Integer id = 0;
     String nombre = "";
     String descripcion = "";
+    Integer id_usuario = "";
+    
 
-
+    if (oContexto.getMetodo().equals("update") || oContexto.getMetodo().equals("view")) {
     ProyectoBean oProyectoBean = (ProyectoBean) oContexto.getParametro();
     id = oProyectoBean.getId();
     nombre = oProyectoBean.getNombre();
     descripcion = oProyectoBean.getDescripcion();
-    
+    id_usuario = oProyectoBean.getUsupro().getUsuario().getId();
+    }
 
     if (oContexto.getMetodo().equals("view")) {
         strTitulo = "Vista";
